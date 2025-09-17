@@ -1,0 +1,33 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "bun",
+			"request": "launch",
+			"name": "Dev",
+			"program": "${workspaceFolder}/node_modules/.bin/vite",
+			"args": ["dev"],
+			"cwd": "${workspaceFolder}",
+			"stopOnEntry": false,
+			"runtime": "bun"
+		},
+		{
+			"type": "bun",
+			"request": "attach",
+			"name": "Attach to Bun Inspector",
+			"url": "ws://localhost:6499/"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Storybook",
+			"program": "${workspaceFolder}/node_modules/.bin/storybook",
+			"args": ["dev", "-p", "6006"],
+			"cwd": "${workspaceFolder}",
+			"console": "integratedTerminal",
+			"env": {
+				"NODE_ENV": "development"
+			}
+		}
+	]
+}

@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Epunda+Slab:ital,wght@0,300..900;1,300..900&family=LXGW+WenKai+Mono+TC&display=swap");
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin 'tailwindcss-animate';
+
+@theme {
+	/* Colors */
+	--color-burgundy: #5a1a28;
+	--color-burgundy-dark: #3d121b;
+	--color-gold: #ae9b5e;
+	--color-warm-cream: #fff8dc;
+
+	/* Font families */
+	--font-sans: "Be Vietnam Pro", sans-serif;
+	--font-serif: "Epunda Slab", serif;
+	--font-mono: "LXGW WenKai Mono TC", monospace;
+
+	--font-weight-extrabold: 1000;
+}
+
+@layer base {
+	html {
+		color-scheme: light;
+		scroll-behavior: smooth;
+		background: linear-gradient(
+			135deg,
+			var(--color-burgundy-dark) 0%,
+			var(--color-burgundy) 100%
+		);
+	}
+
+	body {
+		font-family: var(--font-sans);
+		color: var(--color-warm-cream);
+	}
+
+	/* Typography refinements */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--font-serif);
+		font-optical-sizing: auto;
+		color: var(--color-gold);
+	}
+
+	p {
+		color: var(--color-warm-cream);
+	}
+}
