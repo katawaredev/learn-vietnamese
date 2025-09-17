@@ -11,14 +11,12 @@ const config = defineConfig({
 	},
 	plugins: [
 		// this is the plugin that enables path aliases
-		viteTsConfigPaths({
-			projects: ["./tsconfig.json"],
-		}),
-		tailwindcss(),
+		viteTsConfigPaths(),
 		tanstackStart({
 			customViteReactPlugin: true,
 		}),
 		viteReact(),
+		tailwindcss(),
 	],
 });
 

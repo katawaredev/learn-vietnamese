@@ -1,6 +1,6 @@
 import { createRouter as createTanstackRouter } from "@tanstack/react-router";
 
-import NotFound from "./layout/NotFound";
+import NotFound from "~/layout/NotFound";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 

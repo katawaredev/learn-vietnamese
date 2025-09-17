@@ -1,39 +1,58 @@
+import {
+	BookOpenIcon,
+	ChatBubbleLeftRightIcon,
+	DocumentTextIcon,
+	HandRaisedIcon,
+	HashtagIcon,
+	PencilSquareIcon,
+	PresentationChartLineIcon,
+	SpeakerWaveIcon,
+	UsersIcon,
+} from "@heroicons/react/24/outline";
 import { createFileRoute } from "@tanstack/react-router";
-import logo from "../logo.svg";
+import { LinkButton } from "~/components/Button";
+import Header from "~/layout/Header";
 
 export const Route = createFileRoute("/")({
 	component: App,
 });
 
 function App() {
+	const learningModules = [
+		{ name: "Pronunciation", icon: SpeakerWaveIcon, to: "/pronunciation" },
+		{ name: "Greetings", icon: HandRaisedIcon, to: "/greetings" },
+		{ name: "Numbers", icon: HashtagIcon, to: "/numbers" },
+		{ name: "Grammar", icon: BookOpenIcon, to: "/grammar" },
+		{ name: "Phrases", icon: ChatBubbleLeftRightIcon, to: "/phrases" },
+		{ name: "Reading", icon: DocumentTextIcon, to: "/reading" },
+		{ name: "Dictation", icon: PencilSquareIcon, to: "/dictation" },
+		{ name: "Vocabulary", icon: PresentationChartLineIcon, to: "/vocabulary" },
+		{ name: "Chat", icon: UsersIcon, to: "/chat" },
+	];
+
 	return (
-		<div className="text-center">
-			<header className="flex min-h-screen flex-col items-center justify-center bg-[#282c34] text-[calc(10px+2vmin)] text-white">
-				<img
-					src={logo}
-					className="pointer-events-none h-[40vmin] animate-[spin_20s_linear_infinite]"
-					alt="logo"
-				/>
-				<p>
-					Edit <code>src/routes/index.tsx</code> and save to reload.
-				</p>
-				<a
-					className="text-[#61dafb] hover:underline"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-				<a
-					className="text-[#61dafb] hover:underline"
-					href="https://tanstack.com"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn TanStack
-				</a>
-			</header>
+		<div className="min-h-screen bg-gradient-to-br from-burgundy-dark to-burgundy">
+			<Header hideBackButton />
+
+			{/* Main Content */}
+			<main className="px-6 pb-8">
+				<div className="mx-auto max-w-md space-y-6">
+					{learningModules.map((module) => {
+						const IconComponent = module.icon;
+						return (
+							<LinkButton
+								key={module.name}
+								variant="default"
+								to={module.to}
+								className="flex w-full items-center justify-center gap-4 px-6 py-4 font-medium text-2xl"
+							>
+								<IconComponent className="h-6 w-6" />
+								{module.name}
+							</LinkButton>
+						);
+					})}
+				</div>
+			</main>
 		</div>
 	);
 }
