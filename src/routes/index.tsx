@@ -1,13 +1,13 @@
 import {
 	BookOpenIcon,
+	ChatBubbleBottomCenterTextIcon,
 	ChatBubbleLeftRightIcon,
 	DocumentTextIcon,
 	HandRaisedIcon,
-	HashtagIcon,
+	NumberedListIcon,
 	PencilSquareIcon,
-	PresentationChartLineIcon,
+	PuzzlePieceIcon,
 	SpeakerWaveIcon,
-	UsersIcon,
 } from "@heroicons/react/24/outline";
 import { createFileRoute } from "@tanstack/react-router";
 import { LinkButton } from "~/components/Button";
@@ -21,13 +21,13 @@ function App() {
 	const learningModules = [
 		{ name: "Pronunciation", icon: SpeakerWaveIcon, to: "/pronunciation" },
 		{ name: "Greetings", icon: HandRaisedIcon, to: "/greetings" },
-		{ name: "Numbers", icon: HashtagIcon, to: "/numbers" },
-		{ name: "Grammar", icon: BookOpenIcon, to: "/grammar" },
-		{ name: "Phrases", icon: ChatBubbleLeftRightIcon, to: "/phrases" },
+		{ name: "Numbers", icon: NumberedListIcon, to: "/numbers" },
+		{ name: "Grammar", icon: PuzzlePieceIcon, to: "/grammar" },
+		{ name: "Phrases", icon: ChatBubbleBottomCenterTextIcon, to: "/phrases" },
 		{ name: "Reading", icon: DocumentTextIcon, to: "/reading" },
 		{ name: "Dictation", icon: PencilSquareIcon, to: "/dictation" },
-		{ name: "Vocabulary", icon: PresentationChartLineIcon, to: "/vocabulary" },
-		{ name: "Chat", icon: UsersIcon, to: "/chat" },
+		{ name: "Vocabulary", icon: BookOpenIcon, to: "/vocabulary" },
+		{ name: "AI Chat", icon: ChatBubbleLeftRightIcon, to: "/chat" },
 	];
 
 	return (
