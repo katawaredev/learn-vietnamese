@@ -1,4 +1,11 @@
 {
+	"files.exclude": {
+		"node_modules": true,
+		"bun.lock": true,
+		".nitro": true,
+		".output": true,
+		".tanstack": true
+	},
 	"files.watcherExclude": {
 		"**/routeTree.gen.ts": true
 	},

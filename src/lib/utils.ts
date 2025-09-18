@@ -7,9 +7,19 @@ import { twMerge } from "tailwind-merge";
 export function cn<TState = Record<string, unknown>>(
 	baseClassName: string,
 	className?: string | ((state: TState) => string),
+	...additionalClasses: (string | undefined | null | boolean)[]
 ): string | ((state: TState) => string) {
 	if (typeof className === "function") {
-		return (state: TState) => twMerge(baseClassName, className(state));
+		return (state: TState) =>
+			twMerge(
+				baseClassName,
+				className(state),
+				...(additionalClasses.filter(Boolean) as string[]),
+			);
 	}
-	return twMerge(baseClassName, className);
+	return twMerge(
+		baseClassName,
+		className,
+		...(additionalClasses.filter(Boolean) as string[]),
+	);
 }

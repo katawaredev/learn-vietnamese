@@ -12,7 +12,7 @@ export default function Header({
 	children,
 }: HeaderProps) {
 	return (
-		<header className="flex items-center justify-between p-6">
+		<header className="flex items-center justify-between px-4 pt-4 pb-12">
 			{/* Left side - Back button or spacer */}
 			<div className="w-10">
 				{!hideBackButton && (
@@ -23,7 +23,7 @@ export default function Header({
 			</div>
 
 			{/* Center - Optional custom component */}
-			<div className="flex-1">{children}</div>
+			<div className="flex flex-1 justify-center">{children}</div>
 
 			{/* Right side - Settings */}
 			<div className="flex w-10 justify-end">
