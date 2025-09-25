@@ -13,11 +13,12 @@ const buttonVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "bg-gold text-burgundy-dark hover:bg-gold",
+				default:
+					"bg-gold text-burgundy-dark hover:bg-gold border-2 border-transparent",
 				outline:
 					"bg-transparent border-2 border-gold text-gold hover:bg-gold hover:text-burgundy",
 				ghost:
-					"bg-transparent text-gold hover:text-warm-cream hover:bg-gold/10",
+					"bg-transparent text-gold hover:text-warm-cream hover:bg-gold/10 border-2 border-transparent",
 			},
 			size: {
 				small: "px-3 py-1.5 text-sm",
