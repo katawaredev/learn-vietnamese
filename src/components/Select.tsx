@@ -106,9 +106,10 @@ export function Select({
 				<ListboxOptions className={cn(selectMenuVariants(), menuClassName)}>
 					<div className="relative">
 						{/* Triangle pointer */}
-						<div className="-top-[7px] -translate-x-1/2 absolute left-1/2 z-10 transform">
-							<div className="h-0 w-0 border-r-[8px] border-r-transparent border-b-[8px] border-b-gold border-l-[8px] border-l-transparent"></div>
-							<div className="-translate-x-1/2 absolute top-[2px] left-1/2 h-0 w-0 transform border-r-[6px] border-r-transparent border-b-[6px] border-b-burgundy-dark border-l-[6px] border-l-transparent"></div>
+						<div className="-top-[13px] -translate-x-1/2 absolute left-1/2 z-10 transform">
+							<div className="w-4 overflow-hidden">
+								<div className="h-4 w-4 translate-y-2 rotate-45 transform rounded-sm border border-gold bg-burgundy-dark"></div>
+							</div>
 						</div>
 						{/* Dropdown container */}
 						<div className="overflow-hidden rounded-2xl border border-gold bg-burgundy-dark py-1 shadow-lg">
