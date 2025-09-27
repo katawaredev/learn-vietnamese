@@ -9,6 +9,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
 import { cn } from "~/lib/utils";
+import { DropdownMenu } from "./DropdownMenu";
 
 const selectVariants = cva(
 	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-burgundy-dark rounded-2xl inline-flex items-center relative bg-gold text-burgundy-dark hover:bg-gold",
@@ -104,33 +105,22 @@ export function Select({
 				</ListboxButton>
 
 				<ListboxOptions className={cn(selectMenuVariants(), menuClassName)}>
-					<div className="relative">
-						{/* Triangle pointer */}
-						<div className="-top-[13px] -translate-x-1/2 absolute left-1/2 z-10 transform">
-							<div className="w-4 overflow-hidden">
-								<div className="h-4 w-4 translate-y-2 rotate-45 transform rounded-sm border border-gold bg-burgundy-dark"></div>
-							</div>
-						</div>
-						{/* Dropdown container */}
-						<div className="overflow-hidden rounded-2xl border border-gold bg-burgundy-dark py-1 shadow-lg">
-							{options.map((option) => (
-								<ListboxOption
-									key={option.value}
-									value={option.value}
-									disabled={option.disabled}
-									className={cn(
-										selectItemVariants({ size }),
-										itemClassName,
-										option.disabled
-											? "cursor-not-allowed opacity-50"
-											: undefined,
-									)}
-								>
-									{option.label}
-								</ListboxOption>
-							))}
-						</div>
-					</div>
+					<DropdownMenu>
+						{options.map((option) => (
+							<ListboxOption
+								key={option.value}
+								value={option.value}
+								disabled={option.disabled}
+								className={cn(
+									selectItemVariants({ size }),
+									itemClassName,
+									option.disabled ? "cursor-not-allowed opacity-50" : undefined,
+								)}
+							>
+								{option.label}
+							</ListboxOption>
+						))}
+					</DropdownMenu>
 				</ListboxOptions>
 			</Listbox>
 		</div>

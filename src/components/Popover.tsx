@@ -6,6 +6,7 @@ import {
 } from "@headlessui/react";
 import type { ReactNode } from "react";
 import { cn } from "~/lib/utils";
+import { DropdownMenu } from "./DropdownMenu";
 
 interface PopoverProps extends Omit<HeadlessPopoverProps, "children"> {
 	trigger: ReactNode;
@@ -41,18 +42,9 @@ export function Popover({
 						panelClassName,
 					)}
 				>
-					<div className="relative">
-						{/* Triangle pointer */}
-						<div className="-top-[13px] -translate-x-1/2 absolute left-1/2 z-10 transform">
-							<div className="w-4 overflow-hidden">
-								<div className="h-4 w-4 translate-y-2 rotate-45 transform rounded-sm border border-gold bg-burgundy-dark"></div>
-							</div>
-						</div>
-						{/* Popover container */}
-						<div className="overflow-hidden rounded-2xl border border-gold bg-burgundy-dark py-1 shadow-lg">
-							<div className="p-4">{children}</div>
-						</div>
-					</div>
+					<DropdownMenu>
+						<div className="p-4">{children}</div>
+					</DropdownMenu>
 				</PopoverPanel>
 			</HeadlessPopover>
 		</div>

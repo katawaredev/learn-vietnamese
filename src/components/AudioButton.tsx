@@ -1,9 +1,8 @@
-import { predict, type VoiceId } from "@diffusionstudio/vits-web";
 import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 import { cva } from "class-variance-authority";
 import { type FC, useCallback, useEffect, useRef, useState } from "react";
 
-type SpeakState = "idle" | "processing" | "playing" | "ended";
+type AudioState = "idle" | "processing" | "playing" | "ended";
 
 const buttonVariants = cva(
 	"relative rounded-full border-0 flex items-center justify-center cursor-pointer select-none transition-all duration-200 ease-in-out shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95",
@@ -12,7 +11,7 @@ const buttonVariants = cva(
 			size: {
 				small: "w-12 h-12",
 				medium: "w-16 h-16",
-				large: "w-20 h-20",
+				large: "w-20 w-20",
 			},
 			state: {
 				idle: "bg-blue-500 hover:bg-blue-600 shadow-blue-500/25",
@@ -28,18 +27,18 @@ const buttonVariants = cva(
 	},
 );
 
-interface SpeakButtonProps {
-	text: string;
-	voiceId?: VoiceId;
+interface AudioButtonProps {
 	size?: "small" | "medium" | "large";
+	getAudio: () => Promise<HTMLAudioElement>;
+	canPlay: () => boolean;
 }
 
-const SpeakButton: FC<SpeakButtonProps> = ({
-	text,
-	voiceId = "vi_VN-vais1000-medium",
+const AudioButton: FC<AudioButtonProps> = ({
 	size = "medium",
+	getAudio,
+	canPlay,
 }) => {
-	const [state, setState] = useState<SpeakState>("idle");
+	const [state, setState] = useState<AudioState>("idle");
 	const [isHolding, setIsHolding] = useState(false);
 	const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(
 		null,
@@ -75,8 +74,8 @@ const SpeakButton: FC<SpeakButtonProps> = ({
 	}, [currentAudio]);
 
 	// Generate and play audio
-	const speak = useCallback(async () => {
-		if (!text.trim()) return;
+	const play = useCallback(async () => {
+		if (!canPlay()) return;
 
 		// If already playing, stop
 		if (state === "playing") {
@@ -96,14 +95,8 @@ const SpeakButton: FC<SpeakButtonProps> = ({
 
 			setState("processing");
 
-			// Generate audio with VITS
-			const wav = await predict({
-				text: text.trim(),
-				voiceId: voiceId,
-			});
-
-			const audioUrl = URL.createObjectURL(wav);
-			const audio = new Audio(audioUrl);
+			// Get audio from the provided function
+			const audio = await getAudio();
 			setCurrentAudio(audio);
 
 			audio.addEventListener("play", () => {
@@ -118,14 +111,15 @@ const SpeakButton: FC<SpeakButtonProps> = ({
 				console.error("Audio playback failed:", e);
 				setState("idle");
 			});
+
 			// Set initial speed based on current hold state
 			audio.playbackRate = isHolding ? 0.5 : 0.8;
 			await audio.play();
 		} catch (error) {
-			console.error("TTS failed:", error);
+			console.error("Audio playback failed:", error);
 			setState("idle");
 		}
-	}, [text, state, stop, currentAudio, voiceId, isHolding]);
+	}, [state, stop, currentAudio, getAudio, canPlay, isHolding]);
 
 	// Handle press start (mouse/touch down)
 	const handlePressStart = useCallback(() => {
@@ -147,9 +141,9 @@ const SpeakButton: FC<SpeakButtonProps> = ({
 		// Set up timer to detect hold vs quick press
 		holdTimeout.current = setTimeout(() => {
 			setIsHolding(true);
-			speak();
+			play();
 		}, 200);
-	}, [state, speak]);
+	}, [state, play]);
 
 	// Handle press end (mouse/touch up)
 	const handlePressEnd = useCallback(() => {
@@ -160,7 +154,7 @@ const SpeakButton: FC<SpeakButtonProps> = ({
 
 			// Quick press - start playing at normal speed if idle
 			if (state === "idle") {
-				speak();
+				play();
 			}
 		}
 
@@ -168,7 +162,7 @@ const SpeakButton: FC<SpeakButtonProps> = ({
 		if (isHolding) {
 			setIsHolding(false);
 		}
-	}, [state, speak, isHolding]);
+	}, [state, play, isHolding]);
 
 	return (
 		<button
@@ -179,8 +173,8 @@ const SpeakButton: FC<SpeakButtonProps> = ({
 			onMouseLeave={handlePressEnd}
 			onTouchStart={handlePressStart}
 			onTouchEnd={handlePressEnd}
-			disabled={state === "processing" || !text.trim()}
-			aria-label={state === "playing" ? "Stop speaking" : "Start speaking"}
+			disabled={state === "processing" || !canPlay()}
+			aria-label={state === "playing" ? "Stop audio" : "Play audio"}
 		>
 			{/* Speaker Icon */}
 			<SpeakerWaveIcon
@@ -206,4 +200,4 @@ const SpeakButton: FC<SpeakButtonProps> = ({
 	);
 };
 
-export default SpeakButton;
+export default AudioButton;
