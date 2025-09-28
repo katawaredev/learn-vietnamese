@@ -113,5 +113,12 @@ export const SpeakWebButton: FC<SpeakWebButtonProps> = ({
 		);
 	}, [text]);
 
-	return <SpeakBaseButton size={size} getAudio={getAudio} canPlay={canPlay} />;
+	return (
+		<SpeakBaseButton
+			key={text}
+			size={size}
+			getAudio={getAudio}
+			canPlay={canPlay}
+		/>
+	);
 };

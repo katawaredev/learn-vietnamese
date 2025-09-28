@@ -16,9 +16,9 @@ const buttonVariants = cva(
 				large: "w-20 h-20",
 			},
 			state: {
-				idle: "bg-red-500 hover:bg-red-600 shadow-red-500/25",
-				recording: "bg-red-600 shadow-red-500/50",
-				processing: "bg-red-500 cursor-wait",
+				idle: "bg-stone-800 hover:bg-stone-900 shadow-stone-800/25",
+				recording: "bg-stone-900 shadow-stone-800/45",
+				processing: "bg-stone-800 cursor-wait",
 			},
 		},
 		defaultVariants: {
@@ -99,16 +99,16 @@ export const ListenBaseButton: React.FC<ListenBaseButtonProps> = ({
 			<MicrophoneIcon
 				className={`${
 					size === "small"
-						? "h-4 w-4"
+						? "h-5 w-5"
 						: size === "medium"
-							? "h-6 w-6"
-							: "h-8 w-8"
-				} text-white`}
+							? "h-7 w-7"
+							: "h-9 w-9"
+				} text-red-400`}
 			/>
 
 			{/* Processing indicator */}
 			{state === "processing" && (
-				<div className="absolute inset-1 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+				<div className="absolute inset-1 animate-spin rounded-full border-2 border-stone-600/30 border-t-stone-300" />
 			)}
 
 			{/* Recording indicator */}

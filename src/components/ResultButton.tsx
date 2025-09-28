@@ -109,7 +109,7 @@ export const Result: FC<ResultProps> = ({
 
 					<div>
 						<strong>Suggestions:</strong>
-						<p className="mb-3 text-sm">Switch speech to text model</p>
+						<p className="mb-3 text-sm">Switch speech recognition model</p>
 
 						<div className="relative">
 							<select

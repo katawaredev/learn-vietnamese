@@ -14,10 +14,10 @@ const buttonVariants = cva(
 				large: "w-20 h-20",
 			},
 			state: {
-				idle: "bg-blue-500 hover:bg-blue-600 shadow-blue-500/25",
-				speaking: "bg-blue-600 shadow-blue-500/50",
-				processing: "bg-blue-500 cursor-wait",
-				ended: "bg-blue-500 hover:bg-blue-600 shadow-blue-500/25",
+				idle: "bg-sky-800 hover:bg-sky-800 shadow-sky-800/25",
+				speaking: "bg-sky-900 shadow-sky-800/40",
+				processing: "bg-sky-800 cursor-wait",
+				ended: "bg-sky-800 hover:bg-sky-800 shadow-sky-800/25",
 			},
 		},
 		defaultVariants: {
@@ -182,21 +182,21 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 			<SpeakerWaveIcon
 				className={`${
 					size === "small"
-						? "h-4 w-4"
+						? "h-5 w-5"
 						: size === "medium"
-							? "h-6 w-6"
-							: "h-8 w-8"
-				} text-white`}
+							? "h-7 w-7"
+							: "h-9 w-9"
+				} text-sky-200`}
 			/>
 
 			{/* Processing indicator */}
 			{state === "processing" && (
-				<div className="absolute inset-1 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+				<div className="absolute inset-1 animate-spin rounded-full border-2 border-sky-600/30 border-t-sky-200" />
 			)}
 
 			{/* Speaking indicator */}
 			{state === "speaking" && (
-				<div className="-inset-1 absolute animate-ping rounded-full border-2 border-blue-500/60" />
+				<div className="-inset-1 absolute animate-ping rounded-full border-2 border-sky-500/60" />
 			)}
 		</button>
 	);

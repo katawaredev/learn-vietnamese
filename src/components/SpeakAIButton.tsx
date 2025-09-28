@@ -31,5 +31,12 @@ export const SpeakAIButton: FC<SpeakAIButtonProps> = ({
 
 	const canPlay = useCallback(() => !!text.trim(), [text]);
 
-	return <SpeakBaseButton size={size} getAudio={getAudio} canPlay={canPlay} />;
+	return (
+		<SpeakBaseButton
+			key={text}
+			size={size}
+			getAudio={getAudio}
+			canPlay={canPlay}
+		/>
+	);
 };

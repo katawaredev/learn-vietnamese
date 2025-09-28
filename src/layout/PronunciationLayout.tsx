@@ -118,14 +118,28 @@ export const PronunciationLayout: FC<PronunciationLayoutProps> = ({
 											buttonClassName="opacity-60 hover:opacity-100 transition-opacity p-2"
 											size="xl"
 										>
-											<div className="space-y-2">
+											<div className="space-y-3">
+												<div className="border-white/10 border-b pb-3 text-center">
+													<div className="mb-2 font-bold text-4xl">{key}</div>
+													<div className="font-mono text-sm text-white/70">
+														{item.ipa}
+													</div>
+												</div>
 												<div>
 													<strong>Pronunciation:</strong>
 													<p className="text-sm">{item.pronunciation}</p>
 												</div>
 												<div>
 													<strong>Telex:</strong>
-													<p className="text-sm">{item.telex}</p>
+													<p className="mb-1 text-sm">{item.telex}</p>
+													<a
+														href="https://en.wikipedia.org/wiki/Telex_(input_method)"
+														target="_blank"
+														rel="noopener noreferrer"
+														className="text-blue-300 text-xs underline hover:text-blue-200"
+													>
+														Learn about Telex input method →
+													</a>
 												</div>
 											</div>
 										</Popover>

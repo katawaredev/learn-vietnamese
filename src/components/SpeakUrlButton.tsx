@@ -20,7 +20,14 @@ const SpeakFileButton: FC<SpeakFileButtonProps> = ({
 		return !!url.trim();
 	}, [url]);
 
-	return <SpeakBaseButton size={size} getAudio={getAudio} canPlay={canPlay} />;
+	return (
+		<SpeakBaseButton
+			key={url}
+			size={size}
+			getAudio={getAudio}
+			canPlay={canPlay}
+		/>
+	);
 };
 
 export default SpeakFileButton;

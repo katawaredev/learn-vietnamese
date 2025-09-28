@@ -46,7 +46,7 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 			<div className="fixed inset-0 overflow-hidden">
 				<div className="absolute inset-0 overflow-hidden">
 					<div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-						<DialogPanel className="pointer-events-auto relative w-screen max-w-md transform transition duration-300 ease-in-out data-[closed]:translate-x-full">
+						<DialogPanel className="slide-in-from-right pointer-events-auto relative w-screen max-w-md animate-in duration-300">
 							<div className="flex h-full flex-col bg-burgundy-dark shadow-xl">
 								{/* Header */}
 								<div className="flex items-center justify-between border-gold/20 border-b px-6 py-4">
@@ -69,7 +69,7 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 										{/* Text to Speech Section */}
 										<div>
 											<div className="mb-3 block font-medium font-serif text-gold text-sm">
-												Text to Speech
+												Speech synthesis model:
 											</div>
 											<Select
 												options={ttsOptions}
@@ -84,7 +84,7 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 										{/* Speech to Text Section */}
 										<div>
 											<div className="mb-3 block font-medium font-serif text-gold text-sm">
-												Speech to Text
+												Speech recognition model:
 											</div>
 											<Select
 												options={sttOptions}
