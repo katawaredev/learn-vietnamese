@@ -2,7 +2,7 @@ import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 import { cva } from "class-variance-authority";
 import { type FC, useCallback, useEffect, useRef, useState } from "react";
 
-type AudioState = "idle" | "processing" | "playing" | "ended";
+export type SpeechState = "idle" | "processing" | "speaking" | "ended";
 
 const buttonVariants = cva(
 	"relative rounded-full border-0 flex items-center justify-center cursor-pointer select-none transition-all duration-200 ease-in-out shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95",
@@ -11,11 +11,11 @@ const buttonVariants = cva(
 			size: {
 				small: "w-12 h-12",
 				medium: "w-16 h-16",
-				large: "w-20 w-20",
+				large: "w-20 h-20",
 			},
 			state: {
 				idle: "bg-blue-500 hover:bg-blue-600 shadow-blue-500/25",
-				playing: "bg-blue-600 shadow-blue-500/50",
+				speaking: "bg-blue-600 shadow-blue-500/50",
 				processing: "bg-blue-500 cursor-wait",
 				ended: "bg-blue-500 hover:bg-blue-600 shadow-blue-500/25",
 			},
@@ -27,18 +27,20 @@ const buttonVariants = cva(
 	},
 );
 
-interface AudioButtonProps {
+export interface SpeakBaseButtonProps {
 	size?: "small" | "medium" | "large";
 	getAudio: () => Promise<HTMLAudioElement>;
 	canPlay: () => boolean;
+	disabled?: boolean;
 }
 
-const AudioButton: FC<AudioButtonProps> = ({
+export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 	size = "medium",
 	getAudio,
 	canPlay,
+	disabled = false,
 }) => {
-	const [state, setState] = useState<AudioState>("idle");
+	const [state, setState] = useState<SpeechState>("idle");
 	const [isHolding, setIsHolding] = useState(false);
 	const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(
 		null,
@@ -78,7 +80,7 @@ const AudioButton: FC<AudioButtonProps> = ({
 		if (!canPlay()) return;
 
 		// If already playing, stop
-		if (state === "playing") {
+		if (state === "speaking") {
 			stop();
 			return;
 		}
@@ -100,7 +102,7 @@ const AudioButton: FC<AudioButtonProps> = ({
 			setCurrentAudio(audio);
 
 			audio.addEventListener("play", () => {
-				setState("playing");
+				setState("speaking");
 			});
 
 			audio.addEventListener("ended", () => {
@@ -123,7 +125,7 @@ const AudioButton: FC<AudioButtonProps> = ({
 
 	// Handle press start (mouse/touch down)
 	const handlePressStart = useCallback(() => {
-		if (state === "playing") {
+		if (state === "speaking") {
 			// Audio is already playing - set up hold detection to slow it down
 			holdTimeout.current = setTimeout(() => {
 				setIsHolding(true);
@@ -173,8 +175,8 @@ const AudioButton: FC<AudioButtonProps> = ({
 			onMouseLeave={handlePressEnd}
 			onTouchStart={handlePressStart}
 			onTouchEnd={handlePressEnd}
-			disabled={state === "processing" || !canPlay()}
-			aria-label={state === "playing" ? "Stop audio" : "Play audio"}
+			disabled={disabled || state === "processing" || !canPlay()}
+			aria-label={state === "speaking" ? "Stop audio" : "Play audio"}
 		>
 			{/* Speaker Icon */}
 			<SpeakerWaveIcon
@@ -192,12 +194,10 @@ const AudioButton: FC<AudioButtonProps> = ({
 				<div className="absolute inset-1 animate-spin rounded-full border-2 border-white/30 border-t-white" />
 			)}
 
-			{/* Playing indicator */}
-			{state === "playing" && (
+			{/* Speaking indicator */}
+			{state === "speaking" && (
 				<div className="-inset-1 absolute animate-ping rounded-full border-2 border-blue-500/60" />
 			)}
 		</button>
 	);
 };
-
-export default AudioButton;

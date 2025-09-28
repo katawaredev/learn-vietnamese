@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Epunda+Slab:ital,wght@0,300..900;1,300..900&family=LXGW+WenKai+Mono+TC&display=swap");
 @import "tailwindcss";
+@import "tw-animate-css";
 @plugin "@tailwindcss/typography";
-@plugin 'tailwindcss-animate';
 
 @theme {
 	/* Colors */
@@ -16,6 +16,44 @@
 	--font-mono: "LXGW WenKai Mono TC", monospace;
 
 	--font-weight-extrabold: 1000;
+
+	--animate-shake: shake 1s ease-out;
+	--animate-stamp: stamp 1s ease-out;
+
+	@keyframes shake {
+		10%,
+		90% {
+			transform: translate3d(-1px, 0, 0);
+		}
+		20%,
+		80% {
+			transform: translate3d(2px, 0, 0);
+		}
+		30%,
+		50%,
+		70% {
+			transform: translate3d(-4px, 0, 0);
+		}
+		40%,
+		60% {
+			transform: translate3d(4px, 0, 0);
+		}
+	}
+
+	@keyframes stamp {
+		0% {
+			transform: scale(1);
+		}
+		10% {
+			transform: scale(1.5);
+		}
+		80% {
+			transform: scale(1.5);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
 }
 
 @layer base {

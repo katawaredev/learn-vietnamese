@@ -1,0 +1,74 @@
+{
+	"a": {
+		"pronunciation": "Like 'a' in **father** or 'o' in **hot** (long, open sound)",
+		"ipa": "/a/",
+		"telex": "a",
+		"url": "/sounds/vowels/a.mp3"
+	},
+	"ă": {
+		"pronunciation": " Short 'a' like 'a' in **another** or like 'u' in **cup**' (very brief and checked sound)",
+		"ipa": "/ă/",
+		"telex": "aw",
+		"url": "/sounds/vowels/aw.mp3"
+	},
+	"â": {
+		"pronunciation": "Like 'u' in **but** (a more central, reduced 'uh' sound)",
+		"ipa": "/ə/",
+		"telex": "aa",
+		"url": "/sounds/vowels/aa.mp3"
+	},
+	"e": {
+		"pronunciation": "Like 'e' in **bed** or **met**",
+		"ipa": "/ɛ/",
+		"telex": "e",
+		"url": "/sounds/vowels/e.mp3"
+	},
+	"ê": {
+		"pronunciation": "Like 'ay' in **say** but **without the final 'y' glide**",
+		"ipa": "/e/",
+		"telex": "ee",
+		"url": "/sounds/vowels/ee.mp3"
+	},
+	"i": {
+		"pronunciation": "Like 'ee' in **see** or **sheep**",
+		"ipa": "/i/",
+		"telex": "i",
+		"url": "/sounds/vowels/i.mp3"
+	},
+	"y": {
+		"pronunciation": "Like 'ee' in **see** (same sound as 'i')",
+		"ipa": "/i/",
+		"telex": "y",
+		"url": "/sounds/vowels/y.mp3"
+	},
+	"o": {
+		"pronunciation": "Like 'o' in **off** or **awe**",
+		"ipa": "/ɔ/",
+		"telex": "o",
+		"url": "/sounds/vowels/o.mp3"
+	},
+	"ô": {
+		"pronunciation": "Like 'o' in **go** or **boat** but **without the final 'w' glide**",
+		"ipa": "/o/",
+		"telex": "oo",
+		"url": "/sounds/vowels/oo.mp3"
+	},
+	"ơ": {
+		"pronunciation": "Like 'ur' in **fur** or 'a' in **alone** (no 'r' sound)",
+		"ipa": "/ɤ/",
+		"telex": "ow",
+		"url": "/sounds/vowels/ow.mp3"
+	},
+	"u": {
+		"pronunciation": "Like 'oo' in **food** or **boot**",
+		"ipa": "/u/",
+		"telex": "u",
+		"url": "/sounds/vowels/u.mp3"
+	},
+	"ư": {
+		"pronunciation": "A tight-lipped 'ew' sound, similar to French 'u' (close back **unrounded**)",
+		"ipa": "/ɯ/",
+		"telex": "uw",
+		"url": "/sounds/vowels/uw.mp3"
+	}
+}

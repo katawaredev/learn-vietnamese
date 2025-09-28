@@ -1,6 +1,13 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import {
+	createRootRoute,
+	HeadContent,
+	Outlet,
+	Scripts,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { STTProvider } from "~/providers/stt-provider";
+import { TTSProvider } from "~/providers/tts-provider";
 
 import appCss from "~/styles.css?url";
 
@@ -54,8 +61,19 @@ export const Route = createRootRoute({
 		],
 	}),
 
+	component: RootComponent,
 	shellComponent: RootDocument,
 });
+
+function RootComponent() {
+	return (
+		<TTSProvider>
+			<STTProvider>
+				<Outlet />
+			</STTProvider>
+		</TTSProvider>
+	);
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (

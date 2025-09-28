@@ -1,16 +1,16 @@
 import { type ChangeEvent, useCallback } from "react";
 
-type SingleWordInputType = {
+interface WordInputSingleProps {
 	text: string;
 	hint?: string;
 	onChange?: (text: string) => void;
-};
+}
 
-export const SingleWordInput = ({
+export const WordInputSingle = ({
 	text,
 	hint,
 	onChange,
-}: SingleWordInputType) => {
+}: WordInputSingleProps) => {
 	if (hint && hint.length !== text.length)
 		throw new Error(
 			`Hint length (${hint.length}) does not match text length (${text.length})`,

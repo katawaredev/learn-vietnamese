@@ -1,0 +1,76 @@
+{
+	"ngang": {
+		"name": "Mid-level (ngang)",
+		"diacritic": "",
+		"unicodeMark": "",
+		"ipa": "˧",
+		"direction": "flat (→)",
+		"description": "Mid-level tone, even pitch. Neutral, flat, unmarked.",
+		"telex": "<letter> or <letter>+z",
+		"pronunciation": "Steady **mid-level** pitch. Neutral and even — like a sustained, flat note.",
+		"analogy": "The **pitch** of a calm, declarative statement.",
+		"vowels": ["a", "ă", "â", "e", "ê", "i", "y", "o", "ô", "ơ", "u", "ư"]
+	},
+	"sắc": {
+		"name": "Rising (sắc)",
+		"diacritic": "́",
+		"unicodeMark": "́",
+		"ipa": "˧˥",
+		"direction": "rising (↗)",
+		"description": "High-rising tone, starts mid and rises sharply. Energetic, bright.",
+		"telex": "<letter>+s",
+		"pronunciation": "Starts mid and rises **quickly to a high pitch**.",
+		"analogy": "Like asking a **surprised, brief question** in English: 'Ah?!'",
+		"vowels": ["á", "ắ", "ấ", "é", "ế", "í", "ý", "ó", "ố", "ớ", "ú", "ứ"]
+	},
+	"huyền": {
+		"name": "Falling (huyền)",
+		"diacritic": "̀",
+		"unicodeMark": "̀",
+		"ipa": "˧˩",
+		"direction": "falling (↘)",
+		"description": "Low-falling tone, starts mid and falls. Calm, soft.",
+		"telex": "<letter>+f",
+		"pronunciation": "Starts mid then **falls to a low pitch**; sounds calm or drawn-down.",
+		"analogy": "The **pitch** when you express boredom or resignation: 'Ugh...'",
+		"vowels": ["à", "ằ", "ầ", "è", "ề", "ì", "ỳ", "ò", "ồ", "ờ", "ù", "ừ"]
+	},
+	"hỏi": {
+		"name": "Dipping-rising (hỏi)",
+		"diacritic": "̉",
+		"unicodeMark": "̉",
+		"ipa": "˨˩˧",
+		"direction": "dipping then rising (↘↗)",
+		"description": "Mid dipping tone, falls then rises slightly. Doubtful, questioning.",
+		"telex": "<letter>+r",
+		"pronunciation": "A short, noticeable **dip in pitch followed by a slight rise**.",
+		"analogy": "The **questioning** intonation of 'Uh-huh?' (meaning 'What did you say?')",
+		"notes": "Often simplified to a low-fall or low-level pitch in rapid Northern speech.",
+		"vowels": ["ả", "ẳ", "ẩ", "ẻ", "ể", "ỉ", "ỷ", "ỏ", "ổ", "ở", "ủ", "ử"]
+	},
+	"ngã": {
+		"name": "Creaky rising (ngã)",
+		"diacritic": "̃",
+		"unicodeMark": "̃",
+		"ipa": "˧˥ˀ",
+		"direction": "creaky rising (↗ with glottal)",
+		"description": "Creaky rising tone, mid with glottal break then rising. Emphatic.",
+		"telex": "<letter>+x",
+		"pronunciation": "Rising pitch but with **creaky voice** or a **glottal catch/break** in the middle.",
+		"analogy": "Similar to the 'Hỏi' tone but with a **choking or tight throat** sound before the rise. It is often perceived as more emphatic.",
+		"notes": "In Hanoi Vietnamese, this tone is often realized as a high, sustained pitch with glottalization.",
+		"vowels": ["ã", "ẵ", "ẫ", "ẽ", "ễ", "ĩ", "ỹ", "õ", "ỗ", "ỡ", "ũ", "ữ"]
+	},
+	"nặng": {
+		"name": "Heavy / Low glottalized (nặng)",
+		"diacritic": "̣",
+		"unicodeMark": "̣",
+		"ipa": "˨˩ˀ",
+		"direction": "low, short, glottal stop (↓)",
+		"description": "Low, short, heavy tone with glottal stop. Abrupt, forceful.",
+		"telex": "<letter>+j",
+		"pronunciation": "Starts low, **drops abruptly**, and is **cut off** by glottal constriction (a catch in the throat).",
+		"analogy": "A short, sharp grunt of **emphasis** or realization, like 'Oh!'",
+		"vowels": ["ạ", "ặ", "ậ", "ẹ", "ệ", "ị", "ỵ", "ọ", "ộ", "ợ", "ụ", "ự"]
+	}
+}

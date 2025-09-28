@@ -1,5 +1,5 @@
 import { type FC, useCallback } from "react";
-import AudioButton from "./AudioButton";
+import { SpeakBaseButton } from "./SpeakBaseButton";
 
 interface SpeakFileButtonProps {
 	url: string;
@@ -11,6 +11,7 @@ const SpeakFileButton: FC<SpeakFileButtonProps> = ({
 	size = "medium",
 }) => {
 	const getAudio = useCallback(async (): Promise<HTMLAudioElement> => {
+		console.log(url);
 		const audio = new Audio(url);
 		return audio;
 	}, [url]);
@@ -19,7 +20,7 @@ const SpeakFileButton: FC<SpeakFileButtonProps> = ({
 		return !!url.trim();
 	}, [url]);
 
-	return <AudioButton size={size} getAudio={getAudio} canPlay={canPlay} />;
+	return <SpeakBaseButton size={size} getAudio={getAudio} canPlay={canPlay} />;
 };
 
 export default SpeakFileButton;

@@ -64,6 +64,7 @@ export interface SelectProps
 	menuClassName?: string;
 	itemClassName?: string;
 	showChevron?: boolean;
+	menuSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "auto" | "fit";
 }
 
 export function Select({
@@ -76,6 +77,7 @@ export function Select({
 	menuClassName,
 	itemClassName,
 	showChevron = true,
+	menuSize = "md",
 	...props
 }: SelectProps) {
 	const [selectedValue, setSelectedValue] = useState(value || "");
@@ -105,7 +107,7 @@ export function Select({
 				</ListboxButton>
 
 				<ListboxOptions className={cn(selectMenuVariants(), menuClassName)}>
-					<DropdownMenu>
+					<DropdownMenu size={menuSize}>
 						{options.map((option) => (
 							<ListboxOption
 								key={option.value}

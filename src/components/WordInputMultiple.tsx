@@ -1,16 +1,16 @@
 import { type KeyboardEvent, useCallback, useRef, useState } from "react";
 
-type MultiWordInputType = {
+interface WordInputMultipleProps {
 	text: string;
 	hint?: string;
 	onChange?: (text: string) => void;
-};
+}
 
-export const MultiWordInput = ({
+export const WordInputMultiple = ({
 	text,
 	hint,
 	onChange,
-}: MultiWordInputType) => {
+}: WordInputMultipleProps) => {
 	const words = text.split(" ");
 
 	// Parse hint by matching word positions in the original text

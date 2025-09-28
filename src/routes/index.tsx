@@ -37,7 +37,7 @@ function App() {
 				<Select
 					placeholder="Select Category"
 					className="min-w-32"
-					menuClassName="min-w-40 left-1/2 transform -translate-x-1/2"
+					menuSize="sm"
 					options={[
 						{ label: "Learn", value: "learn" },
 						{ label: "Communication", value: "communication" },

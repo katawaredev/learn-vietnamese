@@ -1,7 +1,29 @@
+import { cva, type VariantProps } from "class-variance-authority";
 import type { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface DropdownMenuProps {
+const dropdownMenuVariants = cva(
+	"overflow-hidden rounded-2xl border border-gold bg-burgundy-dark py-1 shadow-lg",
+	{
+		variants: {
+			size: {
+				xs: "min-w-32",
+				sm: "min-w-40",
+				md: "min-w-48",
+				lg: "min-w-64",
+				xl: "min-w-80",
+				"2xl": "min-w-96",
+				auto: "w-auto",
+				fit: "w-fit",
+			},
+		},
+		defaultVariants: {
+			size: "md",
+		},
+	},
+);
+
+interface DropdownMenuProps extends VariantProps<typeof dropdownMenuVariants> {
 	children: ReactNode;
 	className?: string;
 	showPointer?: boolean;
@@ -13,6 +35,7 @@ export function DropdownMenu({
 	className,
 	showPointer = true,
 	pointerPosition = "center",
+	size,
 }: DropdownMenuProps) {
 	const pointerClasses = {
 		left: "left-4",
@@ -26,7 +49,7 @@ export function DropdownMenu({
 			{showPointer && (
 				<div
 					className={twMerge(
-						"-top-[13px] absolute z-10 transform",
+						"-top-[13px] absolute transform",
 						pointerClasses[pointerPosition],
 					)}
 				>
@@ -36,7 +59,7 @@ export function DropdownMenu({
 				</div>
 			)}
 			{/* Dropdown container */}
-			<div className="overflow-hidden rounded-2xl border border-gold bg-burgundy-dark py-1 shadow-lg">
+			<div className={dropdownMenuVariants({ size, className })}>
 				{children}
 			</div>
 		</div>

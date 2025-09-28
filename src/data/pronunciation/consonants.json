@@ -1,0 +1,152 @@
+{
+	"b": {
+		"pronunciation": "Like 'b' in **boy** or **bat** (a simple voiced stop).",
+		"ipa": "/b/",
+		"telex": "b",
+		"url": null
+	},
+	"c": {
+		"pronunciation": "Like 'k' in **ski** or **kit** (unvoiced, **un-aspirated**). Only used before a, o, u, ơ, ư.",
+		"ipa": "/k/",
+		"telex": "c",
+		"url": "/sounds/consonants/c.mp3"
+	},
+	"ch": {
+		"pronunciation": "Like 'ch' in **church** or **chip** (an un-aspirated postalveolar affricate).",
+		"ipa": "/tɕ/",
+		"telex": "ch",
+		"url": "/sounds/consonants/ch.mp3"
+	},
+	"d": {
+		"pronunciation": "Like 'z' in **zebra** or **zoo**. (Phonetically identical to gi and r in the North).",
+		"ipa": "/z/",
+		"telex": "d",
+		"url": "/sounds/consonants/d.mp3"
+	},
+	"đ": {
+		"pronunciation": "Like 'd' in **dog** or **don't** (a simple voiced alveolar stop).",
+		"ipa": "/d/",
+		"telex": "dd",
+		"url": "/sounds/consonants/dd.mp3"
+	},
+	"g": {
+		"pronunciation": "Like 'g' in **go** or **gate** (a simple voiced velar stop).",
+		"ipa": "/g/",
+		"telex": "g",
+		"url": "/sounds/consonants/g.mp3"
+	},
+	"gh": {
+		"pronunciation": "Like 'g' in **go** or **gate** (same as 'g', but only used before i, e, ê).",
+		"ipa": "/g/",
+		"telex": "gh",
+		"url": "/sounds/consonants/g.mp3"
+	},
+	"gi": {
+		"pronunciation": "Like 'z' in **zebra** or **zoo**. (Phonetically identical to d and r in the North).",
+		"ipa": "/z/",
+		"telex": "gi",
+		"url": "/sounds/consonants/gi.mp3"
+	},
+	"k": {
+		"pronunciation": "Like 'k' in **ski** or **kit** (unvoiced, **un-aspirated**). Only used before i, e, ê.",
+		"ipa": "/k/",
+		"telex": "k",
+		"url": "/sounds/consonants/k.mp3"
+	},
+	"kh": {
+		"pronunciation": "Like 'ch' in Scottish **loch** or German **Bach** (a voiceless velar fricative).",
+		"ipa": "/x/",
+		"telex": "kh",
+		"url": "/sounds/consonants/kh.mp3"
+	},
+	"l": {
+		"pronunciation": "Like 'l' in **light** or **love**.",
+		"ipa": "/l/",
+		"telex": "l",
+		"url": null
+	},
+	"m": {
+		"pronunciation": "Like 'm' in **man** or **mother**.",
+		"ipa": "/m/",
+		"telex": "m",
+		"url": null
+	},
+	"n": {
+		"pronunciation": "Like 'n' in **no** or **nice**.",
+		"ipa": "/n/",
+		"telex": "n",
+		"url": null
+	},
+	"ng": {
+		"pronunciation": "Like 'ng' in **sing** or **thing** (the velar nasal).",
+		"ipa": "/ŋ/",
+		"telex": "ng",
+		"url": "/sounds/consonants/ng.mp3"
+	},
+	"ngh": {
+		"pronunciation": "Like 'ng' in **sing** (same as 'ng', but only used before i, e, ê).",
+		"ipa": "/ŋ/",
+		"telex": "ngh",
+		"url": "/sounds/consonants/ng.mp3"
+	},
+	"nh": {
+		"pronunciation": "Like 'ny' in Spanish **cañón** or 'n' in **canyon** (the palatal nasal).",
+		"ipa": "/ɲ/",
+		"telex": "nh",
+		"url": "/sounds/consonants/nh.mp3"
+	},
+	"ph": {
+		"pronunciation": "Like 'f' in **fun** or **fish**.",
+		"ipa": "/f/",
+		"telex": "ph",
+		"url": "/sounds/consonants/ph.mp3"
+	},
+	"qu": {
+		"pronunciation": "Like 'kw' in **quick** or **queen** (a voiceless labialized velar stop).",
+		"ipa": "/kw/",
+		"telex": "q",
+		"url": "/sounds/consonants/qu.mp3"
+	},
+	"r": {
+		"pronunciation": "Like 'z' in **zebra** or **zoo**. (Phonetically identical to d and gi in the North).",
+		"ipa": "/z/",
+		"telex": "r",
+		"url": "/sounds/consonants/r.mp3"
+	},
+	"s": {
+		"pronunciation": "Like 's' in **see** or **sun** (the same sound as x).",
+		"ipa": "/s/",
+		"telex": "s",
+		"url": null
+	},
+	"t": {
+		"pronunciation": "Like 't' in **stop** or **ski** (unvoiced, **un-aspirated**).",
+		"ipa": "/t/",
+		"telex": "t",
+		"url": "/sounds/consonants/t.mp3"
+	},
+	"th": {
+		"pronunciation": "Like 't' in **tea** or **top** (unvoiced, **aspirated** with a puff of air).",
+		"ipa": "/tʰ/",
+		"telex": "th",
+		"url": "/sounds/consonants/th.mp3"
+	},
+	"tr": {
+		"pronunciation": "Like 'ch' in **church** or **chip** (phonetically identical to ch in the North).",
+		"ipa": "/tɕ/",
+		"telex": "tr",
+		"url": "/sounds/consonants/tr.mp3"
+	},
+	"v": {
+		"pronunciation": "Like 'v' in **van** or **vote** (highly variable, but often maintained as 'v').",
+		"ipa": "/v/",
+		"telex": "v",
+		"url": null
+	},
+	"x": {
+		"pronunciation": "Like 's' in **see** or **sun** (a simple voiceless alveolar fricative).",
+		"ipa": "/s/",
+		"telex": "x",
+		"url": "/sounds/consonants/x.mp3"
+	}
+}
