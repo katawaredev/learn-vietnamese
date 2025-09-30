@@ -1,4 +1,5 @@
 import {
+	AcademicCapIcon,
 	BookOpenIcon,
 	ChatBubbleBottomCenterTextIcon,
 	ChatBubbleLeftRightIcon,
@@ -8,6 +9,7 @@ import {
 	PencilSquareIcon,
 	PuzzlePieceIcon,
 	SpeakerWaveIcon,
+	UsersIcon,
 } from "@heroicons/react/24/outline";
 import { createFileRoute } from "@tanstack/react-router";
 import { LinkButton } from "~/components/Button";
@@ -27,6 +29,7 @@ function App() {
 		{ name: "Reading", icon: DocumentTextIcon, to: "/reading" },
 		{ name: "Dictation", icon: PencilSquareIcon, to: "/dictation" },
 		{ name: "Vocabulary", icon: BookOpenIcon, to: "/vocabulary" },
+		{ name: "Live Conversation", icon: UsersIcon, to: "/conversation" },
 		{ name: "AI Chat", icon: ChatBubbleLeftRightIcon, to: "/chat" },
 	];
 
@@ -52,6 +55,16 @@ function App() {
 							</LinkButton>
 						);
 					})}
+					<LinkButton
+						variant="default"
+						size="large"
+						to="https://vietnameselessons.com/"
+						target="_blank"
+						className="flex w-full items-center justify-center gap-4 font-medium"
+					>
+						<AcademicCapIcon className="h-6 w-6" />
+						Study resources
+					</LinkButton>
 				</div>
 			</main>
 		</div>
