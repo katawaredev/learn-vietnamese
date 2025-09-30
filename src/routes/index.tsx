@@ -11,7 +11,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { createFileRoute } from "@tanstack/react-router";
 import { LinkButton } from "~/components/Button";
-import { Select } from "~/components/Select";
 import Header from "~/layout/Header";
 
 export const Route = createFileRoute("/")({
@@ -33,18 +32,7 @@ function App() {
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-burgundy-dark to-burgundy">
-			<Header hideBackButton>
-				<Select
-					placeholder="Select Category"
-					className="min-w-32"
-					menuSize="sm"
-					options={[
-						{ label: "Learn", value: "learn" },
-						{ label: "Communication", value: "communication" },
-					]}
-					onChange={(value) => console.log("Selected:", value)}
-				/>
-			</Header>
+			<Header hideBackButton />
 
 			{/* Main Content */}
 			<main className="px-6 pb-8">

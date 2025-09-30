@@ -6,13 +6,14 @@ import {
 	useState,
 } from "react";
 
-export type STTProvider = "web-speech" | "whisper";
+export type STTProvider = "web-speech" | "whisper" | "phowhisper";
 
 export interface STTModelOption {
 	id: string;
 	name: string;
 	provider: STTProvider;
 	modelSize?: "tiny" | "small" | "medium" | "large"; // For Whisper
+	modelPath?: string; // For PhoWhisper
 }
 
 interface STTContextValue {
@@ -23,28 +24,61 @@ interface STTContextValue {
 
 const STTContext = createContext<STTContextValue | undefined>(undefined);
 
+const PHOWHISPER_MODELS: STTModelOption[] = [
+	{
+		id: "phowhisper-tiny",
+		name: "PhoWhisper Tiny",
+		provider: "phowhisper",
+		modelPath: "huuquyet/PhoWhisper-tiny",
+	},
+	{
+		id: "phowhisper-small",
+		name: "PhoWhisper Small",
+		provider: "phowhisper",
+		modelPath: "huuquyet/PhoWhisper-small",
+	},
+	{
+		id: "phowhisper-base",
+		name: "PhoWhisper Base",
+		provider: "phowhisper",
+		modelPath: "huuquyet/PhoWhisper-base",
+	},
+	{
+		id: "phowhisper-medium",
+		name: "PhoWhisper Medium",
+		provider: "phowhisper",
+		modelPath: "huuquyet/PhoWhisper-medium",
+	},
+	{
+		id: "phowhisper-large",
+		name: "PhoWhisper Large",
+		provider: "phowhisper",
+		modelPath: "huuquyet/PhoWhisper-large",
+	},
+];
+
 const WHISPER_MODELS: STTModelOption[] = [
 	{
 		id: "whisper-tiny",
-		name: "Whisper Tiny (Fast, Lower Accuracy)",
+		name: "Whisper Tiny",
 		provider: "whisper",
 		modelSize: "tiny",
 	},
 	{
 		id: "whisper-small",
-		name: "Whisper Small (Balanced)",
+		name: "Whisper Small",
 		provider: "whisper",
 		modelSize: "small",
 	},
 	{
 		id: "whisper-medium",
-		name: "Whisper Medium (Good Accuracy)",
+		name: "Whisper Medium",
 		provider: "whisper",
 		modelSize: "medium",
 	},
 	{
 		id: "whisper-large",
-		name: "Whisper Large (Best Accuracy, Slow)",
+		name: "Whisper Large",
 		provider: "whisper",
 		modelSize: "large",
 	},
@@ -65,7 +99,7 @@ function getWebSpeechSTTOption(): STTModelOption | null {
 	};
 }
 
-const DEFAULT_MODEL = WHISPER_MODELS[0]; // tiny
+const DEFAULT_MODEL = PHOWHISPER_MODELS[0]; // phowhisper-tiny
 const STORAGE_KEY = "stt-selected-model";
 
 export function STTProvider({ children }: { children: ReactNode }) {
@@ -84,6 +118,7 @@ export function STTProvider({ children }: { children: ReactNode }) {
 		const savedModelId = localStorage.getItem(STORAGE_KEY);
 		if (savedModelId) {
 			const allModels = [
+				...PHOWHISPER_MODELS,
 				...WHISPER_MODELS,
 				...(webSpeechSTT ? [webSpeechSTT] : []),
 			];
@@ -100,6 +135,7 @@ export function STTProvider({ children }: { children: ReactNode }) {
 	};
 
 	const availableModels = [
+		...PHOWHISPER_MODELS,
 		...WHISPER_MODELS,
 		...(webSpeechSTT ? [webSpeechSTT] : []),
 	];

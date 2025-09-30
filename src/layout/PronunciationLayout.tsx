@@ -8,7 +8,7 @@ import { Popover } from "~/components/Popover";
 import { Result } from "~/components/ResultButton";
 import { Select } from "~/components/Select";
 import { SpeakButton } from "~/components/SpeakButton";
-import SpeakUrlButton from "~/components/SpeakUrlButton";
+import { SpeakUrlButton } from "~/components/SpeakUrlButton";
 import Header from "./Header";
 
 interface PronunciationItem {

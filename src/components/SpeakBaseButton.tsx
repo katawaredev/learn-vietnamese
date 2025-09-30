@@ -1,6 +1,7 @@
 import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 import { cva } from "class-variance-authority";
 import { type FC, useCallback, useEffect, useRef, useState } from "react";
+import { StateIndicator } from "./StateIndicator";
 
 export type SpeechState = "idle" | "processing" | "speaking" | "ended";
 
@@ -32,6 +33,8 @@ export interface SpeakBaseButtonProps {
 	getAudio: () => Promise<HTMLAudioElement>;
 	canPlay: () => boolean;
 	disabled?: boolean;
+	isGenerating?: boolean;
+	loadingProgress?: number; // 0-100
 }
 
 export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
@@ -39,6 +42,8 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 	getAudio,
 	canPlay,
 	disabled = false,
+	isGenerating = false,
+	loadingProgress = 0,
 }) => {
 	const [state, setState] = useState<SpeechState>("idle");
 	const [isHolding, setIsHolding] = useState(false);
@@ -189,15 +194,18 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 				} text-sky-200`}
 			/>
 
-			{/* Processing indicator */}
-			{state === "processing" && (
-				<div className="absolute inset-1 animate-spin rounded-full border-2 border-sky-600/30 border-t-sky-200" />
-			)}
-
-			{/* Speaking indicator */}
-			{state === "speaking" && (
-				<div className="-inset-1 absolute animate-ping rounded-full border-2 border-sky-500/60" />
-			)}
+			{/* State indicators */}
+			<StateIndicator
+				state={
+					state === "speaking"
+						? "active"
+						: state === "processing" || isGenerating
+							? "processing"
+							: null
+				}
+				loadingProgress={loadingProgress}
+				theme="sky"
+			/>
 		</button>
 	);
 };

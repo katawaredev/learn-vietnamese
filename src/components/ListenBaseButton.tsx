@@ -1,7 +1,7 @@
 import { MicrophoneIcon } from "@heroicons/react/24/outline";
 import { cva } from "class-variance-authority";
-import type React from "react";
-import { useCallback, useRef, useState } from "react";
+import { type FC, useCallback, useRef, useState } from "react";
+import { StateIndicator } from "./StateIndicator";
 
 // Type definitions for our domain model
 export type RecordingState = "idle" | "recording" | "processing";
@@ -34,14 +34,16 @@ export interface ListenBaseButtonProps {
 	onStartRecording: () => void;
 	onStopRecording: () => void;
 	disabled?: boolean;
+	loadingProgress?: number; // 0-100
 }
 
-export const ListenBaseButton: React.FC<ListenBaseButtonProps> = ({
+export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 	state,
 	size = "medium",
 	onStartRecording,
 	onStopRecording,
 	disabled = false,
+	loadingProgress = 0,
 }) => {
 	const [isHolding, setIsHolding] = useState(false);
 	const holdTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -106,15 +108,18 @@ export const ListenBaseButton: React.FC<ListenBaseButtonProps> = ({
 				} text-red-400`}
 			/>
 
-			{/* Processing indicator */}
-			{state === "processing" && (
-				<div className="absolute inset-1 animate-spin rounded-full border-2 border-stone-600/30 border-t-stone-300" />
-			)}
-
-			{/* Recording indicator */}
-			{state === "recording" && (
-				<div className="-inset-1 absolute animate-ping rounded-full border-2 border-red-500/60" />
-			)}
+			{/* State indicators */}
+			<StateIndicator
+				state={
+					state === "recording"
+						? "active"
+						: state === "processing"
+							? "processing"
+							: null
+				}
+				loadingProgress={loadingProgress}
+				theme="stone"
+			/>
 		</button>
 	);
 };

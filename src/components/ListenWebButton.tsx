@@ -1,4 +1,4 @@
-import type React from "react";
+import type { FC } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ListenBaseButton, type RecordingState } from "./ListenBaseButton";
 
@@ -7,7 +7,7 @@ interface ListenWebButtonProps {
 	size?: "small" | "medium" | "large";
 }
 
-export const ListenWebButton: React.FC<ListenWebButtonProps> = ({
+export const ListenWebButton: FC<ListenWebButtonProps> = ({
 	onTranscription,
 	size = "medium",
 }) => {

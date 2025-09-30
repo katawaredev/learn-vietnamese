@@ -1,9 +1,4 @@
-import {
-	type AutomaticSpeechRecognitionOutput,
-	type AutomaticSpeechRecognitionPipeline,
-	pipeline,
-} from "@huggingface/transformers";
-import type React from "react";
+import type { FC } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSTT } from "~/providers/stt-provider";
 import { ListenBaseButton, type RecordingState } from "./ListenBaseButton";
@@ -13,19 +8,76 @@ interface ListenAIButtonProps {
 	size?: "small" | "medium" | "large";
 }
 
-export const ListenAIButton: React.FC<ListenAIButtonProps> = ({
+export const ListenAIButton: FC<ListenAIButtonProps> = ({
 	onTranscription,
 	size = "medium",
 }) => {
 	const { selectedModel } = useSTT();
 	const [state, setState] = useState<RecordingState>("idle");
+	const [loadingProgress, setLoadingProgress] = useState<number>(0);
 
-	const transcriber = useRef<AutomaticSpeechRecognitionPipeline | null>(null);
+	const worker = useRef<Worker | null>(null);
+	const currentModelRef = useRef<string | null>(null);
 	const mediaRecorder = useRef<MediaRecorder | null>(null);
 	const audioChunks = useRef<Blob[]>([]);
+	const pendingAudio = useRef<Float32Array | null>(null);
+	const onTranscriptionRef = useRef(onTranscription);
 
-	// Cleanup effect
+	// Keep onTranscription ref up to date
 	useEffect(() => {
+		onTranscriptionRef.current = onTranscription;
+	}, [onTranscription]);
+
+	// Initialize worker
+	useEffect(() => {
+		worker.current = new Worker(
+			new URL("../workers/stt-worker.ts", import.meta.url),
+			{ type: "module" },
+		);
+
+		// Handle worker messages
+		worker.current.onmessage = (event) => {
+			const message = event.data;
+
+			switch (message.status) {
+				case "progress": {
+					// Update loading progress (0-100)
+					const progress = message.progress || 0;
+					setLoadingProgress(Math.round(progress));
+					break;
+				}
+				case "ready": {
+					// Reset loading progress
+					setLoadingProgress(0);
+					// If we have pending audio, transcribe it now
+					if (pendingAudio.current && worker.current) {
+						worker.current.postMessage({
+							type: "transcribe",
+							audio: pendingAudio.current,
+						});
+						pendingAudio.current = null;
+					} else {
+						// No pending audio, go back to idle
+						setState("idle");
+					}
+					break;
+				}
+				case "complete":
+					if (message.text) {
+						onTranscriptionRef.current(message.text.trim());
+					}
+					setState("idle");
+					setLoadingProgress(0);
+					break;
+				case "error":
+					console.error("Transcription failed:", message.error);
+					setState("idle");
+					setLoadingProgress(0);
+					pendingAudio.current = null;
+					break;
+			}
+		};
+
 		return () => {
 			if (
 				mediaRecorder.current &&
@@ -33,24 +85,33 @@ export const ListenAIButton: React.FC<ListenAIButtonProps> = ({
 			) {
 				mediaRecorder.current.stop();
 			}
+			if (worker.current) {
+				worker.current.terminate();
+				worker.current = null;
+			}
 		};
 	}, []);
 
-	// Process audio and transcribe with Whisper
+	// Reset model reference when selectedModel changes (don't auto-load)
+	useEffect(() => {
+		const modelPath =
+			selectedModel.provider === "phowhisper"
+				? selectedModel.modelPath || ""
+				: `Xenova/whisper-${selectedModel.modelSize}`;
+
+		if (currentModelRef.current !== modelPath) {
+			currentModelRef.current = null; // Force reload on next use
+		}
+	}, [selectedModel]);
+
+	// Process audio and transcribe using web worker
 	const processAudio = useCallback(
 		async (audioBlob: Blob) => {
+			if (!worker.current) return;
+
 			setState("processing");
 
 			try {
-				// Initialize model if not already done
-				if (!transcriber.current) {
-					const model = await pipeline(
-						"automatic-speech-recognition",
-						`Xenova/whisper-${selectedModel.modelSize}`,
-					);
-					transcriber.current = model as AutomaticSpeechRecognitionPipeline;
-				}
-
 				// Convert blob to audio buffer
 				const arrayBuffer = await audioBlob.arrayBuffer();
 
@@ -62,22 +123,33 @@ export const ListenAIButton: React.FC<ListenAIButtonProps> = ({
 				// Close the AudioContext to free resources
 				await audioContext.close();
 
-				// Transcribe using Whisper with Float32Array
-				const result = (await transcriber.current(audioData, {
-					language: "vietnamese",
-					task: "transcribe",
-				})) as AutomaticSpeechRecognitionOutput;
+				// Initialize model if not already loaded
+				const modelPath =
+					selectedModel.provider === "phowhisper"
+						? selectedModel.modelPath || ""
+						: `Xenova/whisper-${selectedModel.modelSize}`;
 
-				if (result?.text) {
-					onTranscription(result.text.trim());
+				if (currentModelRef.current !== modelPath && modelPath) {
+					// Store audio for transcription after model loads
+					pendingAudio.current = audioData;
+					currentModelRef.current = modelPath;
+					worker.current.postMessage({
+						type: "init",
+						modelPath,
+					});
+				} else {
+					// Model already loaded, transcribe immediately
+					worker.current.postMessage({
+						type: "transcribe",
+						audio: audioData,
+					});
 				}
 			} catch (error) {
-				console.error("Transcription failed:", error);
-			} finally {
+				console.error("Audio processing failed:", error);
 				setState("idle");
 			}
 		},
-		[onTranscription, selectedModel.modelSize],
+		[selectedModel],
 	);
 
 	// Start recording
@@ -125,6 +197,7 @@ export const ListenAIButton: React.FC<ListenAIButtonProps> = ({
 			size={size}
 			onStartRecording={handleStartRecording}
 			onStopRecording={handleStopRecording}
+			loadingProgress={loadingProgress}
 		/>
 	);
 };
