@@ -60,6 +60,7 @@ function App() {
 						size="large"
 						to="https://vietnameselessons.com/"
 						target="_blank"
+						rel="noopener noreferrer"
 						className="flex w-full items-center justify-center gap-4 font-medium"
 					>
 						<AcademicCapIcon className="h-6 w-6" />

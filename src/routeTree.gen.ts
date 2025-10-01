@@ -15,13 +15,6 @@ import { Route as PronunciationVowelsRouteImport } from './routes/pronunciation/
 import { Route as PronunciationTonesRouteImport } from './routes/pronunciation/tones'
 import { Route as PronunciationDoubleVowelsRouteImport } from './routes/pronunciation/double-vowels'
 import { Route as PronunciationConsonantsRouteImport } from './routes/pronunciation/consonants'
-import { Route as PronunciationTonesIndexRouteImport } from './routes/pronunciation/tones/index'
-import { Route as PronunciationTonesRisingRouteImport } from './routes/pronunciation/tones/rising'
-import { Route as PronunciationTonesHeavyRouteImport } from './routes/pronunciation/tones/heavy'
-import { Route as PronunciationTonesFlatRouteImport } from './routes/pronunciation/tones/flat'
-import { Route as PronunciationTonesFallingRouteImport } from './routes/pronunciation/tones/falling'
-import { Route as PronunciationTonesDippingRisingRouteImport } from './routes/pronunciation/tones/dipping-rising'
-import { Route as PronunciationTonesCreakyRisingRouteImport } from './routes/pronunciation/tones/creaky-rising'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -54,90 +47,31 @@ const PronunciationConsonantsRoute = PronunciationConsonantsRouteImport.update({
   path: '/pronunciation/consonants',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PronunciationTonesIndexRoute = PronunciationTonesIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => PronunciationTonesRoute,
-} as any)
-const PronunciationTonesRisingRoute =
-  PronunciationTonesRisingRouteImport.update({
-    id: '/rising',
-    path: '/rising',
-    getParentRoute: () => PronunciationTonesRoute,
-  } as any)
-const PronunciationTonesHeavyRoute = PronunciationTonesHeavyRouteImport.update({
-  id: '/heavy',
-  path: '/heavy',
-  getParentRoute: () => PronunciationTonesRoute,
-} as any)
-const PronunciationTonesFlatRoute = PronunciationTonesFlatRouteImport.update({
-  id: '/flat',
-  path: '/flat',
-  getParentRoute: () => PronunciationTonesRoute,
-} as any)
-const PronunciationTonesFallingRoute =
-  PronunciationTonesFallingRouteImport.update({
-    id: '/falling',
-    path: '/falling',
-    getParentRoute: () => PronunciationTonesRoute,
-  } as any)
-const PronunciationTonesDippingRisingRoute =
-  PronunciationTonesDippingRisingRouteImport.update({
-    id: '/dipping-rising',
-    path: '/dipping-rising',
-    getParentRoute: () => PronunciationTonesRoute,
-  } as any)
-const PronunciationTonesCreakyRisingRoute =
-  PronunciationTonesCreakyRisingRouteImport.update({
-    id: '/creaky-rising',
-    path: '/creaky-rising',
-    getParentRoute: () => PronunciationTonesRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/pronunciation/consonants': typeof PronunciationConsonantsRoute
   '/pronunciation/double-vowels': typeof PronunciationDoubleVowelsRoute
-  '/pronunciation/tones': typeof PronunciationTonesRouteWithChildren
+  '/pronunciation/tones': typeof PronunciationTonesRoute
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/pronunciation': typeof PronunciationIndexRoute
-  '/pronunciation/tones/creaky-rising': typeof PronunciationTonesCreakyRisingRoute
-  '/pronunciation/tones/dipping-rising': typeof PronunciationTonesDippingRisingRoute
-  '/pronunciation/tones/falling': typeof PronunciationTonesFallingRoute
-  '/pronunciation/tones/flat': typeof PronunciationTonesFlatRoute
-  '/pronunciation/tones/heavy': typeof PronunciationTonesHeavyRoute
-  '/pronunciation/tones/rising': typeof PronunciationTonesRisingRoute
-  '/pronunciation/tones/': typeof PronunciationTonesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/pronunciation/consonants': typeof PronunciationConsonantsRoute
   '/pronunciation/double-vowels': typeof PronunciationDoubleVowelsRoute
+  '/pronunciation/tones': typeof PronunciationTonesRoute
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/pronunciation': typeof PronunciationIndexRoute
-  '/pronunciation/tones/creaky-rising': typeof PronunciationTonesCreakyRisingRoute
-  '/pronunciation/tones/dipping-rising': typeof PronunciationTonesDippingRisingRoute
-  '/pronunciation/tones/falling': typeof PronunciationTonesFallingRoute
-  '/pronunciation/tones/flat': typeof PronunciationTonesFlatRoute
-  '/pronunciation/tones/heavy': typeof PronunciationTonesHeavyRoute
-  '/pronunciation/tones/rising': typeof PronunciationTonesRisingRoute
-  '/pronunciation/tones': typeof PronunciationTonesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/pronunciation/consonants': typeof PronunciationConsonantsRoute
   '/pronunciation/double-vowels': typeof PronunciationDoubleVowelsRoute
-  '/pronunciation/tones': typeof PronunciationTonesRouteWithChildren
+  '/pronunciation/tones': typeof PronunciationTonesRoute
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/pronunciation/': typeof PronunciationIndexRoute
-  '/pronunciation/tones/creaky-rising': typeof PronunciationTonesCreakyRisingRoute
-  '/pronunciation/tones/dipping-rising': typeof PronunciationTonesDippingRisingRoute
-  '/pronunciation/tones/falling': typeof PronunciationTonesFallingRoute
-  '/pronunciation/tones/flat': typeof PronunciationTonesFlatRoute
-  '/pronunciation/tones/heavy': typeof PronunciationTonesHeavyRoute
-  '/pronunciation/tones/rising': typeof PronunciationTonesRisingRoute
-  '/pronunciation/tones/': typeof PronunciationTonesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -148,27 +82,14 @@ export interface FileRouteTypes {
     | '/pronunciation/tones'
     | '/pronunciation/vowels'
     | '/pronunciation'
-    | '/pronunciation/tones/creaky-rising'
-    | '/pronunciation/tones/dipping-rising'
-    | '/pronunciation/tones/falling'
-    | '/pronunciation/tones/flat'
-    | '/pronunciation/tones/heavy'
-    | '/pronunciation/tones/rising'
-    | '/pronunciation/tones/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/pronunciation/consonants'
     | '/pronunciation/double-vowels'
+    | '/pronunciation/tones'
     | '/pronunciation/vowels'
     | '/pronunciation'
-    | '/pronunciation/tones/creaky-rising'
-    | '/pronunciation/tones/dipping-rising'
-    | '/pronunciation/tones/falling'
-    | '/pronunciation/tones/flat'
-    | '/pronunciation/tones/heavy'
-    | '/pronunciation/tones/rising'
-    | '/pronunciation/tones'
   id:
     | '__root__'
     | '/'
@@ -177,20 +98,13 @@ export interface FileRouteTypes {
     | '/pronunciation/tones'
     | '/pronunciation/vowels'
     | '/pronunciation/'
-    | '/pronunciation/tones/creaky-rising'
-    | '/pronunciation/tones/dipping-rising'
-    | '/pronunciation/tones/falling'
-    | '/pronunciation/tones/flat'
-    | '/pronunciation/tones/heavy'
-    | '/pronunciation/tones/rising'
-    | '/pronunciation/tones/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PronunciationConsonantsRoute: typeof PronunciationConsonantsRoute
   PronunciationDoubleVowelsRoute: typeof PronunciationDoubleVowelsRoute
-  PronunciationTonesRoute: typeof PronunciationTonesRouteWithChildren
+  PronunciationTonesRoute: typeof PronunciationTonesRoute
   PronunciationVowelsRoute: typeof PronunciationVowelsRoute
   PronunciationIndexRoute: typeof PronunciationIndexRoute
 }
@@ -239,86 +153,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PronunciationConsonantsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/pronunciation/tones/': {
-      id: '/pronunciation/tones/'
-      path: '/'
-      fullPath: '/pronunciation/tones/'
-      preLoaderRoute: typeof PronunciationTonesIndexRouteImport
-      parentRoute: typeof PronunciationTonesRoute
-    }
-    '/pronunciation/tones/rising': {
-      id: '/pronunciation/tones/rising'
-      path: '/rising'
-      fullPath: '/pronunciation/tones/rising'
-      preLoaderRoute: typeof PronunciationTonesRisingRouteImport
-      parentRoute: typeof PronunciationTonesRoute
-    }
-    '/pronunciation/tones/heavy': {
-      id: '/pronunciation/tones/heavy'
-      path: '/heavy'
-      fullPath: '/pronunciation/tones/heavy'
-      preLoaderRoute: typeof PronunciationTonesHeavyRouteImport
-      parentRoute: typeof PronunciationTonesRoute
-    }
-    '/pronunciation/tones/flat': {
-      id: '/pronunciation/tones/flat'
-      path: '/flat'
-      fullPath: '/pronunciation/tones/flat'
-      preLoaderRoute: typeof PronunciationTonesFlatRouteImport
-      parentRoute: typeof PronunciationTonesRoute
-    }
-    '/pronunciation/tones/falling': {
-      id: '/pronunciation/tones/falling'
-      path: '/falling'
-      fullPath: '/pronunciation/tones/falling'
-      preLoaderRoute: typeof PronunciationTonesFallingRouteImport
-      parentRoute: typeof PronunciationTonesRoute
-    }
-    '/pronunciation/tones/dipping-rising': {
-      id: '/pronunciation/tones/dipping-rising'
-      path: '/dipping-rising'
-      fullPath: '/pronunciation/tones/dipping-rising'
-      preLoaderRoute: typeof PronunciationTonesDippingRisingRouteImport
-      parentRoute: typeof PronunciationTonesRoute
-    }
-    '/pronunciation/tones/creaky-rising': {
-      id: '/pronunciation/tones/creaky-rising'
-      path: '/creaky-rising'
-      fullPath: '/pronunciation/tones/creaky-rising'
-      preLoaderRoute: typeof PronunciationTonesCreakyRisingRouteImport
-      parentRoute: typeof PronunciationTonesRoute
-    }
   }
 }
-
-interface PronunciationTonesRouteChildren {
-  PronunciationTonesCreakyRisingRoute: typeof PronunciationTonesCreakyRisingRoute
-  PronunciationTonesDippingRisingRoute: typeof PronunciationTonesDippingRisingRoute
-  PronunciationTonesFallingRoute: typeof PronunciationTonesFallingRoute
-  PronunciationTonesFlatRoute: typeof PronunciationTonesFlatRoute
-  PronunciationTonesHeavyRoute: typeof PronunciationTonesHeavyRoute
-  PronunciationTonesRisingRoute: typeof PronunciationTonesRisingRoute
-  PronunciationTonesIndexRoute: typeof PronunciationTonesIndexRoute
-}
-
-const PronunciationTonesRouteChildren: PronunciationTonesRouteChildren = {
-  PronunciationTonesCreakyRisingRoute: PronunciationTonesCreakyRisingRoute,
-  PronunciationTonesDippingRisingRoute: PronunciationTonesDippingRisingRoute,
-  PronunciationTonesFallingRoute: PronunciationTonesFallingRoute,
-  PronunciationTonesFlatRoute: PronunciationTonesFlatRoute,
-  PronunciationTonesHeavyRoute: PronunciationTonesHeavyRoute,
-  PronunciationTonesRisingRoute: PronunciationTonesRisingRoute,
-  PronunciationTonesIndexRoute: PronunciationTonesIndexRoute,
-}
-
-const PronunciationTonesRouteWithChildren =
-  PronunciationTonesRoute._addFileChildren(PronunciationTonesRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PronunciationConsonantsRoute: PronunciationConsonantsRoute,
   PronunciationDoubleVowelsRoute: PronunciationDoubleVowelsRoute,
-  PronunciationTonesRoute: PronunciationTonesRouteWithChildren,
+  PronunciationTonesRoute: PronunciationTonesRoute,
   PronunciationVowelsRoute: PronunciationVowelsRoute,
   PronunciationIndexRoute: PronunciationIndexRoute,
 }

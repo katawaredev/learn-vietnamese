@@ -1,29 +1,11 @@
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "@tanstack/react-router";
-import type { FC } from "react";
-import { useState } from "react";
+import type { FC, ReactNode } from "react";
 import { LinkButton } from "~/components/Button";
-import { ListenButton } from "~/components/ListenButton";
-import { Popover } from "~/components/Popover";
-import { Result } from "~/components/ResultButton";
 import { Select } from "~/components/Select";
-import { SpeakButton } from "~/components/SpeakButton";
-import { SpeakUrlButton } from "~/components/SpeakUrlButton";
 import Header from "./Header";
 
-interface PronunciationItem {
-	pronunciation: string;
-	ipa: string;
-	telex: string;
-	url?: string | null;
-}
-
-interface PronunciationData {
-	[key: string]: PronunciationItem;
-}
-
 interface PronunciationLayoutProps {
-	data: PronunciationData;
+	children: ReactNode;
 	currentRoute: string;
 }
 
@@ -43,16 +25,10 @@ const pronunciationRoutes = [
 ];
 
 export const PronunciationLayout: FC<PronunciationLayoutProps> = ({
-	data,
+	children,
 	currentRoute,
 }) => {
 	const navigate = useNavigate();
-	const [transcriptions, setTranscriptions] = useState<
-		Record<string, string | null>
-	>({});
-	const [newTranscriptions, setNewTranscriptions] = useState<Set<string>>(
-		new Set(),
-	);
 
 	const currentIndex = pronunciationRoutes.findIndex(
 		(route) => route.value === currentRoute,
@@ -63,19 +39,6 @@ export const PronunciationLayout: FC<PronunciationLayoutProps> = ({
 		currentIndex < pronunciationRoutes.length - 1
 			? pronunciationRoutes[currentIndex + 1]
 			: null;
-
-	const handleTranscription = (key: string, text: string) => {
-		setTranscriptions((prev) => ({ ...prev, [key]: text }));
-		setNewTranscriptions((prev) => new Set(prev).add(key));
-		// Clear the "new" flag after a short delay
-		setTimeout(() => {
-			setNewTranscriptions((prev) => {
-				const next = new Set(prev);
-				next.delete(key);
-				return next;
-			});
-		}, 1500);
-	};
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-burgundy-dark to-burgundy">
@@ -100,84 +63,7 @@ export const PronunciationLayout: FC<PronunciationLayoutProps> = ({
 
 			<main className="px-4 pb-8">
 				<div className="mx-auto max-w-6xl">
-					<div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-						{Object.entries(data).map(([key, item]) => {
-							const transcription = transcriptions[key];
-
-							return (
-								<div
-									key={key}
-									className="group relative rounded-3xl border border-white/10 bg-white/5 p-6 transition-all duration-200 hover:border-white/20"
-								>
-									{/* Info button - top right corner */}
-									<div className="absolute top-2 right-2">
-										<Popover
-											trigger={
-												<InformationCircleIcon className="h-6 w-6 text-gold" />
-											}
-											buttonClassName="opacity-60 hover:opacity-100 transition-opacity p-2"
-											size="xl"
-										>
-											<div className="space-y-3">
-												<div className="border-white/10 border-b pb-3 text-center">
-													<div className="mb-2 font-bold text-4xl">{key}</div>
-													<div className="font-mono text-sm text-white/70">
-														{item.ipa}
-													</div>
-												</div>
-												<div>
-													<strong>Pronunciation:</strong>
-													<p className="text-sm">{item.pronunciation}</p>
-												</div>
-												<div>
-													<strong>Telex:</strong>
-													<p className="mb-1 text-sm">{item.telex}</p>
-													<a
-														href="https://en.wikipedia.org/wiki/Telex_(input_method)"
-														target="_blank"
-														rel="noopener noreferrer"
-														className="text-blue-300 text-xs underline hover:text-blue-200"
-													>
-														Learn about Telex input method →
-													</a>
-												</div>
-											</div>
-										</Popover>
-									</div>
-
-									{/* Result indicator */}
-									<Result
-										transcription={transcription}
-										expectedText={key}
-										isNew={newTranscriptions.has(key)}
-									/>
-
-									{/* Main vowel display */}
-									<div className="text-center">
-										<div className="py-8">
-											<div className="-mb-4 font-bold text-6xl">{key}</div>
-										</div>
-										<div className="mb-4 font-mono text-sm text-white/70">
-											{item.ipa}
-										</div>
-									</div>
-
-									{/* Action buttons */}
-									<div className="flex items-center justify-center gap-6">
-										{item.url ? (
-											<SpeakUrlButton url={item.url} size="small" />
-										) : (
-											<SpeakButton text={key} size="small" />
-										)}
-										<ListenButton
-											onTranscription={(text) => handleTranscription(key, text)}
-											size="small"
-										/>
-									</div>
-								</div>
-							);
-						})}
-					</div>
+					{children}
 
 					<div className="mx-auto flex max-w-4xl gap-8 px-4 pt-12">
 						{prevRoute ? (

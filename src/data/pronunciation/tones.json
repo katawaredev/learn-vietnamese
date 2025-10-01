@@ -4,73 +4,163 @@
 		"diacritic": "",
 		"unicodeMark": "",
 		"ipa": "˧",
-		"direction": "flat (→)",
+		"direction": "→",
 		"description": "Mid-level tone, even pitch. Neutral, flat, unmarked.",
 		"telex": "<letter> or <letter>+z",
 		"pronunciation": "Steady **mid-level** pitch. Neutral and even — like a sustained, flat note.",
 		"analogy": "The **pitch** of a calm, declarative statement.",
-		"vowels": ["a", "ă", "â", "e", "ê", "i", "y", "o", "ô", "ơ", "u", "ư"]
+		"vowels": ["a", "ă", "â", "e", "ê", "i", "y", "o", "ô", "ơ", "u", "ư"],
+		"examples": {
+			"ma": { "url": "/sounds/tones/ma-flat.mp3", "translation": "ghost" },
+			"bă": { "url": null, "translation": "(used in folk songs)" },
+			"cân": { "url": null, "translation": "scale, balance" },
+			"be": { "url": null, "translation": "small" },
+			"tê": { "url": null, "translation": "numb" },
+			"bi": { "url": null, "translation": "marble (toy)" },
+			"ly": { "url": null, "translation": "glass / separation" },
+			"to": { "url": null, "translation": "big" },
+			"bô": { "url": null, "translation": "potty" },
+			"cơ": { "url": null, "translation": "chance, opportunity" },
+			"tu": { "url": null, "translation": "to practice, to cultivate" },
+			"tư": { "url": null, "translation": "to think / private" }
+		}
 	},
 	"sắc": {
 		"name": "Rising (sắc)",
 		"diacritic": "́",
 		"unicodeMark": "́",
 		"ipa": "˧˥",
-		"direction": "rising (↗)",
+		"direction": "↗",
 		"description": "High-rising tone, starts mid and rises sharply. Energetic, bright.",
 		"telex": "<letter>+s",
 		"pronunciation": "Starts mid and rises **quickly to a high pitch**.",
 		"analogy": "Like asking a **surprised, brief question** in English: 'Ah?!'",
-		"vowels": ["á", "ắ", "ấ", "é", "ế", "í", "ý", "ó", "ố", "ớ", "ú", "ứ"]
+		"vowels": ["á", "ắ", "ấ", "é", "ế", "í", "ý", "ó", "ố", "ớ", "ú", "ứ"],
+		"examples": {
+			"má": { "url": "/sounds/tones/ma-up.mp3", "translation": "mother" },
+			"bắ": { "url": null, "translation": "to catch" },
+			"cấn": { "url": null, "translation": "to press against" },
+			"bé": { "url": null, "translation": "child, little" },
+			"tế": { "url": null, "translation": "ceremony" },
+			"bí": { "url": null, "translation": "pumpkin / blocked up" },
+			"lý": { "url": null, "translation": "reason" },
+			"tó": { "url": null, "translation": "lock of hair" },
+			"bố": { "url": null, "translation": "father" },
+			"cớ": { "url": null, "translation": "reason, cause" },
+			"tú": { "url": null, "translation": "handsome, beautiful" },
+			"tứ": { "url": null, "translation": "four" }
+		}
 	},
 	"huyền": {
 		"name": "Falling (huyền)",
 		"diacritic": "̀",
 		"unicodeMark": "̀",
 		"ipa": "˧˩",
-		"direction": "falling (↘)",
+		"direction": "↘",
 		"description": "Low-falling tone, starts mid and falls. Calm, soft.",
 		"telex": "<letter>+f",
 		"pronunciation": "Starts mid then **falls to a low pitch**; sounds calm or drawn-down.",
 		"analogy": "The **pitch** when you express boredom or resignation: 'Ugh...'",
-		"vowels": ["à", "ằ", "ầ", "è", "ề", "ì", "ỳ", "ò", "ồ", "ờ", "ù", "ừ"]
+		"vowels": ["à", "ằ", "ầ", "è", "ề", "ì", "ỳ", "ò", "ồ", "ờ", "ù", "ừ"],
+		"examples": {
+			"mà": { "url": "/sounds/tones/ma-down.mp3", "translation": "but / then" },
+			"bằ": { "url": null, "translation": "still, yet" },
+			"cần": { "url": null, "translation": "to need" },
+			"bè": { "url": null, "translation": "raft" },
+			"tề": { "url": null, "translation": "to be level" },
+			"bì": { "url": null, "translation": "skin, rind" },
+			"lỳ": { "url": null, "translation": "stubborn" },
+			"tò": { "url": null, "translation": "to squat" },
+			"bồ": { "url": null, "translation": "lover, mistress" },
+			"cờ": { "url": null, "translation": "flag" },
+			"tù": { "url": null, "translation": "prisoner" },
+			"từ": { "url": null, "translation": "word / compassion" }
+		}
 	},
 	"hỏi": {
 		"name": "Dipping-rising (hỏi)",
 		"diacritic": "̉",
 		"unicodeMark": "̉",
 		"ipa": "˨˩˧",
-		"direction": "dipping then rising (↘↗)",
+		"direction": "↘↗",
 		"description": "Mid dipping tone, falls then rises slightly. Doubtful, questioning.",
 		"telex": "<letter>+r",
 		"pronunciation": "A short, noticeable **dip in pitch followed by a slight rise**.",
 		"analogy": "The **questioning** intonation of 'Uh-huh?' (meaning 'What did you say?')",
 		"notes": "Often simplified to a low-fall or low-level pitch in rapid Northern speech.",
-		"vowels": ["ả", "ẳ", "ẩ", "ẻ", "ể", "ỉ", "ỷ", "ỏ", "ổ", "ở", "ủ", "ử"]
+		"vowels": ["ả", "ẳ", "ẩ", "ẻ", "ể", "ỉ", "ỷ", "ỏ", "ổ", "ở", "ủ", "ử"],
+		"examples": {
+			"mả": { "url": "/sounds/tones/ma-weird.mp3", "translation": "tomb" },
+			"bẳ": { "url": null, "translation": "fragment, piece" },
+			"cẩn": { "url": null, "translation": "careful" },
+			"bẻ": { "url": null, "translation": "to break (by bending)" },
+			"tể": { "url": null, "translation": "chieftain, leader (archaic)" },
+			"bỉ": { "url": null, "translation": "contemptible" },
+			"lỷ": { "url": null, "translation": "to calculate (archaic)" },
+			"tỏ": { "url": null, "translation": "to show, reveal" },
+			"bổ": { "url": null, "translation": "to cut, to supplement" },
+			"cở": { "url": null, "translation": "size" },
+			"tủ": { "url": null, "translation": "cupboard, cabinet" },
+			"tử": { "url": null, "translation": "to die / child" }
+		}
 	},
 	"ngã": {
 		"name": "Creaky rising (ngã)",
 		"diacritic": "̃",
 		"unicodeMark": "̃",
 		"ipa": "˧˥ˀ",
-		"direction": "creaky rising (↗ with glottal)",
+		"direction": "↗ with glottal",
 		"description": "Creaky rising tone, mid with glottal break then rising. Emphatic.",
 		"telex": "<letter>+x",
 		"pronunciation": "Rising pitch but with **creaky voice** or a **glottal catch/break** in the middle.",
 		"analogy": "Similar to the 'Hỏi' tone but with a **choking or tight throat** sound before the rise. It is often perceived as more emphatic.",
 		"notes": "In Hanoi Vietnamese, this tone is often realized as a high, sustained pitch with glottalization.",
-		"vowels": ["ã", "ẵ", "ẫ", "ẽ", "ễ", "ĩ", "ỹ", "õ", "ỗ", "ỡ", "ũ", "ữ"]
+		"vowels": ["ã", "ẵ", "ẫ", "ẽ", "ễ", "ĩ", "ỹ", "õ", "ỗ", "ỡ", "ũ", "ữ"],
+		"examples": {
+			"mã": {
+				"url": "/sounds/tones/ma-up-broken.mp3",
+				"translation": "horse / code"
+			},
+			"bẵ": { "url": null, "translation": "colloquial particle (rare)" },
+			"cẫn": { "url": null, "translation": "diligent (archaic/rare)" },
+			"bẽ": { "url": null, "translation": "bashful" },
+			"tễ": { "url": null, "translation": "powdered medicine" },
+			"bĩ": { "url": null, "translation": "to endure with difficulty" },
+			"lỹ": { "url": null, "translation": "to be experienced (rare)" },
+			"tõ": { "url": null, "translation": "to dangle (rare)" },
+			"bỗ": { "url": null, "translation": "to sob (rare)" },
+			"cỡ": { "url": null, "translation": "scale, size" },
+			"tũ": { "url": null, "translation": "to dangle, to droop" },
+			"tữ": { "url": null, "translation": "archaic variant" }
+		}
 	},
 	"nặng": {
 		"name": "Heavy / Low glottalized (nặng)",
 		"diacritic": "̣",
 		"unicodeMark": "̣",
 		"ipa": "˨˩ˀ",
-		"direction": "low, short, glottal stop (↓)",
+		"direction": "↓",
 		"description": "Low, short, heavy tone with glottal stop. Abrupt, forceful.",
 		"telex": "<letter>+j",
 		"pronunciation": "Starts low, **drops abruptly**, and is **cut off** by glottal constriction (a catch in the throat).",
 		"analogy": "A short, sharp grunt of **emphasis** or realization, like 'Oh!'",
-		"vowels": ["ạ", "ặ", "ậ", "ẹ", "ệ", "ị", "ỵ", "ọ", "ộ", "ợ", "ụ", "ự"]
+		"vowels": ["ạ", "ặ", "ậ", "ẹ", "ệ", "ị", "ỵ", "ọ", "ộ", "ợ", "ụ", "ự"],
+		"examples": {
+			"mạ": {
+				"url": "/sounds/tones/ma-down-broken.mp3",
+				"translation": "rice seedling"
+			},
+			"bặ": { "url": null, "translation": "to stuff (in the mouth)" },
+			"cận": { "url": null, "translation": "near, close" },
+			"bẹ": { "url": null, "translation": "flat / flattened" },
+			"tệ": { "url": null, "translation": "bad, lousy" },
+			"bị": { "url": null, "translation": "to suffer, to be subjected to" },
+			"lỵ": { "url": null, "translation": "dysentery" },
+			"tọ": { "url": null, "translation": "bud, sprout" },
+			"bộ": { "url": null, "translation": "set, ministry" },
+			"cợ": { "url": null, "translation": "to carry on the back (dialect)" },
+			"tụ": { "url": null, "translation": "to gather, congregate" },
+			"tự": { "url": null, "translation": "self" }
+		}
 	}
 }
