@@ -22,6 +22,11 @@ const pronunciationRoutes = [
 		path: "/pronunciation/consonants",
 	},
 	{ value: "tones", label: "Tones", path: "/pronunciation/tones" },
+	{
+		value: "tones-vowel",
+		label: "Tones by vowel",
+		path: "/pronunciation/tones-vowel",
+	},
 ];
 
 export const PronunciationLayout: FC<PronunciationLayoutProps> = ({

@@ -87,4 +87,8 @@
 	p {
 		color: var(--color-warm-cream);
 	}
+
+	hr {
+		color: var(--color-gold);
+	}
 }

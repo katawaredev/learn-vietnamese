@@ -9,13 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as FlagRouteImport } from './routes/flag'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PronunciationIndexRouteImport } from './routes/pronunciation/index'
 import { Route as PronunciationVowelsRouteImport } from './routes/pronunciation/vowels'
+import { Route as PronunciationTonesVowelRouteImport } from './routes/pronunciation/tones-vowel'
 import { Route as PronunciationTonesRouteImport } from './routes/pronunciation/tones'
 import { Route as PronunciationDoubleVowelsRouteImport } from './routes/pronunciation/double-vowels'
 import { Route as PronunciationConsonantsRouteImport } from './routes/pronunciation/consonants'
 
+const FlagRoute = FlagRouteImport.update({
+  id: '/flag',
+  path: '/flag',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -29,6 +36,11 @@ const PronunciationIndexRoute = PronunciationIndexRouteImport.update({
 const PronunciationVowelsRoute = PronunciationVowelsRouteImport.update({
   id: '/pronunciation/vowels',
   path: '/pronunciation/vowels',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PronunciationTonesVowelRoute = PronunciationTonesVowelRouteImport.update({
+  id: '/pronunciation/tones-vowel',
+  path: '/pronunciation/tones-vowel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PronunciationTonesRoute = PronunciationTonesRouteImport.update({
@@ -50,26 +62,32 @@ const PronunciationConsonantsRoute = PronunciationConsonantsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/flag': typeof FlagRoute
   '/pronunciation/consonants': typeof PronunciationConsonantsRoute
   '/pronunciation/double-vowels': typeof PronunciationDoubleVowelsRoute
   '/pronunciation/tones': typeof PronunciationTonesRoute
+  '/pronunciation/tones-vowel': typeof PronunciationTonesVowelRoute
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/pronunciation': typeof PronunciationIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/flag': typeof FlagRoute
   '/pronunciation/consonants': typeof PronunciationConsonantsRoute
   '/pronunciation/double-vowels': typeof PronunciationDoubleVowelsRoute
   '/pronunciation/tones': typeof PronunciationTonesRoute
+  '/pronunciation/tones-vowel': typeof PronunciationTonesVowelRoute
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/pronunciation': typeof PronunciationIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/flag': typeof FlagRoute
   '/pronunciation/consonants': typeof PronunciationConsonantsRoute
   '/pronunciation/double-vowels': typeof PronunciationDoubleVowelsRoute
   '/pronunciation/tones': typeof PronunciationTonesRoute
+  '/pronunciation/tones-vowel': typeof PronunciationTonesVowelRoute
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/pronunciation/': typeof PronunciationIndexRoute
 }
@@ -77,40 +95,55 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/flag'
     | '/pronunciation/consonants'
     | '/pronunciation/double-vowels'
     | '/pronunciation/tones'
+    | '/pronunciation/tones-vowel'
     | '/pronunciation/vowels'
     | '/pronunciation'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/flag'
     | '/pronunciation/consonants'
     | '/pronunciation/double-vowels'
     | '/pronunciation/tones'
+    | '/pronunciation/tones-vowel'
     | '/pronunciation/vowels'
     | '/pronunciation'
   id:
     | '__root__'
     | '/'
+    | '/flag'
     | '/pronunciation/consonants'
     | '/pronunciation/double-vowels'
     | '/pronunciation/tones'
+    | '/pronunciation/tones-vowel'
     | '/pronunciation/vowels'
     | '/pronunciation/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FlagRoute: typeof FlagRoute
   PronunciationConsonantsRoute: typeof PronunciationConsonantsRoute
   PronunciationDoubleVowelsRoute: typeof PronunciationDoubleVowelsRoute
   PronunciationTonesRoute: typeof PronunciationTonesRoute
+  PronunciationTonesVowelRoute: typeof PronunciationTonesVowelRoute
   PronunciationVowelsRoute: typeof PronunciationVowelsRoute
   PronunciationIndexRoute: typeof PronunciationIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/flag': {
+      id: '/flag'
+      path: '/flag'
+      fullPath: '/flag'
+      preLoaderRoute: typeof FlagRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -130,6 +163,13 @@ declare module '@tanstack/react-router' {
       path: '/pronunciation/vowels'
       fullPath: '/pronunciation/vowels'
       preLoaderRoute: typeof PronunciationVowelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pronunciation/tones-vowel': {
+      id: '/pronunciation/tones-vowel'
+      path: '/pronunciation/tones-vowel'
+      fullPath: '/pronunciation/tones-vowel'
+      preLoaderRoute: typeof PronunciationTonesVowelRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pronunciation/tones': {
@@ -158,9 +198,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FlagRoute: FlagRoute,
   PronunciationConsonantsRoute: PronunciationConsonantsRoute,
   PronunciationDoubleVowelsRoute: PronunciationDoubleVowelsRoute,
   PronunciationTonesRoute: PronunciationTonesRoute,
+  PronunciationTonesVowelRoute: PronunciationTonesVowelRoute,
   PronunciationVowelsRoute: PronunciationVowelsRoute,
   PronunciationIndexRoute: PronunciationIndexRoute,
 }
