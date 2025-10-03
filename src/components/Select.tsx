@@ -1,18 +1,11 @@
-import {
-	Listbox,
-	ListboxButton,
-	ListboxOption,
-	ListboxOptions,
-	type ListboxProps,
-} from "@headlessui/react";
+import { Select as BaseSelect } from "@base-ui-components/react/select";
 import { cva, type VariantProps } from "class-variance-authority";
-import { ChevronDownIcon } from "lucide-react";
+import { Check, ChevronsUpDown } from "lucide-react";
 import { useState } from "react";
-import { cn } from "~/lib/utils";
-import { DropdownMenu } from "./DropdownMenu";
+import { twMerge } from "tailwind-merge";
 
 const selectVariants = cva(
-	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-burgundy-dark rounded-2xl inline-flex items-center relative bg-gold text-burgundy-dark hover:bg-gold",
+	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold rounded-2xl bg-gold text-burgundy-dark hover:bg-gold border-2 border-transparent w-full",
 	{
 		variants: {
 			size: {
@@ -27,22 +20,23 @@ const selectVariants = cva(
 	},
 );
 
-const selectMenuVariants = cva(
-	"absolute left-0 top-full mt-2 min-w-full z-50 transition-all duration-200 focus:outline-none",
-);
-
 const selectItemVariants = cva(
-	"block w-full text-left font-serif transition-colors duration-200 focus:outline-none text-warm-cream hover:bg-gold hover:text-burgundy-dark focus:bg-gold focus:text-burgundy-dark data-[focus]:bg-gold data-[focus]:text-burgundy-dark",
+	"flex items-center gap-2 w-full text-left font-serif transition-colors duration-200 focus:outline-none bg-white/5 text-warm-cream hover:bg-gold hover:text-burgundy-dark focus:bg-gold focus:text-burgundy-dark data-[highlighted]:bg-gold data-[highlighted]:text-burgundy-dark border-b border-white/10 last:border-b-0",
 	{
 		variants: {
 			size: {
-				small: "px-3 py-1 text-sm",
-				medium: "px-4 py-1.5 text-base",
-				large: "px-6 py-2 text-lg",
+				small: "px-3 py-1.5 text-sm",
+				medium: "px-4 py-2 text-lg",
+				large: "px-6 py-4 text-2xl",
+			},
+			disabled: {
+				true: "cursor-not-allowed opacity-50",
+				false: "cursor-pointer",
 			},
 		},
 		defaultVariants: {
 			size: "medium",
+			disabled: false,
 		},
 	},
 );
@@ -53,9 +47,7 @@ export interface SelectOption {
 	disabled?: boolean;
 }
 
-export interface SelectProps
-	extends VariantProps<typeof selectVariants>,
-		Omit<ListboxProps, "value" | "onChange" | "children"> {
+export interface SelectProps extends VariantProps<typeof selectVariants> {
 	options: SelectOption[];
 	value?: string;
 	onChange?: (value: string) => void;
@@ -63,8 +55,6 @@ export interface SelectProps
 	className?: string;
 	menuClassName?: string;
 	itemClassName?: string;
-	showChevron?: boolean;
-	menuSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "auto" | "fit";
 }
 
 export function Select({
@@ -76,55 +66,62 @@ export function Select({
 	className,
 	menuClassName,
 	itemClassName,
-	showChevron = true,
-	menuSize = "md",
-	...props
 }: SelectProps) {
-	const [selectedValue, setSelectedValue] = useState(value || "");
-
-	const selectedOption = options.find(
-		(option) => option.value === selectedValue,
-	);
-
-	const handleChange = (newValue: string) => {
-		setSelectedValue(newValue);
-		onChange?.(newValue);
-	};
+	const [open, setOpen] = useState(false);
+	const selectedOption = options.find((opt) => opt.value === value);
 
 	return (
-		<div className="relative inline-block">
-			<Listbox value={selectedValue} onChange={handleChange} {...props}>
-				<ListboxButton className={cn(selectVariants({ size }), className)}>
-					<span className="flex-1 text-center">
-						{selectedOption ? selectedOption.label : placeholder}
-					</span>
-					{showChevron && (
-						<ChevronDownIcon
-							className="ml-2 h-5 w-5 transition-transform duration-200 data-[open]:rotate-180"
-							aria-hidden="true"
-						/>
+		<div className="relative inline-block w-full">
+			<BaseSelect.Root
+				value={value}
+				onValueChange={(newValue) => onChange?.(newValue as string)}
+				open={open}
+				onOpenChange={setOpen}
+			>
+				<BaseSelect.Trigger
+					className={twMerge(
+						selectVariants({ size }),
+						"flex items-center justify-between",
+						className,
 					)}
-				</ListboxButton>
+				>
+					<div className="flex items-center gap-2">
+						<div className="h-4 w-4 shrink-0" />
+						<BaseSelect.Value>
+							{selectedOption?.label || placeholder}
+						</BaseSelect.Value>
+					</div>
+					<ChevronsUpDown className="ml-2 h-5 w-5 shrink-0" />
+				</BaseSelect.Trigger>
 
-				<ListboxOptions className={cn(selectMenuVariants(), menuClassName)}>
-					<DropdownMenu size={menuSize}>
-						{options.map((option) => (
-							<ListboxOption
-								key={option.value}
-								value={option.value}
-								disabled={option.disabled}
-								className={cn(
-									selectItemVariants({ size }),
-									itemClassName,
-									option.disabled ? "cursor-not-allowed opacity-50" : undefined,
-								)}
-							>
-								{option.label}
-							</ListboxOption>
-						))}
-					</DropdownMenu>
-				</ListboxOptions>
-			</Listbox>
+				<BaseSelect.Portal>
+					<BaseSelect.Positioner sideOffset={4}>
+						<BaseSelect.Popup
+							className={twMerge(
+								"z-50 w-[var(--anchor-width)] overflow-hidden rounded-2xl border border-gold bg-burgundy-dark shadow-xl focus:outline-none",
+								menuClassName,
+							)}
+						>
+							{options.map((option) => (
+								<BaseSelect.Item
+									key={option.value}
+									value={option.value}
+									disabled={option.disabled}
+									className={twMerge(
+										selectItemVariants({ size, disabled: option.disabled }),
+										itemClassName,
+									)}
+								>
+									<Check
+										className={`h-4 w-4 shrink-0 ${value === option.value ? "opacity-100" : "opacity-0"}`}
+									/>
+									{option.label}
+								</BaseSelect.Item>
+							))}
+						</BaseSelect.Popup>
+					</BaseSelect.Positioner>
+				</BaseSelect.Portal>
+			</BaseSelect.Root>
 		</div>
 	);
 }

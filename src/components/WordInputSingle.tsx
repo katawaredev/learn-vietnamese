@@ -24,15 +24,15 @@ export const WordInputSingle = ({
 	);
 
 	return (
-		<div className="relative">
+		<div className="relative ml-[6ch] font-mono">
 			<input
 				type="text"
 				size={text.length}
 				maxLength={text.length}
-				className="relative z-10 font-mono text-3xl tracking-[3ch] outline-none"
+				className="relative z-10 ml-[1ch] font-mono text-3xl tracking-[3ch] outline-none"
 				onChange={handleChange}
 			/>
-			<div className="-bottom-2 absolute ml-[-1ch] flex select-none flex-row space-x-[1ch] font-mono text-3xl">
+			<div className="-bottom-2 absolute flex select-none flex-row space-x-[1ch] font-mono text-3xl">
 				{hintChars.map((char, i) => (
 					<div
 						// biome-ignore lint/suspicious/noArrayIndexKey: No valid key

@@ -1,5 +1,5 @@
-import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 import { cva } from "class-variance-authority";
+import { Volume2 } from "lucide-react";
 import { type FC, useCallback, useEffect, useRef, useState } from "react";
 import { StateIndicator } from "./StateIndicator";
 
@@ -184,7 +184,7 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 			aria-label={state === "speaking" ? "Stop audio" : "Play audio"}
 		>
 			{/* Speaker Icon */}
-			<SpeakerWaveIcon
+			<Volume2
 				className={`${
 					size === "small"
 						? "h-5 w-5"

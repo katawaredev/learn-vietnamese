@@ -120,8 +120,11 @@ export const WordInputMultiple = ({
 				const hintChars = [...hintWords[wordIndex]];
 
 				return (
-					// biome-ignore lint/suspicious/noArrayIndexKey: No valid key
-					<div key={wordIndex} className="relative inline-block">
+					<div
+						// biome-ignore lint/suspicious/noArrayIndexKey: No valid key
+						key={wordIndex}
+						className="relative ml-[6ch] inline-block font-mono"
+					>
 						<input
 							ref={(el) => {
 								inputRefs.current[wordIndex] = el;
@@ -130,11 +133,11 @@ export const WordInputMultiple = ({
 							maxLength={word.length}
 							value={values[wordIndex]}
 							size={word.length}
-							className="relative z-10 min-w-0 bg-transparent font-mono text-3xl tracking-[3ch] outline-none"
+							className="relative z-10 ml-[1ch] min-w-0 bg-transparent font-mono text-3xl tracking-[3ch] outline-none"
 							onChange={(e) => handleChange(wordIndex, e.target.value)}
 							onKeyDown={(e) => handleKeyDown(wordIndex, e)}
 						/>
-						<div className="-bottom-2 absolute ml-[-1ch] flex select-none flex-row space-x-[1ch] font-mono text-3xl">
+						<div className="-bottom-2 absolute flex select-none flex-row space-x-[1ch] font-mono text-3xl">
 							{hintChars.map((char, charIndex) => (
 								<div
 									// biome-ignore lint/suspicious/noArrayIndexKey: No valid key

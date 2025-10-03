@@ -7,9 +7,10 @@ import Header from "./Header";
 interface PronunciationLayoutProps {
 	children: ReactNode;
 	currentRoute: string;
+	customNavigation?: ReactNode;
 }
 
-const pronunciationRoutes = [
+export const pronunciationRoutes = [
 	{ value: "vowels", label: "Vowels", path: "/pronunciation/vowels" },
 	{
 		value: "double-vowels",
@@ -27,11 +28,17 @@ const pronunciationRoutes = [
 		label: "Tones by vowel",
 		path: "/pronunciation/tones-vowel",
 	},
+	{
+		value: "practice",
+		label: "Practice",
+		path: "/pronunciation/practice",
+	},
 ];
 
 export const PronunciationLayout: FC<PronunciationLayoutProps> = ({
 	children,
 	currentRoute,
+	customNavigation,
 }) => {
 	const navigate = useNavigate();
 
@@ -46,12 +53,12 @@ export const PronunciationLayout: FC<PronunciationLayoutProps> = ({
 			: null;
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-burgundy-dark to-burgundy">
+		<div className="flex min-h-screen flex-col bg-gradient-to-br from-burgundy-dark to-burgundy">
 			<Header>
 				<Select
 					placeholder="Select Category"
 					className="min-w-32"
-					menuSize="sm"
+					size="small"
 					options={pronunciationRoutes.map((route) => ({
 						label: route.label,
 						value: route.value,
@@ -66,36 +73,32 @@ export const PronunciationLayout: FC<PronunciationLayoutProps> = ({
 				/>
 			</Header>
 
-			<main className="px-4 pb-8">
-				<div className="mx-auto max-w-6xl">
+			<main className="flex flex-1 flex-col px-4 pb-8">
+				<div className="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center">
 					{children}
+				</div>
 
-					<div className="mx-auto flex max-w-4xl gap-8 px-4 pt-12">
-						{prevRoute ? (
-							<LinkButton
-								variant="outline"
-								size="medium"
-								to={prevRoute.path}
-								className="w-full"
-							>
-								← {prevRoute.label}
-							</LinkButton>
-						) : (
-							<div className="w-full" />
-						)}
-						{nextRoute ? (
-							<LinkButton
-								variant="outline"
-								size="medium"
-								to={nextRoute.path}
-								className="w-full"
-							>
-								{nextRoute.label} →
-							</LinkButton>
-						) : (
-							<div className="w-full" />
-						)}
-					</div>
+				{/* Navigation area */}
+				<div className="mx-auto w-full max-w-4xl pt-12">
+					{customNavigation || (
+						<div className="grid grid-cols-[1fr_6rem_1fr] gap-4">
+							{prevRoute ? (
+								<LinkButton variant="outline" size="medium" to={prevRoute.path}>
+									← {prevRoute.label}
+								</LinkButton>
+							) : (
+								<div />
+							)}
+							<div />
+							{nextRoute ? (
+								<LinkButton variant="outline" size="medium" to={nextRoute.path}>
+									{nextRoute.label} →
+								</LinkButton>
+							) : (
+								<div />
+							)}
+						</div>
+					)}
 				</div>
 			</main>
 		</div>

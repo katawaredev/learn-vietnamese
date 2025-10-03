@@ -54,10 +54,15 @@ export const Route = createRootRoute({
 				sizes: "180x180",
 				href: "/apple-touch-icon.png",
 			},
-			{
-				rel: "manifest",
-				href: "/site.webmanifest",
-			},
+			// Only include manifest in production to avoid PWA caching issues in dev
+			...(import.meta.env.PROD
+				? [
+						{
+							rel: "manifest",
+							href: "/site.webmanifest",
+						},
+					]
+				: []),
 		],
 	}),
 

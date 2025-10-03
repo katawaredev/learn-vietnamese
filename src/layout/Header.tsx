@@ -1,4 +1,4 @@
-import { ArrowLeftIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import { ArrowLeft, Menu } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { Button, LinkButton } from "~/components/Button.tsx";
@@ -22,13 +22,15 @@ export default function Header({
 				<div className="w-10">
 					{!hideBackButton && (
 						<LinkButton variant="ghost" to="/" className="p-2">
-							<ArrowLeftIcon className="h-6 w-6" />
+							<ArrowLeft className="h-6 w-6" />
 						</LinkButton>
 					)}
 				</div>
 
 				{/* Center - Optional custom component */}
-				<div className="flex flex-1 justify-center">{children}</div>
+				<div className="flex max-w-6xl flex-1 justify-center px-4">
+					{children}
+				</div>
 
 				{/* Right side - Settings */}
 				<div className="flex w-10 justify-end">
@@ -37,7 +39,7 @@ export default function Header({
 						className="p-2"
 						onClick={() => setIsSettingsOpen(true)}
 					>
-						<Bars3Icon className="h-6 w-6" />
+						<Menu className="h-6 w-6" />
 					</Button>
 				</div>
 			</header>

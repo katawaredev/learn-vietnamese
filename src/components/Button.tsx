@@ -1,12 +1,7 @@
-import {
-	Button as HeadlessButton,
-	type ButtonProps as HeadlessButtonProps,
-} from "@headlessui/react";
 import { Link, type LinkComponent } from "@tanstack/react-router";
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
-import { cn } from "~/lib/utils";
 
 const buttonVariants = cva(
 	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold rounded-2xl",
@@ -35,13 +30,13 @@ const buttonVariants = cva(
 
 export interface ButtonProps
 	extends VariantProps<typeof buttonVariants>,
-		HeadlessButtonProps {}
+		ComponentProps<"button"> {}
 
 export function Button({ variant, size, className, ...props }: ButtonProps) {
 	return (
-		<HeadlessButton
+		<button
 			{...props}
-			className={cn(buttonVariants({ variant, size }), className)}
+			className={twMerge(buttonVariants({ variant, size }), className)}
 		/>
 	);
 }

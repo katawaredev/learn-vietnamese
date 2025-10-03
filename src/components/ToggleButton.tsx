@@ -1,10 +1,10 @@
-import { Checkbox, type CheckboxProps } from "@headlessui/react";
+import { Checkbox } from "@base-ui-components/react/checkbox";
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentType } from "react";
-import { cn } from "~/lib/utils";
+import { twMerge } from "tailwind-merge";
 
 const toggleButtonVariants = cva(
-	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold rounded-2xl flex items-center gap-2 justify-center",
+	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold rounded-2xl flex items-center gap-2 justify-center cursor-pointer",
 	{
 		variants: {
 			size: {
@@ -26,13 +26,14 @@ const toggleButtonVariants = cva(
 );
 
 export interface ToggleButtonProps
-	extends VariantProps<typeof toggleButtonVariants>,
-		CheckboxProps {
+	extends VariantProps<typeof toggleButtonVariants> {
 	text: string;
 	icon?: ComponentType<{ className?: string }>;
 	activeText?: string;
 	activeIcon?: ComponentType<{ className?: string }>;
 	checked?: boolean;
+	onCheckedChange?: (checked: boolean) => void;
+	className?: string;
 }
 
 export function ToggleButton({
@@ -41,20 +42,18 @@ export function ToggleButton({
 	activeText,
 	activeIcon: ActiveIcon,
 	checked,
-	onChange,
+	onCheckedChange,
 	size,
 	className,
-	...props
 }: ToggleButtonProps) {
 	const displayText = checked && activeText ? activeText : text;
 	const DisplayIcon = checked ? ActiveIcon : Icon;
 
 	return (
-		<Checkbox
-			{...props}
+		<Checkbox.Root
 			checked={checked}
-			onChange={onChange}
-			className={cn(toggleButtonVariants({ size, checked }), className)}
+			onCheckedChange={onCheckedChange}
+			className={twMerge(toggleButtonVariants({ size, checked }), className)}
 		>
 			{(Icon || ActiveIcon) && (
 				<span className="flex h-6 w-6 items-center justify-center">
@@ -62,6 +61,6 @@ export function ToggleButton({
 				</span>
 			)}
 			{displayText}
-		</Checkbox>
+		</Checkbox.Root>
 	);
 }

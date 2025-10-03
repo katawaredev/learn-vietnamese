@@ -1,4 +1,4 @@
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { Info } from "lucide-react";
 import { type ReactNode, useState } from "react";
 import { ListenButton } from "~/components/ListenButton";
 import { Popover } from "~/components/Popover";
@@ -63,11 +63,8 @@ export function PracticeGrid<T>({
 						{hasDetails && (
 							<div className="absolute top-2 right-2">
 								<Popover
-									trigger={
-										<InformationCircleIcon className="h-6 w-6 text-gold" />
-									}
+									trigger={<Info className="h-6 w-6 text-gold" />}
 									buttonClassName="opacity-60 hover:opacity-100 transition-opacity p-2"
-									size="xl"
 								>
 									<div className="space-y-3">
 										{Object.entries(details).map(([label, component]) => (
@@ -81,11 +78,13 @@ export function PracticeGrid<T>({
 						)}
 
 						{/* Result indicator */}
-						<Result
-							transcription={transcription}
-							expectedText={key}
-							isNew={newTranscriptions.has(key)}
-						/>
+						<div className="absolute top-2 left-2">
+							<Result
+								transcription={transcription}
+								expectedText={key}
+								isNew={newTranscriptions.has(key)}
+							/>
+						</div>
 
 						{/* Main display */}
 						<div className="text-center">

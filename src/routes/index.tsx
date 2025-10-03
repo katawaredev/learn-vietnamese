@@ -1,17 +1,17 @@
-import {
-	AcademicCapIcon,
-	BookOpenIcon,
-	ChatBubbleBottomCenterTextIcon,
-	ChatBubbleLeftRightIcon,
-	DocumentTextIcon,
-	HandRaisedIcon,
-	NumberedListIcon,
-	PencilSquareIcon,
-	PuzzlePieceIcon,
-	SpeakerWaveIcon,
-	UsersIcon,
-} from "@heroicons/react/24/outline";
 import { createFileRoute } from "@tanstack/react-router";
+import {
+	BookOpen,
+	GraduationCap,
+	Hand,
+	Hash,
+	MessageCircle,
+	MessageSquare,
+	Pencil,
+	Puzzle,
+	ScrollText,
+	Users,
+	Volume2,
+} from "lucide-react";
 import { LinkButton } from "~/components/Button";
 import Header from "~/layout/Header";
 
@@ -21,16 +21,16 @@ export const Route = createFileRoute("/")({
 
 function App() {
 	const learningModules = [
-		{ name: "Pronunciation", icon: SpeakerWaveIcon, to: "/pronunciation" },
-		{ name: "Greetings", icon: HandRaisedIcon, to: "/greetings" },
-		{ name: "Numbers", icon: NumberedListIcon, to: "/numbers" },
-		{ name: "Grammar", icon: PuzzlePieceIcon, to: "/grammar" },
-		{ name: "Phrases", icon: ChatBubbleBottomCenterTextIcon, to: "/phrases" },
-		{ name: "Reading", icon: DocumentTextIcon, to: "/reading" },
-		{ name: "Dictation", icon: PencilSquareIcon, to: "/dictation" },
-		{ name: "Vocabulary", icon: BookOpenIcon, to: "/vocabulary" },
-		{ name: "Live Conversation", icon: UsersIcon, to: "/conversation" },
-		{ name: "AI Chat", icon: ChatBubbleLeftRightIcon, to: "/chat" },
+		{ name: "Pronunciation", icon: Volume2, to: "/pronunciation" },
+		{ name: "Greetings", icon: Hand, to: "/greetings" },
+		{ name: "Numbers", icon: Hash, to: "/numbers" },
+		{ name: "Grammar", icon: Puzzle, to: "/grammar" },
+		{ name: "Phrases", icon: MessageSquare, to: "/phrases" },
+		{ name: "Reading", icon: ScrollText, to: "/reading" },
+		{ name: "Dictation", icon: Pencil, to: "/dictation" },
+		{ name: "Vocabulary", icon: BookOpen, to: "/vocabulary" },
+		{ name: "Live Conversation", icon: Users, to: "/conversation" },
+		{ name: "AI Chat", icon: MessageCircle, to: "/chat" },
 	];
 
 	return (
@@ -63,7 +63,7 @@ function App() {
 						rel="noopener noreferrer"
 						className="flex w-full items-center justify-center gap-4 font-medium"
 					>
-						<AcademicCapIcon className="h-6 w-6" />
+						<GraduationCap className="h-6 w-6" />
 						Study resources
 					</LinkButton>
 				</div>

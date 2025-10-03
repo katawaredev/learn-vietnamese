@@ -1,5 +1,5 @@
-import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Dialog } from "@base-ui-components/react/dialog";
+import { X } from "lucide-react";
 import { Select } from "~/components/Select";
 import { useSTT } from "~/providers/stt-provider";
 import { useTTS } from "~/providers/tts-provider";
@@ -38,78 +38,75 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 	};
 
 	return (
-		<Dialog open={isOpen} onClose={onClose} className="relative z-50">
-			{/* Backdrop */}
-			<DialogBackdrop className="fixed inset-0 bg-black/25 transition-opacity duration-300 ease-out data-[closed]:opacity-0" />
+		<Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
+			<Dialog.Portal>
+				{/* Backdrop */}
+				<Dialog.Backdrop className="data-[closed]:fade-out-0 data-[open]:fade-in-0 fixed inset-0 z-50 bg-black/25 transition-opacity duration-300 data-[closed]:animate-out data-[open]:animate-in" />
 
-			{/* Drawer */}
-			<div className="fixed inset-0 overflow-hidden">
-				<div className="absolute inset-0 overflow-hidden">
-					<div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-						<DialogPanel className="slide-in-from-right pointer-events-auto relative w-screen max-w-md animate-in duration-300">
-							<div className="flex h-full flex-col bg-burgundy-dark shadow-xl">
-								{/* Header */}
-								<div className="flex items-center justify-between border-gold/20 border-b px-6 py-4">
-									<h2 className="font-semibold font-serif text-gold text-xl">
-										Settings
-									</h2>
-									<button
-										type="button"
-										onClick={onClose}
-										className="rounded-md p-2 text-gold transition-colors hover:bg-gold/10"
-									>
-										<span className="sr-only">Close panel</span>
-										<XMarkIcon className="h-6 w-6" aria-hidden="true" />
-									</button>
-								</div>
+				{/* Drawer */}
+				<Dialog.Popup className="data-[closed]:slide-out-to-right data-[open]:slide-in-from-right fixed top-0 right-0 z-50 h-full w-screen max-w-md bg-burgundy-dark shadow-xl transition-transform duration-300 data-[closed]:animate-out data-[open]:animate-in">
+					<div className="flex h-full flex-col">
+						{/* Header */}
+						<div className="flex items-center justify-between border-gold/20 border-b px-6 py-4">
+							<Dialog.Title className="font-semibold font-serif text-gold text-xl">
+								Settings
+							</Dialog.Title>
+							<Dialog.Close>
+								<button
+									type="button"
+									className="rounded-md p-2 text-gold transition-colors hover:bg-gold/10"
+								>
+									<span className="sr-only">Close panel</span>
+									<X className="h-6 w-6" aria-hidden="true" />
+								</button>
+							</Dialog.Close>
+						</div>
 
-								{/* Content */}
-								<div className="flex-1 overflow-y-auto px-6 py-6">
-									<div className="space-y-8">
-										{/* Text to Speech Section */}
-										<div>
-											<div className="mb-3 block font-medium font-serif text-gold text-sm">
-												Speech synthesis model:
-											</div>
-											<Select
-												options={ttsOptions}
-												value={selectedVoice.id}
-												onChange={handleTTSChange}
-												placeholder="Select voice"
-												size="medium"
-												className="w-full"
-											/>
-										</div>
-
-										{/* Speech to Text Section */}
-										<div>
-											<div className="mb-3 block font-medium font-serif text-gold text-sm">
-												Speech recognition model:
-											</div>
-											<Select
-												options={sttOptions}
-												value={selectedModel.id}
-												onChange={handleSTTChange}
-												placeholder="Select model"
-												size="medium"
-												className="w-full"
-											/>
-										</div>
+						{/* Content */}
+						<div className="flex-1 overflow-y-auto px-6 py-6">
+							<div className="space-y-8">
+								{/* Text to Speech Section */}
+								<div>
+									<div className="mb-3 block font-medium font-serif text-gold text-sm">
+										Speech synthesis model:
 									</div>
+									<Select
+										options={ttsOptions}
+										value={selectedVoice.id}
+										onChange={handleTTSChange}
+										placeholder="Select voice"
+										size="medium"
+										className="w-full"
+									/>
 								</div>
 
-								{/* Footer */}
-								<div className="border-gold/20 border-t px-6 py-4">
-									<p className="font-serif text-sm text-warm-cream/70">
-										Settings are automatically saved and will persist across
-										sessions.
-									</p>
+								{/* Speech to Text Section */}
+								<div>
+									<div className="mb-3 block font-medium font-serif text-gold text-sm">
+										Speech recognition model:
+									</div>
+									<Select
+										options={sttOptions}
+										value={selectedModel.id}
+										onChange={handleSTTChange}
+										placeholder="Select model"
+										size="medium"
+										className="w-full"
+									/>
 								</div>
 							</div>
-						</DialogPanel>
+						</div>
+
+						{/* Footer */}
+						<div className="border-gold/20 border-t px-6 py-4">
+							<p className="font-serif text-sm text-warm-cream/70">
+								Settings are automatically saved and will persist across
+								sessions.
+							</p>
+						</div>
 					</div>
-				</div>
-			</div>
-		</Dialog>
+				</Dialog.Popup>
+			</Dialog.Portal>
+		</Dialog.Root>
 	);
 }

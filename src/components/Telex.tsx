@@ -1,4 +1,4 @@
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { Info } from "lucide-react";
 
 interface TelexProps {
 	text: string;
@@ -15,7 +15,7 @@ export function Telex({ text }: TelexProps) {
 				className="ml-2 text-blue-300"
 				title="Learn more"
 			>
-				<InformationCircleIcon className="h-4 w-4" />
+				<Info className="h-4 w-4" />
 			</a>
 		</span>
 	);
