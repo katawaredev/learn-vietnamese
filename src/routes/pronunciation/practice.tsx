@@ -91,18 +91,10 @@ function ListenPractice({
 	};
 
 	return (
-		<div
-			key={itemKey}
-			className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500"
-		>
+		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500">
 			<SpeakButton text={itemKey} size="large" />
 			<div className="flex flex-col items-center space-y-4">
-				<WordInputSingle
-					key={itemKey}
-					text={itemKey}
-					hint={hint}
-					onChange={handleChange}
-				/>
+				<WordInputSingle text={itemKey} hint={hint} onChange={handleChange} />
 				<div className="mt-8 h-8">
 					{showResult && (
 						<div className={animationClass}>
@@ -123,10 +115,7 @@ function SpeakPractice({ itemKey }: { itemKey: string }) {
 	const [userInput, setUserInput] = useState("");
 
 	return (
-		<div
-			key={itemKey}
-			className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500"
-		>
+		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500">
 			<h2 className="font-bold text-5xl">{itemKey}</h2>
 			<div className="flex flex-col items-center space-y-4">
 				<ListenButton onTranscription={setUserInput} size="large" />
@@ -238,12 +227,13 @@ function PracticeComponent() {
 				</ToggleGroup>
 				{displayMode === "sound" ? (
 					<ListenPractice
+						key={item.key}
 						itemKey={item.key}
 						hint={hint}
 						onInputChange={() => {}}
 					/>
 				) : (
-					<SpeakPractice itemKey={item.key} />
+					<SpeakPractice key={item.key} itemKey={item.key} />
 				)}
 			</div>
 		</PronunciationLayout>
