@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Telex } from "~/components/Telex";
 import vowelsData from "~/data/pronunciation/vowels.json";
 import { PracticeGrid } from "~/layout/PracticeGrid";
-import { PronunciationLayout } from "~/layout/PronunciationLayout";
+import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/pronunciation/vowels")({
 	component: VowelsComponent,
@@ -16,7 +16,7 @@ interface VowelData {
 
 function VowelsComponent() {
 	return (
-		<PronunciationLayout currentRoute="vowels">
+		<Layout>
 			<PracticeGrid<VowelData>
 				data={vowelsData}
 				getSubtitle={(item) => item.ipa || ""}
@@ -38,6 +38,6 @@ function VowelsComponent() {
 					return Object.keys(details).length > 0 ? details : undefined;
 				}}
 			/>
-		</PronunciationLayout>
+		</Layout>
 	);
 }

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Fragment } from "react";
 import tones from "~/data/pronunciation/tones.json";
 import { PracticeGrid } from "~/layout/PracticeGrid";
-import { PronunciationLayout } from "~/layout/PronunciationLayout";
+import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/pronunciation/tones-vowel")({
 	component: TonesVowelsComponent,
@@ -36,7 +36,7 @@ function TonesVowelsComponent() {
 	});
 
 	return (
-		<PronunciationLayout currentRoute="tones-vowel">
+		<Layout>
 			<div className="space-y-6">
 				{groupedByPosition.map((group, index) => (
 					// biome-ignore lint/suspicious/noArrayIndexKey: No key
@@ -49,6 +49,6 @@ function TonesVowelsComponent() {
 					</Fragment>
 				))}
 			</div>
-		</PronunciationLayout>
+		</Layout>
 	);
 }

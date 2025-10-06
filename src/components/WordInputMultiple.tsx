@@ -1,4 +1,5 @@
 import { type KeyboardEvent, useCallback, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface WordInputMultipleProps {
 	text: string;
@@ -115,7 +116,7 @@ export const WordInputMultiple = ({
 	);
 
 	return (
-		<div className="flex flex-wrap gap-2 gap-y-8">
+		<div className="flex flex-wrap gap-y-4">
 			{words.map((word, wordIndex) => {
 				const hintChars = [...hintWords[wordIndex]];
 
@@ -123,7 +124,10 @@ export const WordInputMultiple = ({
 					<div
 						// biome-ignore lint/suspicious/noArrayIndexKey: No valid key
 						key={wordIndex}
-						className="relative ml-[6ch] inline-block font-mono"
+						className={twMerge(
+							"relative inline-block font-mono",
+							wordIndex === 0 && "ml-[6ch]",
+						)}
 					>
 						<input
 							ref={(el) => {

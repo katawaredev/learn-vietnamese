@@ -1,5 +1,6 @@
 import { Dialog } from "@base-ui-components/react/dialog";
 import { X } from "lucide-react";
+import { useId } from "react";
 import { Select } from "~/components/Select";
 import { useSTT } from "~/providers/stt-provider";
 import { useTTS } from "~/providers/tts-provider";
@@ -10,35 +11,31 @@ interface SettingsDrawerProps {
 }
 
 export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
+	const ttsId = useId();
+	const sttId = useId();
 	const { selectedVoice, setSelectedVoice, availableVoices } = useTTS();
 	const { selectedModel, setSelectedModel, availableModels } = useSTT();
 
-	const ttsOptions = availableVoices.map((voice) => ({
-		label: voice.name,
-		value: voice.id,
-	}));
-
-	const sttOptions = availableModels.map((model) => ({
-		label: model.name,
-		value: model.id,
-	}));
-
-	const handleTTSChange = (voiceId: string) => {
-		const voice = availableVoices.find((v) => v.id === voiceId);
+	const handleTTSChange = (value: string) => {
+		const voice = availableVoices.find((v) => v.id === value);
 		if (voice) {
 			setSelectedVoice(voice);
 		}
 	};
 
-	const handleSTTChange = (modelId: string) => {
-		const model = availableModels.find((m) => m.id === modelId);
+	const handleSTTChange = (value: string) => {
+		const model = availableModels.find((m) => m.id === value);
 		if (model) {
 			setSelectedModel(model);
 		}
 	};
 
 	return (
-		<Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
+		<Dialog.Root
+			open={isOpen}
+			onOpenChange={(open) => !open && onClose()}
+			modal={false}
+		>
 			<Dialog.Portal>
 				{/* Backdrop */}
 				<Dialog.Backdrop className="data-[closed]:fade-out-0 data-[open]:fade-in-0 fixed inset-0 z-50 bg-black/25 transition-opacity duration-300 data-[closed]:animate-out data-[open]:animate-in" />
@@ -51,14 +48,9 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 							<Dialog.Title className="font-semibold font-serif text-gold text-xl">
 								Settings
 							</Dialog.Title>
-							<Dialog.Close>
-								<button
-									type="button"
-									className="rounded-md p-2 text-gold transition-colors hover:bg-gold/10"
-								>
-									<span className="sr-only">Close panel</span>
-									<X className="h-6 w-6" aria-hidden="true" />
-								</button>
+							<Dialog.Close className="rounded-md p-2 text-gold transition-colors hover:bg-gold/10">
+								<span className="sr-only">Close panel</span>
+								<X className="h-6 w-6" aria-hidden="true" />
 							</Dialog.Close>
 						</div>
 
@@ -67,31 +59,41 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 							<div className="space-y-8">
 								{/* Text to Speech Section */}
 								<div>
-									<div className="mb-3 block font-medium font-serif text-gold text-sm">
+									<label
+										htmlFor={ttsId}
+										className="mb-3 block font-medium font-serif text-gold text-sm"
+									>
 										Speech synthesis model:
-									</div>
+									</label>
 									<Select
-										options={ttsOptions}
+										options={availableVoices.map((voice) => ({
+											label: voice.name,
+											value: voice.id,
+										}))}
 										value={selectedVoice.id}
 										onChange={handleTTSChange}
 										placeholder="Select voice"
 										size="medium"
-										className="w-full"
 									/>
 								</div>
 
 								{/* Speech to Text Section */}
 								<div>
-									<div className="mb-3 block font-medium font-serif text-gold text-sm">
+									<label
+										htmlFor={sttId}
+										className="mb-3 block font-medium font-serif text-gold text-sm"
+									>
 										Speech recognition model:
-									</div>
+									</label>
 									<Select
-										options={sttOptions}
+										options={availableModels.map((model) => ({
+											label: model.name,
+											value: model.id,
+										}))}
 										value={selectedModel.id}
 										onChange={handleSTTChange}
 										placeholder="Select model"
 										size="medium"
-										className="w-full"
 									/>
 								</div>
 							</div>

@@ -1,11 +1,11 @@
 import { Select as BaseSelect } from "@base-ui-components/react/select";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { useState } from "react";
+import { Fragment } from "react";
 import { twMerge } from "tailwind-merge";
 
-const selectVariants = cva(
-	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold rounded-2xl bg-gold text-burgundy-dark hover:bg-gold border-2 border-transparent w-full",
+const selectTriggerVariants = cva(
+	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold rounded-2xl bg-gold text-burgundy-dark hover:bg-gold border-2 border-transparent w-full flex items-center justify-between",
 	{
 		variants: {
 			size: {
@@ -47,7 +47,8 @@ export interface SelectOption {
 	disabled?: boolean;
 }
 
-export interface SelectProps extends VariantProps<typeof selectVariants> {
+export interface SelectProps
+	extends VariantProps<typeof selectTriggerVariants> {
 	options: SelectOption[];
 	value?: string;
 	onChange?: (value: string) => void;
@@ -55,6 +56,7 @@ export interface SelectProps extends VariantProps<typeof selectVariants> {
 	className?: string;
 	menuClassName?: string;
 	itemClassName?: string;
+	usePortal?: boolean;
 }
 
 export function Select({
@@ -66,42 +68,39 @@ export function Select({
 	className,
 	menuClassName,
 	itemClassName,
+	usePortal,
 }: SelectProps) {
-	const [open, setOpen] = useState(false);
+	const handleValueChange = (newValue: string | number | null) => {
+		if (typeof newValue === "string") {
+			onChange?.(newValue);
+		}
+	};
+
 	const selectedOption = options.find((opt) => opt.value === value);
+	const PortalWrapper = usePortal ? BaseSelect.Portal : Fragment;
 
 	return (
-		<div className="relative inline-block w-full">
-			<BaseSelect.Root
-				value={value}
-				onValueChange={(newValue) => onChange?.(newValue as string)}
-				open={open}
-				onOpenChange={setOpen}
+		<BaseSelect.Root value={value} onValueChange={handleValueChange}>
+			<BaseSelect.Trigger
+				className={twMerge(selectTriggerVariants({ size }), className)}
 			>
-				<BaseSelect.Trigger
-					className={twMerge(
-						selectVariants({ size }),
-						"flex items-center justify-between",
-						className,
-					)}
-				>
-					<div className="flex items-center gap-2">
-						<div className="h-4 w-4 shrink-0" />
-						<BaseSelect.Value>
-							{selectedOption?.label || placeholder}
-						</BaseSelect.Value>
-					</div>
-					<ChevronsUpDown className="ml-2 h-5 w-5 shrink-0" />
-				</BaseSelect.Trigger>
-
-				<BaseSelect.Portal>
-					<BaseSelect.Positioner sideOffset={4}>
-						<BaseSelect.Popup
-							className={twMerge(
-								"z-50 w-[var(--anchor-width)] overflow-hidden rounded-2xl border border-gold bg-burgundy-dark shadow-xl focus:outline-none",
-								menuClassName,
-							)}
-						>
+				<div className="flex items-center gap-2">
+					<div className="h-4 w-4 shrink-0" />
+					<BaseSelect.Value>
+						{selectedOption?.label || placeholder}
+					</BaseSelect.Value>
+				</div>
+				<ChevronsUpDown className="ml-2 h-5 w-5 shrink-0" />
+			</BaseSelect.Trigger>
+			<PortalWrapper>
+				<BaseSelect.Positioner sideOffset={4} className="z-50">
+					<BaseSelect.Popup
+						className={twMerge(
+							"w-[var(--anchor-width)] overflow-hidden rounded-2xl border border-gold bg-burgundy-dark shadow-xl focus:outline-none",
+							menuClassName,
+						)}
+					>
+						<BaseSelect.List>
 							{options.map((option) => (
 								<BaseSelect.Item
 									key={option.value}
@@ -118,10 +117,10 @@ export function Select({
 									{option.label}
 								</BaseSelect.Item>
 							))}
-						</BaseSelect.Popup>
-					</BaseSelect.Positioner>
-				</BaseSelect.Portal>
-			</BaseSelect.Root>
-		</div>
+						</BaseSelect.List>
+					</BaseSelect.Popup>
+				</BaseSelect.Positioner>
+			</PortalWrapper>
+		</BaseSelect.Root>
 	);
 }

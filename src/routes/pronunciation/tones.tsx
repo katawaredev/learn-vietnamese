@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Disclosure } from "~/components/Disclosure";
 import tones from "~/data/pronunciation/tones.json";
 import { PracticeGrid } from "~/layout/PracticeGrid";
-import { PronunciationLayout } from "~/layout/PronunciationLayout";
+import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/pronunciation/tones")({
 	component: TonesComponent,
@@ -86,7 +86,7 @@ interface ToneExampleData {
 
 function TonesComponent() {
 	return (
-		<PronunciationLayout currentRoute="tones">
+		<Layout>
 			<div className="space-y-6">
 				{Object.entries(tones).map(([key, item]) => (
 					<div key={key} className="space-y-4">
@@ -107,6 +107,6 @@ function TonesComponent() {
 					</div>
 				))}
 			</div>
-		</PronunciationLayout>
+		</Layout>
 	);
 }

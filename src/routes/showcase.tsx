@@ -16,10 +16,14 @@ import {
 import { useState } from "react";
 import { Button, LinkButton } from "~/components/Button";
 import { Disclosure } from "~/components/Disclosure";
+import { ListenButton } from "~/components/ListenButton";
 import { Popover } from "~/components/Popover";
 import { Select } from "~/components/Select";
+import { SpeakButton } from "~/components/SpeakButton";
 import { ToggleButton } from "~/components/ToggleButton";
 import { Toggle, ToggleGroup } from "~/components/ToggleGroup";
+import { WordInputMultiple } from "~/components/WordInputMultiple";
+import { WordInputSingle } from "~/components/WordInputSingle";
 
 export const Route = createFileRoute("/showcase")({
 	component: ShowcasePage,
@@ -31,6 +35,10 @@ function ShowcasePage() {
 	const [soundEnabled, setSoundEnabled] = useState(true);
 	const [alignment, setAlignment] = useState<string[]>(["left"]);
 	const [formatting, setFormatting] = useState<string[]>([]);
+	const [transcription, setTranscription] = useState("");
+	const [spokenText, setSpokenText] = useState("Xin chào");
+	const [_singleInput, setSingleInput] = useState("");
+	const [_multipleInput, setMultipleInput] = useState("");
 
 	const selectOptions = [
 		{ label: "Option 1", value: "option1" },
@@ -250,7 +258,7 @@ function ShowcasePage() {
 					<div className="space-y-4">
 						<div>
 							<h3 className="mb-3 text-lg text-warm-cream">Basic Toggle</h3>
-							<div className="flex flex-wrap gap-4">
+							<div className="flex flex-wrap items-start gap-4">
 								<ToggleButton
 									text="Toggle Me"
 									checked={toggleChecked}
@@ -352,7 +360,7 @@ function ShowcasePage() {
 							<h3 className="mb-3 text-lg text-warm-cream">
 								Different Sizes with Text
 							</h3>
-							<div className="flex flex-wrap gap-4">
+							<div className="flex flex-wrap items-start gap-4">
 								<ToggleGroup
 									value={alignment}
 									onValueChange={(value: string[]) => setAlignment(value)}
@@ -422,6 +430,102 @@ function ShowcasePage() {
 									<span>Right</span>
 								</Toggle>
 							</ToggleGroup>
+						</div>
+					</div>
+				</section>
+
+				{/* Listen Button Component */}
+				<section className="space-y-6">
+					<h2 className="font-serif text-3xl text-gold">Listen Button</h2>
+
+					<div className="space-y-4">
+						<div>
+							<h3 className="mb-3 text-lg text-warm-cream">Speech to Text</h3>
+							<div className="flex flex-wrap items-center gap-8">
+								<ListenButton onTranscription={setTranscription} size="small" />
+								<ListenButton
+									onTranscription={setTranscription}
+									size="medium"
+								/>
+								<ListenButton onTranscription={setTranscription} size="large" />
+							</div>
+							<p className="mt-4 min-h-[1.5rem] text-warm-cream">
+								{transcription && (
+									<>
+										Transcription:{" "}
+										<span className="text-gold">{transcription}</span>
+									</>
+								)}
+							</p>
+						</div>
+					</div>
+				</section>
+
+				{/* Speak Button Component */}
+				<section className="space-y-6">
+					<h2 className="font-serif text-3xl text-gold">Speak Button</h2>
+
+					<div className="space-y-4">
+						<div>
+							<h3 className="mb-3 text-lg text-warm-cream">Text to Speech</h3>
+							<div className="flex flex-wrap items-center gap-8">
+								<SpeakButton text={spokenText} size="small" />
+								<SpeakButton text={spokenText} size="medium" />
+								<SpeakButton text={spokenText} size="large" />
+							</div>
+							<div className="mt-4 flex items-center gap-2">
+								<span className="text-warm-cream">Speaking:</span>
+								<input
+									type="text"
+									value={spokenText}
+									onChange={(e) => setSpokenText(e.target.value)}
+									className="flex-1 rounded border border-gold/30 bg-burgundy-medium px-4 py-2 text-warm-cream outline-none focus:border-gold"
+									placeholder="Enter text to speak..."
+								/>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				{/* Word Input Components */}
+				<section className="space-y-6">
+					<h2 className="font-serif text-3xl text-gold">Word Inputs</h2>
+
+					<div className="space-y-8">
+						<div>
+							<h3 className="mb-3 text-lg text-warm-cream">
+								Single Word Input
+							</h3>
+							<WordInputSingle
+								text="Xin chào"
+								hint="X       "
+								onChange={(text) => {
+									setSingleInput(text);
+									console.log("Single input:", text);
+								}}
+							/>
+						</div>
+
+						<div>
+							<h3 className="mb-3 text-lg text-warm-cream">
+								Multiple Word Input
+							</h3>
+							<WordInputMultiple
+								text="Chào buổi sáng"
+								hint="C       ổ     "
+								onChange={(text) => {
+									setMultipleInput(text);
+									console.log("Multiple input:", text);
+								}}
+							/>
+						</div>
+
+						<div>
+							<h3 className="mb-3 text-lg text-warm-cream">Without Hints</h3>
+							<WordInputMultiple
+								text="Cảm ơn bạn"
+								onChange={(text) => console.log("No hints input:", text)}
+							/>
 						</div>
 					</div>
 				</section>

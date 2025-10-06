@@ -12,10 +12,7 @@ import consonantsData from "~/data/pronunciation/consonants.json";
 import doubleVowelsData from "~/data/pronunciation/double-vowels.json";
 import tones from "~/data/pronunciation/tones.json";
 import vowelsData from "~/data/pronunciation/vowels.json";
-import {
-	PronunciationLayout,
-	pronunciationRoutes,
-} from "~/layout/PronunciationLayout";
+import { Layout } from "./-layout";
 
 interface PracticeItem {
 	key: string;
@@ -171,8 +168,6 @@ function PracticeComponent() {
 		setHint(newHint);
 	};
 
-	const prevRoute = pronunciationRoutes.find((r) => r.value === "tones-vowel");
-
 	// Determine display mode based on toggle selection
 	const currentMode = mode[0] || "random";
 	const displayMode =
@@ -182,31 +177,31 @@ function PracticeComponent() {
 				? "text"
 				: item.display;
 
-	const customNav = (
-		<div className="grid grid-cols-[1fr_6rem_1fr] gap-4">
-			{prevRoute ? (
-				<LinkButton variant="outline" size="medium" to={prevRoute.path}>
-					← {prevRoute.label}
-				</LinkButton>
-			) : (
-				<div />
-			)}
-			{displayMode === "sound" &&
-			hint.replace(/\s/g, "").length < item.key.length ? (
-				<Button variant="outline" size="medium" onClick={handleHint}>
-					Hint
-				</Button>
-			) : (
-				<div />
-			)}
-			<Button variant="outline" size="medium" onClick={handleNext}>
-				Next
-			</Button>
-		</div>
-	);
-
 	return (
-		<PronunciationLayout currentRoute="practice" customNavigation={customNav}>
+		<Layout
+			customNavigation={({ prevRoute }) => (
+				<div className="grid grid-cols-[1fr_6rem_1fr] gap-4">
+					{prevRoute ? (
+						<LinkButton variant="outline" size="medium" to={prevRoute.path}>
+							← {prevRoute.label}
+						</LinkButton>
+					) : (
+						<div />
+					)}
+					{displayMode === "sound" &&
+					hint.replace(/\s/g, "").length < item.key.length ? (
+						<Button variant="outline" size="medium" onClick={handleHint}>
+							Hint
+						</Button>
+					) : (
+						<div />
+					)}
+					<Button variant="outline" size="medium" onClick={handleNext}>
+						Next
+					</Button>
+				</div>
+			)}
+		>
 			<div className="flex flex-col items-center space-y-20">
 				<ToggleGroup
 					value={mode}
@@ -236,6 +231,6 @@ function PracticeComponent() {
 					<SpeakPractice key={item.key} itemKey={item.key} />
 				)}
 			</div>
-		</PronunciationLayout>
+		</Layout>
 	);
 }
