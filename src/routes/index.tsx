@@ -3,7 +3,7 @@ import {
 	ArrowLeftRight,
 	BookOpen,
 	GraduationCap,
-	Hash,
+	ListOrdered,
 	MessageCircle,
 	MessageSquare,
 	Pencil,
@@ -23,7 +23,7 @@ function App() {
 	const learningModules = [
 		{ name: "Pronunciation", icon: Volume2, to: "/pronunciation" },
 		{ name: "Relations", icon: ArrowLeftRight, to: "/relations" },
-		{ name: "Numbers", icon: Hash, to: "/numbers" },
+		{ name: "Numbers", icon: ListOrdered, to: "/numbers" },
 		{ name: "Grammar", icon: Puzzle, to: "/grammar" },
 		{ name: "Phrases", icon: MessageSquare, to: "/phrases" },
 		{ name: "Reading", icon: ScrollText, to: "/reading" },
