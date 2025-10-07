@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
 	ArrowLeftRight,
-	BookOpen,
+	BookOpenText,
+	BotMessageSquare,
 	GraduationCap,
+	LibraryBig,
 	ListOrdered,
-	MessageCircle,
-	MessageSquare,
+	MessageSquareText,
 	Pencil,
 	Puzzle,
-	ScrollText,
 	Users,
 	Volume2,
 } from "lucide-react";
@@ -25,12 +25,12 @@ function App() {
 		{ name: "Relations", icon: ArrowLeftRight, to: "/relations" },
 		{ name: "Numbers", icon: ListOrdered, to: "/numbers" },
 		{ name: "Grammar", icon: Puzzle, to: "/grammar" },
-		{ name: "Phrases", icon: MessageSquare, to: "/phrases" },
-		{ name: "Reading", icon: ScrollText, to: "/reading" },
+		{ name: "Phrases", icon: MessageSquareText, to: "/phrases" },
+		{ name: "Reading", icon: BookOpenText, to: "/reading" },
 		{ name: "Dictation", icon: Pencil, to: "/dictation" },
-		{ name: "Vocabulary", icon: BookOpen, to: "/vocabulary" },
+		{ name: "Vocabulary", icon: LibraryBig, to: "/vocabulary" },
 		{ name: "Live Conversation", icon: Users, to: "/conversation" },
-		{ name: "AI Chat", icon: MessageCircle, to: "/chat" },
+		{ name: "AI Chat", icon: BotMessageSquare, to: "/chat" },
 	];
 
 	return (
