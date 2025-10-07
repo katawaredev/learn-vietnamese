@@ -1,0 +1,138 @@
+{
+	"em": {
+		"role": "Younger sibling",
+		"notes": "Used for oneself when younger or lower status; polite and modest choice.",
+		"contexts": ["family", "romantic", "friends", "strangers"],
+		"gender": "any",
+		"formality": "neutral",
+		"ipa": "ɛm"
+	},
+	"anh": {
+		"role": "Older brother",
+		"notes": "Used to address slightly older males or oneself toward a younger person; expresses warmth or authority.",
+		"contexts": ["family", "romantic", "friends", "strangers"],
+		"gender": "male",
+		"formality": "neutral",
+		"ipa": "aɲ"
+	},
+	"chị": {
+		"role": "Older sister",
+		"notes": "Used to address slightly older females; may sound formal if age gap is small.",
+		"contexts": ["family", "friends", "strangers"],
+		"gender": "female",
+		"formality": "neutral",
+		"ipa": "t͡ɕi"
+	},
+	"tôi": {
+		"role": "Neutral I",
+		"notes": "Neutral and safe for formal, business, or distant settings.",
+		"contexts": ["formal", "business", "academic"],
+		"gender": "any",
+		"formality": "formal",
+		"ipa": "toj"
+	},
+	"bạn": {
+		"role": "Friend / Peer",
+		"notes": "Polite but impersonal in close relationships.",
+		"contexts": ["casual", "peers"],
+		"gender": "any",
+		"formality": "neutral",
+		"ipa": "ɓaːn"
+	},
+	"mình": {
+		"role": "Intimate I/you",
+		"notes": "Used reciprocally among close friends or partners; signals equality and intimacy.",
+		"contexts": ["romantic", "friendship", "casual"],
+		"gender": "any",
+		"formality": "intimate",
+		"ipa": "mɨɲ"
+	},
+	"cô": {
+		"role": "Aunt / Female teacher",
+		"notes": "Used for women of parental generation or female teachers; conveys respect.",
+		"contexts": ["family", "strangers", "education"],
+		"gender": "female",
+		"formality": "respectful",
+		"ipa": "ko"
+	},
+	"chú": {
+		"role": "Uncle",
+		"notes": "Used for men younger than your father; respectful but friendly tone.",
+		"contexts": ["family", "strangers"],
+		"gender": "male",
+		"formality": "respectful",
+		"ipa": "t͡ɕu"
+	},
+	"bác": {
+		"role": "Uncle/Aunt",
+		"notes": "Used for people older than one's parents; most respectful within parental generation.",
+		"contexts": ["family", "strangers"],
+		"gender": "any",
+		"formality": "respectful",
+		"ipa": "ɓaːk̚"
+	},
+	"ông": {
+		"role": "Grandfather",
+		"notes": "Used for elderly men; respectful; self-reference possible among very old speakers.",
+		"contexts": ["family", "strangers", "formal"],
+		"gender": "male",
+		"formality": "very respectful",
+		"ipa": "ʔoŋ"
+	},
+	"bà": {
+		"role": "Grandmother",
+		"notes": "Used for elderly women; conveys high respect.",
+		"contexts": ["family", "strangers", "formal"],
+		"gender": "female",
+		"formality": "very respectful",
+		"ipa": "ɓaː"
+	},
+	"con": {
+		"role": "Child",
+		"notes": "Used by children or younger people toward elders; also shows humility in respectful speech.",
+		"contexts": ["family", "formal respectful"],
+		"gender": "any",
+		"formality": "respectful",
+		"ipa": "kɔn"
+	},
+	"cháu": {
+		"role": "Grandchild/Niece/Nephew",
+		"notes": "Used toward much older people, or for addressing young relatives; highly deferential.",
+		"contexts": ["family", "strangers"],
+		"gender": "any",
+		"formality": "respectful",
+		"ipa": "t͡ɕaːw"
+	},
+	"thầy": {
+		"role": "Male teacher / Master",
+		"notes": "Used for male teachers or mentors; highly respectful, similar to 'Sir'.",
+		"contexts": ["education"],
+		"gender": "male",
+		"formality": "very respectful",
+		"ipa": "tʰəj"
+	},
+	"cậu": {
+		"role": "Uncle/Friend",
+		"notes": "Mother’s younger brother; also casual peer term in Northern dialects (pair with 'tớ').",
+		"contexts": ["family", "regional"],
+		"gender": "male",
+		"formality": "neutral",
+		"ipa": "kəw"
+	},
+	"tao": {
+		"role": "I (rough)",
+		"notes": "Used among close friends or toward subordinates; rude if misused or in formal contexts.",
+		"contexts": ["intimate", "insulting", "rough"],
+		"gender": "any",
+		"formality": "informal",
+		"ipa": "taːw"
+	},
+	"mày": {
+		"role": "You (rough)",
+		"notes": "Used toward close peers or inferiors; rude outside intimate or joking contexts.",
+		"contexts": ["intimate", "insulting", "rough"],
+		"gender": "any",
+		"formality": "informal",
+		"ipa": "maj"
+	}
+}

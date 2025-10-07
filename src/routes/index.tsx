@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+	ArrowLeftRight,
 	BookOpen,
 	GraduationCap,
-	Hand,
 	Hash,
 	MessageCircle,
 	MessageSquare,
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
 function App() {
 	const learningModules = [
 		{ name: "Pronunciation", icon: Volume2, to: "/pronunciation" },
-		{ name: "Greetings", icon: Hand, to: "/greetings" },
+		{ name: "Relations", icon: ArrowLeftRight, to: "/relations" },
 		{ name: "Numbers", icon: Hash, to: "/numbers" },
 		{ name: "Grammar", icon: Puzzle, to: "/grammar" },
 		{ name: "Phrases", icon: MessageSquare, to: "/phrases" },
