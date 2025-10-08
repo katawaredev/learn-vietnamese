@@ -10,136 +10,145 @@ export const Route = createFileRoute("/relations/pronouns")({
 
 interface PronounsData {
 	role: string;
-	ipa: string;
+	reciprocal: string;
+	usage: string;
 	notes: string;
 	contexts: string[];
 	gender: string;
 	formality: string;
+	priority: number;
+	ipa: string;
 }
 
 function PronounsComponent() {
+	// Group pronouns by priority
+	const groupedData = Object.entries(pronounsData).reduce(
+		(acc, [key, value]) => {
+			const priority = value.priority;
+			if (!acc[priority]) acc[priority] = {};
+			acc[priority][key] = value;
+			return acc;
+		},
+		{} as Record<number, Record<string, PronounsData>>,
+	);
+
+	const priorityLabels: Record<number, { title: string; desc: string }> = {
+		1: {
+			title: "Essential",
+			desc: "Used daily in most conversations",
+		},
+		2: {
+			title: "Important",
+			desc: "Family terms and respectful forms for elders",
+		},
+		3: {
+			title: "Useful",
+			desc: "Extended family and specific contexts",
+		},
+		4: {
+			title: "Advanced",
+			desc: "Casual/rough forms—use with caution",
+		},
+	};
+
 	return (
 		<Layout>
 			<Disclosure
 				className="w-full"
 				title={
-					<span className="font-bold text-gold text-lg">Addressing people</span>
+					<span className="font-bold text-gold text-lg">Core Principles</span>
 				}
 			>
 				<div className="space-y-4">
 					<p>
-						Vietnamese pronouns are not just words—they encode{" "}
+						Vietnamese pronouns encode{" "}
 						<strong className="text-gold">
 							hierarchy, respect, and relationship
 						</strong>
-						. You cannot say "you" or "I" neutrally; each pronoun signals
+						. You cannot say "you" or "I" neutrally—each pronoun signals
 						relative age, status, and social distance.
 					</p>
 
-					<div>
-						<strong className="text-gold">Core Principles:</strong>
-						<ul className="mt-2 ml-6 list-disc space-y-1">
-							<li>
-								<strong>Age matters:</strong> Older people receive terms of
-								respect; younger people get terms that position you above.
-							</li>
-							<li>
-								<strong>Family logic:</strong> Even strangers are addressed
-								using kinship terms (uncle, aunt, sibling).
-							</li>
-							<li>
-								<strong>Hierarchy overrides age:</strong> Family position
-								matters more than actual age—someone younger can be "chị/anh" if
-								they're structurally above you (e.g., a younger than you spouse
-								of an elder family member).
-							</li>
-							<li>
-								<strong>Mirror terms:</strong> If someone calls you "em," you
-								call them "anh/chị."
-							</li>
-							<li>
-								<strong>When in doubt, go lower:</strong> It's safer to call
-								yourself "em" and the other person "anh/chị" than the reverse.
-							</li>
-							<li>
-								<strong>Breaking pronoun norms:</strong> Shows warmth or
-								humility—using a lower form for yourself to honor someone. But
-								raising yourself or misjudging rank sounds rude.
-							</li>
-						</ul>
-					</div>
-
-					<div>
-						<strong className="text-gold">Common Pairings:</strong>
-						<ul className="mt-2 ml-6 list-disc space-y-1">
-							<li>
-								<code>em</code> (I, younger) ↔ <code>anh/chị</code> (you, older)
-							</li>
-							<li>
-								<code>con</code> (I, child) ↔ <code>bố/mẹ</code> (you, parent)
-							</li>
-							<li>
-								<code>cháu</code> (I, grandchild) ↔{" "}
-								<code>ông/bà/bác/chú/cô</code> (you, elder)
-							</li>
-							<li>
-								<code>tôi</code> (I, formal) ↔ <code>bạn</code> (you, neutral)
-							</li>
-							<li>
-								<code>mình</code> (I/you, intimate) ↔ close friends/partners
-							</li>
-							<li>
-								<code>tao</code> (I, rough) ↔ <code>mày</code> (you, rough)
-							</li>
-						</ul>
-					</div>
-
-					<div>
-						<strong className="text-gold">Quick Guide:</strong>
-						<ul className="mt-2 ml-6 list-disc space-y-1">
-							<li>
-								<strong>Slightly older male:</strong> Call him "anh," call
-								yourself "em"
-							</li>
-							<li>
-								<strong>Slightly older female:</strong> Call her "chị," call
-								yourself "em"
-							</li>
-							<li>
-								<strong>Younger person:</strong> Call them "em," call yourself
-								"anh/chị"
-							</li>
-							<li>
-								<strong>Parent's age:</strong> Use "cô" (woman), "chú" (man), or
-								"bác" (elder)
-							</li>
-							<li>
-								<strong>Elderly:</strong> Use "ông" (man) or "bà" (woman)
-							</li>
-							<li>
-								<strong>Peers/uncertain:</strong> Use "bạn" (safer for learners)
-							</li>
-							<li>
-								<strong>Formal/business:</strong> Use "tôi" (I) and "bạn" (you)
-							</li>
-						</ul>
-					</div>
+					<ul className="mt-2 ml-6 list-disc space-y-2">
+						<li>
+							<strong>Reciprocal pairs:</strong> Pronouns work in pairs. If
+							someone calls you "em," you call them "anh/chị."
+						</li>
+						<li>
+							<strong>Age hierarchy:</strong> Older people receive terms of
+							respect; younger people get terms positioning you above.
+						</li>
+						<li>
+							<strong>Hierarchy overrides age:</strong> Family position matters
+							more than actual age. Your older sibling's younger spouse is still
+							"anh/chị" to you.
+						</li>
+						<li>
+							<strong>Family logic:</strong> Even strangers are addressed using
+							kinship terms (uncle, aunt, sibling).
+						</li>
+						<li>
+							<strong>When unsure, go lower:</strong> Safer to call yourself
+							"em" than risk positioning yourself too high.
+						</li>
+						<li>
+							<strong>Misjudging rank = rude:</strong> Using too high a term for
+							yourself or too low for others sounds disrespectful.
+						</li>
+						<li>
+							<strong>Add "ạ" for politeness:</strong> The particle "ạ" after
+							pronouns or at sentence end shows respect (e.g., "Dạ, em hiểu ạ" =
+							"Yes, I understand"). Essential for formal situations.
+						</li>
+					</ul>
+					<p>
+						<strong>Read more:</strong>{" "}
+						<a
+							href="https://en.wikipedia.org/wiki/Vietnamese_pronouns"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="underline"
+						>
+							Wikipedia: Vietnamese pronouns
+						</a>
+					</p>
 				</div>
 			</Disclosure>
 
-			<PracticeGrid<PronounsData>
-				data={pronounsData}
-				getSubtitle={(item) => item.role}
-				getDetails={(name, item) => ({
-					Name: name,
-					IPA: <code>/{item.ipa}/</code>,
-					Role: item.role,
-					Notes: item.notes,
-					Gender: item.gender,
-					Formality: item.formality,
-					Contexts: item.contexts.join(", "),
-				})}
-			/>
+			<div className="space-y-8">
+				{Object.entries(groupedData)
+					.sort(([a], [b]) => Number(a) - Number(b))
+					.map(([priority, data]) => (
+						<div key={priority}>
+							<div className="mb-4">
+								<h2 className="font-bold text-2xl text-gold">
+									{priorityLabels[Number(priority)].title}
+								</h2>
+								<p className="text-sm text-white/60">
+									{priorityLabels[Number(priority)].desc}
+								</p>
+							</div>
+							<PracticeGrid<PronounsData>
+								data={data}
+								getSubtitle={(item) => item.role}
+								getDetails={(name, item) => ({
+									Pronoun: name,
+									"Pair with": (
+										<span className="font-bold text-gold">
+											{item.reciprocal}
+										</span>
+									),
+									"When to use": item.usage,
+									Formality: item.formality,
+									Gender: item.gender,
+									"Key notes": item.notes,
+									Contexts: item.contexts.join(", "),
+									IPA: <code>/{item.ipa}/</code>,
+								})}
+							/>
+						</div>
+					))}
+			</div>
 		</Layout>
 	);
 }
