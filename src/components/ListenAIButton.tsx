@@ -2,15 +2,12 @@ import type { FC } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSTT } from "~/providers/stt-provider";
 import { ListenBaseButton, type RecordingState } from "./ListenBaseButton";
+import type { ListenButtonProps } from "./ListenButton";
 
-interface ListenAIButtonProps {
-	onTranscription: (text: string) => void;
-	size?: "small" | "medium" | "large";
-}
-
-export const ListenAIButton: FC<ListenAIButtonProps> = ({
+export const ListenAIButton: FC<ListenButtonProps> = ({
 	onTranscription,
 	size = "medium",
+	className,
 }) => {
 	const { selectedModel } = useSTT();
 	const [state, setState] = useState<RecordingState>("idle");
@@ -195,6 +192,7 @@ export const ListenAIButton: FC<ListenAIButtonProps> = ({
 		<ListenBaseButton
 			state={state}
 			size={size}
+			className={className}
 			onStartRecording={handleStartRecording}
 			onStopRecording={handleStopRecording}
 			loadingProgress={loadingProgress}

@@ -1,16 +1,14 @@
 import { type ChangeEvent, useCallback } from "react";
+import { twMerge } from "tailwind-merge";
 
-interface WordInputSingleProps {
-	text: string;
-	hint?: string;
-	onChange?: (text: string) => void;
-}
+import type { WordInputProps } from "./WordInput";
 
 export const WordInputSingle = ({
 	text,
 	hint,
 	onChange,
-}: WordInputSingleProps) => {
+	className,
+}: WordInputProps) => {
 	if (hint && hint.length !== text.length)
 		throw new Error(
 			`Hint length (${hint.length}) does not match text length (${text.length})`,
@@ -24,7 +22,7 @@ export const WordInputSingle = ({
 	);
 
 	return (
-		<div className="relative ml-[6ch] font-mono">
+		<div className={twMerge("relative font-mono", className)}>
 			<input
 				type="text"
 				size={text.length}

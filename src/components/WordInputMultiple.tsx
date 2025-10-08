@@ -1,17 +1,9 @@
 import { type KeyboardEvent, useCallback, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface WordInputMultipleProps {
-	text: string;
-	hint?: string;
-	onChange?: (text: string) => void;
-}
+import type { WordInputProps } from "./WordInput";
 
-export const WordInputMultiple = ({
-	text,
-	hint,
-	onChange,
-}: WordInputMultipleProps) => {
+export const WordInputMultiple = ({ text, hint, onChange }: WordInputProps) => {
 	const words = text.split(" ");
 
 	// Parse hint by matching word positions in the original text

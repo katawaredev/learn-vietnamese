@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as RelationsIndexRouteImport } from './routes/relations/index'
 import { Route as PronunciationIndexRouteImport } from './routes/pronunciation/index'
 import { Route as RelationsPronounsRouteImport } from './routes/relations/pronouns'
+import { Route as RelationsPracticeRouteImport } from './routes/relations/practice'
 import { Route as PronunciationVowelsRouteImport } from './routes/pronunciation/vowels'
 import { Route as PronunciationTonesVowelRouteImport } from './routes/pronunciation/tones-vowel'
 import { Route as PronunciationTonesRouteImport } from './routes/pronunciation/tones'
@@ -50,6 +51,11 @@ const PronunciationIndexRoute = PronunciationIndexRouteImport.update({
 const RelationsPronounsRoute = RelationsPronounsRouteImport.update({
   id: '/relations/pronouns',
   path: '/relations/pronouns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelationsPracticeRoute = RelationsPracticeRouteImport.update({
+  id: '/relations/practice',
+  path: '/relations/practice',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PronunciationVowelsRoute = PronunciationVowelsRouteImport.update({
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/pronunciation/tones': typeof PronunciationTonesRoute
   '/pronunciation/tones-vowel': typeof PronunciationTonesVowelRoute
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
+  '/relations/practice': typeof RelationsPracticeRoute
   '/relations/pronouns': typeof RelationsPronounsRoute
   '/pronunciation': typeof PronunciationIndexRoute
   '/relations': typeof RelationsIndexRoute
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/pronunciation/tones': typeof PronunciationTonesRoute
   '/pronunciation/tones-vowel': typeof PronunciationTonesVowelRoute
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
+  '/relations/practice': typeof RelationsPracticeRoute
   '/relations/pronouns': typeof RelationsPronounsRoute
   '/pronunciation': typeof PronunciationIndexRoute
   '/relations': typeof RelationsIndexRoute
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/pronunciation/tones': typeof PronunciationTonesRoute
   '/pronunciation/tones-vowel': typeof PronunciationTonesVowelRoute
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
+  '/relations/practice': typeof RelationsPracticeRoute
   '/relations/pronouns': typeof RelationsPronounsRoute
   '/pronunciation/': typeof PronunciationIndexRoute
   '/relations/': typeof RelationsIndexRoute
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/pronunciation/tones'
     | '/pronunciation/tones-vowel'
     | '/pronunciation/vowels'
+    | '/relations/practice'
     | '/relations/pronouns'
     | '/pronunciation'
     | '/relations'
@@ -153,6 +163,7 @@ export interface FileRouteTypes {
     | '/pronunciation/tones'
     | '/pronunciation/tones-vowel'
     | '/pronunciation/vowels'
+    | '/relations/practice'
     | '/relations/pronouns'
     | '/pronunciation'
     | '/relations'
@@ -167,6 +178,7 @@ export interface FileRouteTypes {
     | '/pronunciation/tones'
     | '/pronunciation/tones-vowel'
     | '/pronunciation/vowels'
+    | '/relations/practice'
     | '/relations/pronouns'
     | '/pronunciation/'
     | '/relations/'
@@ -182,6 +194,7 @@ export interface RootRouteChildren {
   PronunciationTonesRoute: typeof PronunciationTonesRoute
   PronunciationTonesVowelRoute: typeof PronunciationTonesVowelRoute
   PronunciationVowelsRoute: typeof PronunciationVowelsRoute
+  RelationsPracticeRoute: typeof RelationsPracticeRoute
   RelationsPronounsRoute: typeof RelationsPronounsRoute
   PronunciationIndexRoute: typeof PronunciationIndexRoute
   RelationsIndexRoute: typeof RelationsIndexRoute
@@ -229,6 +242,13 @@ declare module '@tanstack/react-router' {
       path: '/relations/pronouns'
       fullPath: '/relations/pronouns'
       preLoaderRoute: typeof RelationsPronounsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relations/practice': {
+      id: '/relations/practice'
+      path: '/relations/practice'
+      fullPath: '/relations/practice'
+      preLoaderRoute: typeof RelationsPracticeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pronunciation/vowels': {
@@ -286,6 +306,7 @@ const rootRouteChildren: RootRouteChildren = {
   PronunciationTonesRoute: PronunciationTonesRoute,
   PronunciationTonesVowelRoute: PronunciationTonesVowelRoute,
   PronunciationVowelsRoute: PronunciationVowelsRoute,
+  RelationsPracticeRoute: RelationsPracticeRoute,
   RelationsPronounsRoute: RelationsPronounsRoute,
   PronunciationIndexRoute: PronunciationIndexRoute,
   RelationsIndexRoute: RelationsIndexRoute,

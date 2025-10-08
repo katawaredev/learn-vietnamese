@@ -1,0 +1,16 @@
+[
+	{
+		"target": "Addressing your younger sister",
+		"text": "??? thấy ???",
+		"translation": "I see you!",
+		"expected": "Anh / Em",
+		"hint": null
+	},
+	{
+		"target": "Speaking to a monk",
+		"text": "??? thấy ???",
+		"translation": "I repect you!",
+		"expected": "Toi / Thầy",
+		"hint": null
+	}
+]

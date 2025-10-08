@@ -1,31 +1,26 @@
+import { cva } from "class-variance-authority";
 import { Check, ChevronDown, X } from "lucide-react";
 import type { FC } from "react";
 import { useEffect, useState } from "react";
 import { useSTT } from "~/providers/stt-provider";
+import { normalizeText } from "~/utils/text";
 import { Popover } from "./Popover";
 
-export interface ResultProps {
+export interface ResultVoiceIndicatorProps {
 	transcription: string | null;
 	expectedText: string;
 	isNew?: boolean;
+	hideExpected?: boolean;
+	hint?: string | undefined | null;
 }
 
-export const Result: FC<ResultProps> = ({
+export const ResultVoiceIndicator: FC<ResultVoiceIndicatorProps> = ({
 	transcription,
 	expectedText,
 	isNew = false,
+	hideExpected = false,
+	hint,
 }) => {
-	// Helper function to normalize text for comparison
-	const normalizeText = (text: string | null): string => {
-		if (!text) return "";
-		// Keep only alphanumeric characters and spaces, convert to lowercase
-		return text
-			.replace(/[^a-zA-Z0-9\s]/g, "") // Remove non-alphanumeric except spaces
-			.replace(/\s+/g, " ") // Replace multiple spaces with single space
-			.trim() // Remove leading/trailing spaces
-			.toLowerCase();
-	};
-
 	const { selectedModel, setSelectedModel, availableModels } = useSTT();
 	const normalizedTranscription = normalizeText(transcription);
 	const normalizedExpected = normalizeText(expectedText);
@@ -81,14 +76,17 @@ export const Result: FC<ResultProps> = ({
 						<strong>You said:</strong>
 						<p className="text-sm">{transcription}</p>
 					</div>
-					<div>
-						<strong>Expected:</strong>
-						<p className="text-sm">{expectedText}</p>
-					</div>
+					{!hideExpected && (
+						<div>
+							<strong>Expected:</strong>
+							<p className="text-sm">{expectedText}</p>
+						</div>
+					)}
 				</div>
 
 				<div>
 					<strong>Suggestions:</strong>
+					{hint && <p className="mb-3 text-sm">{hint}</p>}
 					<p className="mb-3 text-sm">Switch speech recognition model</p>
 
 					<div className="relative">
@@ -110,6 +108,50 @@ export const Result: FC<ResultProps> = ({
 					</div>
 				</div>
 			</div>
+		</Popover>
+	);
+};
+
+const iconVariants = cva("", {
+	variants: {
+		size: {
+			small: "h-4 w-4",
+			medium: "h-8 w-8",
+		},
+	},
+	defaultVariants: {
+		size: "small",
+	},
+});
+
+export interface ResultTextIndicatorProps {
+	inputText: string;
+	expectedText: string;
+	hint?: string | undefined | null;
+	size?: "small" | "medium";
+}
+
+export const ResultTextIndicator: FC<ResultTextIndicatorProps> = ({
+	inputText,
+	expectedText,
+	hint,
+	size = "medium",
+}) => {
+	const isCorrect = normalizeText(inputText) === normalizeText(expectedText);
+
+	const result = isCorrect ? (
+		<Check
+			className={`${iconVariants({ size })} animate-stamp text-green-400`}
+		/>
+	) : (
+		<X className={`${iconVariants({ size })} animate-shake text-red-400`} />
+	);
+
+	if (!hint) return result;
+
+	return (
+		<Popover trigger={result} defaultOpen>
+			<p className="text-warm-cream">{hint}</p>
 		</Popover>
 	);
 };

@@ -1,6 +1,8 @@
 import { cva } from "class-variance-authority";
 import { Mic } from "lucide-react";
 import { type FC, useCallback, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
+import type { ListenButtonProps } from "./ListenButton";
 import { StateIndicator } from "./StateIndicator";
 
 // Type definitions for our domain model
@@ -28,9 +30,9 @@ const buttonVariants = cva(
 	},
 );
 
-export interface ListenBaseButtonProps {
+export interface ListenBaseButtonProps
+	extends Pick<ListenButtonProps, "className" | "size"> {
 	state: RecordingState;
-	size?: "small" | "medium" | "large";
 	onStartRecording: () => void;
 	onStopRecording: () => void;
 	disabled?: boolean;
@@ -40,6 +42,7 @@ export interface ListenBaseButtonProps {
 export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 	state,
 	size = "medium",
+	className,
 	onStartRecording,
 	onStopRecording,
 	disabled = false,
@@ -87,7 +90,7 @@ export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 	return (
 		<button
 			type="button"
-			className={buttonVariants({ size, state })}
+			className={twMerge(buttonVariants({ size, state }), className)}
 			onClick={handleClick}
 			onMouseDown={handlePressStart}
 			onMouseUp={handlePressEnd}

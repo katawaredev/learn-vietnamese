@@ -1,15 +1,12 @@
 import type { FC } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ListenBaseButton, type RecordingState } from "./ListenBaseButton";
+import type { ListenButtonProps } from "./ListenButton";
 
-interface ListenWebButtonProps {
-	onTranscription: (text: string) => void;
-	size?: "small" | "medium" | "large";
-}
-
-export const ListenWebButton: FC<ListenWebButtonProps> = ({
+export const ListenWebButton: FC<ListenButtonProps> = ({
 	onTranscription,
 	size = "medium",
+	className,
 }) => {
 	const [state, setState] = useState<RecordingState>("idle");
 	const recognition = useRef<SpeechRecognition | null>(null);
@@ -90,6 +87,7 @@ export const ListenWebButton: FC<ListenWebButtonProps> = ({
 		<ListenBaseButton
 			state={state}
 			size={size}
+			className={className}
 			onStartRecording={handleStartRecording}
 			onStopRecording={handleStopRecording}
 			disabled={!isAvailable}

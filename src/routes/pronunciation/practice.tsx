@@ -1,10 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { Check, Dices, Keyboard, Mic, X } from "lucide-react";
+import { Dices, Keyboard, Mic } from "lucide-react";
 import { useState } from "react";
 import { Button, LinkButton } from "~/components/Button";
 import { ListenButton } from "~/components/ListenButton";
-import { Result } from "~/components/ResultButton";
+import {
+	ResultTextIndicator,
+	ResultVoiceIndicator,
+} from "~/components/ResultIndicator";
 import { SpeakButton } from "~/components/SpeakButton";
 import { Toggle, ToggleGroup } from "~/components/ToggleGroup";
 import { WordInputSingle } from "~/components/WordInputSingle";
@@ -12,19 +15,13 @@ import consonantsData from "~/data/pronunciation/consonants.json";
 import doubleVowelsData from "~/data/pronunciation/double-vowels.json";
 import tones from "~/data/pronunciation/tones.json";
 import vowelsData from "~/data/pronunciation/vowels.json";
+import { getRandomElement, pickOne } from "~/utils/random";
 import { Layout } from "./-layout";
 
 interface PracticeItem {
 	key: string;
 	display: "sound" | "text";
 }
-
-const normalizeText = (text: string) =>
-	text
-		.replace(/[^a-zA-Z0-9\s]/g, "")
-		.replace(/\s+/g, " ")
-		.trim()
-		.toLowerCase();
 
 function aggregatePronunciationData() {
 	const allData = [
@@ -46,18 +43,15 @@ function aggregatePronunciationData() {
 const getRandomPracticeItem = createServerFn({ method: "GET" }).handler(
 	async (): Promise<PracticeItem> => {
 		const keys = aggregatePronunciationData();
-		const key = keys[Math.floor(Math.random() * keys.length)];
-		const display = Math.random() < 0.5 ? "sound" : "text";
+		const key = getRandomElement(keys);
+		const display = pickOne("sound", "text");
 		return { key, display };
 	},
 );
 
 export const Route = createFileRoute("/pronunciation/practice")({
 	component: PracticeComponent,
-	loader: async () => {
-		const item = await getRandomPracticeItem();
-		return item;
-	},
+	loader: async () => await getRandomPracticeItem(),
 });
 
 function ListenPractice({
@@ -71,16 +65,7 @@ function ListenPractice({
 }) {
 	const [userInput, setUserInput] = useState("");
 
-	const isCorrect =
-		userInput.length === itemKey.length &&
-		normalizeText(userInput) === normalizeText(itemKey);
-
 	const showResult = userInput.length === itemKey.length;
-	const animationClass = showResult
-		? isCorrect
-			? "animate-stamp"
-			: "animate-shake"
-		: "";
 
 	const handleChange = (value: string) => {
 		setUserInput(value);
@@ -91,16 +76,19 @@ function ListenPractice({
 		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500">
 			<SpeakButton text={itemKey} size="large" />
 			<div className="flex flex-col items-center space-y-4">
-				<WordInputSingle text={itemKey} hint={hint} onChange={handleChange} />
+				<WordInputSingle
+					className="ml-[6ch]"
+					text={itemKey}
+					hint={hint}
+					onChange={handleChange}
+				/>
 				<div className="mt-8 h-8">
 					{showResult && (
-						<div className={animationClass}>
-							{isCorrect ? (
-								<Check className="h-8 w-8 text-green-400" />
-							) : (
-								<X className="h-8 w-8 text-red-400" />
-							)}
-						</div>
+						<ResultTextIndicator
+							key={userInput}
+							inputText={userInput}
+							expectedText={itemKey}
+						/>
 					)}
 				</div>
 			</div>
@@ -118,7 +106,12 @@ function SpeakPractice({ itemKey }: { itemKey: string }) {
 				<ListenButton onTranscription={setUserInput} size="large" />
 				<div className="mt-8 h-8">
 					{userInput && (
-						<Result transcription={userInput} expectedText={itemKey} isNew />
+						<ResultVoiceIndicator
+							key={userInput}
+							transcription={userInput}
+							expectedText={itemKey}
+							isNew
+						/>
 					)}
 				</div>
 			</div>

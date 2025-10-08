@@ -2,7 +2,7 @@ import { Info } from "lucide-react";
 import { type ReactNode, useState } from "react";
 import { ListenButton } from "~/components/ListenButton";
 import { Popover } from "~/components/Popover";
-import { Result } from "~/components/ResultButton";
+import { ResultVoiceIndicator } from "~/components/ResultIndicator";
 import { SpeakButton } from "~/components/SpeakButton";
 import { SpeakUrlButton } from "~/components/SpeakUrlButton";
 
@@ -79,7 +79,8 @@ export function PracticeGrid<T>({
 
 						{/* Result indicator */}
 						<div className="absolute top-2 left-2">
-							<Result
+							<ResultVoiceIndicator
+								key={transcription}
 								transcription={transcription}
 								expectedText={key}
 								isNew={newTranscriptions.has(key)}
