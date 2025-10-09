@@ -1,16 +1,555 @@
 [
 	{
-		"target": "Addressing your younger sister",
+		"target": "Male addressing younger sister",
 		"text": "??? thấy ???",
 		"translation": "I see you!",
 		"expected": "Anh / Em",
 		"hint": null
 	},
 	{
-		"target": "Speaking to a monk",
+		"target": "Female addressing younger sister",
 		"text": "??? thấy ???",
-		"translation": "I repect you!",
-		"expected": "Toi / Thầy",
+		"translation": "I see you!",
+		"expected": "Chị / Em",
+		"hint": null
+	},
+	{
+		"target": "Addressing your older brother",
+		"text": "??? thương ??? nhiều lắm",
+		"translation": "I love you very much",
+		"expected": "Em / Anh",
+		"hint": null
+	},
+	{
+		"target": "Child addressing mother",
+		"text": "??? nhớ ??? quá",
+		"translation": "I miss you so much",
+		"expected": "Con / Mẹ",
+		"hint": null
+	},
+	{
+		"target": "Child addressing father",
+		"text": "??? đi làm rồi à, ??? ạ?",
+		"translation": "Did you go to work, Dad?",
+		"expected": "Con / Bố",
+		"hint": null
+	},
+	{
+		"target": "Grandchild addressing grandmother",
+		"text": "??? chúc ??? sức khỏe dồi dào",
+		"translation": "I wish you good health",
+		"expected": "Cháu / Bà",
+		"hint": "Same term is used with grandparents regardless of your age"
+	},
+	{
+		"target": "Grandchild addressing grandfather",
+		"text": "??? kính chào ???",
+		"translation": "I respectfully greet you",
+		"expected": "Cháu / Ông",
+		"hint": null
+	},
+	{
+		"target": "Student addressing male teacher",
+		"text": "??? cảm ơn ??? đã giúp em học tốt hơn",
+		"translation": "I thank you for helping me study better",
+		"expected": "Em / Thầy",
+		"hint": null
+	},
+	{
+		"target": "Student addressing female teacher",
+		"text": "??? chào ??? ạ",
+		"translation": "I greet you respectfully",
+		"expected": "Em / Cô",
+		"hint": null
+	},
+	{
+		"target": "Male addressing girlfriend",
+		"text": "??? yêu ??? nhiều lắm",
+		"translation": "I love you so much",
+		"expected": "Anh / Em",
+		"hint": "Romantic relationships follow gender hierarchy patterns"
+	},
+	{
+		"target": "Female addressing boyfriend",
+		"text": "??? nhớ ??? quá trời",
+		"translation": "I miss you so much",
+		"expected": "Em / Anh",
+		"hint": null
+	},
+	{
+		"target": "Close friends of same age (Northern dialect)",
+		"text": "??? thấy ??? hôm nay vui không?",
+		"translation": "Do you feel happy today?",
+		"expected": "Tớ / Cậu",
+		"hint": "Only use with established close peers"
+	},
+	{
+		"target": "Young person addressing elderly female stranger (60+)",
+		"text": "??? giúp ??? qua đường được không ạ?",
+		"translation": "Can I help you cross the street?",
+		"expected": "Cháu / Bà",
+		"hint": null
+	},
+	{
+		"target": "Young person addressing elderly male stranger (60+)",
+		"text": "??? chào ??? ạ",
+		"translation": "I greet you respectfully",
+		"expected": "Cháu / Ông",
+		"hint": null
+	},
+	{
+		"target": "Nephew/niece addressing father's younger brother",
+		"text": "??? chào ??? ạ",
+		"translation": "I greet you respectfully",
+		"expected": "Cháu / Chú",
+		"hint": null
+	},
+	{
+		"target": "Nephew/niece addressing father's younger brother's wife",
+		"text": "??? chúc ??? một ngày tốt lành",
+		"translation": "I wish you a good day",
+		"expected": "Cháu / Thím",
+		"hint": "Wife of father's younger brother"
+	},
+	{
+		"target": "Nephew/niece addressing mother's brother's wife",
+		"text": "??? cảm ơn ??? đã nấu ăn ngon",
+		"translation": "Thank you for cooking delicious food",
+		"expected": "Cháu / Mợ",
+		"hint": "Wife of maternal uncle"
+	},
+	{
+		"target": "Nephew/niece addressing father's sister",
+		"text": "??? chào ??? ạ",
+		"translation": "Hello, Aunt",
+		"expected": "Cháu / Cô",
+		"hint": "Paternal aunt; term also used for young women and teachers"
+	},
+	{
+		"target": "Nephew/niece addressing mother's sister",
+		"text": "??? chào ??? ạ",
+		"translation": "Hello, Aunt",
+		"expected": "Cháu / Dì",
+		"hint": "Maternal aunt"
+	},
+	{
+		"target": "Nephew/niece addressing mother's brother",
+		"text": "??? chào ??? ạ",
+		"translation": "Hello, Uncle",
+		"expected": "Cháu / Cậu",
+		"hint": "Maternal uncle; term also used as casual peer pronoun"
+	},
+	{
+		"target": "Nephew/niece addressing aunt's husband",
+		"text": "??? chào ??? ạ",
+		"translation": "Hello, Uncle",
+		"expected": "Cháu / Dượng",
+		"hint": "Husband of aunt"
+	},
+	{
+		"target": "Younger male cousin addressing older male cousin",
+		"text": "??? thấy ??? đẹp trai ghê",
+		"translation": "I see you look handsome!",
+		"expected": "Em / Anh",
+		"hint": null
+	},
+	{
+		"target": "Younger female cousin addressing older female cousin",
+		"text": "??? thấy ??? đẹp quá",
+		"translation": "I see you look beautiful!",
+		"expected": "Em / Chị",
+		"hint": null
+	},
+	{
+		"target": "Male addressing older female cousin",
+		"text": "??? chào ???",
+		"translation": "I greet you",
+		"expected": "Em / Chị",
+		"hint": "Age hierarchy overrides gender"
+	},
+	{
+		"target": "Older male cousin addressing younger cousin",
+		"text": "??? dạy ??? làm bài này nhé",
+		"translation": "I'll teach you this exercise",
+		"expected": "Anh / Em",
+		"hint": null
+	},
+	{
+		"target": "Husband addressing wife",
+		"text": "??? đi chợ chưa?",
+		"translation": "Have you gone to the market yet?",
+		"expected": "Anh / Em",
+		"hint": null
+	},
+	{
+		"target": "Wife addressing husband",
+		"text": "??? muốn ??? ăn gì tối nay?",
+		"translation": "What do you want to eat tonight?",
+		"expected": "Em / Anh",
+		"hint": null
+	},
+	{
+		"target": "Romantic partners using intimate equal terms",
+		"text": "??? yêu ???",
+		"translation": "I love you",
+		"expected": "Mình / Mình",
+		"hint": "Reciprocal intimate pronoun"
+	},
+	{
+		"target": "Employee addressing older male boss",
+		"text": "??? cảm ơn ??? đã hướng dẫn ạ",
+		"translation": "Thank you for guiding me",
+		"expected": "Em / Anh",
+		"hint": "Workplace uses kinship hierarchy"
+	},
+	{
+		"target": "Employee addressing older female boss",
+		"text": "??? cảm ơn ??? nhiều ạ",
+		"translation": "Thank you very much",
+		"expected": "Em / Chị",
+		"hint": null
+	},
+	{
+		"target": "Formal speech to stranger when unsure of age/gender",
+		"text": "??? xin lỗi, ??? cho hỏi đường ạ?",
+		"translation": "Excuse me, may I ask for directions?",
+		"expected": "Tôi / Bạn",
+		"hint": "Neutral option when hierarchy unclear"
+	},
+	{
+		"target": "Great-grandchild addressing great-grandfather",
+		"text": "??? chúc ??? sống lâu trăm tuổi",
+		"translation": "I wish you a long life",
+		"expected": "Chắt / Cụ",
+		"hint": "Highest respect for extreme age (80+)"
+	},
+	{
+		"target": "Great-grandchild addressing great-grandmother",
+		"text": "??? kính chào ??? ạ",
+		"translation": "I respectfully greet you",
+		"expected": "Chắt / Cụ",
+		"hint": null
+	},
+	{
+		"target": "Young person addressing middle-aged male stranger (40s-50s)",
+		"text": "??? hỏi ??? cái này được không ạ?",
+		"translation": "May I ask you about this?",
+		"expected": "Cháu / Bác",
+		"hint": "Most respectful term for parent-generation strangers"
+	},
+	{
+		"target": "Young person addressing middle-aged female stranger (40s-50s)",
+		"text": "??? hỏi ??? một chút được không ạ?",
+		"translation": "May I ask you something?",
+		"expected": "Cháu / Cô",
+		"hint": "Alternative when addressing women"
+	},
+	{
+		"target": "Young person addressing middle-aged male stranger (30s-40s)",
+		"text": "??? hỏi ??? được không ạ?",
+		"translation": "May I ask you?",
+		"expected": "Cháu / Chú",
+		"hint": "Younger than 'bác' generation"
+	},
+	{
+		"target": "Male (20s-40s) addressing slightly younger male peer",
+		"text": "??? giúp ??? việc này nhé",
+		"translation": "Help me with this please",
+		"expected": "Anh / Em",
+		"hint": null
+	},
+	{
+		"target": "Female (20s-40s) addressing slightly younger female peer",
+		"text": "??? giúp ??? việc này nhé",
+		"translation": "Help me with this please",
+		"expected": "Chị / Em",
+		"hint": null
+	},
+	{
+		"target": "Male (20s-40s) addressing slightly older female",
+		"text": "??? chào ???",
+		"translation": "I greet you",
+		"expected": "Em / Chị",
+		"hint": "Age hierarchy overrides gender"
+	},
+	{
+		"target": "Young customer addressing older male vendor",
+		"text": "??? ơi, ??? có bán cà phê không?",
+		"translation": "Uncle, do you sell coffee?",
+		"expected": "Cháu / Chú",
+		"hint": null
+	},
+	{
+		"target": "Young customer addressing older female vendor",
+		"text": "??? ơi, ??? bán cho một cân táo nhé?",
+		"translation": "Auntie, can you sell me one kilo of apples?",
+		"expected": "Cháu / Cô",
+		"hint": null
+	},
+	{
+		"target": "Older male customer addressing younger server",
+		"text": "??? ơi, ??? cho thêm nước nhé",
+		"translation": "Hey, please give me more water",
+		"expected": "Anh / Em",
+		"hint": null
+	},
+	{
+		"target": "Older female customer addressing younger server",
+		"text": "??? ơi, ??? cho thêm nước nhé",
+		"translation": "Hey, please give me more water",
+		"expected": "Chị / Em",
+		"hint": null
+	},
+	{
+		"target": "Younger server addressing older male customer",
+		"text": "??? mời ??? dùng món ạ",
+		"translation": "Please enjoy your meal",
+		"expected": "Em / Anh",
+		"hint": null
+	},
+	{
+		"target": "Younger server addressing older female customer",
+		"text": "??? mời ??? dùng món ạ",
+		"translation": "Please enjoy your meal",
+		"expected": "Em / Chị",
+		"hint": null
+	},
+	{
+		"target": "Child addressing middle-aged male adult",
+		"text": "??? tên là gì ạ?",
+		"translation": "What's your name?",
+		"expected": "Cháu / Chú",
+		"hint": null
+	},
+	{
+		"target": "Child addressing middle-aged female adult",
+		"text": "??? tên là gì ạ?",
+		"translation": "What's your name?",
+		"expected": "Cháu / Cô",
+		"hint": null
+	},
+	{
+		"target": "Addressing peer classmate casually",
+		"text": "??? học xong bài này chưa?",
+		"translation": "Have you finished this lesson?",
+		"expected": "Tớ / Cậu",
+		"hint": "Northern peer speech"
+	},
+	{
+		"target": "Addressing peer classmate neutrally",
+		"text": "??? học xong bài này chưa?",
+		"translation": "Have you finished this lesson?",
+		"expected": "Tôi / Bạn",
+		"hint": "More formal when relationship not yet close"
+	},
+	{
+		"target": "Male senior student addressing junior",
+		"text": "??? hướng dẫn ??? phần này nhé",
+		"translation": "Let me guide you with this part",
+		"expected": "Anh / Em",
+		"hint": null
+	},
+	{
+		"target": "Female senior student addressing junior",
+		"text": "??? hướng dẫn ??? phần này nhé",
+		"translation": "Let me guide you with this part",
+		"expected": "Chị / Em",
+		"hint": "Academic seniority creates hierarchy"
+	},
+	{
+		"target": "Junior student addressing male senior",
+		"text": "??? cảm ơn ??? đã chỉ cho em cách làm",
+		"translation": "Thank you for showing me how to do it",
+		"expected": "Em / Anh",
+		"hint": null
+	},
+	{
+		"target": "Junior student addressing female senior",
+		"text": "??? cảm ơn ??? nhiều nhé",
+		"translation": "Thank you very much",
+		"expected": "Em / Chị",
+		"hint": null
+	},
+	{
+		"target": "Young person addressing older male taxi driver",
+		"text": "??? ơi, ??? đi đường này được không?",
+		"translation": "Uncle, can we take this road?",
+		"expected": "Cháu / Chú",
+		"hint": null
+	},
+	{
+		"target": "Young person addressing older male delivery courier",
+		"text": "??? cảm ơn ??? đã mang hàng đến",
+		"translation": "Thank you for bringing the package",
+		"expected": "Cháu / Chú",
+		"hint": null
+	},
+	{
+		"target": "Peer-age interaction with delivery courier",
+		"text": "??? ơi, ??? đến rồi à?",
+		"translation": "Hey, you've arrived?",
+		"expected": "Tớ / Cậu",
+		"hint": null
+	},
+	{
+		"target": "Young person addressing older male security guard",
+		"text": "??? ơi, ??? cho gửi xe ở đây được không?",
+		"translation": "Uncle, can I park here?",
+		"expected": "Cháu / Chú",
+		"hint": null
+	},
+	{
+		"target": "Addressing male neighbor of similar age (not close)",
+		"text": "??? đi làm về à?",
+		"translation": "Back from work?",
+		"expected": "Tôi / Bạn",
+		"hint": "When relationship not yet close"
+	},
+	{
+		"target": "Male addressing younger male neighbor",
+		"text": "??? đang làm gì đấy?",
+		"translation": "What are you doing?",
+		"expected": "Anh / Em",
+		"hint": null
+	},
+	{
+		"target": "Female addressing younger female neighbor",
+		"text": "??? đang làm gì đấy?",
+		"translation": "What are you doing?",
+		"expected": "Chị / Em",
+		"hint": null
+	},
+	{
+		"target": "Young person addressing older male receptionist",
+		"text": "??? ơi, ??? giúp đăng ký nhé",
+		"translation": "Hey, please help me register",
+		"expected": "Cháu / Chú",
+		"hint": null
+	},
+	{
+		"target": "Older male addressing younger female receptionist",
+		"text": "??? ơi, ??? giúp đăng ký nhé",
+		"translation": "Hey, please help me register",
+		"expected": "Anh / Em",
+		"hint": null
+	},
+	{
+		"target": "Older female addressing younger female receptionist",
+		"text": "??? ơi, ??? giúp đăng ký nhé",
+		"translation": "Hey, please help me register",
+		"expected": "Chị / Em",
+		"hint": null
+	},
+	{
+		"target": "Service worker addressing older male hotel guest",
+		"text": "??? mời ??? nhận phòng ạ",
+		"translation": "Please check in, sir",
+		"expected": "Em / Anh",
+		"hint": null
+	},
+	{
+		"target": "Service worker addressing older female hotel guest",
+		"text": "??? mời ??? ký tên ạ",
+		"translation": "Please sign here, ma'am",
+		"expected": "Em / Chị",
+		"hint": null
+	},
+	{
+		"target": "Phone support interaction (neutral)",
+		"text": "??? muốn hỏi ??? về hóa đơn tháng này",
+		"translation": "I'd like to ask you about this month's bill",
+		"expected": "Tôi / Bạn",
+		"hint": "When you can't see the person"
+	},
+	{
+		"target": "Addressing peer coworker casually",
+		"text": "??? nghĩ sao về dự án này?",
+		"translation": "What do you think about this project?",
+		"expected": "Tớ / Cậu",
+		"hint": "Like 'I ask you what do you think'"
+	},
+	{
+		"target": "Male addressing younger male coworker",
+		"text": "??? nhờ ??? làm giúp phần này nhé",
+		"translation": "Please help me with this part",
+		"expected": "Anh / Em",
+		"hint": null
+	},
+	{
+		"target": "Female addressing younger female coworker",
+		"text": "??? nhờ ??? làm giúp phần này nhé",
+		"translation": "Please help me with this part",
+		"expected": "Chị / Em",
+		"hint": null
+	},
+	{
+		"target": "Formal workplace introduction to male manager",
+		"text": "??? chào ???, rất vui được gặp ạ",
+		"translation": "Hello, nice to meet you",
+		"expected": "Tôi / Anh",
+		"hint": null
+	},
+	{
+		"target": "Formal workplace introduction to female manager",
+		"text": "??? chào ???, rất vui được gặp ạ",
+		"translation": "Hello, nice to meet you",
+		"expected": "Tôi / Chị",
+		"hint": null
+	},
+	{
+		"target": "Buddhist devotee addressing monk",
+		"text": "??? kính chào ??? ạ",
+		"translation": "I respectfully greet you",
+		"expected": "Con / Thầy",
+		"hint": "'Monk' as a 'master'"
+	},
+	{
+		"target": "Very close friends (rough/intimate tone)",
+		"text": "??? đi đâu đấy, ??? ?",
+		"translation": "Where are you going?",
+		"expected": "Tao / Mày",
+		"hint": "As if saying 'I am asking you where you are going', literal translation is 'I go where, you?'"
+	},
+	{
+		"target": "Statement with no addressee",
+		"text": "??? yêu Việt Nam",
+		"translation": "I love Vietnam",
+		"expected": "Tôi",
+		"hint": "Formal context"
+	},
+	{
+		"target": "Nephew/niece addressing parent's older sibling (either gender)",
+		"text": "??? chào ??? ạ",
+		"translation": "I greet you respectfully",
+		"expected": "Cháu / Bác",
+		"hint": "Works for both genders"
+	},
+	{
+		"target": "Male teacher addressing student",
+		"text": "??? đang bảo ??? làm bài này đi nhé",
+		"translation": "I am asking you to do this exercise",
+		"expected": "Thầy / Em",
+		"hint": null
+	},
+	{
+		"target": "Female teacher addressing student",
+		"text": "??? đang bảo ??? làm bài này đi nhé",
+		"translation": "I am asking you to do this exercise",
+		"expected": "Cô / Em",
+		"hint": null
+	},
+	{
+		"target": "Addressing very elderly male person (80+)",
+		"text": "??? chúc ??? sống lâu",
+		"translation": "I wish you longevity",
+		"expected": "Cháu / Cụ",
+		"hint": "More respectful than ông/bà"
+	},
+	{
+		"target": "Addressing very elderly female person (80+)",
+		"text": "??? chúc ??? sức khỏe",
+		"translation": "I wish you good health",
+		"expected": "Cháu / Cụ",
 		"hint": null
 	}
 ]

@@ -209,7 +209,7 @@
 		"ipa": "ku"
 	},
 	"dượng": {
-		"role": "Uncle by marriage (father's side)",
+		"role": "Uncle by marriage",
 		"reciprocal": "cháu",
 		"usage": "For your aunt's husband (cô's or dì's husband); completes family terms",
 		"notes": "Specifically for aunts' husbands; distinguishes from blood uncles",
@@ -220,7 +220,7 @@
 		"ipa": "zɨəŋ"
 	},
 	"mợ": {
-		"role": "Mother's brother's wife",
+		"role": "Aunt by marriage (mother's side)",
 		"reciprocal": "cháu",
 		"usage": "For your uncle's wife (cậu's wife); maternal side by marriage",
 		"notes": "Specifically mother's brother's wife; paired with 'cậu'",
@@ -231,7 +231,7 @@
 		"ipa": "məː"
 	},
 	"thím": {
-		"role": "Father's brother's wife",
+		"role": "Aunt by marriage (father's side)",
 		"reciprocal": "cháu",
 		"usage": "For your uncle's wife (chú's wife); paternal side by marriage",
 		"notes": "Specifically father's younger brother's wife; paired with 'chú'",
