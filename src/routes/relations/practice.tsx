@@ -14,32 +14,12 @@ import practiceData from "~/data/relations/practice.json";
 import { getRandomElement, pickOne } from "~/utils/random";
 import { Layout } from "./-layout";
 
-// Constants
-const PARTS_SEPARATOR = " / ";
-const PLACEHOLDER = "???";
-
 // Utilities
-const splitIntoParts = (text: string) =>
-	text.split(PARTS_SEPARATOR).map((s) => s.trim());
-
 const getUnrevealedIndices = (hintPart: string, expectedPart: string) =>
 	expectedPart
 		.split("")
 		.map((_, i) => (hintPart[i] === " " ? i : -1))
 		.filter((i) => i !== -1);
-
-const createHintParts = (hint: string, expectedParts: string[]) =>
-	hint
-		? splitIntoParts(hint)
-		: expectedParts.map((exp) => " ".repeat(exp.length));
-
-const areHintsExhausted = (hint: string, expected: string) => {
-	if (!hint) return false;
-	return splitIntoParts(hint).every(
-		(h, i) =>
-			h.replace(/\s/g, "").length === splitIntoParts(expected)[i].length,
-	);
-};
 
 const getInputMethod = (
 	userPreference: string,
@@ -52,11 +32,8 @@ const getInputMethod = (
 };
 
 interface PracticeItem {
-	target: string;
-	text: string;
-	translation: string;
-	expected: string;
-	hint?: string | null | undefined;
+	scenario: string;
+	expected: string[];
 	display: "sound" | "text";
 }
 
@@ -76,13 +53,13 @@ export const Route = createFileRoute("/relations/practice")({
 function PracticeComponent() {
 	const initialItem = Route.useLoaderData() as PracticeItem;
 	const [item, setItem] = useState(initialItem);
-	const [hint, setHint] = useState("");
+	const [hintParts, setHintParts] = useState<string[]>([]);
 	const [mode, setMode] = useState<string[]>(["random"]);
 
 	const handleNext = async () => {
 		const newItem = await getRandomPracticeItem();
 		setItem(newItem);
-		setHint("");
+		setHintParts([]);
 	};
 
 	const handleModeChange = (newMode: string[]) => {
@@ -90,13 +67,15 @@ function PracticeComponent() {
 	};
 
 	const handleHint = () => {
-		const expectedParts = splitIntoParts(item.expected);
-		const currentHintParts = createHintParts(hint, expectedParts);
+		const currentHintParts =
+			hintParts.length > 0
+				? hintParts
+				: item.expected.map((exp) => " ".repeat(exp.length));
 
 		const partsWithUnrevealed = currentHintParts
 			.map((hintPart, idx) => ({
 				idx,
-				unrevealed: getUnrevealedIndices(hintPart, expectedParts[idx]),
+				unrevealed: getUnrevealedIndices(hintPart, item.expected[idx]),
 			}))
 			.filter(({ unrevealed }) => unrevealed.length > 0);
 
@@ -107,19 +86,23 @@ function PracticeComponent() {
 
 		const updatedParts = currentHintParts.map((hintPart, idx) => {
 			if (idx !== partIdx) return hintPart;
-			return expectedParts[idx]
+			return item.expected[idx]
 				.split("")
 				.map((c, i) => (i === charIdx || hintPart[i] !== " " ? c : " "))
 				.join("");
 		});
 
-		setHint(updatedParts.join(PARTS_SEPARATOR));
+		setHintParts(updatedParts);
 	};
 
 	const userPreference = mode[0] ?? "random";
 	const inputMethod = getInputMethod(userPreference, item.display);
-	const hintsExhausted = areHintsExhausted(hint, item.expected);
-	const showHintButton = inputMethod === "type" && !hintsExhausted;
+	const hintsExhausted =
+		hintParts.length > 0 &&
+		hintParts.every(
+			(h, i) => h.replace(/\s/g, "").length === item.expected[i].length,
+		);
+	const showHintButton = !hintsExhausted;
 
 	return (
 		<Layout
@@ -161,13 +144,10 @@ function PracticeComponent() {
 					</Toggle>
 				</ToggleGroup>
 				<Practice
-					key={`${item.target}-${item.expected}`}
-					target={item.target}
-					text={item.text}
-					translation={item.translation}
+					key={`${item.scenario}-${item.expected.join("-")}`}
+					scenario={item.scenario}
 					expected={item.expected}
-					hint={item.hint}
-					textHint={hint}
+					hintParts={hintParts}
 					inputMethod={inputMethod}
 				/>
 			</div>
@@ -176,43 +156,35 @@ function PracticeComponent() {
 }
 
 function Practice({
-	target,
-	text,
-	translation,
+	scenario,
 	expected,
-	hint,
-	textHint,
+	hintParts: hintPartsFromProps,
 	inputMethod,
 }: Omit<PracticeItem, "display"> & {
-	textHint: string;
+	hintParts: string[];
 	inputMethod: "type" | "speak";
 }) {
-	const textParts = text.split(PLACEHOLDER);
-	const expectedParts = splitIntoParts(expected);
-	const hintParts = createHintParts(textHint, expectedParts);
+	const hintParts =
+		hintPartsFromProps.length > 0
+			? hintPartsFromProps
+			: expected.map((exp) => " ".repeat(exp.length));
 
 	return (
 		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500">
-			<div className="space-y-6 text-center text-xl">
-				<div>{target}</div>
-				<div>{translation}</div>
-			</div>
+			<div className="space-y-6 text-center text-xl">{scenario}</div>
 			<div className="flex flex-col items-center space-y-4">
-				<div className="text-3xl">
-					{textParts.map((part, i) => (
-						// biome-ignore lint/suspicious/noArrayIndexKey: part is not a viable key
-						<span key={i}>
-							{part}
-							{i < expectedParts.length &&
-								(inputMethod === "type" ? (
-									<TypeInput
-										expectedText={expectedParts[i]}
-										textHint={hintParts[i]}
-										hint={hint}
-									/>
-								) : (
-									<SpeakInput hint={hint} expectedText={expectedParts[i]} />
-								))}
+				<div className="flex items-center gap-4 text-3xl">
+					{expected.map((exp, i) => (
+						// biome-ignore lint/suspicious/noArrayIndexKey: index is stable for this use case
+						<span key={i} className="flex items-center gap-4">
+							{inputMethod === "type" ? (
+								<TypeInput expectedText={exp} textHint={hintParts[i]} />
+							) : (
+								<SpeakInput expectedText={exp} textHint={hintParts[i]} />
+							)}
+							{i < expected.length - 1 && (
+								<span className="text-2xl opacity-50">→</span>
+							)}
 						</span>
 					))}
 				</div>
@@ -224,11 +196,10 @@ function Practice({
 function TypeInput({
 	expectedText,
 	textHint,
-	hint,
 }: {
 	expectedText: string;
 	textHint: string;
-} & Pick<PracticeItem, "hint">) {
+}) {
 	const [userInput, setUserInput] = useState("");
 
 	const isFilled = userInput.length === expectedText.length;
@@ -248,7 +219,6 @@ function TypeInput({
 						key={userInput}
 						inputText={userInput}
 						expectedText={expectedText}
-						hint={hint}
 					/>
 				</span>
 			)}
@@ -258,12 +228,14 @@ function TypeInput({
 
 function SpeakInput({
 	expectedText,
-	hint,
-}: { expectedText: string } & Pick<PracticeItem, "hint">) {
+	textHint,
+}: {
+	expectedText: string;
+	textHint: string;
+}) {
 	const [userTranscription, setUserTranscription] = useState("");
-
 	return (
-		<span className="relative inline-block">
+		<span className="relative inline-flex flex-col items-center">
 			<ListenButton
 				className="mx-2 inline-flex"
 				onTranscription={setUserTranscription}
@@ -277,10 +249,12 @@ function SpeakInput({
 						expectedText={expectedText}
 						isNew
 						hideExpected
-						hint={hint}
 					/>
 				</span>
 			)}
+			<span className="mt-1 h-1 font-mono text-xs tracking-widest opacity-60">
+				{textHint}
+			</span>
 		</span>
 	);
 }
