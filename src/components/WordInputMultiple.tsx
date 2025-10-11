@@ -3,7 +3,12 @@ import { twMerge } from "tailwind-merge";
 
 import type { WordInputProps } from "./WordInput";
 
-export const WordInputMultiple = ({ text, hint, onChange }: WordInputProps) => {
+export const WordInputMultiple = ({
+	text,
+	hint,
+	className,
+	onChange,
+}: WordInputProps) => {
 	const words = text.split(" ");
 
 	// Parse hint by matching word positions in the original text
@@ -108,7 +113,7 @@ export const WordInputMultiple = ({ text, hint, onChange }: WordInputProps) => {
 	);
 
 	return (
-		<div className="flex flex-wrap gap-y-4">
+		<div className={twMerge("flex flex-wrap gap-y-4", className)}>
 			{words.map((word, wordIndex) => {
 				const hintChars = [...hintWords[wordIndex]];
 
@@ -116,10 +121,7 @@ export const WordInputMultiple = ({ text, hint, onChange }: WordInputProps) => {
 					<div
 						// biome-ignore lint/suspicious/noArrayIndexKey: No valid key
 						key={wordIndex}
-						className={twMerge(
-							"relative inline-block font-mono",
-							wordIndex === 0 && "ml-[6ch]",
-						)}
+						className="relative inline-block font-mono"
 					>
 						<input
 							ref={(el) => {
