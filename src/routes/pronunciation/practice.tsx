@@ -1,15 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { Dices, Keyboard, Mic } from "lucide-react";
 import { useState } from "react";
 import { Button, LinkButton } from "~/components/Button";
 import { ListenButton } from "~/components/ListenButton";
+import { PracticeModeToggle } from "~/components/PracticeModeToggle";
 import {
 	ResultTextIndicator,
 	ResultVoiceIndicator,
 } from "~/components/ResultIndicator";
 import { SpeakButton } from "~/components/SpeakButton";
-import { Toggle, ToggleGroup } from "~/components/ToggleGroup";
 import { WordInputSingle } from "~/components/WordInputSingle";
 import consonantsData from "~/data/pronunciation/consonants.json";
 import doubleVowelsData from "~/data/pronunciation/double-vowels.json";
@@ -195,24 +194,10 @@ function PracticeComponent() {
 				</div>
 			)}
 		>
-			<div className="flex flex-col items-center space-y-20">
-				<ToggleGroup
-					value={mode}
-					onValueChange={(value) => handleModeChange(value)}
-				>
-					<Toggle value="random" size="medium" orientation="horizontal">
-						<Dices className="h-5 w-5" />
-						<span>Random</span>
-					</Toggle>
-					<Toggle value="speak" size="medium" orientation="horizontal">
-						<Mic className="h-5 w-5" />
-						<span>Speak</span>
-					</Toggle>
-					<Toggle value="type" size="medium" orientation="horizontal">
-						<Keyboard className="h-5 w-5" />
-						<span>Type</span>
-					</Toggle>
-				</ToggleGroup>
+			<div className="flex w-full flex-row justify-center pt-8 pb-4">
+				<PracticeModeToggle value={mode} onValueChange={handleModeChange} />
+			</div>
+			<div className="flex flex-1 items-center">
 				{displayMode === "sound" ? (
 					<ListenPractice
 						key={item.key}
