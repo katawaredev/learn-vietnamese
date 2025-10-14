@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 import { Button, LinkButton } from "~/components/Button";
 import { ListenButton } from "~/components/ListenButton";
 import { PracticeModeToggle } from "~/components/PracticeModeToggle";
@@ -166,7 +167,11 @@ function Practice({
 						// biome-ignore lint/suspicious/noArrayIndexKey: index is stable for this use case
 						<span key={i} className="flex items-center gap-4">
 							{inputMethod === "type" ? (
-								<TypeInput expectedText={exp} textHint={hintParts[i]} />
+								<TypeInput
+									expectedText={exp}
+									textHint={hintParts[i]}
+									index={i}
+								/>
 							) : (
 								<SpeakInput expectedText={exp} textHint={hintParts[i]} />
 							)}
@@ -184,9 +189,11 @@ function Practice({
 function TypeInput({
 	expectedText,
 	textHint,
+	index,
 }: {
 	expectedText: string;
 	textHint: string;
+	index: number;
 }) {
 	const [userInput, setUserInput] = useState("");
 
@@ -195,7 +202,7 @@ function TypeInput({
 	return (
 		<span className="relative inline-block">
 			<WordInputSingle
-				className="-mr-[3ch] inline-block"
+				className={twMerge("-mr-[3ch] inline-block", index === 1 && "ml-[1ch]")}
 				text={expectedText}
 				hint={textHint}
 				onChange={setUserInput}
