@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
 	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold rounded-2xl",
 	{
 		variants: {

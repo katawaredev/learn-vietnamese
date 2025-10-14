@@ -1,0 +1,60 @@
+{
+	"slug": "a-warm-bowl-of-chao",
+	"title": {
+		"en": "A Warm Bowl of Cháo",
+		"vn": "Một Tô Cháo Ấm Áp"
+	},
+	"story": [
+		{
+			"en": "Minh's younger sister, Mai, is sick today.",
+			"vn": "Em gái của Minh, Mai, bị ốm hôm nay."
+		},
+		{
+			"en": "She has a slight fever.",
+			"vn": "Em ấy bị sốt nhẹ."
+		},
+		{
+			"en": "Minh stays home to help his parents.",
+			"vn": "Minh ở nhà để giúp đỡ bố mẹ."
+		},
+		{
+			"en": "His father makes Cháo.",
+			"vn": "Bố cậu ấy nấu Cháo.",
+			"notes": [
+				"Cháo is a very common comfort food in Vietnam, similar to chicken soup in Western cultures, and often eaten when ill."
+			]
+		},
+		{
+			"en": "Cháo is a simple rice porridge.",
+			"vn": "Cháo là một món cháo gạo đơn giản."
+		},
+		{
+			"en": "It is good for when you are sick.",
+			"vn": "Nó tốt cho lúc bạn bị ốm."
+		},
+		{
+			"en": "The Cháo is hot and soft.",
+			"vn": "Cháo nóng và mềm."
+		},
+		{
+			"en": "Mai cannot eat a lot.",
+			"vn": "Mai không thể ăn nhiều."
+		},
+		{
+			"en": "Minh carefully feeds her a spoon.",
+			"vn": "Minh cẩn thận đút cho em ấy một thìa."
+		},
+		{
+			"en": "Mai eats slowly.",
+			"vn": "Mai ăn từ từ."
+		},
+		{
+			"en": "She feels a little better now.",
+			"vn": "Em ấy cảm thấy đỡ hơn một chút rồi."
+		},
+		{
+			"en": "Minh feels happy to help his sister.",
+			"vn": "Minh cảm thấy vui khi giúp em gái mình."
+		}
+	]
+}

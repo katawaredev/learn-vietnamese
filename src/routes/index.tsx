@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
 	ArrowLeftRight,
-	BookOpenText,
 	BotMessageSquare,
 	GraduationCap,
 	LibraryBig,
@@ -26,7 +25,6 @@ function App() {
 		{ name: "Numbers", icon: ListOrdered, to: "/numbers" },
 		{ name: "Grammar", icon: Puzzle, to: "/grammar" },
 		{ name: "Phrases", icon: MessageSquareText, to: "/phrases" },
-		{ name: "Reading", icon: BookOpenText, to: "/reading" },
 		{ name: "Dictation", icon: Pencil, to: "/dictation" },
 		{ name: "Vocabulary", icon: LibraryBig, to: "/vocabulary" },
 		{ name: "Live Conversation", icon: Users, to: "/conversation" },

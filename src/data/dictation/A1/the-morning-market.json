@@ -1,0 +1,63 @@
+{
+	"slug": "the-morning-market",
+	"title": {
+		"en": "The Morning Market",
+		"vn": "Chợ Buổi Sáng"
+	},
+	"story": [
+		{
+			"en": "Mai wakes up early in the morning.",
+			"vn": "Mai thức dậy sớm vào buổi sáng."
+		},
+		{
+			"en": "She goes to the market with her grandfather, Ông.",
+			"vn": "Cô ấy đi chợ với ông của cô ấy.",
+			"notes": [
+				"Ông is the word for paternal grandfather and is a respectful title for any elderly man."
+			]
+		},
+		{
+			"en": "The market is already full of people.",
+			"vn": "Chợ đã đầy người rồi."
+		},
+		{
+			"en": "The vendors call out their prices.",
+			"vn": "Những người bán hàng rao giá của họ."
+		},
+		{
+			"en": "Ông needs fresh fish for lunch.",
+			"vn": "Ông cần cá tươi cho bữa trưa."
+		},
+		{
+			"en": "They stop at a fish stall.",
+			"vn": "Họ dừng lại ở một quầy cá."
+		},
+		{
+			"en": "The fish is shining and looks very fresh.",
+			"vn": "Con cá sáng bóng và trông rất tươi."
+		},
+		{
+			"en": "Ông buys two small fish.",
+			"vn": "Ông mua hai con cá nhỏ."
+		},
+		{
+			"en": "Then, they buy some sticky rice.",
+			"vn": "Sau đó, họ mua một ít xôi.",
+			"notes": [
+				"Xôi is sticky rice, a common and popular Vietnamese food that can be savory or sweet."
+			]
+		},
+		{
+			"en": "Mai carries the bag of sticky rice.",
+			"vn": "Mai mang túi xôi."
+		},
+		{
+			"en": "They walk home together slowly.",
+			"vn": "Họ đi bộ về nhà cùng nhau một cách chậm rãi."
+		},
+		{
+			"en": "The market is a happy, loud place.",
+			"vn": "Chợ là một nơi vui vẻ, ồn ào."
+		}
+	]
+}

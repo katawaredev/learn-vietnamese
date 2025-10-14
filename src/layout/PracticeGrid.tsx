@@ -1,5 +1,7 @@
 import { Info } from "lucide-react";
 import { type ReactNode, useState } from "react";
+import { twMerge } from "tailwind-merge";
+import { Card } from "~/components/Card";
 import { ListenButton } from "~/components/ListenButton";
 import { Popover } from "~/components/Popover";
 import { ResultVoiceIndicator } from "~/components/ResultIndicator";
@@ -54,11 +56,12 @@ export function PracticeGrid<T>({
 				const details = getDetails?.(key, item);
 				const hasDetails = details && Object.keys(details).length > 0;
 
+				let titleClassName = "text-6xl";
+				if (key.length > 6) titleClassName = "text-3xl";
+				else if (key.length > 4) titleClassName = "text-5xl";
+
 				return (
-					<div
-						key={key}
-						className="group relative rounded-3xl border border-white/10 bg-white/5 p-6 transition-all duration-200 hover:border-white/20"
-					>
+					<Card key={key}>
 						{/* Info button - top right corner */}
 						{hasDetails && (
 							<div className="absolute top-2 right-2">
@@ -90,7 +93,9 @@ export function PracticeGrid<T>({
 						{/* Main display */}
 						<div className="text-center">
 							<div className="py-8">
-								<div className="-mb-4 font-bold text-6xl">{key}</div>
+								<div className={twMerge("-mb-4 font-bold", titleClassName)}>
+									{key}
+								</div>
 							</div>
 							<div className="mb-4 h-5 font-mono text-sm text-white/70">
 								{getSubtitle?.(item) || ""}
@@ -109,7 +114,7 @@ export function PracticeGrid<T>({
 								size="small"
 							/>
 						</div>
-					</div>
+					</Card>
 				);
 			})}
 		</div>

@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as RelationsIndexRouteImport } from './routes/relations/index'
 import { Route as PronunciationIndexRouteImport } from './routes/pronunciation/index'
 import { Route as NumbersIndexRouteImport } from './routes/numbers/index'
+import { Route as DictationIndexRouteImport } from './routes/dictation/index'
 import { Route as RelationsPronounsRouteImport } from './routes/relations/pronouns'
 import { Route as RelationsPracticeRouteImport } from './routes/relations/practice'
 import { Route as PronunciationVowelsRouteImport } from './routes/pronunciation/vowels'
@@ -25,6 +26,8 @@ import { Route as PronunciationDoubleVowelsRouteImport } from './routes/pronunci
 import { Route as PronunciationConsonantsRouteImport } from './routes/pronunciation/consonants'
 import { Route as NumbersPracticeRouteImport } from './routes/numbers/practice'
 import { Route as NumbersCountingRouteImport } from './routes/numbers/counting'
+import { Route as DictationSpeakSlugRouteImport } from './routes/dictation/speak.$slug'
+import { Route as DictationListenSlugRouteImport } from './routes/dictation/listen.$slug'
 
 const ShowcaseRoute = ShowcaseRouteImport.update({
   id: '/showcase',
@@ -54,6 +57,11 @@ const PronunciationIndexRoute = PronunciationIndexRouteImport.update({
 const NumbersIndexRoute = NumbersIndexRouteImport.update({
   id: '/numbers/',
   path: '/numbers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DictationIndexRoute = DictationIndexRouteImport.update({
+  id: '/dictation/',
+  path: '/dictation/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RelationsPronounsRoute = RelationsPronounsRouteImport.update({
@@ -107,6 +115,16 @@ const NumbersCountingRoute = NumbersCountingRouteImport.update({
   path: '/numbers/counting',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DictationSpeakSlugRoute = DictationSpeakSlugRouteImport.update({
+  id: '/dictation/speak/$slug',
+  path: '/dictation/speak/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DictationListenSlugRoute = DictationListenSlugRouteImport.update({
+  id: '/dictation/listen/$slug',
+  path: '/dictation/listen/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -122,9 +140,12 @@ export interface FileRoutesByFullPath {
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/relations/practice': typeof RelationsPracticeRoute
   '/relations/pronouns': typeof RelationsPronounsRoute
+  '/dictation': typeof DictationIndexRoute
   '/numbers': typeof NumbersIndexRoute
   '/pronunciation': typeof PronunciationIndexRoute
   '/relations': typeof RelationsIndexRoute
+  '/dictation/listen/$slug': typeof DictationListenSlugRoute
+  '/dictation/speak/$slug': typeof DictationSpeakSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -140,9 +161,12 @@ export interface FileRoutesByTo {
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/relations/practice': typeof RelationsPracticeRoute
   '/relations/pronouns': typeof RelationsPronounsRoute
+  '/dictation': typeof DictationIndexRoute
   '/numbers': typeof NumbersIndexRoute
   '/pronunciation': typeof PronunciationIndexRoute
   '/relations': typeof RelationsIndexRoute
+  '/dictation/listen/$slug': typeof DictationListenSlugRoute
+  '/dictation/speak/$slug': typeof DictationSpeakSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -159,9 +183,12 @@ export interface FileRoutesById {
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/relations/practice': typeof RelationsPracticeRoute
   '/relations/pronouns': typeof RelationsPronounsRoute
+  '/dictation/': typeof DictationIndexRoute
   '/numbers/': typeof NumbersIndexRoute
   '/pronunciation/': typeof PronunciationIndexRoute
   '/relations/': typeof RelationsIndexRoute
+  '/dictation/listen/$slug': typeof DictationListenSlugRoute
+  '/dictation/speak/$slug': typeof DictationSpeakSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -179,9 +206,12 @@ export interface FileRouteTypes {
     | '/pronunciation/vowels'
     | '/relations/practice'
     | '/relations/pronouns'
+    | '/dictation'
     | '/numbers'
     | '/pronunciation'
     | '/relations'
+    | '/dictation/listen/$slug'
+    | '/dictation/speak/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -197,9 +227,12 @@ export interface FileRouteTypes {
     | '/pronunciation/vowels'
     | '/relations/practice'
     | '/relations/pronouns'
+    | '/dictation'
     | '/numbers'
     | '/pronunciation'
     | '/relations'
+    | '/dictation/listen/$slug'
+    | '/dictation/speak/$slug'
   id:
     | '__root__'
     | '/'
@@ -215,9 +248,12 @@ export interface FileRouteTypes {
     | '/pronunciation/vowels'
     | '/relations/practice'
     | '/relations/pronouns'
+    | '/dictation/'
     | '/numbers/'
     | '/pronunciation/'
     | '/relations/'
+    | '/dictation/listen/$slug'
+    | '/dictation/speak/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -234,9 +270,12 @@ export interface RootRouteChildren {
   PronunciationVowelsRoute: typeof PronunciationVowelsRoute
   RelationsPracticeRoute: typeof RelationsPracticeRoute
   RelationsPronounsRoute: typeof RelationsPronounsRoute
+  DictationIndexRoute: typeof DictationIndexRoute
   NumbersIndexRoute: typeof NumbersIndexRoute
   PronunciationIndexRoute: typeof PronunciationIndexRoute
   RelationsIndexRoute: typeof RelationsIndexRoute
+  DictationListenSlugRoute: typeof DictationListenSlugRoute
+  DictationSpeakSlugRoute: typeof DictationSpeakSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -281,6 +320,13 @@ declare module '@tanstack/react-router' {
       path: '/numbers'
       fullPath: '/numbers'
       preLoaderRoute: typeof NumbersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dictation/': {
+      id: '/dictation/'
+      path: '/dictation'
+      fullPath: '/dictation'
+      preLoaderRoute: typeof DictationIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/relations/pronouns': {
@@ -353,6 +399,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NumbersCountingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dictation/speak/$slug': {
+      id: '/dictation/speak/$slug'
+      path: '/dictation/speak/$slug'
+      fullPath: '/dictation/speak/$slug'
+      preLoaderRoute: typeof DictationSpeakSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dictation/listen/$slug': {
+      id: '/dictation/listen/$slug'
+      path: '/dictation/listen/$slug'
+      fullPath: '/dictation/listen/$slug'
+      preLoaderRoute: typeof DictationListenSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -370,9 +430,12 @@ const rootRouteChildren: RootRouteChildren = {
   PronunciationVowelsRoute: PronunciationVowelsRoute,
   RelationsPracticeRoute: RelationsPracticeRoute,
   RelationsPronounsRoute: RelationsPronounsRoute,
+  DictationIndexRoute: DictationIndexRoute,
   NumbersIndexRoute: NumbersIndexRoute,
   PronunciationIndexRoute: PronunciationIndexRoute,
   RelationsIndexRoute: RelationsIndexRoute,
+  DictationListenSlugRoute: DictationListenSlugRoute,
+  DictationSpeakSlugRoute: DictationSpeakSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

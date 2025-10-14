@@ -17,9 +17,11 @@ export const WordInputMultiple = ({
 				const result: string[] = [];
 				let hintPos = 0;
 
-				for (const word of words) {
-					// Skip spaces in hint to align with current word position
-					while (hintPos < hint.length && hint[hintPos] === " ") {
+				for (let i = 0; i < words.length; i++) {
+					const word = words[i];
+
+					// Skip exactly one space separator (except for the first word)
+					if (i > 0 && hintPos < hint.length && hint[hintPos] === " ") {
 						hintPos++;
 					}
 
