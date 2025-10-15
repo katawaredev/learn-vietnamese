@@ -1,31 +1,17 @@
-import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useState } from "react";
-import { Button, LinkButton } from "~/components/Button";
+import { Button } from "~/components/Button";
 import { ResultTextIndicator } from "~/components/ResultIndicator";
 import { SpeakButton } from "~/components/SpeakButton";
 import { WordInput } from "~/components/WordInput";
-import { A1 } from "~/data/dictation";
-import Header from "~/layout/Header";
-
-interface DictationEntry {
-	slug: string;
-	title: {
-		en: string;
-		vn: string;
-	};
-	story: Array<{
-		en: string;
-		vn: string;
-	}>;
-}
+import { DictationLayout, useDictationPractice, validateSlug } from "./-layout";
 
 export const Route = createFileRoute("/dictation/listen/$slug")({
 	beforeLoad: ({ params }) => {
 		const { slug } = params;
 
 		// Verify slug exists in data
-		const allEntries = { ...A1 };
-		if (!allEntries[slug]) {
+		if (!validateSlug(slug)) {
 			throw redirect({ to: "/dictation" });
 		}
 	},
@@ -78,19 +64,15 @@ function TextInputWithResult({
 
 function ListenPracticeComponent() {
 	const { slug } = Route.useParams();
-	const navigate = useNavigate();
-
-	const entry = A1[slug] as DictationEntry;
-	const [currentIndex, setCurrentIndex] = useState(0);
 	const [hint, setHint] = useState("");
 
-	if (!entry) {
+	const practice = useDictationPractice({ slug });
+
+	if (!practice) {
 		return <div>Story not found</div>;
 	}
 
-	const currentSentence = entry.story[currentIndex];
-	const isLastSentence = currentIndex === entry.story.length - 1;
-	const progress = `${currentIndex + 1} / ${entry.story.length}`;
+	const { entry, currentIndex, currentSentence, setCurrentIndex } = practice;
 
 	// Strip punctuation from sentence for hint calculation
 	const normalizedText = currentSentence.vn.replace(/[.,!?;:'"]/g, "").trim();
@@ -99,13 +81,9 @@ function ListenPracticeComponent() {
 		// No-op: we don't block anymore
 	};
 
-	const handleNext = () => {
-		if (isLastSentence) {
-			navigate({ to: "/dictation" });
-		} else {
-			setCurrentIndex((prev) => prev + 1);
-			setHint(""); // Reset hint for next sentence
-		}
+	const handleIndexChange = (newIndex: number) => {
+		setCurrentIndex(newIndex);
+		setHint(""); // Reset hint for next sentence
 	};
 
 	const handleHint = () => {
@@ -154,58 +132,29 @@ function ListenPracticeComponent() {
 		setHint(newHint);
 	};
 
-	return (
-		<div className="flex min-h-screen flex-col bg-gradient-to-br from-burgundy-dark to-burgundy">
-			<Header>
-				<div className="text-center">
-					<h1 className="font-bold font-serif text-warm-cream text-xl">
-						{entry.title.vn}
-					</h1>
-					<p className="text-gold/80 text-xs">{progress}</p>
-				</div>
-			</Header>
-			<main className="flex flex-1 flex-col px-4 pb-8">
-				<div className="mx-auto flex w-full max-w-6xl flex-1 flex-col">
-					{/* Practice Area */}
-					<div className="flex flex-1 items-center justify-center">
-						<div
-							key={currentIndex}
-							className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500"
-						>
-							<div className="flex min-h-[200px] items-center justify-center">
-								<SpeakButton text={currentSentence.vn} size="large" />
-							</div>
-							<div className="flex flex-col items-center space-y-4">
-								<TextInputWithResult
-									expectedText={currentSentence.vn}
-									hint={hint}
-									onCorrect={handleCorrect}
-								/>
-							</div>
-						</div>
-					</div>
+	const hintButton =
+		hint.replace(/\s/g, "").length <
+		normalizedText.replace(/\s/g, "").length ? (
+			<Button variant="outline" size="medium" onClick={handleHint}>
+				Hint
+			</Button>
+		) : undefined;
 
-					{/* Navigation */}
-					<div className="mx-auto w-full max-w-4xl pt-12">
-						<div className="grid grid-cols-[1fr_6rem_1fr] gap-4">
-							<LinkButton variant="outline" size="medium" to="/dictation">
-								← Stories
-							</LinkButton>
-							{hint.replace(/\s/g, "").length <
-							normalizedText.replace(/\s/g, "").length ? (
-								<Button variant="outline" size="medium" onClick={handleHint}>
-									Hint
-								</Button>
-							) : (
-								<div />
-							)}
-							<Button variant="outline" size="medium" onClick={handleNext}>
-								{isLastSentence ? "Complete" : "Next →"}
-							</Button>
-						</div>
-					</div>
-				</div>
-			</main>
-		</div>
+	return (
+		<DictationLayout
+			entry={entry}
+			currentIndex={currentIndex}
+			onIndexChange={handleIndexChange}
+			practiceContent={<SpeakButton text={currentSentence.vn} size="large" />}
+			translationContent={<code>{currentSentence.en}</code>}
+			inputContent={
+				<TextInputWithResult
+					expectedText={currentSentence.vn}
+					hint={hint}
+					onCorrect={handleCorrect}
+				/>
+			}
+			navigationMiddle={hintButton}
+		/>
 	);
 }

@@ -1,5 +1,6 @@
 import { type FC, useCallback } from "react";
 import { SpeakBaseButton } from "./SpeakBaseButton";
+import type { SpeakButtonProps } from "./SpeakButton";
 
 // Interface for our mock HTMLAudioElement that wraps Web Speech API
 interface MockAudioElement {
@@ -16,16 +17,15 @@ interface MockAudioElement {
 	pause(): void;
 }
 
-interface SpeakWebButtonProps {
-	text: string;
+interface SpeakWebButtonProps extends SpeakButtonProps {
 	voice?: SpeechSynthesisVoice | null;
-	size?: "small" | "medium" | "large";
 }
 
 export const SpeakWebButton: FC<SpeakWebButtonProps> = ({
 	text,
 	voice,
 	size = "medium",
+	className,
 }) => {
 	// Create a mock HTMLAudioElement that controls Web Speech API
 	const getAudio = useCallback(async (): Promise<HTMLAudioElement> => {
@@ -119,6 +119,7 @@ export const SpeakWebButton: FC<SpeakWebButtonProps> = ({
 			size={size}
 			getAudio={getAudio}
 			canPlay={canPlay}
+			className={className}
 		/>
 	);
 };

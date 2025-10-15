@@ -1,6 +1,7 @@
 import { cva } from "class-variance-authority";
 import { Volume2 } from "lucide-react";
 import { type FC, useCallback, useEffect, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 import { StateIndicator } from "./StateIndicator";
 
 export type SpeechState = "idle" | "processing" | "speaking" | "ended";
@@ -29,6 +30,7 @@ const buttonVariants = cva(
 );
 
 export interface SpeakBaseButtonProps {
+	className?: string;
 	size?: "small" | "medium" | "large";
 	getAudio: () => Promise<HTMLAudioElement>;
 	canPlay: () => boolean;
@@ -38,6 +40,7 @@ export interface SpeakBaseButtonProps {
 }
 
 export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
+	className,
 	size = "medium",
 	getAudio,
 	canPlay,
@@ -174,7 +177,7 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 	return (
 		<button
 			type="button"
-			className={buttonVariants({ size, state })}
+			className={twMerge(buttonVariants({ size, state }), className)}
 			onMouseDown={handlePressStart}
 			onMouseUp={handlePressEnd}
 			onMouseLeave={handlePressEnd}

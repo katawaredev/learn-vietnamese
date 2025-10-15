@@ -3,14 +3,16 @@ import { useTTS } from "~/providers/tts-provider";
 import { SpeakAIButton } from "./SpeakAIButton";
 import { SpeakWebButton } from "./SpeakWebButton";
 
-interface SpeakButtonProps {
+export interface SpeakButtonProps {
 	text: string;
 	size?: "small" | "medium" | "large";
+	className?: string;
 }
 
 export const SpeakButton: FC<SpeakButtonProps> = ({
 	text,
 	size = "medium",
+	className,
 }) => {
 	const { selectedVoice } = useTTS();
 
@@ -20,9 +22,10 @@ export const SpeakButton: FC<SpeakButtonProps> = ({
 				text={text}
 				voice={selectedVoice.webSpeechVoice}
 				size={size}
+				className={className}
 			/>
 		);
 	}
 
-	return <SpeakAIButton text={text} size={size} />;
+	return <SpeakAIButton text={text} size={size} className={className} />;
 };

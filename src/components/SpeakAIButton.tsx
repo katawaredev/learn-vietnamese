@@ -2,15 +2,12 @@ import type { VoiceId } from "@diffusionstudio/vits-web";
 import { type FC, useCallback, useEffect, useRef, useState } from "react";
 import { useTTS } from "~/providers/tts-provider";
 import { SpeakBaseButton } from "./SpeakBaseButton";
+import type { SpeakButtonProps } from "./SpeakButton";
 
-interface SpeakAIButtonProps {
-	text: string;
-	size?: "small" | "medium" | "large";
-}
-
-export const SpeakAIButton: FC<SpeakAIButtonProps> = ({
+export const SpeakAIButton: FC<SpeakButtonProps> = ({
 	text,
 	size = "medium",
+	className,
 }) => {
 	const { selectedVoice } = useTTS();
 	const [isGenerating, setIsGenerating] = useState(false);
@@ -112,6 +109,7 @@ export const SpeakAIButton: FC<SpeakAIButtonProps> = ({
 			canPlay={canPlay}
 			isGenerating={isGenerating}
 			loadingProgress={loadingProgress}
+			className={className}
 		/>
 	);
 };

@@ -1,14 +1,15 @@
 import { type FC, useCallback } from "react";
 import { SpeakBaseButton } from "./SpeakBaseButton";
+import type { SpeakButtonProps } from "./SpeakButton";
 
-interface SpeakUrlButtonProps {
+interface SpeakUrlButtonProps extends Omit<SpeakButtonProps, "text"> {
 	url: string;
-	size?: "small" | "medium" | "large";
 }
 
 export const SpeakUrlButton: FC<SpeakUrlButtonProps> = ({
 	url,
 	size = "medium",
+	className,
 }) => {
 	const getAudio = useCallback(async (): Promise<HTMLAudioElement> => {
 		const audio = new Audio(url);
@@ -25,6 +26,7 @@ export const SpeakUrlButton: FC<SpeakUrlButtonProps> = ({
 			size={size}
 			getAudio={getAudio}
 			canPlay={canPlay}
+			className={className}
 		/>
 	);
 };
