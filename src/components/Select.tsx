@@ -86,7 +86,7 @@ export function Select({
 			>
 				<div className="flex items-center gap-2">
 					<div className="h-4 w-4 shrink-0" />
-					<BaseSelect.Value>
+					<BaseSelect.Value className="cursor-default">
 						{selectedOption?.label || placeholder}
 					</BaseSelect.Value>
 				</div>

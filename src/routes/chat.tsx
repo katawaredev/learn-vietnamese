@@ -54,7 +54,7 @@ type ModelStatus = "idle" | "loading" | "ready" | "error";
 let sharedWorker: Worker | null = null;
 
 function ChatRoute() {
-	const { selectedModel } = useLLM();
+	const { selectedModel, thinkingEnabled } = useLLM();
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [input, setInput] = useState("");
 	const [modelStatus, setModelStatus] = useState<ModelStatus>("idle");
@@ -63,7 +63,10 @@ function ChatRoute() {
 	const [isGenerating, setIsGenerating] = useState(false);
 
 	const worker = useRef<Worker | null>(null);
-	const currentModelRef = useRef<string | null>(null);
+	const currentConfigRef = useRef<{
+		modelId: string;
+		thinkingEnabled: boolean;
+	} | null>(null);
 	const messagesEndRef = useRef<HTMLDivElement>(null);
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 	const pendingMessageRef = useRef<Message | null>(null);
@@ -211,20 +214,33 @@ function ChatRoute() {
 		};
 	}, []);
 
-	// Initialize model when selectedModel changes
+	// Initialize model when selectedModel or thinkingEnabled changes
 	useEffect(() => {
-		if (worker.current && currentModelRef.current !== selectedModel.modelId) {
-			currentModelRef.current = selectedModel.modelId;
+		if (!worker.current) return;
+
+		const newConfig = {
+			modelId: selectedModel.modelId,
+			thinkingEnabled,
+		};
+
+		// Check if config actually changed
+		const configChanged =
+			!currentConfigRef.current ||
+			currentConfigRef.current.modelId !== newConfig.modelId ||
+			currentConfigRef.current.thinkingEnabled !== newConfig.thinkingEnabled;
+
+		if (configChanged) {
+			currentConfigRef.current = newConfig;
 			setModelStatus("loading");
 			setIsGenerating(false);
 			// Clear pending message when switching models - don't want to send to wrong model
 			pendingMessageRef.current = null;
 			worker.current.postMessage({
 				type: "init",
-				modelId: selectedModel.modelId,
+				config: newConfig,
 			});
 		}
-	}, [selectedModel]);
+	}, [selectedModel, thinkingEnabled]);
 
 	const sendMessage = useCallback(() => {
 		if (!input.trim() || !worker.current || isGenerating) {
@@ -275,6 +291,13 @@ function ChatRoute() {
 		}
 	};
 
+	const stopGeneration = () => {
+		if (worker.current && isGenerating) {
+			worker.current.postMessage({ type: "abort" });
+			setIsGenerating(false);
+		}
+	};
+
 	const resetChat = () => {
 		setMessages([]);
 		setInput("");
@@ -288,7 +311,7 @@ function ChatRoute() {
 	// Determine send button state
 	const getSendButtonState = (): SendButtonState => {
 		if (modelStatus === "loading") return "loading";
-		if (isGenerating) return "sending";
+		if (isGenerating) return "generating";
 		return "idle";
 	};
 
@@ -304,7 +327,7 @@ function ChatRoute() {
 						title="Reset conversation"
 					>
 						<RefreshCw className="mr-2 inline-block h-5 w-5" />
-						<span className="font-serif text-lg">Reset Conversation</span>
+						<span className="font-serif text-lg">Reset</span>
 					</Button>
 				)}
 			</Header>
@@ -447,6 +470,7 @@ function ChatRoute() {
 					<SendMessageButton
 						state={getSendButtonState()}
 						onSend={sendMessage}
+						onStop={stopGeneration}
 						disabled={!input.trim()}
 						loadingProgress={loadingProgress}
 						size="medium"

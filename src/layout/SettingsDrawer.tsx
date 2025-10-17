@@ -1,6 +1,6 @@
 import { Dialog } from "@base-ui-components/react/dialog";
 import { X } from "lucide-react";
-import { useId } from "react";
+import { LabeledSwitch } from "~/components/LabeledSwitch";
 import { Select } from "~/components/Select";
 import { useLLM } from "~/providers/llm-provider";
 import { useSTT } from "~/providers/stt-provider";
@@ -12,15 +12,14 @@ interface SettingsDrawerProps {
 }
 
 export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
-	const ttsId = useId();
-	const sttId = useId();
-	const llmId = useId();
 	const { selectedVoice, setSelectedVoice, availableVoices } = useTTS();
 	const { selectedModel, setSelectedModel, availableModels } = useSTT();
 	const {
 		selectedModel: selectedLLM,
 		setSelectedModel: setSelectedLLM,
 		availableModels: availableLLMs,
+		thinkingEnabled,
+		setThinkingEnabled,
 	} = useLLM();
 
 	const handleTTSChange = (value: string) => {
@@ -70,15 +69,12 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 
 						{/* Content */}
 						<div className="flex-1 overflow-y-auto px-6 py-6">
-							<div className="space-y-8">
+							<div className="h-full space-y-8">
 								{/* Text to Speech Section */}
 								<div>
-									<label
-										htmlFor={ttsId}
-										className="mb-3 block font-medium font-serif text-gold text-sm"
-									>
+									<div className="mb-3 font-medium font-serif text-gold text-sm">
 										Speech synthesis model:
-									</label>
+									</div>
 									<Select
 										options={availableVoices.map((voice) => ({
 											label: voice.name,
@@ -93,12 +89,9 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 
 								{/* Speech to Text Section */}
 								<div>
-									<label
-										htmlFor={sttId}
-										className="mb-3 block font-medium font-serif text-gold text-sm"
-									>
+									<div className="mb-3 font-medium font-serif text-gold text-sm">
 										Speech recognition model:
-									</label>
+									</div>
 									<Select
 										options={availableModels.map((model) => ({
 											label: model.name,
@@ -113,12 +106,9 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 
 								{/* LLM Model Section */}
 								<div>
-									<label
-										htmlFor={llmId}
-										className="mb-3 block font-medium font-serif text-gold text-sm"
-									>
+									<div className="mb-3 font-medium font-serif text-gold text-sm">
 										Conversational model:
-									</label>
+									</div>
 									<Select
 										options={availableLLMs.map((model) => ({
 											label: model.name,
@@ -128,6 +118,14 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 										onChange={handleLLMChange}
 										placeholder="Select model"
 										size="medium"
+									/>
+									<LabeledSwitch
+										label="Thinking mode"
+										description="Improved quality, slower responses"
+										checked={thinkingEnabled}
+										onCheckedChange={setThinkingEnabled}
+										size="medium"
+										className="mt-4"
 									/>
 								</div>
 							</div>

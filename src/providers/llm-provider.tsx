@@ -17,6 +17,8 @@ interface LLMContextValue {
 	selectedModel: LLMModelOption;
 	setSelectedModel: (model: LLMModelOption) => void;
 	availableModels: LLMModelOption[];
+	thinkingEnabled: boolean;
+	setThinkingEnabled: (enabled: boolean) => void;
 }
 
 const LLMContext = createContext<LLMContextValue | undefined>(undefined);
@@ -52,12 +54,14 @@ if (AVAILABLE_MODELS.length === 0) {
 // Prefer smallest available model (likely most compatible)
 const DEFAULT_MODEL = AVAILABLE_MODELS[0];
 const STORAGE_KEY = "llm-selected-model";
+const THINKING_STORAGE_KEY = "llm-thinking-enabled";
 
 export function LLMProvider({ children }: { children: ReactNode }) {
 	const [selectedModel, setSelectedModelState] =
 		useState<LLMModelOption>(DEFAULT_MODEL);
+	const [thinkingEnabled, setThinkingEnabledState] = useState<boolean>(true);
 
-	// Load saved model from localStorage
+	// Load saved model and thinking mode from localStorage
 	useEffect(() => {
 		const savedModelId = localStorage.getItem(STORAGE_KEY);
 		if (savedModelId) {
@@ -68,11 +72,21 @@ export function LLMProvider({ children }: { children: ReactNode }) {
 				setSelectedModelState(savedModel);
 			}
 		}
+
+		const savedThinking = localStorage.getItem(THINKING_STORAGE_KEY);
+		if (savedThinking !== null) {
+			setThinkingEnabledState(savedThinking === "true");
+		}
 	}, []);
 
 	const setSelectedModel = (model: LLMModelOption) => {
 		setSelectedModelState(model);
 		localStorage.setItem(STORAGE_KEY, model.id);
+	};
+
+	const setThinkingEnabled = (enabled: boolean) => {
+		setThinkingEnabledState(enabled);
+		localStorage.setItem(THINKING_STORAGE_KEY, String(enabled));
 	};
 
 	return (
@@ -81,6 +95,8 @@ export function LLMProvider({ children }: { children: ReactNode }) {
 				selectedModel,
 				setSelectedModel,
 				availableModels: AVAILABLE_MODELS,
+				thinkingEnabled,
+				setThinkingEnabled,
 			}}
 		>
 			{children}

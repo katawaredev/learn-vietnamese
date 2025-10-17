@@ -1,10 +1,18 @@
 import * as webllm from "@mlc-ai/web-llm";
-import { sleep } from "~/utils/lib";
+
+// Inline sleep to avoid import issues in worker
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+// Configuration interface
+interface LLMConfig {
+	modelId: string;
+	thinkingEnabled: boolean;
+}
 
 // Message types
 interface InitMessage {
 	type: "init";
-	modelId: string;
+	config: LLMConfig;
 }
 
 interface GenerateMessage {
@@ -16,7 +24,15 @@ interface ResetMessage {
 	type: "reset";
 }
 
-type WorkerMessage = InitMessage | GenerateMessage | ResetMessage;
+interface AbortMessage {
+	type: "abort";
+}
+
+type WorkerMessage =
+	| InitMessage
+	| GenerateMessage
+	| ResetMessage
+	| AbortMessage;
 
 // Response types
 interface ProgressResponse {
@@ -44,20 +60,40 @@ interface ErrorResponse {
 
 // Model instance
 let engine: webllm.MLCEngine | null = null;
-let currentModelId: string | null = null;
+let currentConfig: LLMConfig | null = null;
 let isGenerating = false;
+let abortController: AbortController | null = null;
 
 // Initialize the model
-async function initModel(modelId: string) {
+async function initModel(config: LLMConfig) {
 	try {
-		// If model is already loaded with the same ID, skip
-		if (engine && currentModelId === modelId) {
+		// If model is already loaded with the same config, skip
+		if (
+			engine &&
+			currentConfig &&
+			currentConfig.modelId === config.modelId &&
+			currentConfig.thinkingEnabled === config.thinkingEnabled
+		) {
 			self.postMessage({ status: "ready" } as ReadyResponse);
 			return;
 		}
 
+		// If only thinking mode changed but same model, update config and skip reload
+		if (
+			engine &&
+			currentConfig &&
+			currentConfig.modelId === config.modelId &&
+			currentConfig.thinkingEnabled !== config.thinkingEnabled
+		) {
+			currentConfig = config;
+			self.postMessage({ status: "ready" } as ReadyResponse);
+			return;
+		}
+
+		// Model changed - need full reload
 		// Stop any ongoing generation
 		if (isGenerating) {
+			abortController?.abort();
 			isGenerating = false;
 		}
 
@@ -65,12 +101,12 @@ async function initModel(modelId: string) {
 		if (engine) {
 			await engine.unload();
 			engine = null;
-			currentModelId = null;
+			currentConfig = null;
 
 			await sleep(500);
 		}
 
-		currentModelId = modelId;
+		currentConfig = config;
 
 		// Check WebGPU support
 		if (!navigator.gpu) {
@@ -78,7 +114,7 @@ async function initModel(modelId: string) {
 		}
 
 		// Load new model with progress tracking
-		engine = await webllm.CreateMLCEngine(modelId, {
+		engine = await webllm.CreateMLCEngine(config.modelId, {
 			initProgressCallback: (report: webllm.InitProgressReport) => {
 				self.postMessage({
 					status: "progress",
@@ -92,6 +128,7 @@ async function initModel(modelId: string) {
 		self.postMessage({ status: "ready" } as ReadyResponse);
 	} catch (error) {
 		console.error("[LLM Worker] Init error:", error);
+		currentConfig = null;
 		throw error;
 	}
 }
@@ -137,50 +174,63 @@ function parseThinkingContent(text: string): {
 async function generateResponse(
 	messages: Array<{ role: "user" | "assistant" | "system"; content: string }>,
 ) {
-	if (!engine) {
+	if (!engine || !currentConfig) {
 		throw new Error("Model not initialized");
 	}
 
 	isGenerating = true;
+	abortController = new AbortController();
 
 	try {
+		// Build generation options based on thinking mode
+		// Thinking mode uses longer token limits to accommodate reasoning
+		const maxTokens = currentConfig.thinkingEnabled ? 2048 : 512;
+
 		const chunks = await engine.chat.completions.create({
 			messages,
 			temperature: 0.7,
-			max_tokens: 512,
+			max_tokens: maxTokens,
 			stream: true,
+			extra_body: {
+				enable_thinking: currentConfig.thinkingEnabled,
+			},
 		});
 
 		let fullText = "";
 
 		for await (const chunk of chunks) {
-			// Check if generation was cancelled (e.g., model switch)
-			if (!isGenerating) {
+			// Check if generation was cancelled (abort or model switch)
+			if (!isGenerating || abortController?.signal.aborted) {
 				return;
 			}
 
 			const delta = chunk.choices[0]?.delta?.content || "";
 			if (delta) {
 				fullText += delta;
-				// Parse thinking and message content
+
+				// Always parse to strip thinking tags (defense in depth)
 				const { thinking, message, isThinking } =
 					parseThinkingContent(fullText);
+
+				// Only expose thinking content if thinking mode is enabled
 				self.postMessage({
 					status: "stream",
 					text: message,
-					thinking: thinking || undefined,
-					isThinking,
+					thinking: currentConfig.thinkingEnabled
+						? thinking || undefined
+						: undefined,
+					isThinking: currentConfig.thinkingEnabled ? isThinking : false,
 					isComplete: false,
 				} as StreamResponse);
 			}
 		}
 
 		// Check again before sending final message
-		if (!isGenerating) {
+		if (!isGenerating || abortController?.signal.aborted) {
 			return;
 		}
 
-		// Send final message
+		// Send final message - always parse to strip thinking tags
 		const { thinking, message, isThinking } = parseThinkingContent(fullText);
 
 		// If thinking tag never closed, treat entire response as normal message
@@ -191,19 +241,32 @@ async function generateResponse(
 		self.postMessage({
 			status: "stream",
 			text: finalMessage,
-			thinking: isThinking ? undefined : thinking || undefined,
+			thinking:
+				currentConfig.thinkingEnabled && !isThinking
+					? thinking || undefined
+					: undefined,
 			isThinking: false, // Always false on completion
 			isComplete: true,
 		} as StreamResponse);
 	} finally {
 		isGenerating = false;
+		abortController = null;
+	}
+}
+
+// Abort generation
+function abortGeneration() {
+	if (isGenerating && abortController) {
+		abortController.abort();
+		isGenerating = false;
+		abortController = null;
 	}
 }
 
 // Reset conversation
 async function resetConversation() {
 	// Cancel any ongoing generation
-	isGenerating = false;
+	abortGeneration();
 	if (engine) {
 		await engine.resetChat();
 		self.postMessage({ status: "ready" } as ReadyResponse);
@@ -217,7 +280,7 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 	try {
 		switch (message.type) {
 			case "init":
-				await initModel(message.modelId);
+				await initModel(message.config);
 				break;
 
 			case "generate":
@@ -226,6 +289,11 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 
 			case "reset":
 				await resetConversation();
+				break;
+
+			case "abort":
+				abortGeneration();
+				self.postMessage({ status: "ready" } as ReadyResponse);
 				break;
 		}
 	} catch (error) {
