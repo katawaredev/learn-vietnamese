@@ -96,7 +96,7 @@ export function Select({
 				<BaseSelect.Positioner sideOffset={4} className="z-50">
 					<BaseSelect.Popup
 						className={twMerge(
-							"w-[var(--anchor-width)] overflow-hidden rounded-2xl border border-gold bg-burgundy-dark shadow-xl focus:outline-none",
+							"max-h-96 w-[var(--anchor-width)] overflow-y-auto rounded-2xl border border-gold bg-burgundy-dark shadow-xl focus:outline-none",
 							menuClassName,
 						)}
 					>

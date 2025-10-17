@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ShowcaseRouteImport } from './routes/showcase'
 import { Route as FlagRouteImport } from './routes/flag'
+import { Route as ChatRouteImport } from './routes/chat'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RelationsIndexRouteImport } from './routes/relations/index'
 import { Route as PronunciationIndexRouteImport } from './routes/pronunciation/index'
@@ -37,6 +38,11 @@ const ShowcaseRoute = ShowcaseRouteImport.update({
 const FlagRoute = FlagRouteImport.update({
   id: '/flag',
   path: '/flag',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -128,6 +134,7 @@ const DictationListenSlugRoute = DictationListenSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
   '/numbers/counting': typeof NumbersCountingRoute
@@ -149,6 +156,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
   '/numbers/counting': typeof NumbersCountingRoute
@@ -171,6 +179,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
   '/numbers/counting': typeof NumbersCountingRoute
@@ -194,6 +203,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/chat'
     | '/flag'
     | '/showcase'
     | '/numbers/counting'
@@ -215,6 +225,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/chat'
     | '/flag'
     | '/showcase'
     | '/numbers/counting'
@@ -236,6 +247,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/chat'
     | '/flag'
     | '/showcase'
     | '/numbers/counting'
@@ -258,6 +270,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChatRoute: typeof ChatRoute
   FlagRoute: typeof FlagRoute
   ShowcaseRoute: typeof ShowcaseRoute
   NumbersCountingRoute: typeof NumbersCountingRoute
@@ -292,6 +305,13 @@ declare module '@tanstack/react-router' {
       path: '/flag'
       fullPath: '/flag'
       preLoaderRoute: typeof FlagRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -418,6 +438,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChatRoute: ChatRoute,
   FlagRoute: FlagRoute,
   ShowcaseRoute: ShowcaseRoute,
   NumbersCountingRoute: NumbersCountingRoute,

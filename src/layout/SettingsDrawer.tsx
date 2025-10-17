@@ -2,6 +2,7 @@ import { Dialog } from "@base-ui-components/react/dialog";
 import { X } from "lucide-react";
 import { useId } from "react";
 import { Select } from "~/components/Select";
+import { useLLM } from "~/providers/llm-provider";
 import { useSTT } from "~/providers/stt-provider";
 import { useTTS } from "~/providers/tts-provider";
 
@@ -13,8 +14,14 @@ interface SettingsDrawerProps {
 export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 	const ttsId = useId();
 	const sttId = useId();
+	const llmId = useId();
 	const { selectedVoice, setSelectedVoice, availableVoices } = useTTS();
 	const { selectedModel, setSelectedModel, availableModels } = useSTT();
+	const {
+		selectedModel: selectedLLM,
+		setSelectedModel: setSelectedLLM,
+		availableModels: availableLLMs,
+	} = useLLM();
 
 	const handleTTSChange = (value: string) => {
 		const voice = availableVoices.find((v) => v.id === value);
@@ -27,6 +34,13 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 		const model = availableModels.find((m) => m.id === value);
 		if (model) {
 			setSelectedModel(model);
+		}
+	};
+
+	const handleLLMChange = (value: string) => {
+		const model = availableLLMs.find((m) => m.id === value);
+		if (model) {
+			setSelectedLLM(model);
 		}
 	};
 
@@ -92,6 +106,26 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 										}))}
 										value={selectedModel.id}
 										onChange={handleSTTChange}
+										placeholder="Select model"
+										size="medium"
+									/>
+								</div>
+
+								{/* LLM Model Section */}
+								<div>
+									<label
+										htmlFor={llmId}
+										className="mb-3 block font-medium font-serif text-gold text-sm"
+									>
+										Conversational model:
+									</label>
+									<Select
+										options={availableLLMs.map((model) => ({
+											label: model.name,
+											value: model.id,
+										}))}
+										value={selectedLLM.id}
+										onChange={handleLLMChange}
 										placeholder="Select model"
 										size="medium"
 									/>

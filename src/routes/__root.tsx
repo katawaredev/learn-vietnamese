@@ -6,6 +6,7 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { LLMProvider } from "~/providers/llm-provider";
 import { STTProvider } from "~/providers/stt-provider";
 import { TTSProvider } from "~/providers/tts-provider";
 
@@ -66,7 +67,9 @@ function RootComponent() {
 	return (
 		<TTSProvider>
 			<STTProvider>
-				<Outlet />
+				<LLMProvider>
+					<Outlet />
+				</LLMProvider>
 			</STTProvider>
 		</TTSProvider>
 	);
