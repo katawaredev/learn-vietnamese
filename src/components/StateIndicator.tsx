@@ -60,19 +60,19 @@ export const StateIndicator: FC<StateIndicatorProps> = ({
 					<circle
 						cx="18"
 						cy="18"
-						r="16"
+						r="17.5"
 						fill="none"
 						className={`stroke-current ${colors.progressBg}`}
-						strokeWidth="2"
+						strokeWidth="1"
 					/>
 					{/* Progress Circle */}
 					<circle
 						cx="18"
 						cy="18"
-						r="16"
+						r="17.5"
 						fill="none"
 						className={`stroke-current ${colors.progressFg} transition-all duration-300`}
-						strokeWidth="2"
+						strokeWidth="1"
 						strokeDasharray="100"
 						strokeDashoffset={strokeDashoffset}
 						strokeLinecap="round"
