@@ -5,6 +5,7 @@ import type { ListenButtonProps } from "./ListenButton";
 
 export const ListenWebButton: FC<ListenButtonProps> = ({
 	onTranscription,
+	lang = "vn",
 	size = "medium",
 	className,
 }) => {
@@ -22,7 +23,7 @@ export const ListenWebButton: FC<ListenButtonProps> = ({
 		const speechRecognition = new SpeechRecognition();
 		speechRecognition.continuous = false;
 		speechRecognition.interimResults = false;
-		speechRecognition.lang = "vi-VN";
+		speechRecognition.lang = lang === "vn" ? "vi-VN" : "en-US";
 
 		speechRecognition.onstart = () => {
 			setState("recording");
@@ -46,7 +47,7 @@ export const ListenWebButton: FC<ListenButtonProps> = ({
 		};
 
 		recognition.current = speechRecognition;
-	}, [onTranscription]);
+	}, [lang, onTranscription]);
 
 	// Initialize recognition on component mount
 	useEffect(() => {

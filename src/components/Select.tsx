@@ -56,6 +56,11 @@ export interface SelectProps
 	className?: string;
 	menuClassName?: string;
 	itemClassName?: string;
+	/**
+	 * Whether to render the popup in a portal.
+	 * Set to false when inside scrollable containers to prevent repositioning issues.
+	 * @default true
+	 */
 	usePortal?: boolean;
 }
 
@@ -77,7 +82,14 @@ export function Select({
 	};
 
 	const selectedOption = options.find((opt) => opt.value === value);
-	const PortalWrapper = usePortal ? BaseSelect.Portal : Fragment;
+	const PortalWrapper = usePortal !== false ? BaseSelect.Portal : Fragment;
+
+	// Calculate sideOffset based on size to create overlap effect
+	const sideOffset = {
+		small: -38,
+		medium: -48,
+		large: -68,
+	}[size || "medium"];
 
 	return (
 		<BaseSelect.Root value={value} onValueChange={handleValueChange}>
@@ -93,7 +105,16 @@ export function Select({
 				<ChevronsUpDown className="ml-2 h-5 w-5 shrink-0" />
 			</BaseSelect.Trigger>
 			<PortalWrapper>
-				<BaseSelect.Positioner sideOffset={4} className="z-50">
+				<BaseSelect.Positioner
+					sideOffset={sideOffset}
+					className="z-50"
+					positionMethod="fixed"
+					alignItemWithTrigger={false}
+					collisionAvoidance={{
+						side: "none",
+						align: "none",
+					}}
+				>
 					<BaseSelect.Popup
 						className={twMerge(
 							"max-h-96 w-[var(--anchor-width)] overflow-y-auto rounded-2xl border border-gold bg-burgundy-dark shadow-xl focus:outline-none",

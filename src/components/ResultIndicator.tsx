@@ -21,7 +21,9 @@ export const ResultVoiceIndicator: FC<ResultVoiceIndicatorProps> = ({
 	hideExpected = false,
 	hint,
 }) => {
-	const { selectedModel, setSelectedModel, availableModels } = useSTT();
+	const { getSelectedModel, setSelectedModel, getAvailableModels } = useSTT();
+	const selectedModel = getSelectedModel("vn"); // Default to Vietnamese for this component
+	const availableModels = getAvailableModels("vn");
 	const normalizedTranscription = normalizeText(transcription);
 	const normalizedExpected = normalizeText(expectedText);
 	const isSuccess = normalizedTranscription === normalizedExpected;
@@ -42,7 +44,7 @@ export const ResultVoiceIndicator: FC<ResultVoiceIndicatorProps> = ({
 		const modelId = event.target.value;
 		const model = availableModels.find((m) => m.id === modelId);
 		if (model) {
-			setSelectedModel(model);
+			setSelectedModel("vn", model);
 		}
 	};
 

@@ -12,11 +12,13 @@ env.allowLocalModels = false;
 interface InitMessage {
 	type: "init";
 	modelPath: string;
+	language: "vn" | "en";
 }
 
 interface TranscribeMessage {
 	type: "transcribe";
 	audio: Float32Array;
+	language: "vn" | "en";
 }
 
 type WorkerMessage = InitMessage | TranscribeMessage;
@@ -85,13 +87,13 @@ async function initModel(modelPath: string) {
 }
 
 // Transcribe audio
-async function transcribe(audio: Float32Array) {
+async function transcribe(audio: Float32Array, language: "vn" | "en") {
 	if (!transcriber) {
 		throw new Error("Model not initialized");
 	}
 
 	const result = (await transcriber(audio, {
-		language: "vietnamese",
+		language: language === "vn" ? "vietnamese" : "english",
 		task: "transcribe",
 	})) as AutomaticSpeechRecognitionOutput;
 
@@ -109,7 +111,7 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 				break;
 
 			case "transcribe": {
-				const text = await transcribe(message.audio);
+				const text = await transcribe(message.audio, message.language);
 				self.postMessage({
 					status: "complete",
 					text,

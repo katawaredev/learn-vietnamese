@@ -35,8 +35,10 @@ function ShowcasePage() {
 	const [soundEnabled, setSoundEnabled] = useState(true);
 	const [alignment, setAlignment] = useState<string[]>(["left"]);
 	const [formatting, setFormatting] = useState<string[]>([]);
-	const [transcription, setTranscription] = useState("");
-	const [spokenText, setSpokenText] = useState("Xin chào");
+	const [transcriptionVN, setTranscriptionVN] = useState("");
+	const [transcriptionEN, setTranscriptionEN] = useState("");
+	const [spokenTextVN, setSpokenTextVN] = useState("Xin chào");
+	const [spokenTextEN, setSpokenTextEN] = useState("Hello");
 	const [_singleInput, setSingleInput] = useState("");
 	const [_multipleInput, setMultipleInput] = useState("");
 
@@ -438,22 +440,64 @@ function ShowcasePage() {
 				<section className="space-y-6">
 					<h2 className="font-serif text-3xl text-gold">Listen Button</h2>
 
-					<div className="space-y-4">
+					<div className="space-y-6">
 						<div>
-							<h3 className="mb-3 text-lg text-warm-cream">Speech to Text</h3>
+							<h3 className="mb-3 text-lg text-warm-cream">
+								Speech to Text (Vietnamese)
+							</h3>
 							<div className="flex flex-wrap items-center gap-8">
-								<ListenButton onTranscription={setTranscription} size="small" />
 								<ListenButton
-									onTranscription={setTranscription}
+									onTranscription={setTranscriptionVN}
+									lang="vn"
+									size="small"
+								/>
+								<ListenButton
+									onTranscription={setTranscriptionVN}
+									lang="vn"
 									size="medium"
 								/>
-								<ListenButton onTranscription={setTranscription} size="large" />
+								<ListenButton
+									onTranscription={setTranscriptionVN}
+									lang="vn"
+									size="large"
+								/>
 							</div>
 							<p className="mt-4 min-h-[1.5rem] text-warm-cream">
-								{transcription && (
+								{transcriptionVN && (
 									<>
 										Transcription:{" "}
-										<span className="text-gold">{transcription}</span>
+										<span className="text-gold">{transcriptionVN}</span>
+									</>
+								)}
+							</p>
+						</div>
+
+						<div>
+							<h3 className="mb-3 text-lg text-warm-cream">
+								Speech to Text (English)
+							</h3>
+							<div className="flex flex-wrap items-center gap-8">
+								<ListenButton
+									onTranscription={setTranscriptionEN}
+									lang="en"
+									size="small"
+								/>
+								<ListenButton
+									onTranscription={setTranscriptionEN}
+									lang="en"
+									size="medium"
+								/>
+								<ListenButton
+									onTranscription={setTranscriptionEN}
+									lang="en"
+									size="large"
+								/>
+							</div>
+							<p className="mt-4 min-h-[1.5rem] text-warm-cream">
+								{transcriptionEN && (
+									<>
+										Transcription:{" "}
+										<span className="text-gold">{transcriptionEN}</span>
 									</>
 								)}
 							</p>
@@ -465,22 +509,45 @@ function ShowcasePage() {
 				<section className="space-y-6">
 					<h2 className="font-serif text-3xl text-gold">Speak Button</h2>
 
-					<div className="space-y-4">
+					<div className="space-y-6">
 						<div>
-							<h3 className="mb-3 text-lg text-warm-cream">Text to Speech</h3>
+							<h3 className="mb-3 text-lg text-warm-cream">
+								Text to Speech (Vietnamese)
+							</h3>
 							<div className="flex flex-wrap items-center gap-8">
-								<SpeakButton text={spokenText} size="small" />
-								<SpeakButton text={spokenText} size="medium" />
-								<SpeakButton text={spokenText} size="large" />
+								<SpeakButton text={spokenTextVN} lang="vn" size="small" />
+								<SpeakButton text={spokenTextVN} lang="vn" size="medium" />
+								<SpeakButton text={spokenTextVN} lang="vn" size="large" />
 							</div>
 							<div className="mt-4 flex items-center gap-2">
 								<span className="text-warm-cream">Speaking:</span>
 								<input
 									type="text"
-									value={spokenText}
-									onChange={(e) => setSpokenText(e.target.value)}
+									value={spokenTextVN}
+									onChange={(e) => setSpokenTextVN(e.target.value)}
 									className="flex-1 rounded border border-gold/30 bg-burgundy-medium px-4 py-2 text-warm-cream outline-none focus:border-gold"
-									placeholder="Enter text to speak..."
+									placeholder="Enter Vietnamese text to speak..."
+								/>
+							</div>
+						</div>
+
+						<div>
+							<h3 className="mb-3 text-lg text-warm-cream">
+								Text to Speech (English)
+							</h3>
+							<div className="flex flex-wrap items-center gap-8">
+								<SpeakButton text={spokenTextEN} lang="en" size="small" />
+								<SpeakButton text={spokenTextEN} lang="en" size="medium" />
+								<SpeakButton text={spokenTextEN} lang="en" size="large" />
+							</div>
+							<div className="mt-4 flex items-center gap-2">
+								<span className="text-warm-cream">Speaking:</span>
+								<input
+									type="text"
+									value={spokenTextEN}
+									onChange={(e) => setSpokenTextEN(e.target.value)}
+									className="flex-1 rounded border border-gold/30 bg-burgundy-medium px-4 py-2 text-warm-cream outline-none focus:border-gold"
+									placeholder="Enter English text to speak..."
 								/>
 							</div>
 						</div>

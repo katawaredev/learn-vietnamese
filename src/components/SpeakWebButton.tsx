@@ -23,6 +23,7 @@ interface SpeakWebButtonProps extends SpeakButtonProps {
 
 export const SpeakWebButton: FC<SpeakWebButtonProps> = ({
 	text,
+	lang = "vn",
 	voice,
 	size = "medium",
 	className,
@@ -81,7 +82,7 @@ export const SpeakWebButton: FC<SpeakWebButtonProps> = ({
 				if (voice) {
 					utterance.voice = voice;
 				}
-				utterance.lang = "vi-VN";
+				utterance.lang = lang === "vn" ? "vi-VN" : "en-US";
 				utterance.rate = this._playbackRate;
 				utterance.pitch = 1;
 
@@ -105,7 +106,7 @@ export const SpeakWebButton: FC<SpeakWebButtonProps> = ({
 		};
 
 		return mockAudio as unknown as HTMLAudioElement;
-	}, [text, voice]);
+	}, [text, lang, voice]);
 
 	const canPlay = useCallback(() => {
 		return (

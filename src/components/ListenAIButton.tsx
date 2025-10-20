@@ -6,10 +6,12 @@ import type { ListenButtonProps } from "./ListenButton";
 
 export const ListenAIButton: FC<ListenButtonProps> = ({
 	onTranscription,
+	lang = "vn",
 	size = "medium",
 	className,
 }) => {
-	const { selectedModel } = useSTT();
+	const { getSelectedModel } = useSTT();
+	const selectedModel = getSelectedModel(lang);
 	const [state, setState] = useState<RecordingState>("idle");
 	const [loadingProgress, setLoadingProgress] = useState<number>(0);
 
@@ -51,6 +53,7 @@ export const ListenAIButton: FC<ListenButtonProps> = ({
 						worker.current.postMessage({
 							type: "transcribe",
 							audio: pendingAudio.current,
+							language: lang,
 						});
 						pendingAudio.current = null;
 					} else {
@@ -87,7 +90,7 @@ export const ListenAIButton: FC<ListenButtonProps> = ({
 				worker.current = null;
 			}
 		};
-	}, []);
+	}, [lang]);
 
 	// Reset model reference when selectedModel changes (don't auto-load)
 	useEffect(() => {
@@ -133,12 +136,14 @@ export const ListenAIButton: FC<ListenButtonProps> = ({
 					worker.current.postMessage({
 						type: "init",
 						modelPath,
+						language: lang,
 					});
 				} else {
 					// Model already loaded, transcribe immediately
 					worker.current.postMessage({
 						type: "transcribe",
 						audio: audioData,
+						language: lang,
 					});
 				}
 			} catch (error) {
@@ -146,7 +151,7 @@ export const ListenAIButton: FC<ListenButtonProps> = ({
 				setState("idle");
 			}
 		},
-		[selectedModel],
+		[selectedModel, lang],
 	);
 
 	// Start recording

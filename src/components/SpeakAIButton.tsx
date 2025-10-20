@@ -6,10 +6,12 @@ import type { SpeakButtonProps } from "./SpeakButton";
 
 export const SpeakAIButton: FC<SpeakButtonProps> = ({
 	text,
+	lang = "vn",
 	size = "medium",
 	className,
 }) => {
-	const { selectedVoice } = useTTS();
+	const { getSelectedVoice } = useTTS();
+	const selectedVoice = getSelectedVoice(lang);
 	const [isGenerating, setIsGenerating] = useState(false);
 	const [loadingProgress, setLoadingProgress] = useState<number>(0);
 	const worker = useRef<Worker | null>(null);

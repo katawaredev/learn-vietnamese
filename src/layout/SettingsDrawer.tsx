@@ -12,8 +12,8 @@ interface SettingsDrawerProps {
 }
 
 export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
-	const { selectedVoice, setSelectedVoice, availableVoices } = useTTS();
-	const { selectedModel, setSelectedModel, availableModels } = useSTT();
+	const { getSelectedVoice, setSelectedVoice, getAvailableVoices } = useTTS();
+	const { getSelectedModel, setSelectedModel, getAvailableModels } = useSTT();
 	const {
 		selectedModel: selectedLLM,
 		setSelectedModel: setSelectedLLM,
@@ -22,17 +22,41 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 		setThinkingEnabled,
 	} = useLLM();
 
-	const handleTTSChange = (value: string) => {
-		const voice = availableVoices.find((v) => v.id === value);
+	const selectedVoiceVN = getSelectedVoice("vn");
+	const selectedVoiceEN = getSelectedVoice("en");
+	const selectedModelVN = getSelectedModel("vn");
+	const selectedModelEN = getSelectedModel("en");
+
+	const availableVoicesVN = getAvailableVoices("vn");
+	const availableVoicesEN = getAvailableVoices("en");
+	const availableModelsVN = getAvailableModels("vn");
+	const availableModelsEN = getAvailableModels("en");
+
+	const handleTTSVNChange = (value: string) => {
+		const voice = availableVoicesVN.find((v) => v.id === value);
 		if (voice) {
-			setSelectedVoice(voice);
+			setSelectedVoice("vn", voice);
 		}
 	};
 
-	const handleSTTChange = (value: string) => {
-		const model = availableModels.find((m) => m.id === value);
+	const handleTTSENChange = (value: string) => {
+		const voice = availableVoicesEN.find((v) => v.id === value);
+		if (voice) {
+			setSelectedVoice("en", voice);
+		}
+	};
+
+	const handleSTTVNChange = (value: string) => {
+		const model = availableModelsVN.find((m) => m.id === value);
 		if (model) {
-			setSelectedModel(model);
+			setSelectedModel("vn", model);
+		}
+	};
+
+	const handleSTTENChange = (value: string) => {
+		const model = availableModelsEN.find((m) => m.id === value);
+		if (model) {
+			setSelectedModel("en", model);
 		}
 	};
 
@@ -69,37 +93,71 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 
 						{/* Content */}
 						<div className="flex-1 overflow-y-auto px-6 py-6">
-							<div className="h-full space-y-8">
-								{/* Text to Speech Section */}
+							<div className="space-y-8">
+								{/* Vietnamese TTS Section */}
 								<div>
 									<div className="mb-3 font-medium font-serif text-gold text-sm">
-										Speech synthesis model:
+										Speech synthesis model (VN):
 									</div>
 									<Select
-										options={availableVoices.map((voice) => ({
+										options={availableVoicesVN.map((voice) => ({
 											label: voice.name,
 											value: voice.id,
 										}))}
-										value={selectedVoice.id}
-										onChange={handleTTSChange}
-										placeholder="Select voice"
+										value={selectedVoiceVN.id}
+										onChange={handleTTSVNChange}
+										placeholder="Select Vietnamese voice"
 										size="medium"
 									/>
 								</div>
 
-								{/* Speech to Text Section */}
+								{/* English TTS Section */}
 								<div>
 									<div className="mb-3 font-medium font-serif text-gold text-sm">
-										Speech recognition model:
+										Speech synthesis model (EN):
 									</div>
 									<Select
-										options={availableModels.map((model) => ({
+										options={availableVoicesEN.map((voice) => ({
+											label: voice.name,
+											value: voice.id,
+										}))}
+										value={selectedVoiceEN.id}
+										onChange={handleTTSENChange}
+										placeholder="Select English voice"
+										size="medium"
+									/>
+								</div>
+
+								{/* Vietnamese STT Section */}
+								<div>
+									<div className="mb-3 font-medium font-serif text-gold text-sm">
+										Speech recognition model (VN):
+									</div>
+									<Select
+										options={availableModelsVN.map((model) => ({
 											label: model.name,
 											value: model.id,
 										}))}
-										value={selectedModel.id}
-										onChange={handleSTTChange}
-										placeholder="Select model"
+										value={selectedModelVN.id}
+										onChange={handleSTTVNChange}
+										placeholder="Select Vietnamese model"
+										size="medium"
+									/>
+								</div>
+
+								{/* English STT Section */}
+								<div>
+									<div className="mb-3 font-medium font-serif text-gold text-sm">
+										Speech recognition model (EN):
+									</div>
+									<Select
+										options={availableModelsEN.map((model) => ({
+											label: model.name,
+											value: model.id,
+										}))}
+										value={selectedModelEN.id}
+										onChange={handleSTTENChange}
+										placeholder="Select English model"
 										size="medium"
 									/>
 								</div>
