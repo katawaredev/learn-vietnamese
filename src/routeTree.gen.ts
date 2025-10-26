@@ -17,6 +17,7 @@ import { Route as RelationsIndexRouteImport } from './routes/relations/index'
 import { Route as PronunciationIndexRouteImport } from './routes/pronunciation/index'
 import { Route as NumbersIndexRouteImport } from './routes/numbers/index'
 import { Route as DictationIndexRouteImport } from './routes/dictation/index'
+import { Route as ConversationIndexRouteImport } from './routes/conversation/index'
 import { Route as RelationsPronounsRouteImport } from './routes/relations/pronouns'
 import { Route as RelationsPracticeRouteImport } from './routes/relations/practice'
 import { Route as PronunciationVowelsRouteImport } from './routes/pronunciation/vowels'
@@ -68,6 +69,11 @@ const NumbersIndexRoute = NumbersIndexRouteImport.update({
 const DictationIndexRoute = DictationIndexRouteImport.update({
   id: '/dictation/',
   path: '/dictation/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConversationIndexRoute = ConversationIndexRouteImport.update({
+  id: '/conversation/',
+  path: '/conversation/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RelationsPronounsRoute = RelationsPronounsRouteImport.update({
@@ -147,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/relations/practice': typeof RelationsPracticeRoute
   '/relations/pronouns': typeof RelationsPronounsRoute
+  '/conversation': typeof ConversationIndexRoute
   '/dictation': typeof DictationIndexRoute
   '/numbers': typeof NumbersIndexRoute
   '/pronunciation': typeof PronunciationIndexRoute
@@ -169,6 +176,7 @@ export interface FileRoutesByTo {
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/relations/practice': typeof RelationsPracticeRoute
   '/relations/pronouns': typeof RelationsPronounsRoute
+  '/conversation': typeof ConversationIndexRoute
   '/dictation': typeof DictationIndexRoute
   '/numbers': typeof NumbersIndexRoute
   '/pronunciation': typeof PronunciationIndexRoute
@@ -192,6 +200,7 @@ export interface FileRoutesById {
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/relations/practice': typeof RelationsPracticeRoute
   '/relations/pronouns': typeof RelationsPronounsRoute
+  '/conversation/': typeof ConversationIndexRoute
   '/dictation/': typeof DictationIndexRoute
   '/numbers/': typeof NumbersIndexRoute
   '/pronunciation/': typeof PronunciationIndexRoute
@@ -216,6 +225,7 @@ export interface FileRouteTypes {
     | '/pronunciation/vowels'
     | '/relations/practice'
     | '/relations/pronouns'
+    | '/conversation'
     | '/dictation'
     | '/numbers'
     | '/pronunciation'
@@ -238,6 +248,7 @@ export interface FileRouteTypes {
     | '/pronunciation/vowels'
     | '/relations/practice'
     | '/relations/pronouns'
+    | '/conversation'
     | '/dictation'
     | '/numbers'
     | '/pronunciation'
@@ -260,6 +271,7 @@ export interface FileRouteTypes {
     | '/pronunciation/vowels'
     | '/relations/practice'
     | '/relations/pronouns'
+    | '/conversation/'
     | '/dictation/'
     | '/numbers/'
     | '/pronunciation/'
@@ -283,6 +295,7 @@ export interface RootRouteChildren {
   PronunciationVowelsRoute: typeof PronunciationVowelsRoute
   RelationsPracticeRoute: typeof RelationsPracticeRoute
   RelationsPronounsRoute: typeof RelationsPronounsRoute
+  ConversationIndexRoute: typeof ConversationIndexRoute
   DictationIndexRoute: typeof DictationIndexRoute
   NumbersIndexRoute: typeof NumbersIndexRoute
   PronunciationIndexRoute: typeof PronunciationIndexRoute
@@ -347,6 +360,13 @@ declare module '@tanstack/react-router' {
       path: '/dictation'
       fullPath: '/dictation'
       preLoaderRoute: typeof DictationIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conversation/': {
+      id: '/conversation/'
+      path: '/conversation'
+      fullPath: '/conversation'
+      preLoaderRoute: typeof ConversationIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/relations/pronouns': {
@@ -451,6 +471,7 @@ const rootRouteChildren: RootRouteChildren = {
   PronunciationVowelsRoute: PronunciationVowelsRoute,
   RelationsPracticeRoute: RelationsPracticeRoute,
   RelationsPronounsRoute: RelationsPronounsRoute,
+  ConversationIndexRoute: ConversationIndexRoute,
   DictationIndexRoute: DictationIndexRoute,
   NumbersIndexRoute: NumbersIndexRoute,
   PronunciationIndexRoute: PronunciationIndexRoute,

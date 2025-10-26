@@ -7,7 +7,7 @@ import { StateIndicator } from "./StateIndicator";
 export type SpeechState = "idle" | "processing" | "speaking" | "ended";
 
 const buttonVariants = cva(
-	"relative rounded-full border-0 flex items-center justify-center cursor-pointer select-none transition-all duration-200 ease-in-out shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95",
+	"relative rounded-full border-0 flex items-center justify-center select-none transition-all duration-200 ease-in-out shadow-lg",
 	{
 		variants: {
 			size: {
@@ -16,15 +16,45 @@ const buttonVariants = cva(
 				large: "w-20 h-20",
 			},
 			state: {
-				idle: "bg-sky-800 hover:bg-sky-800 shadow-sky-800/25",
+				idle: "bg-sky-800 shadow-sky-800/25",
 				speaking: "bg-sky-900 shadow-sky-800/40",
-				processing: "bg-sky-800 cursor-wait",
-				ended: "bg-sky-800 hover:bg-sky-800 shadow-sky-800/25",
+				processing: "bg-sky-800",
+				ended: "bg-sky-800 shadow-sky-800/25",
+			},
+			disabled: {
+				true: "cursor-not-allowed",
+				false: "",
 			},
 		},
+		compoundVariants: [
+			// Interactive styles - only when NOT disabled
+			{
+				state: "idle",
+				disabled: false,
+				className:
+					"cursor-pointer hover:bg-sky-800 hover:shadow-xl transform hover:scale-105 active:scale-95",
+			},
+			{
+				state: "speaking",
+				disabled: false,
+				className: "cursor-pointer",
+			},
+			{
+				state: "processing",
+				disabled: false,
+				className: "cursor-wait",
+			},
+			{
+				state: "ended",
+				disabled: false,
+				className:
+					"cursor-pointer hover:bg-sky-800 hover:shadow-xl transform hover:scale-105 active:scale-95",
+			},
+		],
 		defaultVariants: {
 			size: "medium",
 			state: "idle",
+			disabled: false,
 		},
 	},
 );
@@ -174,16 +204,21 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 		}
 	}, [state, play, isHolding]);
 
+	const isDisabled = disabled || state === "processing" || !canPlay();
+
 	return (
 		<button
 			type="button"
-			className={twMerge(buttonVariants({ size, state }), className)}
+			className={twMerge(
+				buttonVariants({ size, state, disabled: isDisabled }),
+				className,
+			)}
 			onMouseDown={handlePressStart}
 			onMouseUp={handlePressEnd}
 			onMouseLeave={handlePressEnd}
 			onTouchStart={handlePressStart}
 			onTouchEnd={handlePressEnd}
-			disabled={disabled || state === "processing" || !canPlay()}
+			disabled={isDisabled}
 			aria-label={state === "speaking" ? "Stop audio" : "Play audio"}
 		>
 			{/* Speaker Icon */}

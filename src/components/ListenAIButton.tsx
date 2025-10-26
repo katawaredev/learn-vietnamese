@@ -9,6 +9,7 @@ export const ListenAIButton: FC<ListenButtonProps> = ({
 	lang = "vn",
 	size = "medium",
 	className,
+	disabled = false,
 }) => {
 	const { getSelectedModel } = useSTT();
 	const selectedModel = getSelectedModel(lang);
@@ -201,6 +202,7 @@ export const ListenAIButton: FC<ListenButtonProps> = ({
 			onStartRecording={handleStartRecording}
 			onStopRecording={handleStopRecording}
 			loadingProgress={loadingProgress}
+			disabled={disabled}
 		/>
 	);
 };

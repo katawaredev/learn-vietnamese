@@ -9,6 +9,7 @@ export interface ListenButtonProps {
 	lang?: Language;
 	size?: "small" | "medium" | "large";
 	className?: string;
+	disabled?: boolean;
 }
 
 export const ListenButton: FC<ListenButtonProps> = ({

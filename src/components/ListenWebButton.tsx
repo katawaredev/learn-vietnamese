@@ -8,6 +8,7 @@ export const ListenWebButton: FC<ListenButtonProps> = ({
 	lang = "vn",
 	size = "medium",
 	className,
+	disabled = false,
 }) => {
 	const [state, setState] = useState<RecordingState>("idle");
 	const recognition = useRef<SpeechRecognition | null>(null);
@@ -91,7 +92,7 @@ export const ListenWebButton: FC<ListenButtonProps> = ({
 			className={className}
 			onStartRecording={handleStartRecording}
 			onStopRecording={handleStopRecording}
-			disabled={!isAvailable}
+			disabled={disabled || !isAvailable}
 		/>
 	);
 };

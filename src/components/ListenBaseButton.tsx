@@ -9,7 +9,7 @@ import { StateIndicator } from "./StateIndicator";
 export type RecordingState = "idle" | "recording" | "processing";
 
 const buttonVariants = cva(
-	"relative rounded-full border-0 flex items-center justify-center cursor-pointer select-none transition-all duration-200 ease-in-out shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95",
+	"relative rounded-full border-0 flex items-center justify-center select-none transition-all duration-200 ease-in-out shadow-lg",
 	{
 		variants: {
 			size: {
@@ -18,14 +18,38 @@ const buttonVariants = cva(
 				large: "w-20 h-20",
 			},
 			state: {
-				idle: "bg-stone-800 hover:bg-stone-900 shadow-stone-800/25",
+				idle: "bg-stone-800 shadow-stone-800/25",
 				recording: "bg-stone-900 shadow-stone-800/45",
-				processing: "bg-stone-800 cursor-wait",
+				processing: "bg-stone-800",
+			},
+			disabled: {
+				true: "cursor-not-allowed",
+				false: "",
 			},
 		},
+		compoundVariants: [
+			// Interactive styles - only when NOT disabled
+			{
+				state: "idle",
+				disabled: false,
+				className:
+					"cursor-pointer hover:bg-stone-900 hover:shadow-xl transform hover:scale-105 active:scale-95",
+			},
+			{
+				state: "recording",
+				disabled: false,
+				className: "cursor-pointer",
+			},
+			{
+				state: "processing",
+				disabled: false,
+				className: "cursor-wait",
+			},
+		],
 		defaultVariants: {
 			size: "medium",
 			state: "idle",
+			disabled: false,
 		},
 	},
 );
@@ -87,17 +111,22 @@ export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 		}
 	}, [isHolding, state, onStopRecording]);
 
+	const isDisabled = disabled || state === "processing";
+
 	return (
 		<button
 			type="button"
-			className={twMerge(buttonVariants({ size, state }), className)}
+			className={twMerge(
+				buttonVariants({ size, state, disabled: isDisabled }),
+				className,
+			)}
 			onClick={handleClick}
 			onMouseDown={handlePressStart}
 			onMouseUp={handlePressEnd}
 			onMouseLeave={handlePressEnd}
 			onTouchStart={handlePressStart}
 			onTouchEnd={handlePressEnd}
-			disabled={disabled || state === "processing"}
+			disabled={isDisabled}
 			aria-label={state === "recording" ? "Stop recording" : "Start recording"}
 		>
 			{/* Microphone Icon */}
