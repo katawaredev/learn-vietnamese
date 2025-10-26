@@ -5,12 +5,14 @@ interface PredictMessage {
 	type: "predict";
 	text: string;
 	voiceId: VoiceId;
+	requestId: string;
 }
 
 type WorkerMessage = PredictMessage;
 
 // Response types
 interface ProgressResponse {
+	requestId: string;
 	status: "progress";
 	url: string;
 	progress: number;
@@ -19,11 +21,13 @@ interface ProgressResponse {
 }
 
 interface CompleteResponse {
+	requestId: string;
 	status: "complete";
 	audio: Blob;
 }
 
 interface ErrorResponse {
+	requestId: string;
 	status: "error";
 	error: string;
 }
@@ -45,6 +49,7 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 						const progressPercent =
 							progress.total > 0 ? (progress.loaded / progress.total) * 100 : 0;
 						self.postMessage({
+							requestId: message.requestId,
 							status: "progress",
 							url: progress.url,
 							progress: progressPercent,
@@ -55,6 +60,7 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 				);
 
 				self.postMessage({
+					requestId: message.requestId,
 					status: "complete",
 					audio: wav,
 				} as CompleteResponse);
@@ -63,6 +69,7 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 		}
 	} catch (error) {
 		self.postMessage({
+			requestId: message.requestId,
 			status: "error",
 			error: error instanceof Error ? error.message : "Unknown error",
 		} as ErrorResponse);

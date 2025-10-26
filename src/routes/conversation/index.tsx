@@ -35,7 +35,10 @@ interface TranslationMessage {
 type ModelStatus = "idle" | "loading" | "ready" | "error";
 
 // Module-level worker instance to survive Strict Mode
+// We use a mount counter to only terminate the worker when all instances unmount.
 let sharedWorker: Worker | null = null;
+// eslint-disable-next-line prefer-const
+let workerMountCount = 0;
 
 function ConversationRoute() {
 	const { selectedModel, thinkingEnabled } = useLLM();
@@ -64,14 +67,15 @@ function ConversationRoute() {
 	useEffect(() => {
 		if (sharedWorker) {
 			worker.current = sharedWorker;
-			return;
+		} else {
+			worker.current = new Worker(
+				new URL("../../workers/llm-worker.ts", import.meta.url),
+				{ type: "module" },
+			);
+			sharedWorker = worker.current;
 		}
 
-		worker.current = new Worker(
-			new URL("../../workers/llm-worker.ts", import.meta.url),
-			{ type: "module" },
-		);
-		sharedWorker = worker.current;
+		workerMountCount++;
 
 		worker.current.onerror = (error) => {
 			console.error("[Conversation] Worker error:", error);
@@ -136,7 +140,19 @@ function ConversationRoute() {
 		};
 
 		return () => {
-			// Intentionally empty - worker persists across Strict Mode remounts
+			workerMountCount--;
+
+			// In production: cleanup immediately (no Strict Mode)
+			// In development: use setTimeout to handle Strict Mode double-mount
+			const cleanupDelay = import.meta.env.DEV ? 100 : 0;
+
+			setTimeout(() => {
+				if (workerMountCount === 0 && sharedWorker) {
+					sharedWorker.terminate();
+					sharedWorker = null;
+					worker.current = null;
+				}
+			}, cleanupDelay);
 		};
 	}, []);
 
@@ -353,8 +369,8 @@ function ConversationRoute() {
 								{msg.isTranslating ? (
 									<p className="font-serif text-sm text-warm-cream/50 italic">
 										{msg.translatedLang === "vn"
-											? "Đang dịch..."
-											: "Translating..."}
+											? "Translating..."
+											: "Đang dịch..."}
 									</p>
 								) : (
 									<div className="flex items-center gap-2">

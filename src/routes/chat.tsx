@@ -50,8 +50,10 @@ type ModelStatus = "idle" | "loading" | "ready" | "error";
 // This module-level variable persists across the unmount/remount cycle, preventing:
 // 1. Creating duplicate workers (which orphans the first worker during model loading)
 // 2. Lost message handlers (second mount would create new worker without seeing first worker's messages)
-// The worker is intentionally NOT terminated in the cleanup function, allowing it to persist.
+// We use a mount counter to only terminate the worker when all instances unmount.
 let sharedWorker: Worker | null = null;
+// eslint-disable-next-line prefer-const
+let workerMountCount = 0;
 
 function ChatRoute() {
 	const { selectedModel, thinkingEnabled } = useLLM();
@@ -92,7 +94,7 @@ function ChatRoute() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	// Initialize worker - only once, survive Strict Mode double-mount
+	// Initialize worker - survive Strict Mode but cleanup properly
 	// CRITICAL: React Strict Mode in development causes components to mount/unmount/remount.
 	// This would normally create two workers, orphaning the first one that's loading the model.
 	// Solution: Store worker in module-level `sharedWorker` variable that survives remounts.
@@ -102,15 +104,16 @@ function ChatRoute() {
 		// Restore shared worker instance on remount (Strict Mode)
 		if (sharedWorker) {
 			worker.current = sharedWorker;
-			return;
+		} else {
+			// First mount: create new worker
+			worker.current = new Worker(
+				new URL("../workers/llm-worker.ts", import.meta.url),
+				{ type: "module" },
+			);
+			sharedWorker = worker.current;
 		}
 
-		// First mount: create new worker
-		worker.current = new Worker(
-			new URL("../workers/llm-worker.ts", import.meta.url),
-			{ type: "module" },
-		);
-		sharedWorker = worker.current;
+		workerMountCount++;
 
 		worker.current.onerror = (error) => {
 			console.error("[Chat] Worker error:", error);
@@ -206,11 +209,22 @@ function ChatRoute() {
 			}
 		};
 
-		// Cleanup: Don't terminate worker in development (Strict Mode will remount)
-		// In production, this cleanup runs on actual unmount, but since there's no
-		// remount, the worker is effectively cleaned up when page unloads
+		// Cleanup: Terminate worker and reset shared reference
+		// This runs on actual component unmount (navigation away from route)
 		return () => {
-			// Intentionally empty - worker persists across Strict Mode remounts
+			workerMountCount--;
+
+			// In production: cleanup immediately (no Strict Mode)
+			// In development: use setTimeout to handle Strict Mode double-mount
+			const cleanupDelay = import.meta.env.DEV ? 100 : 0;
+
+			setTimeout(() => {
+				if (workerMountCount === 0 && sharedWorker) {
+					sharedWorker.terminate();
+					sharedWorker = null;
+					worker.current = null;
+				}
+			}, cleanupDelay);
 		};
 	}, []);
 

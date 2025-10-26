@@ -85,14 +85,12 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 	);
 	const holdTimeout = useRef<NodeJS.Timeout | null>(null);
 
-	// Cleanup effect
+	// Cleanup effect - stop audio but don't revoke URLs
+	// URLs are managed by the worker pool cache
 	useEffect(() => {
 		return () => {
 			if (currentAudio) {
 				currentAudio.pause();
-				if (currentAudio.src) {
-					URL.revokeObjectURL(currentAudio.src);
-				}
 			}
 		};
 	}, [currentAudio]);
@@ -126,16 +124,9 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 		if (state !== "idle" && state !== "ended") return;
 
 		try {
-			// If we have cached audio, play it directly
-			if (currentAudio) {
-				currentAudio.currentTime = 0;
-				await currentAudio.play();
-				return;
-			}
-
 			setState("processing");
 
-			// Get audio from the provided function
+			// Get audio from the worker pool (may be cached at pool level)
 			const audio = await getAudio();
 			setCurrentAudio(audio);
 
@@ -159,7 +150,7 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 			console.error("Audio playback failed:", error);
 			setState("idle");
 		}
-	}, [state, stop, currentAudio, getAudio, canPlay, isHolding]);
+	}, [state, stop, getAudio, canPlay, isHolding]);
 
 	// Handle press start (mouse/touch down)
 	const handlePressStart = useCallback(() => {

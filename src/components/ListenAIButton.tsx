@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSTT } from "~/providers/stt-provider";
+import { sttPool } from "~/workers/stt-worker-pool";
 import { ListenBaseButton, type RecordingState } from "./ListenBaseButton";
 import type { ListenButtonProps } from "./ListenButton";
 
@@ -16,101 +17,38 @@ export const ListenAIButton: FC<ListenButtonProps> = ({
 	const [state, setState] = useState<RecordingState>("idle");
 	const [loadingProgress, setLoadingProgress] = useState<number>(0);
 
-	const worker = useRef<Worker | null>(null);
-	const currentModelRef = useRef<string | null>(null);
 	const mediaRecorder = useRef<MediaRecorder | null>(null);
 	const audioChunks = useRef<Blob[]>([]);
-	const pendingAudio = useRef<Float32Array | null>(null);
 	const onTranscriptionRef = useRef(onTranscription);
+	const isMountedRef = useRef(true);
 
 	// Keep onTranscription ref up to date
 	useEffect(() => {
 		onTranscriptionRef.current = onTranscription;
 	}, [onTranscription]);
 
-	// Initialize worker
+	// Track mount state for cleanup
 	useEffect(() => {
-		worker.current = new Worker(
-			new URL("../workers/stt-worker.ts", import.meta.url),
-			{ type: "module" },
-		);
-
-		// Handle worker messages
-		worker.current.onmessage = (event) => {
-			const message = event.data;
-
-			switch (message.status) {
-				case "progress": {
-					// Update loading progress (0-100)
-					const progress = message.progress || 0;
-					setLoadingProgress(Math.round(progress));
-					break;
-				}
-				case "ready": {
-					// Reset loading progress
-					setLoadingProgress(0);
-					// If we have pending audio, transcribe it now
-					if (pendingAudio.current && worker.current) {
-						worker.current.postMessage({
-							type: "transcribe",
-							audio: pendingAudio.current,
-							language: lang,
-						});
-						pendingAudio.current = null;
-					} else {
-						// No pending audio, go back to idle
-						setState("idle");
-					}
-					break;
-				}
-				case "complete":
-					if (message.text) {
-						onTranscriptionRef.current(message.text.trim());
-					}
-					setState("idle");
-					setLoadingProgress(0);
-					break;
-				case "error":
-					console.error("Transcription failed:", message.error);
-					setState("idle");
-					setLoadingProgress(0);
-					pendingAudio.current = null;
-					break;
-			}
-		};
-
+		isMountedRef.current = true;
 		return () => {
+			isMountedRef.current = false;
+			// Stop recording if component unmounts while recording
 			if (
 				mediaRecorder.current &&
 				mediaRecorder.current.state === "recording"
 			) {
 				mediaRecorder.current.stop();
 			}
-			if (worker.current) {
-				worker.current.terminate();
-				worker.current = null;
-			}
 		};
-	}, [lang]);
+	}, []);
 
-	// Reset model reference when selectedModel changes (don't auto-load)
-	useEffect(() => {
-		const modelPath =
-			selectedModel.provider === "phowhisper"
-				? selectedModel.modelPath || ""
-				: `Xenova/whisper-${selectedModel.modelSize}`;
-
-		if (currentModelRef.current !== modelPath) {
-			currentModelRef.current = null; // Force reload on next use
-		}
-	}, [selectedModel]);
-
-	// Process audio and transcribe using web worker
+	// Process audio and transcribe using worker pool
 	const processAudio = useCallback(
 		async (audioBlob: Blob) => {
-			if (!worker.current) return;
+			if (!isMountedRef.current) return;
 
 			setState("processing");
+			setLoadingProgress(0);
 
 			try {
 				// Convert blob to audio buffer
@@ -124,32 +62,41 @@ export const ListenAIButton: FC<ListenButtonProps> = ({
 				// Close the AudioContext to free resources
 				await audioContext.close();
 
-				// Initialize model if not already loaded
+				// Get model path
 				const modelPath =
 					selectedModel.provider === "phowhisper"
 						? selectedModel.modelPath || ""
 						: `Xenova/whisper-${selectedModel.modelSize}`;
 
-				if (currentModelRef.current !== modelPath && modelPath) {
-					// Store audio for transcription after model loads
-					pendingAudio.current = audioData;
-					currentModelRef.current = modelPath;
-					worker.current.postMessage({
-						type: "init",
-						modelPath,
-						language: lang,
-					});
-				} else {
-					// Model already loaded, transcribe immediately
-					worker.current.postMessage({
-						type: "transcribe",
-						audio: audioData,
-						language: lang,
-					});
+				if (!modelPath) {
+					throw new Error("No model path available");
+				}
+
+				// Transcribe using worker pool
+				const text = await sttPool.transcribe(
+					audioData,
+					modelPath,
+					lang,
+					(progress) => {
+						if (isMountedRef.current) {
+							setLoadingProgress(Math.round(progress));
+						}
+					},
+				);
+
+				if (isMountedRef.current) {
+					if (text.trim()) {
+						onTranscriptionRef.current(text.trim());
+					}
+					setState("idle");
+					setLoadingProgress(0);
 				}
 			} catch (error) {
 				console.error("Audio processing failed:", error);
-				setState("idle");
+				if (isMountedRef.current) {
+					setState("idle");
+					setLoadingProgress(0);
+				}
 			}
 		},
 		[selectedModel, lang],
