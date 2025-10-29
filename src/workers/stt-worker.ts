@@ -1,12 +1,10 @@
 import {
 	type AutomaticSpeechRecognitionOutput,
 	type AutomaticSpeechRecognitionPipeline,
-	env,
 	pipeline,
 } from "@huggingface/transformers";
-
-// Disable local models
-env.allowLocalModels = false;
+import "./transformers-config";
+import type { ErrorResponse, ProgressResponse } from "./worker-types";
 
 // Message types
 interface InitMessage {
@@ -23,15 +21,7 @@ interface TranscribeMessage {
 
 type WorkerMessage = InitMessage | TranscribeMessage;
 
-// Response types
-interface ProgressResponse {
-	status: "progress";
-	file: string;
-	progress: number;
-	loaded: number;
-	total: number;
-}
-
+// Response types specific to STT
 interface ReadyResponse {
 	status: "ready";
 }
@@ -39,11 +29,6 @@ interface ReadyResponse {
 interface TranscribeResponse {
 	status: "complete";
 	text: string;
-}
-
-interface ErrorResponse {
-	status: "error";
-	error: string;
 }
 
 // Model instance
@@ -76,7 +61,7 @@ async function initModel(modelPath: string) {
 					progress: progress.progress || 0,
 					loaded: progress.loaded || 0,
 					total: progress.total || 0,
-				} as ProgressResponse);
+				} satisfies ProgressResponse);
 			}
 		},
 	});
@@ -124,6 +109,6 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 		self.postMessage({
 			status: "error",
 			error: error instanceof Error ? error.message : "Unknown error",
-		} as ErrorResponse);
+		} satisfies ErrorResponse);
 	}
 });

@@ -1,4 +1,3 @@
-import type { VoiceId } from "@diffusionstudio/vits-web";
 import { type FC, useCallback, useEffect, useRef, useState } from "react";
 import { useTTS } from "~/providers/tts-provider";
 import { ttsPool } from "~/workers/tts-worker-pool";
@@ -28,13 +27,14 @@ export const SpeakAIButton: FC<SpeakButtonProps> = ({
 	// Generate audio using worker pool
 	const getAudio = useCallback(async (): Promise<HTMLAudioElement> => {
 		const trimmedText = text.trim();
-		const voiceId: VoiceId =
-			(selectedVoice.voiceId as VoiceId) || "vi_VN-vais1000-medium";
+		const modelId =
+			selectedVoice.modelId ||
+			(lang === "vn" ? "Xenova/mms-tts-vie" : "Xenova/mms-tts-eng");
 
 		// Check if cached (won't trigger generation)
-		if (ttsPool.isCached(trimmedText, voiceId)) {
+		if (ttsPool.isCached(trimmedText, modelId)) {
 			// Cached audio returns immediately, no loading state needed
-			return ttsPool.generateAudio(trimmedText, voiceId);
+			return ttsPool.generateAudio(trimmedText, modelId);
 		}
 
 		// Not cached - show loading state
@@ -44,7 +44,7 @@ export const SpeakAIButton: FC<SpeakButtonProps> = ({
 		try {
 			const audio = await ttsPool.generateAudio(
 				trimmedText,
-				voiceId,
+				modelId,
 				(progress) => {
 					if (isMountedRef.current) {
 						setLoadingProgress(Math.round(progress));
@@ -65,7 +65,7 @@ export const SpeakAIButton: FC<SpeakButtonProps> = ({
 			}
 			throw error;
 		}
-	}, [text, selectedVoice.voiceId]);
+	}, [text, selectedVoice.modelId, lang]);
 
 	const canPlay = useCallback(() => !!text.trim(), [text]);
 

@@ -18,11 +18,7 @@ const config = defineConfig(({ mode }) => ({
 		format: "es",
 	},
 	optimizeDeps: {
-		exclude: [
-			"onnxruntime-web",
-			"@huggingface/transformers",
-			"@diffusionstudio/vits-web",
-		],
+		exclude: ["onnxruntime-web", "@huggingface/transformers"],
 	},
 	// Enable Cross-Origin Isolation in production for ONNX Runtime multi-threading
 	preview: {

@@ -15,7 +15,6 @@
 	},
 	"dependencies": {
 		"@base-ui-components/react": "^1.0.0-beta.4",
-		"@diffusionstudio/vits-web": "^1.0.3",
 		"@huggingface/transformers": "^3.7.5",
 		"@mlc-ai/web-llm": "^0.2.79",
 		"@t3-oss/env-core": "^0.13.8",
@@ -26,6 +25,7 @@
 		"@tanstack/react-start": "^1.132.38",
 		"class-variance-authority": "^0.7.1",
 		"lucide-react": "^0.544.0",
+		"onnxruntime-web": "^1.18.0",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",
 		"tailwind-merge": "^3.3.1",

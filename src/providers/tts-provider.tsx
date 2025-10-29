@@ -1,4 +1,3 @@
-import type { VoiceId } from "@diffusionstudio/vits-web";
 import {
 	createContext,
 	type ReactNode,
@@ -8,14 +7,14 @@ import {
 } from "react";
 
 export type Language = "vn" | "en";
-export type TTSProvider = "web-speech" | "vits";
+export type TTSProvider = "web-speech" | "mms";
 
 export interface TTSVoiceOption {
 	id: string;
 	name: string;
 	provider: TTSProvider;
 	language: Language;
-	voiceId?: VoiceId; // For VITS
+	modelId?: string; // For MMS (HuggingFace transformers)
 	webSpeechVoice?: SpeechSynthesisVoice; // For Web Speech API
 }
 
@@ -27,65 +26,23 @@ interface TTSContextValue {
 
 const TTSContext = createContext<TTSContextValue | undefined>(undefined);
 
-const VITS_VOICES_VN: TTSVoiceOption[] = [
+const MMS_VOICES_VN: TTSVoiceOption[] = [
 	{
-		id: "vi_VN-25hours_single-low",
-		name: "Vietnamese 25 Hours (Low Quality)",
-		provider: "vits",
+		id: "Xenova/mms-tts-vie",
+		name: "Vietnamese (MMS)",
+		provider: "mms",
 		language: "vn",
-		voiceId: "vi_VN-25hours_single-low",
-	},
-	{
-		id: "vi_VN-vais1000-medium",
-		name: "Vietnamese VAIS 1000 (Medium Quality)",
-		provider: "vits",
-		language: "vn",
-		voiceId: "vi_VN-vais1000-medium",
-	},
-	{
-		id: "vi_VN-vivos-x_low",
-		name: "Vietnamese Vivos (Low Quality)",
-		provider: "vits",
-		language: "vn",
-		voiceId: "vi_VN-vivos-x_low",
+		modelId: "Xenova/mms-tts-vie",
 	},
 ];
 
-const VITS_VOICES_EN: TTSVoiceOption[] = [
+const MMS_VOICES_EN: TTSVoiceOption[] = [
 	{
-		id: "en_US-amy-medium",
-		name: "Amy (Medium Quality)",
-		provider: "vits",
+		id: "Xenova/mms-tts-eng",
+		name: "English (MMS)",
+		provider: "mms",
 		language: "en",
-		voiceId: "en_US-amy-medium",
-	},
-	{
-		id: "en_US-hfc_female-medium",
-		name: "HFC Female (Medium Quality)",
-		provider: "vits",
-		language: "en",
-		voiceId: "en_US-hfc_female-medium",
-	},
-	{
-		id: "en_US-hfc_male-medium",
-		name: "HFC Male (Medium Quality)",
-		provider: "vits",
-		language: "en",
-		voiceId: "en_US-hfc_male-medium",
-	},
-	{
-		id: "en_US-lessac-medium",
-		name: "Lessac (Medium Quality)",
-		provider: "vits",
-		language: "en",
-		voiceId: "en_US-lessac-medium",
-	},
-	{
-		id: "en_US-ryan-medium",
-		name: "Ryan (Medium Quality)",
-		provider: "vits",
-		language: "en",
-		voiceId: "en_US-ryan-medium",
+		modelId: "Xenova/mms-tts-eng",
 	},
 ];
 
@@ -115,8 +72,8 @@ function getWebSpeechVoices(language: Language): TTSVoiceOption[] {
 	}));
 }
 
-const DEFAULT_VOICE_VN = VITS_VOICES_VN[1]; // vi_VN-vais1000-medium
-const DEFAULT_VOICE_EN = VITS_VOICES_EN[4]; // en_US-ryan-medium
+const DEFAULT_VOICE_VN = MMS_VOICES_VN[0]; // Xenova/mms-tts-vie
+const DEFAULT_VOICE_EN = MMS_VOICES_EN[0]; // Xenova/mms-tts-eng
 const STORAGE_KEY_VN = "tts-vn-voice";
 const STORAGE_KEY_EN = "tts-en-voice";
 
@@ -159,7 +116,7 @@ export function TTSProvider({ children }: { children: ReactNode }) {
 		// Load Vietnamese voice
 		const savedVoiceIdVN = localStorage.getItem(STORAGE_KEY_VN);
 		if (savedVoiceIdVN) {
-			const allVoicesVN = [...VITS_VOICES_VN, ...webSpeechVoicesVN];
+			const allVoicesVN = [...MMS_VOICES_VN, ...webSpeechVoicesVN];
 			const savedVoice = allVoicesVN.find(
 				(voice) => voice.id === savedVoiceIdVN,
 			);
@@ -171,7 +128,7 @@ export function TTSProvider({ children }: { children: ReactNode }) {
 		// Load English voice
 		const savedVoiceIdEN = localStorage.getItem(STORAGE_KEY_EN);
 		if (savedVoiceIdEN) {
-			const allVoicesEN = [...VITS_VOICES_EN, ...webSpeechVoicesEN];
+			const allVoicesEN = [...MMS_VOICES_EN, ...webSpeechVoicesEN];
 			const savedVoice = allVoicesEN.find(
 				(voice) => voice.id === savedVoiceIdEN,
 			);
@@ -197,9 +154,9 @@ export function TTSProvider({ children }: { children: ReactNode }) {
 
 	const getAvailableVoices = (language: Language): TTSVoiceOption[] => {
 		if (language === "vn") {
-			return [...VITS_VOICES_VN, ...webSpeechVoicesVN];
+			return [...MMS_VOICES_VN, ...webSpeechVoicesVN];
 		}
-		return [...VITS_VOICES_EN, ...webSpeechVoicesEN];
+		return [...MMS_VOICES_EN, ...webSpeechVoicesEN];
 	};
 
 	return (

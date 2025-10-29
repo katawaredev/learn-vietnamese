@@ -1,9 +1,7 @@
-import type { VoiceId } from "@diffusionstudio/vits-web";
-
 interface TTSRequest {
 	id: string;
 	text: string;
-	voiceId: VoiceId;
+	modelId: string;
 	resolve: (audio: HTMLAudioElement) => void;
 	reject: (error: Error) => void;
 	onProgress?: (progress: number) => void;
@@ -62,10 +60,10 @@ class TTSWorkerPool {
 	}
 
 	/**
-	 * Generate cache key from text and voice ID
+	 * Generate cache key from text and model ID
 	 */
-	private getCacheKey(text: string, voiceId: VoiceId): string {
-		return `${voiceId}:${text}`;
+	private getCacheKey(text: string, modelId: string): string {
+		return `${modelId}:${text}`;
 	}
 
 	/**
@@ -115,7 +113,7 @@ class TTSWorkerPool {
 					// Cache the blob URL
 					const cacheKey = this.getCacheKey(
 						this.activeRequest.text,
-						this.activeRequest.voiceId,
+						this.activeRequest.modelId,
 					);
 
 					// If we already have this in cache (shouldn't happen), revoke old URL
@@ -165,7 +163,7 @@ class TTSWorkerPool {
 		this.worker.postMessage({
 			type: "predict",
 			text: this.activeRequest.text,
-			voiceId: this.activeRequest.voiceId,
+			modelId: this.activeRequest.modelId,
 			requestId: this.activeRequest.id,
 		});
 	}
@@ -175,10 +173,10 @@ class TTSWorkerPool {
 	 */
 	public async generateAudio(
 		text: string,
-		voiceId: VoiceId,
+		modelId: string,
 		onProgress?: (progress: number) => void,
 	): Promise<HTMLAudioElement> {
-		const cacheKey = this.getCacheKey(text, voiceId);
+		const cacheKey = this.getCacheKey(text, modelId);
 
 		// Check cache first
 		const cached = this.cache.get(cacheKey);
@@ -195,7 +193,7 @@ class TTSWorkerPool {
 			const request: TTSRequest = {
 				id: crypto.randomUUID(),
 				text,
-				voiceId,
+				modelId,
 				resolve,
 				reject,
 				onProgress,
@@ -217,11 +215,11 @@ class TTSWorkerPool {
 	}
 
 	/**
-	 * Clear cache for a specific voice ID (e.g., when voice changes)
+	 * Clear cache for a specific model ID (e.g., when model changes)
 	 */
-	public clearCacheForVoice(voiceId: VoiceId): void {
+	public clearCacheForModel(modelId: string): void {
 		for (const [key, entry] of this.cache.entries()) {
-			if (key.startsWith(`${voiceId}:`)) {
+			if (key.startsWith(`${modelId}:`)) {
 				URL.revokeObjectURL(entry.blobUrl);
 				this.cache.delete(key);
 			}
@@ -263,8 +261,8 @@ class TTSWorkerPool {
 	/**
 	 * Check if a specific audio is cached
 	 */
-	public isCached(text: string, voiceId: VoiceId): boolean {
-		return this.cache.has(this.getCacheKey(text, voiceId));
+	public isCached(text: string, modelId: string): boolean {
+		return this.cache.has(this.getCacheKey(text, modelId));
 	}
 }
 

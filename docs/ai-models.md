@@ -8,11 +8,13 @@ All models run in your browser. Nothing sent to servers after initial download.
 
 ## Text-to-Speech (TTS)
 
-**Library**: `@diffusionstudio/vits-web`
+**Library**: `@huggingface/transformers`
+
+**Models**: Xenova/mms-tts-vie (Vietnamese), Xenova/mms-tts-eng (English)
 
 ### How TTS Works
 
-Text → VITS neural network → WAV audio
+Text → MMS (VITS-based) neural network → WAV audio
 
 First use downloads model. Subsequent uses are cached.
 
@@ -78,6 +80,7 @@ Models update when you update app dependencies.
 
 ## Further Reading
 
+- [MMS: Scaling Speech Technology to 1000+ Languages](https://arxiv.org/abs/2305.13516)
 - [VITS Paper](https://arxiv.org/abs/2106.06103)
 - [Whisper Paper](https://arxiv.org/abs/2212.04356)
 - [PhoWhisper](https://github.com/VinAIResearch/PhoWhisper)

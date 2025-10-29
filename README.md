@@ -4,7 +4,7 @@ Interactive Vietnamese language learning app powered by client-side AI. Everythi
 
 ## Features
 
-- **Text-to-Speech**: Neural voices (VITS) + Web Speech API fallback
+- **Text-to-Speech**: Neural voices (MMS) + Web Speech API fallback
 - **Speech-to-Text**: Whisper/PhoWhisper models + Web Speech API fallback
 - **AI Translation**: Context-aware Vietnamese ↔ English translation
 - **Pronunciation Practice**: Vowels, consonants, tones
@@ -18,7 +18,7 @@ Interactive Vietnamese language learning app powered by client-side AI. Everythi
 
 **AI Models** (client-side):
 
-- **TTS**: VITS neural voices via `@diffusionstudio/vits-web`
+- **TTS**: MMS (VITS-based) neural voices via `@huggingface/transformers`
 - **STT**: Whisper/PhoWhisper via `@huggingface/transformers`
 - **LLM**: Small language models via `@mlc-ai/web-llm` (WebGPU)
 - **Fallback**: Web Speech API when AI unavailable
@@ -105,7 +105,7 @@ function MyRoute() {
 
 ## Acknowledgments
 
-- VITS models: [Diffusion Studio](https://github.com/diffusion-studio/vits-web)
+- MMS TTS models: [Meta AI](https://ai.meta.com/blog/multilingual-model-speech-recognition/)
 - Whisper: [OpenAI](https://github.com/openai/whisper)
 - PhoWhisper: [VinAI Research](https://github.com/VinAIResearch/PhoWhisper)
 - WebLLM: [MLC AI](https://mlc.ai/)

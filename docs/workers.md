@@ -12,17 +12,17 @@ JavaScript is single-threaded. ML models on main thread = frozen UI.
 
 ### TTS Worker (`src/workers/tts-worker.ts`)
 
-Converts text → audio using VITS models.
+Converts text → audio using MMS (VITS-based) models via transformers.js.
 
 ```ts
 // Receives
-{ type: "predict", text: "Xin chào", voiceId: "..." }
+{ type: "predict", text: "Xin chào", modelId: "Xenova/mms-tts-vie" }
 
 // Returns
 { status: "complete", audio: Blob }
 ```
 
-Runs entirely in WebAssembly. Progress events for UI feedback.
+Runs entirely in WebAssembly via ONNX Runtime. Progress events for UI feedback.
 
 ### STT Worker (`src/workers/stt-worker.ts`)
 
@@ -68,11 +68,11 @@ class TTSWorkerPool {
   private cache = new Map();
   private requestQueue = [];
 
-  async generateAudio(text, voiceId) {
+  async generateAudio(text, modelId) {
     if (this.cache.has(key)) return cached;
 
     return new Promise((resolve) => {
-      this.requestQueue.push({ text, voiceId, resolve });
+      this.requestQueue.push({ text, modelId, resolve });
       this.processQueue();
     });
   }
@@ -84,7 +84,7 @@ export const ttsPool = new TTSWorkerPool();
 Components use pool:
 
 ```tsx
-const audio = await ttsPool.generateAudio(text, voiceId);
+const audio = await ttsPool.generateAudio(text, modelId);
 ```
 
 One worker for entire app, not per component.
