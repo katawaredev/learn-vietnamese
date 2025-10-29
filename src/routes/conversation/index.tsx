@@ -4,12 +4,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "~/components/Button";
 import { ListenButton } from "~/components/ListenButton";
 import { SpeakButton } from "~/components/SpeakButton";
+import { TypeInputButton } from "~/components/TypeInputButton";
 import Header from "~/layout/Header";
 import { useLLM } from "~/providers/llm-provider";
 import type { Language } from "~/providers/tts-provider";
 import {
+	type Gender,
 	generateTranslationPrompt,
+	getAllGenders,
 	getAllPersonTypes,
+	getGenderLabel,
 	getPersonTypeLabel,
 	type PersonType,
 	type TranslationDirection,
@@ -37,12 +41,18 @@ type ModelStatus = "idle" | "loading" | "ready" | "error";
 // Module-level worker instance to survive Strict Mode
 // We use a mount counter to only terminate the worker when all instances unmount.
 let sharedWorker: Worker | null = null;
-// eslint-disable-next-line prefer-const
 let workerMountCount = 0;
+
+const GENDER_STORAGE_KEY = "conversation-user-gender";
 
 function ConversationRoute() {
 	const { selectedModel, thinkingEnabled } = useLLM();
 	const [personType, setPersonType] = useState<PersonType>("friend");
+	const [userGender, setUserGender] = useState<Gender>(() => {
+		// Load saved gender from localStorage
+		const saved = localStorage.getItem(GENDER_STORAGE_KEY);
+		return (saved as Gender) || "male";
+	});
 	const [messages, setMessages] = useState<TranslationMessage[]>([]);
 	const [modelStatus, setModelStatus] = useState<ModelStatus>("idle");
 	const [loadingProgress, setLoadingProgress] = useState(0);
@@ -171,6 +181,10 @@ function ConversationRoute() {
 			currentConfigRef.current.thinkingEnabled !== newConfig.thinkingEnabled;
 
 		if (configChanged) {
+			// Always abort before model reload to prevent WebGPU conflicts
+			// Worker handles this safely even if nothing is running
+			worker.current.postMessage({ type: "abort" });
+
 			currentConfigRef.current = newConfig;
 			setModelStatus("loading");
 			setIsTranslating(false);
@@ -182,11 +196,26 @@ function ConversationRoute() {
 		}
 	}, [selectedModel, thinkingEnabled]);
 
+	// Handle gender change
+	const handleGenderChange = (newGender: Gender) => {
+		setUserGender(newGender);
+		localStorage.setItem(GENDER_STORAGE_KEY, newGender);
+		// Note: Don't clear messages on gender change - it's just a pronoun adjustment
+	};
+
 	// Clear messages when person type changes (different context)
 	const handlePersonTypeChange = (newType: PersonType) => {
+		// Abort any ongoing translation first to prevent race conditions
+		if (isTranslating && worker.current) {
+			worker.current.postMessage({ type: "abort" });
+		}
+
 		setPersonType(newType);
 		setMessages([]);
+		setIsTranslating(false);
 		conversationHistory.current = [];
+		currentTranslationRef.current = null;
+
 		if (worker.current) {
 			worker.current.postMessage({ type: "reset" });
 		}
@@ -194,8 +223,16 @@ function ConversationRoute() {
 
 	// Reset conversation
 	const resetConversation = () => {
+		// Abort any ongoing translation first to prevent race conditions
+		if (isTranslating && worker.current) {
+			worker.current.postMessage({ type: "abort" });
+		}
+
 		setMessages([]);
+		setIsTranslating(false);
 		conversationHistory.current = [];
+		currentTranslationRef.current = null;
+
 		if (worker.current) {
 			worker.current.postMessage({ type: "reset" });
 		}
@@ -234,7 +271,11 @@ function ConversationRoute() {
 			};
 
 			// Build conversation with system prompt for this translation
-			const systemPrompt = generateTranslationPrompt(personType, direction);
+			const systemPrompt = generateTranslationPrompt(
+				personType,
+				direction,
+				userGender,
+			);
 
 			// Add user's original text to conversation history
 			conversationHistory.current.push({
@@ -251,7 +292,7 @@ function ConversationRoute() {
 				],
 			});
 		},
-		[personType, isTranslating],
+		[personType, isTranslating, userGender],
 	);
 
 	return (
@@ -277,21 +318,36 @@ function ConversationRoute() {
 					{/* You (English → Vietnamese) */}
 					<div className="flex flex-col items-center gap-3">
 						<div className="flex flex-col items-center text-center">
-							<div className="flex h-10 items-center">
-								<p className="font-semibold font-serif text-lg text-warm-cream">
-									You
-								</p>
-							</div>
+							<select
+								value={userGender}
+								onChange={(e) => handleGenderChange(e.target.value as Gender)}
+								className="h-10 rounded-xl border-2 border-gold/30 bg-burgundy-dark px-4 py-0 font-semibold font-serif text-lg text-warm-cream transition-colors focus:border-gold focus:outline-none"
+								disabled={isTranslating}
+							>
+								{getAllGenders().map((gender) => (
+									<option key={gender} value={gender}>
+										{getGenderLabel(gender)}
+									</option>
+								))}
+							</select>
 							<p className="mt-1 font-serif text-sm text-warm-cream/70">
 								English
 							</p>
 						</div>
-						<ListenButton
-							onTranscription={(text) => handleTranscription(text, "you")}
-							lang="en"
-							size="large"
-							disabled={modelStatus !== "ready"}
-						/>
+						<div className="flex items-center gap-3">
+							<ListenButton
+								onTranscription={(text) => handleTranscription(text, "you")}
+								lang="en"
+								size="large"
+								disabled={modelStatus !== "ready"}
+							/>
+							<TypeInputButton
+								onSubmit={(text) => handleTranscription(text, "you")}
+								size="large"
+								disabled={modelStatus !== "ready"}
+								placeholder="Type in English..."
+							/>
+						</div>
 					</div>
 
 					{/* Them (Vietnamese → English) */}

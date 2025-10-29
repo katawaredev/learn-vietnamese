@@ -8,6 +8,7 @@ interface PopoverProps {
 	className?: string;
 	buttonClassName?: string;
 	defaultOpen?: boolean;
+	disabled?: boolean;
 }
 
 export function Popover({
@@ -16,12 +17,14 @@ export function Popover({
 	className,
 	buttonClassName,
 	defaultOpen = false,
+	disabled = false,
 }: PopoverProps) {
 	return (
 		<BasePopover.Root defaultOpen={defaultOpen}>
 			<BasePopover.Trigger
+				disabled={disabled}
 				className={twMerge(
-					"rounded-full p-1 text-gold transition-colors hover:text-warm-cream focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-burgundy-dark",
+					"rounded-full p-1 text-gold transition-colors hover:text-warm-cream focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-burgundy-dark disabled:cursor-not-allowed disabled:opacity-50",
 					buttonClassName,
 				)}
 			>
