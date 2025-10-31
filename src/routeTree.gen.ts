@@ -26,7 +26,9 @@ import { Route as PronunciationTonesRouteImport } from './routes/pronunciation/t
 import { Route as PronunciationPracticeRouteImport } from './routes/pronunciation/practice'
 import { Route as PronunciationDoubleVowelsRouteImport } from './routes/pronunciation/double-vowels'
 import { Route as PronunciationConsonantsRouteImport } from './routes/pronunciation/consonants'
+import { Route as NumbersTimeRouteImport } from './routes/numbers/time'
 import { Route as NumbersPracticeRouteImport } from './routes/numbers/practice'
+import { Route as NumbersDatesRouteImport } from './routes/numbers/dates'
 import { Route as NumbersCountingRouteImport } from './routes/numbers/counting'
 import { Route as DictationSpeakSlugRouteImport } from './routes/dictation/speak.$slug'
 import { Route as DictationListenSlugRouteImport } from './routes/dictation/listen.$slug'
@@ -117,9 +119,19 @@ const PronunciationConsonantsRoute = PronunciationConsonantsRouteImport.update({
   path: '/pronunciation/consonants',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NumbersTimeRoute = NumbersTimeRouteImport.update({
+  id: '/numbers/time',
+  path: '/numbers/time',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NumbersPracticeRoute = NumbersPracticeRouteImport.update({
   id: '/numbers/practice',
   path: '/numbers/practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NumbersDatesRoute = NumbersDatesRouteImport.update({
+  id: '/numbers/dates',
+  path: '/numbers/dates',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NumbersCountingRoute = NumbersCountingRouteImport.update({
@@ -144,7 +156,9 @@ export interface FileRoutesByFullPath {
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
   '/numbers/counting': typeof NumbersCountingRoute
+  '/numbers/dates': typeof NumbersDatesRoute
   '/numbers/practice': typeof NumbersPracticeRoute
+  '/numbers/time': typeof NumbersTimeRoute
   '/pronunciation/consonants': typeof PronunciationConsonantsRoute
   '/pronunciation/double-vowels': typeof PronunciationDoubleVowelsRoute
   '/pronunciation/practice': typeof PronunciationPracticeRoute
@@ -167,7 +181,9 @@ export interface FileRoutesByTo {
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
   '/numbers/counting': typeof NumbersCountingRoute
+  '/numbers/dates': typeof NumbersDatesRoute
   '/numbers/practice': typeof NumbersPracticeRoute
+  '/numbers/time': typeof NumbersTimeRoute
   '/pronunciation/consonants': typeof PronunciationConsonantsRoute
   '/pronunciation/double-vowels': typeof PronunciationDoubleVowelsRoute
   '/pronunciation/practice': typeof PronunciationPracticeRoute
@@ -191,7 +207,9 @@ export interface FileRoutesById {
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
   '/numbers/counting': typeof NumbersCountingRoute
+  '/numbers/dates': typeof NumbersDatesRoute
   '/numbers/practice': typeof NumbersPracticeRoute
+  '/numbers/time': typeof NumbersTimeRoute
   '/pronunciation/consonants': typeof PronunciationConsonantsRoute
   '/pronunciation/double-vowels': typeof PronunciationDoubleVowelsRoute
   '/pronunciation/practice': typeof PronunciationPracticeRoute
@@ -216,7 +234,9 @@ export interface FileRouteTypes {
     | '/flag'
     | '/showcase'
     | '/numbers/counting'
+    | '/numbers/dates'
     | '/numbers/practice'
+    | '/numbers/time'
     | '/pronunciation/consonants'
     | '/pronunciation/double-vowels'
     | '/pronunciation/practice'
@@ -239,7 +259,9 @@ export interface FileRouteTypes {
     | '/flag'
     | '/showcase'
     | '/numbers/counting'
+    | '/numbers/dates'
     | '/numbers/practice'
+    | '/numbers/time'
     | '/pronunciation/consonants'
     | '/pronunciation/double-vowels'
     | '/pronunciation/practice'
@@ -262,7 +284,9 @@ export interface FileRouteTypes {
     | '/flag'
     | '/showcase'
     | '/numbers/counting'
+    | '/numbers/dates'
     | '/numbers/practice'
+    | '/numbers/time'
     | '/pronunciation/consonants'
     | '/pronunciation/double-vowels'
     | '/pronunciation/practice'
@@ -286,7 +310,9 @@ export interface RootRouteChildren {
   FlagRoute: typeof FlagRoute
   ShowcaseRoute: typeof ShowcaseRoute
   NumbersCountingRoute: typeof NumbersCountingRoute
+  NumbersDatesRoute: typeof NumbersDatesRoute
   NumbersPracticeRoute: typeof NumbersPracticeRoute
+  NumbersTimeRoute: typeof NumbersTimeRoute
   PronunciationConsonantsRoute: typeof PronunciationConsonantsRoute
   PronunciationDoubleVowelsRoute: typeof PronunciationDoubleVowelsRoute
   PronunciationPracticeRoute: typeof PronunciationPracticeRoute
@@ -425,11 +451,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PronunciationConsonantsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/numbers/time': {
+      id: '/numbers/time'
+      path: '/numbers/time'
+      fullPath: '/numbers/time'
+      preLoaderRoute: typeof NumbersTimeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/numbers/practice': {
       id: '/numbers/practice'
       path: '/numbers/practice'
       fullPath: '/numbers/practice'
       preLoaderRoute: typeof NumbersPracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/numbers/dates': {
+      id: '/numbers/dates'
+      path: '/numbers/dates'
+      fullPath: '/numbers/dates'
+      preLoaderRoute: typeof NumbersDatesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/numbers/counting': {
@@ -462,7 +502,9 @@ const rootRouteChildren: RootRouteChildren = {
   FlagRoute: FlagRoute,
   ShowcaseRoute: ShowcaseRoute,
   NumbersCountingRoute: NumbersCountingRoute,
+  NumbersDatesRoute: NumbersDatesRoute,
   NumbersPracticeRoute: NumbersPracticeRoute,
+  NumbersTimeRoute: NumbersTimeRoute,
   PronunciationConsonantsRoute: PronunciationConsonantsRoute,
   PronunciationDoubleVowelsRoute: PronunciationDoubleVowelsRoute,
   PronunciationPracticeRoute: PronunciationPracticeRoute,

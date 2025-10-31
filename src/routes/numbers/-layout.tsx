@@ -7,6 +7,8 @@ import {
 
 export const numbersRoutes: ModuleRoute[] = [
 	{ label: "Counting", path: "/numbers/counting" },
+	{ label: "Dates", path: "/numbers/dates" },
+	{ label: "Time", path: "/numbers/time" },
 	{ label: "Practice", path: "/numbers/practice" },
 ];
 
