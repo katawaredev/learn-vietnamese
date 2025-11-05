@@ -17,7 +17,7 @@ export const Route = createFileRoute("/numbers/time")({
 interface TimeData {
 	value: string;
 	type: "period" | "duration" | "time";
-	unit?: string;
+	unit?: DurationUnit | "rưỡi";
 	numericValue?: number | { hour: number; minute: number };
 }
 
@@ -41,7 +41,9 @@ function generateTimePeriodData(): Record<string, TimeData> {
  * Generates duration unit vocabulary (just the unit words).
  */
 function generateDurationUnits(): Record<string, TimeData> {
-	return Object.entries(DURATION_UNITS).reduce(
+	return (
+		Object.entries(DURATION_UNITS) as Array<[DurationUnit, string]>
+	).reduce(
 		(acc, [unit]) => {
 			acc[unit] = {
 				value: unit,
@@ -54,7 +56,7 @@ function generateDurationUnits(): Record<string, TimeData> {
 			rưỡi: {
 				value: "rưỡi",
 				type: "duration",
-				unit: "rưỡi" as any,
+				unit: "rưỡi",
 			},
 		} as Record<string, TimeData>,
 	);
@@ -120,13 +122,13 @@ function generateExamples(): Record<string, TimeData> {
 	data["một giờ rưỡi"] = {
 		value: "một giờ rưỡi",
 		type: "duration",
-		unit: "rưỡi" as any,
+		unit: "rưỡi",
 		numericValue: 1.5,
 	};
 	data["ba giờ rưỡi"] = {
 		value: "ba giờ rưỡi",
 		type: "duration",
-		unit: "rưỡi" as any,
+		unit: "rưỡi",
 		numericValue: 3.5,
 	};
 

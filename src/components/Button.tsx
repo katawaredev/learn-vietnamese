@@ -4,16 +4,16 @@ import type { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
 export const buttonVariants = cva(
-	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold rounded-2xl",
+	"rounded-2xl font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold",
 	{
 		variants: {
 			variant: {
 				default:
-					"bg-gold text-burgundy-dark hover:bg-gold border-2 border-transparent",
+					"border-2 border-transparent bg-gold text-burgundy-dark hover:bg-gold",
 				outline:
-					"bg-transparent border-2 border-gold text-gold hover:bg-gold hover:text-burgundy",
+					"border-2 border-gold bg-transparent text-gold hover:bg-gold hover:text-burgundy",
 				ghost:
-					"bg-transparent text-gold hover:text-warm-cream hover:bg-gold/10 border-2 border-transparent",
+					"border-2 border-transparent bg-transparent text-gold hover:bg-gold/10 hover:text-warm-cream",
 			},
 			size: {
 				small: "px-3 py-1.5 text-sm",

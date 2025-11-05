@@ -4,7 +4,7 @@ import type { ComponentType } from "react";
 import { twMerge } from "tailwind-merge";
 
 const toggleButtonVariants = cva(
-	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold rounded-2xl flex items-center gap-2 justify-center cursor-pointer",
+	"flex cursor-pointer items-center justify-center gap-2 rounded-2xl font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold",
 	{
 		variants: {
 			size: {
@@ -13,9 +13,9 @@ const toggleButtonVariants = cva(
 				large: "px-6 py-4 text-2xl",
 			},
 			checked: {
-				true: "bg-gold text-burgundy-dark hover:bg-gold border-2 border-transparent",
+				true: "border-2 border-transparent bg-gold text-burgundy-dark hover:bg-gold",
 				false:
-					"bg-transparent border-2 border-gold text-gold hover:bg-gold hover:text-burgundy",
+					"border-2 border-gold bg-transparent text-gold hover:bg-gold hover:text-burgundy",
 			},
 		},
 		defaultVariants: {

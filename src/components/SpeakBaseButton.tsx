@@ -7,13 +7,13 @@ import { StateIndicator } from "./StateIndicator";
 export type SpeechState = "idle" | "processing" | "speaking" | "ended";
 
 const buttonVariants = cva(
-	"relative rounded-full border-0 flex items-center justify-center select-none transition-all duration-200 ease-in-out shadow-lg",
+	"relative flex select-none items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out",
 	{
 		variants: {
 			size: {
-				small: "w-12 h-12",
-				medium: "w-16 h-16",
-				large: "w-20 h-20",
+				small: "h-12 w-12",
+				medium: "h-16 w-16",
+				large: "h-20 w-20",
 			},
 			state: {
 				idle: "bg-sky-800 shadow-sky-800/25",
@@ -32,7 +32,7 @@ const buttonVariants = cva(
 				state: "idle",
 				disabled: false,
 				className:
-					"cursor-pointer hover:bg-sky-800 hover:shadow-xl transform hover:scale-105 active:scale-95",
+					"transform cursor-pointer hover:scale-105 hover:bg-sky-800 hover:shadow-xl active:scale-95",
 			},
 			{
 				state: "speaking",
@@ -48,7 +48,7 @@ const buttonVariants = cva(
 				state: "ended",
 				disabled: false,
 				className:
-					"cursor-pointer hover:bg-sky-800 hover:shadow-xl transform hover:scale-105 active:scale-95",
+					"transform cursor-pointer hover:scale-105 hover:bg-sky-800 hover:shadow-xl active:scale-95",
 			},
 		],
 		defaultVariants: {

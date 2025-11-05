@@ -5,7 +5,7 @@ import type { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
 const toggleGroupVariants = cva(
-	"inline-flex border-2 border-gold overflow-hidden",
+	"inline-flex overflow-hidden border-2 border-gold",
 	{
 		variants: {
 			orientation: {
@@ -20,7 +20,7 @@ const toggleGroupVariants = cva(
 );
 
 const toggleVariants = cva(
-	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-inset flex items-center gap-2 justify-center cursor-pointer border-gold",
+	"flex cursor-pointer items-center justify-center gap-2 border-gold font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-inset",
 	{
 		variants: {
 			size: {

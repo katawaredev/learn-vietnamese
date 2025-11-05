@@ -5,18 +5,18 @@ import { twMerge } from "tailwind-merge";
 import { Popover } from "./Popover";
 
 const buttonVariants = cva(
-	"relative rounded-full border-0 flex items-center justify-center select-none transition-all duration-200 ease-in-out shadow-lg bg-stone-800 shadow-stone-800/25",
+	"relative flex select-none items-center justify-center rounded-full border-0 bg-stone-800 shadow-lg shadow-stone-800/25 transition-all duration-200 ease-in-out",
 	{
 		variants: {
 			size: {
-				small: "w-12 h-12",
-				medium: "w-16 h-16",
-				large: "w-20 h-20",
+				small: "h-12 w-12",
+				medium: "h-16 w-16",
+				large: "h-20 w-20",
 			},
 			disabled: {
 				true: "cursor-not-allowed",
 				false:
-					"cursor-pointer hover:bg-stone-900 hover:shadow-xl transform hover:scale-105 active:scale-95",
+					"transform cursor-pointer hover:scale-105 hover:bg-stone-900 hover:shadow-xl active:scale-95",
 			},
 		},
 		defaultVariants: {

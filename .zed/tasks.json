@@ -1,0 +1,12 @@
+[
+	{
+		"label": "check",
+		"command": "npm",
+		"args": ["run", "check"]
+	},
+	{
+		"label": "typecheck",
+		"command": "npm",
+		"args": ["run", "typecheck"]
+	}
+]

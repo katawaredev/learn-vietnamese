@@ -8,19 +8,19 @@ import { StateIndicator } from "./StateIndicator";
 export type SendButtonState = "idle" | "sending" | "loading" | "generating";
 
 const buttonVariants = cva(
-	"relative rounded-full border-0 flex items-center justify-center cursor-pointer select-none transition-all duration-200 ease-in-out shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95",
+	"relative flex transform cursor-pointer select-none items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-xl active:scale-95",
 	{
 		variants: {
 			size: {
-				small: "w-12 h-12",
-				medium: "w-16 h-16",
-				large: "w-20 h-20",
+				small: "h-12 w-12",
+				medium: "h-16 w-16",
+				large: "h-20 w-20",
 			},
 			state: {
-				idle: "bg-sky-700 hover:bg-sky-800 shadow-sky-700/25",
+				idle: "bg-sky-700 shadow-sky-700/25 hover:bg-sky-800",
 				sending: "bg-sky-800 shadow-sky-700/45",
-				loading: "bg-sky-700 cursor-wait",
-				generating: "bg-sky-700 hover:bg-sky-800 shadow-sky-700/25",
+				loading: "cursor-wait bg-sky-700",
+				generating: "bg-sky-700 shadow-sky-700/25 hover:bg-sky-800",
 			},
 		},
 		defaultVariants: {

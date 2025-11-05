@@ -36,8 +36,8 @@ Users can select provider in settings. AI provides better quality; Web Speech pr
 ```bash
 git clone https://github.com/katawaredev/learn-vietnamese.git
 cd learn-vietnamese
-bun install  # or npm install
-bun dev      # or npm run dev
+npm install
+npm run dev
 ```
 
 Open <http://localhost:3000>
@@ -54,10 +54,10 @@ Check WebGPU: <https://webgpureport.org>
 ## Development
 
 ```bash
-bun dev        # Dev server
-bun build      # Production build
-bun check      # Lint + format
-bun typecheck  # TypeScript typechecks
+npm run dev        # Dev server
+npm run build      # Production build
+npm run check      # Lint + format
+npm run typecheck  # TypeScript typechecks
 ```
 
 ### Project Structure

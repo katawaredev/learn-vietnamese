@@ -1,7 +1,7 @@
 {
 	"files.exclude": {
 		"node_modules": true,
-		"bun.lock": true,
+		"package-lock.json": true,
 		".nitro": true,
 		".output": true,
 		".tanstack": true

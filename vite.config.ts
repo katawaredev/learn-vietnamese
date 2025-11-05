@@ -12,7 +12,11 @@ const config = defineConfig(({ mode }) => ({
 		}),
 		tailwindcss(),
 		tanstackStart(),
-		viteReact(),
+		viteReact({
+			babel: {
+				plugins: ["babel-plugin-react-compiler"],
+			},
+		}),
 	],
 	worker: {
 		format: "es",

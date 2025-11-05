@@ -5,7 +5,7 @@ import { Fragment } from "react";
 import { twMerge } from "tailwind-merge";
 
 const selectTriggerVariants = cva(
-	"font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold rounded-2xl bg-gold text-burgundy-dark hover:bg-gold border-2 border-transparent w-full flex items-center justify-between",
+	"flex w-full items-center justify-between rounded-2xl border-2 border-transparent bg-gold font-serif text-burgundy-dark transition-all duration-200 hover:bg-gold focus:outline-none focus:ring-2 focus:ring-gold",
 	{
 		variants: {
 			size: {
@@ -21,7 +21,7 @@ const selectTriggerVariants = cva(
 );
 
 const selectItemVariants = cva(
-	"flex items-center gap-2 w-full text-left font-serif transition-colors duration-200 focus:outline-none bg-white/5 text-warm-cream hover:bg-gold hover:text-burgundy-dark focus:bg-gold focus:text-burgundy-dark data-[highlighted]:bg-gold data-[highlighted]:text-burgundy-dark border-b border-white/10 last:border-b-0",
+	"flex w-full items-center gap-2 border-white/10 border-b bg-white/5 text-left font-serif text-warm-cream transition-colors duration-200 last:border-b-0 hover:bg-gold hover:text-burgundy-dark focus:bg-gold focus:text-burgundy-dark focus:outline-none data-[highlighted]:bg-gold data-[highlighted]:text-burgundy-dark",
 	{
 		variants: {
 			size: {
