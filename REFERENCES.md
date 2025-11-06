@@ -12,3 +12,6 @@
 - [How to learn Vietnamese language, alphabet and pronunciation?](https://polyglotclub.com/help/language-learning-tips/vietnamese-language)
 - [Vietnamese language](https://en.wikipedia.org/wiki/Vietnamese_language)
 - [Common Pronunciation Errors among Vietnamese Learners of English from Phonological Perspectives](https://www.ijsshr.in/v7i5/Doc/74.pdf)
+- [Vietnamese grammar](https://en.wikipedia.org/wiki/Vietnamese_grammar)
+- [Vietnamese common classifiers](https://learnvietnamese.com.vn/en/vietnamese-common-classifiers.html)
+- [Vietnamese Sentence Structure: #1 Basic Vietnamese Grammar](https://ling-app.com/blog/vietnamese-sentence-structure/)

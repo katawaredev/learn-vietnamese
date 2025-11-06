@@ -1,0 +1,234 @@
+[
+	{
+		"classifier": "Người",
+		"meaning": "People",
+		"usage": "People, woman, man, children",
+		"examples": "một người phụ nữ (one woman), hai người đàn ông (two men), ba người bạn (three friends)",
+		"notes": "General classifier for people; use 'vị' for respected/high-status people (teachers, leaders, monks)",
+		"priority": 1
+	},
+	{
+		"classifier": "Cái",
+		"meaning": "Thing, piece",
+		"usage": "Shirt, trouser, dress, chair, table, bag, hat, bowl, plate, spoon, fork, watch, clock, glass, bottle, machine",
+		"examples": "một cái bàn (one table), hai cái ghế (two chairs), ba cái áo (three shirts)",
+		"notes": "Default classifier for most inanimate objects; when unsure, use this",
+		"priority": 1
+	},
+	{
+		"classifier": "Con",
+		"meaning": "Animal",
+		"usage": "Animal, doll, road, river",
+		"examples": "một con mèo (one cat), hai con chó (two dogs), ba con gà (three chickens)",
+		"notes": "Anything that can move itself",
+		"priority": 1
+	},
+	{
+		"classifier": "Chiếc",
+		"meaning": "One",
+		"usage": "Car, motorcycle, ship, airplane",
+		"examples": "một chiếc xe hơi (one car), hai chiếc xe máy (two motorcycles), ba chiếc thuyền (three boats)",
+		"notes": "Used for vehicles and singular items",
+		"priority": 1
+	},
+	{
+		"classifier": "Quyển",
+		"meaning": "Book",
+		"usage": "Book, notebook, magazine",
+		"examples": "một quyển sách (one book), hai quyển vở (two notebooks), ba quyển tạp chí (three magazines)",
+		"notes": "Used for book-like objects",
+		"priority": 1
+	},
+	{
+		"classifier": "Quả",
+		"meaning": "Fruit",
+		"usage": "Fruit, ball, mountain",
+		"examples": "một quả táo (one apple), hai quả cam (two oranges), ba quả bóng (three balls)",
+		"notes": "Used for round or spherical objects",
+		"priority": 2
+	},
+	{
+		"classifier": "Cây",
+		"meaning": "Tree",
+		"usage": "Pen, pencil, umbrella, lipstick, tree",
+		"examples": "một cây bút (one pen), hai cây dù (two umbrellas), ba cái cây (three trees)",
+		"notes": "Used for stick-like or elongated objects. When 'cây' is used as a noun for 'tree', it requires the classifier 'cái'.",
+		"priority": 2
+	},
+	{
+		"classifier": "Bộ",
+		"meaning": "Set",
+		"usage": "Clothes, movie, drama, story",
+		"examples": "một bộ quần áo (one set of clothes), hai bộ phim (two movies), ba bộ bàn ghế (three furniture sets)",
+		"notes": "Used for sets or collections",
+		"priority": 2
+	},
+	{
+		"classifier": "Đôi",
+		"meaning": "Couple",
+		"usage": "Shoes, chopstick",
+		"examples": "một đôi giày (one pair of shoes), hai đôi đũa (two pairs of chopsticks), ba đôi tất (three pairs of socks)",
+		"notes": "Used for pairs of items",
+		"priority": 2
+	},
+	{
+		"classifier": "Ly",
+		"meaning": "Glass",
+		"usage": "Glass of water, glass of beer",
+		"examples": "một ly nước (one glass of water), hai ly bia (two glasses of beer), ba ly cà phê (three cups of coffee)",
+		"notes": "Measure word for glasses",
+		"priority": 2
+	},
+	{
+		"classifier": "Tách",
+		"meaning": "Cup",
+		"usage": "Cup of tea, cup of coffee",
+		"examples": "một tách trà (one cup of tea), hai tách cà phê (two cups of coffee), ba tách sữa (three cups of milk)",
+		"notes": "Measure word for cups",
+		"priority": 2
+	},
+	{
+		"classifier": "Chén",
+		"meaning": "Small bowl",
+		"usage": "Bowl of soup, bowl of rice",
+		"examples": "một chén cơm (one bowl of rice), hai chén súp (two bowls of soup), ba chén cháo (three bowls of porridge)",
+		"notes": "Measure word for bowls",
+		"priority": 2
+	},
+	{
+		"classifier": "Chai",
+		"meaning": "Bottle",
+		"usage": "Bottle of beer, bottle of water",
+		"examples": "một chai bia (one bottle of beer), hai chai nước (two bottles of water), ba chai rượu (three bottles of wine)",
+		"notes": "Measure word for bottles",
+		"priority": 2
+	},
+	{
+		"classifier": "Món",
+		"meaning": "Thing, kind",
+		"usage": "Food, goods",
+		"examples": "một món ăn (one dish), hai món quà (two gifts), ba món hàng (three items/goods)",
+		"notes": "Used for dishes, gifts, or items",
+		"priority": 2
+	},
+	{
+		"classifier": "Miếng",
+		"meaning": "Piece",
+		"usage": "Piece of bread, piece of meat, piece of cookie",
+		"examples": "một miếng bánh (one piece of cake), hai miếng thịt (two pieces of meat), ba miếng kẹo (three pieces of candy)",
+		"notes": "Measure word for small pieces or portions",
+		"priority": 2
+	},
+	{
+		"classifier": "Lần",
+		"meaning": "Time",
+		"usage": "Time",
+		"examples": "một lần (one time), hai lần (two times), ba lần (three times)",
+		"notes": "Used for counting occurrences or instances",
+		"priority": 2
+	},
+	{
+		"classifier": "Dĩa",
+		"meaning": "Plate",
+		"usage": "Food",
+		"examples": "một dĩa cơm (one plate of rice), hai dĩa rau (two plates of vegetables), ba dĩa trái cây (three plates of fruit)",
+		"notes": "Measure word for plates of food",
+		"priority": 3
+	},
+	{
+		"classifier": "Thỏi",
+		"meaning": "Ingot",
+		"usage": "Lipstick, gold",
+		"examples": "một thỏi son (one lipstick), hai thỏi vàng (two gold bars), ba thỏi chocolate (three chocolate bars)",
+		"notes": "Used for bar-shaped objects",
+		"priority": 3
+	},
+	{
+		"classifier": "Cục",
+		"meaning": "Chunk",
+		"usage": "Soap, candy, stone",
+		"examples": "một cục xà phòng (one bar of soap), hai cục đá (two stones), ba cục kẹo (three candies)",
+		"notes": "Used for lumpy or chunky objects",
+		"priority": 3
+	},
+	{
+		"classifier": "Sợi",
+		"meaning": "Line",
+		"usage": "Necklace, string, hair, thread",
+		"examples": "một sợi dây (one string), hai sợi tóc (two strands of hair), ba sợi chỉ (three threads)",
+		"notes": "Used for thin, linear objects",
+		"priority": 3
+	},
+	{
+		"classifier": "Chỗ",
+		"meaning": "Place",
+		"usage": "Seat",
+		"examples": "một chỗ ngồi (one seat), hai chỗ đứng (two standing places), ba chỗ trống (three empty spots)",
+		"notes": "Used for places or locations",
+		"priority": 3
+	},
+	{
+		"classifier": "Cuộn",
+		"meaning": "Reel",
+		"usage": "Tape, cassette, string, thread",
+		"examples": "một cuộn băng (one roll of tape), hai cuộn giấy (two rolls of paper), ba cuộn chỉ (three spools of thread)",
+		"notes": "Used for rolled or coiled objects",
+		"priority": 3
+	},
+	{
+		"classifier": "Điếu",
+		"meaning": "Roll",
+		"usage": "Cigarette",
+		"examples": "một điếu thuốc (one cigarette), hai điếu xì gà (two cigars), ba điếu thuốc lá (three cigarettes)",
+		"notes": "Used for cylindrical rolled items",
+		"priority": 3
+	},
+	{
+		"classifier": "Gói",
+		"meaning": "Pack",
+		"usage": "Gift pack, candy pack, cookie pack, anything is packed",
+		"examples": "một gói kẹo (one pack of candy), hai gói quà (two gift packages), ba gói bánh (three packs of cookies)",
+		"notes": "Used for packaged items",
+		"priority": 3
+	},
+	{
+		"classifier": "Chuyện",
+		"meaning": "Story",
+		"usage": "Story",
+		"examples": "một chuyện cười (one joke/funny story), hai chuyện buồn (two sad stories), ba chuyện kể (three tales)",
+		"notes": "Used for stories or matters",
+		"priority": 3
+	},
+	{
+		"classifier": "Bản",
+		"meaning": "Version",
+		"usage": "Contract, document, copy",
+		"examples": "một bản hợp đồng (one contract), hai bản báo cáo (two reports), ba bản sao (three copies)",
+		"notes": "Used for documents and copies",
+		"priority": 3
+	},
+	{
+		"classifier": "Ngôi",
+		"meaning": "House",
+		"usage": "House, star",
+		"examples": "một ngôi nhà (one house), hai ngôi sao (two stars), ba ngôi chùa (three temples)",
+		"notes": "Used for buildings and celestial objects",
+		"priority": 3
+	},
+	{
+		"classifier": "Bông",
+		"meaning": "Flower",
+		"usage": "Flower",
+		"examples": "một bông hoa (one flower), hai bông hồng (two roses), ba bông sen (three lotus flowers)",
+		"notes": "Used for flowers",
+		"priority": 3
+	},
+	{
+		"classifier": "Phòng",
+		"meaning": "Room",
+		"usage": "Room",
+		"examples": "một phòng ngủ (one bedroom), hai phòng khách (two living rooms), ba phòng tắm (three bathrooms)",
+		"notes": "Used for rooms",
+		"priority": 3
+	}
+]
