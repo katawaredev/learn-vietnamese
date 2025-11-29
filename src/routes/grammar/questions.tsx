@@ -1,100 +1,395 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Disclosure } from "~/components/Disclosure";
+import { SpeakButton } from "~/components/SpeakButton";
+import questionsData from "~/data/grammar/questions.json";
+import { PracticeGrid } from "~/layout/PracticeGrid";
+import { GRAMMAR_TYPE_COLORS } from "~/routes/grammar/-grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/questions")({
 	component: QuestionsComponent,
 });
 
-/**
- * TODO: Implement Questions page
- *
- * Three types of questions in Vietnamese:
- *
- * 1. QUESTIONS WITH A QUESTION WORD
- *    Question words:
- *    - Cái gì (What)
- *    - Khi nào (When)
- *    - Tại sao (Why)
- *    - Bằng cách nào (How - manner)
- *    - Như thế nào (How - manner or feeling)
- *    - Ai (Who, Whom)
- *    - Của Ai (Whose)
- *    - Cái nào (Which)
- *    - Ở đâu (Where)
- *
- *    Two patterns:
- *    Pattern 1: Question word + Subject + Verb + Object + ?
- *    Example: "Tại sao bạn thích món ăn Việt Nam?"
- *             (Why do you like Vietnamese food?)
- *
- *    Pattern 2: Subject + Verb + Object + Question word + ?
- *    Example: "Bạn cảm thấy như thế nào?"
- *             (How do you feel?)
- *
- *    Note: Unlike English, Vietnamese doesn't move question words
- *    (no wh-movement). They stay in logical position.
- *
- * 2. YES-NO QUESTIONS
- *    Add these particles at the end of SVO:
- *    - không (simple yes/no)
- *    - phải không (seeking confirmation)
- *    - đúng không (you...don't you?)
- *    - phải chứ
- *    - đúng chứ
- *    - được không
- *    - được chứ
- *    - chứ
- *    - nhỉ
- *    - hả
- *
- *    Examples:
- *    - "Bạn thích du lịch không?" (Do you like traveling?)
- *    - "Bạn thích du lịch đúng không?" (You like traveling, don't you?)
- *
- *    The second shows a guess and asks for confirmation.
- *
- * 3. RHETORICAL QUESTIONS (Câu hỏi tu từ)
- *    Questions that express opinion/feeling, not requiring answer.
- *    Used in writing to trigger curiosity.
- *
- *    Phrases to start:
- *    - chẳng phải
- *    - có lẽ nào
- *    - phải chăng
- *    - liệu rằng
- *
- *    Pattern: [phrase] + SVO + ?
- *    Example: "Chẳng phải đã đến lúc chúng ta phải hành động?"
- *             (It's time to have action, isn't it?)
- *
- * Data structure suggestion:
- * - Create questions.json
- * - Group by type: question-word, yes-no, rhetorical
- * - Include: Vietnamese, English, type, pattern
- * - Show correct word order
- *
- * Component structure:
- * - Disclosure for introduction (3 types overview)
- * - Section 1: Question words with examples
- *   - Grid or table of question words
- *   - Pattern explanations with visual diagrams
- *   - Interactive examples
- * - Section 2: Yes-no questions
- *   - List of particles with nuance differences
- *   - Side-by-side comparisons
- * - Section 3: Rhetorical questions
- *   - Examples from literature
- *   - Practice forming rhetorical questions
- */
+interface BreakdownItem {
+	type: string;
+	meaning: string;
+}
+
+interface Example {
+	vietnamese: string;
+	breakdown: Record<string, BreakdownItem>;
+	english: string;
+	literalEnglish?: string;
+	comparison?: string;
+	notes?: string;
+	particleUsed?: string;
+}
+
+interface Pattern {
+	id: string;
+	title: string;
+	description: string;
+	structure: string;
+	examples: Example[];
+}
+
+interface QuestionWord {
+	vietnamese: string;
+	english: string;
+	usage: string;
+	example: string;
+}
+
+interface Particle {
+	vietnamese: string;
+	english: string;
+	nuance: string;
+	formality: string;
+	example: string;
+}
+
+interface RhetoricalPhrase {
+	vietnamese: string;
+	english: string;
+	usage: string;
+	example: string;
+}
+
+interface QuestionType {
+	id: string;
+	title: string;
+	description: string;
+	questionWords?: QuestionWord[];
+	patterns?: Pattern[];
+	particles?: Particle[];
+	phrases?: RhetoricalPhrase[];
+	examples?: Example[];
+}
+
+function AnnotatedSentence({ example }: { example: Example }) {
+	// Strip subscript numbers from display
+	const stripSubscript = (text: string) => text.replace(/[₀-₉]+$/, "");
+
+	return (
+		<div className="space-y-4 rounded-lg border border-white/10 bg-white/5 p-6">
+			{/* Vietnamese sentence with color-coded words */}
+			<div className="flex flex-wrap items-center gap-3">
+				{Object.entries(example.breakdown).map(([word, info]) => (
+					<div key={word} className="text-center">
+						<div
+							className={`font-bold text-xl ${GRAMMAR_TYPE_COLORS[info.type] || "text-white"}`}
+						>
+							{stripSubscript(word)}
+						</div>
+						<div className="mt-1 text-white/50 text-xs">{info.type}</div>
+					</div>
+				))}
+				<SpeakButton text={example.vietnamese} size="small" />
+			</div>
+
+			{/* Breakdown with meanings */}
+			<div className="grid gap-2 border-white/10 border-t pt-4">
+				{Object.entries(example.breakdown).map(([word, info]) => (
+					<div key={word} className="flex items-baseline gap-3 text-sm">
+						<span
+							className={`font-mono font-semibold ${GRAMMAR_TYPE_COLORS[info.type] || "text-white"}`}
+						>
+							{stripSubscript(word)}
+						</span>
+						<span className="text-white/40">→</span>
+						<span className="text-white/70">{info.meaning}</span>
+						<span className="text-white/40 text-xs italic">({info.type})</span>
+					</div>
+				))}
+			</div>
+
+			{/* English translation */}
+			<div className="border-white/10 border-t pt-4">
+				<div className="text-sm text-white/50">English:</div>
+				<div className="font-semibold text-gold">{example.english}</div>
+				{example.literalEnglish && (
+					<div className="mt-1 text-sm text-white/50 italic">
+						Literal: {example.literalEnglish}
+					</div>
+				)}
+			</div>
+
+			{/* Comparison or particle info */}
+			{example.comparison && (
+				<div className="rounded border border-white/10 bg-white/5 p-3 text-sm">
+					<div className="font-semibold text-white/70">Comparison:</div>
+					<div className="mt-1 font-mono text-white/60">
+						{example.comparison}
+					</div>
+				</div>
+			)}
+
+			{example.particleUsed && (
+				<div className="rounded border border-white/10 bg-white/5 p-3 text-sm">
+					<div className="font-semibold text-white/70">
+						Particle: <span className="text-gold">{example.particleUsed}</span>
+					</div>
+				</div>
+			)}
+
+			{example.notes && (
+				<div className="text-sm text-white/60 italic">
+					<span className="text-gold">Note:</span> {example.notes}
+				</div>
+			)}
+		</div>
+	);
+}
 
 function QuestionsComponent() {
+	const data = questionsData as unknown as {
+		introduction: {
+			title: string;
+			content: string[];
+		};
+		questionTypes: QuestionType[];
+		practiceSentences: Array<{
+			vietnamese: string;
+			english: string;
+			type: string;
+			difficulty: string;
+		}>;
+	};
+
+	// Prepare practice data for PracticeGrid
+	const practiceData = data.practiceSentences.reduce(
+		(acc, sentence) => {
+			acc[sentence.vietnamese] = {
+				meaning: sentence.english,
+				type: sentence.type,
+				difficulty: sentence.difficulty,
+			};
+			return acc;
+		},
+		{} as Record<string, { meaning: string; type: string; difficulty: string }>,
+	);
+
 	return (
 		<Layout>
-			<div className="space-y-6">
-				<h1 className="font-bold font-serif text-3xl text-gold">Questions</h1>
-				<p className="text-lg text-white/70">
-					Content coming soon. Check the source code for implementation notes.
-				</p>
+			<div className="space-y-8">
+				<Disclosure
+					className="w-full"
+					title={
+						<span className="font-bold text-gold text-lg">
+							Understanding Vietnamese Questions
+						</span>
+					}
+				>
+					<div className="space-y-4">
+						{data.introduction.content.map((paragraph) => (
+							<p key={paragraph.slice(0, 50)}>{paragraph}</p>
+						))}
+
+						<div className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
+							<p className="font-semibold text-gold">Three Question Types:</p>
+							<ul className="mt-2 ml-6 list-disc space-y-2">
+								<li>
+									<strong>Wh-Questions:</strong> Use question words (who, what,
+									where, when, why, how) that stay in logical position
+								</li>
+								<li>
+									<strong>Yes-No Questions:</strong> Add particles at the end
+									(không, phải không, etc.) with different nuances
+								</li>
+								<li>
+									<strong>Rhetorical Questions:</strong> Express opinions or
+									feelings without expecting answers
+								</li>
+							</ul>
+						</div>
+					</div>
+				</Disclosure>
+
+				{/* Question Types Sections */}
+				{data.questionTypes.map((type) => (
+					<div key={type.id} className="space-y-6">
+						<div>
+							<h2 className="font-bold font-serif text-2xl text-gold">
+								{type.title}
+							</h2>
+							<p className="mt-2 text-white/70">{type.description}</p>
+						</div>
+
+						{/* Question Words Table */}
+						{type.questionWords && (
+							<div className="space-y-4">
+								<h3 className="font-semibold text-lg text-white">
+									Question Words:
+								</h3>
+								<div className="grid gap-3">
+									{type.questionWords.map((qw) => (
+										<div
+											key={qw.vietnamese}
+											className="flex items-start gap-4 rounded-lg border border-white/10 bg-white/5 p-4"
+										>
+											<div className="flex-shrink-0">
+												<div className="font-bold text-pink-500 text-xl">
+													{qw.vietnamese}
+												</div>
+												<div className="text-sm text-white/50">
+													{qw.english}
+												</div>
+											</div>
+											<div className="flex-grow">
+												<div className="text-sm text-white/70">{qw.usage}</div>
+												<div className="mt-2 font-mono text-sm text-warm-cream">
+													{qw.example}
+												</div>
+											</div>
+										</div>
+									))}
+								</div>
+							</div>
+						)}
+
+						{/* Patterns with Examples */}
+						{type.patterns?.map((pattern) => (
+							<div key={pattern.id} className="space-y-4">
+								<div className="rounded-lg border border-gold/30 bg-gold/5 p-5">
+									<div className="mb-2 font-semibold text-gold">
+										{pattern.title}
+									</div>
+									<div className="text-sm text-white/70">
+										{pattern.description}
+									</div>
+									<div className="mt-2 font-mono text-sm text-white/60">
+										Pattern: {pattern.structure}
+									</div>
+								</div>
+
+								<div className="space-y-4">
+									{pattern.examples.map((example) => (
+										<AnnotatedSentence
+											key={example.vietnamese}
+											example={example}
+										/>
+									))}
+								</div>
+							</div>
+						))}
+
+						{/* Particles Table */}
+						{type.particles && (
+							<div className="space-y-4">
+								<h3 className="font-semibold text-lg text-white">
+									Question Particles & Their Nuances:
+								</h3>
+								<div className="grid gap-3">
+									{type.particles.map((particle) => (
+										<div
+											key={particle.vietnamese}
+											className="flex items-start gap-4 rounded-lg border border-white/10 bg-white/5 p-4"
+										>
+											<div className="w-32 flex-shrink-0">
+												<div className="font-bold text-lg text-orange-400">
+													{particle.vietnamese}
+												</div>
+												<div className="text-white/50 text-xs">
+													{particle.formality}
+												</div>
+											</div>
+											<div className="flex-grow">
+												<div className="font-semibold text-sm text-white">
+													{particle.english}
+												</div>
+												<div className="mt-1 text-sm text-white/60">
+													{particle.nuance}
+												</div>
+												<div className="mt-2 font-mono text-sm text-warm-cream">
+													{particle.example}
+												</div>
+											</div>
+										</div>
+									))}
+								</div>
+							</div>
+						)}
+
+						{/* Rhetorical Phrases */}
+						{type.phrases && (
+							<div className="space-y-4">
+								<h3 className="font-semibold text-lg text-white">
+									Rhetorical Question Phrases:
+								</h3>
+								<div className="grid gap-3">
+									{type.phrases.map((phrase) => (
+										<div
+											key={phrase.vietnamese}
+											className="flex items-start gap-4 rounded-lg border border-white/10 bg-white/5 p-4"
+										>
+											<div className="flex-shrink-0">
+												<div className="font-bold text-lg text-rose-500">
+													{phrase.vietnamese}
+												</div>
+												<div className="text-sm text-white/50">
+													{phrase.english}
+												</div>
+											</div>
+											<div className="flex-grow">
+												<div className="text-sm text-white/70">
+													{phrase.usage}
+												</div>
+												<div className="mt-2 font-mono text-sm text-warm-cream">
+													{phrase.example}
+												</div>
+											</div>
+										</div>
+									))}
+								</div>
+							</div>
+						)}
+
+						{/* Examples */}
+						{type.examples && type.examples.length > 0 && (
+							<div className="space-y-4">
+								<h3 className="font-semibold text-lg text-white">Examples:</h3>
+								{type.examples.map((example) => (
+									<AnnotatedSentence
+										key={example.vietnamese}
+										example={example}
+									/>
+								))}
+							</div>
+						)}
+					</div>
+				))}
+
+				{/* Practice Section */}
+				<div className="space-y-6 border-white/10 border-t pt-8">
+					<div>
+						<h2 className="font-bold font-serif text-2xl text-gold">
+							Practice Questions
+						</h2>
+						<p className="mt-2 text-sm text-white/60">
+							Try asking these questions to practice different question types
+						</p>
+					</div>
+
+					<PracticeGrid<{ meaning: string; type: string; difficulty: string }>
+						data={practiceData}
+						getSubtitle={(item) => item.meaning}
+						getDetails={(vietnamese, item) => ({
+							Vietnamese: <span className="text-warm-cream">{vietnamese}</span>,
+							English: (
+								<span className="font-bold text-gold">{item.meaning}</span>
+							),
+							Type:
+								item.type === "wh-question"
+									? "Wh-Question"
+									: item.type === "yes-no"
+										? "Yes-No Question"
+										: "Rhetorical",
+							Difficulty:
+								item.difficulty.charAt(0).toUpperCase() +
+								item.difficulty.slice(1),
+						})}
+					/>
+				</div>
 			</div>
 		</Layout>
 	);

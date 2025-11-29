@@ -1,0 +1,608 @@
+{
+	"introduction": {
+		"title": "Vietnamese Modal Verbs",
+		"content": [
+			"Vietnamese modal verbs express necessity, possibility, ability, permission, and willingness. Unlike English, they always come BEFORE the main verb—no exceptions.",
+			"The critical distinction: Vietnamese has separate modals for 'learned ability' (biết), 'permission/acquired ability' (được), and 'general possibility' (có thể). English 'can' maps to all three depending on context.",
+			"Modal verbs in Vietnamese are simpler structurally than English but require precision in choosing the right modal for the intended meaning."
+		]
+	},
+	"modalCategories": [
+		{
+			"id": "necessity",
+			"title": "Necessity and Obligation",
+			"description": "Expressing what must, should, or needs to be done. Vietnamese has a clear strength hierarchy: phải (strongest) → cần (need) → nên (advice).",
+			"modals": [
+				{
+					"vietnamese": "phải",
+					"english": "must, have to",
+					"strength": "strongest",
+					"usage": "Obligation, necessity, or logical conclusion",
+					"negation": "không phải (don't have to / is not)",
+					"position": "before verb",
+					"keyPoint": "Also used for logical conclusions, like 'must be' in English"
+				},
+				{
+					"vietnamese": "cần",
+					"english": "need to",
+					"strength": "medium",
+					"usage": "Need or requirement (weaker than phải)",
+					"negation": "không cần (don't need to)",
+					"position": "before verb",
+					"keyPoint": "Can also take a noun object: 'tôi cần tiền' (I need money)"
+				},
+				{
+					"vietnamese": "nên",
+					"english": "should, ought to",
+					"strength": "weak (advice)",
+					"usage": "Advice or recommendation, not obligation",
+					"negation": "không nên (shouldn't)",
+					"position": "before verb",
+					"keyPoint": "Pure advice—no obligation implied"
+				},
+				{
+					"vietnamese": "hãy",
+					"english": "should, let's (imperative suggestion)",
+					"strength": "weak (encouraging)",
+					"usage": "Polite suggestion or encouragement",
+					"negation": "đừng (don't - different word)",
+					"position": "before verb",
+					"keyPoint": "More polite/encouraging than direct command. Often no subject."
+				}
+			],
+			"examples": [
+				{
+					"vietnamese": "Tôi phải đi làm",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"phải": { "type": "modal", "meaning": "must" },
+						"đi": { "type": "verb", "meaning": "go" },
+						"làm": { "type": "verb", "meaning": "work" }
+					},
+					"english": "I must go to work / I have to go to work",
+					"literalEnglish": "I must go work",
+					"notes": "Strong obligation—not optional"
+				},
+				{
+					"vietnamese": "Anh ấy phải là người Việt",
+					"breakdown": {
+						"Anh ấy": { "type": "subject", "meaning": "He" },
+						"phải": { "type": "modal", "meaning": "must (logical)" },
+						"là": { "type": "verb", "meaning": "be" },
+						"người Việt": { "type": "object", "meaning": "Vietnamese person" }
+					},
+					"english": "He must be Vietnamese",
+					"literalEnglish": "He must be Vietnamese person",
+					"notes": "Logical conclusion—not obligation. 'phải' as deductive reasoning."
+				},
+				{
+					"vietnamese": "Tôi cần nghỉ ngơi",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"cần": { "type": "modal", "meaning": "need" },
+						"nghỉ ngơi": { "type": "verb", "meaning": "rest" }
+					},
+					"english": "I need to rest",
+					"literalEnglish": "I need rest",
+					"notes": "Expressing need—less forceful than 'phải'"
+				},
+				{
+					"vietnamese": "Bạn nên đi ngủ sớm",
+					"breakdown": {
+						"Bạn": { "type": "subject", "meaning": "You" },
+						"nên": { "type": "modal", "meaning": "should" },
+						"đi ngủ": { "type": "verb", "meaning": "go sleep" },
+						"sớm": { "type": "adverb", "meaning": "early" }
+					},
+					"english": "You should go to bed early",
+					"literalEnglish": "You should go sleep early",
+					"notes": "Advice, not command—recipient can choose to ignore"
+				},
+				{
+					"vietnamese": "Hãy cố gắng!",
+					"breakdown": {
+						"Hãy": { "type": "modal", "meaning": "let's / please" },
+						"cố gắng": { "type": "verb", "meaning": "try hard" }
+					},
+					"english": "Try hard! / Do your best!",
+					"literalEnglish": "Please try.hard",
+					"notes": "Encouraging imperative—softer than direct command"
+				}
+			]
+		},
+		{
+			"id": "ability",
+			"title": "Ability and Possibility",
+			"description": "Vietnamese makes crucial distinctions English doesn't: có thể (general ability/possibility), được (permission/acquired ability), and biết (learned skill). Mastering these differences is essential.",
+			"modals": [
+				{
+					"vietnamese": "có thể",
+					"english": "can, may, might",
+					"nuance": "General ability, permission, or possibility",
+					"usage": "Most versatile modal—covers ability, permission, and possibility",
+					"negation": "không thể (cannot)",
+					"position": "before verb",
+					"keyPoint": "Default 'can' in most contexts"
+				},
+				{
+					"vietnamese": "được",
+					"english": "can, may (permission/acquired)",
+					"nuance": "Permission granted or ability acquired through authorization",
+					"usage": "Permission or ability gained (like getting a license)",
+					"negation": "không được (not allowed, cannot)",
+					"position": "before verb",
+					"keyPoint": "Implies someone gave permission or you acquired the right"
+				},
+				{
+					"vietnamese": "biết",
+					"english": "know how to, can (skill)",
+					"nuance": "Learned skill or knowledge",
+					"usage": "Skills acquired through learning or practice",
+					"negation": "không biết (don't know how to)",
+					"position": "before verb",
+					"keyPoint": "Only for learned abilities—swimming, languages, skills"
+				}
+			],
+			"distinctions": {
+				"title": "Critical Distinction: có thể vs được vs biết",
+				"explanation": "All three can translate to 'can' in English, but they have completely different meanings in Vietnamese.",
+				"comparison": [
+					{
+						"scenario": "Swimming",
+						"examples": [
+							{
+								"vietnamese": "Tôi có thể bơi",
+								"english": "I can swim",
+								"meaning": "I am able to swim (physically capable, or it's possible)"
+							},
+							{
+								"vietnamese": "Tôi được bơi",
+								"english": "I'm allowed to swim",
+								"meaning": "I have permission to swim (someone said it's okay)"
+							},
+							{
+								"vietnamese": "Tôi biết bơi",
+								"english": "I know how to swim",
+								"meaning": "I have the skill of swimming (I learned it)"
+							}
+						]
+					},
+					{
+						"scenario": "Driving",
+						"examples": [
+							{
+								"vietnamese": "Bây giờ tôi được lái xe rồi",
+								"english": "Now I can drive",
+								"meaning": "Now I'm allowed to drive (I got my license)"
+							},
+							{
+								"vietnamese": "Tôi biết lái xe",
+								"english": "I can drive / I know how to drive",
+								"meaning": "I have the skill of driving"
+							},
+							{
+								"vietnamese": "Tôi có thể lái xe đến đó",
+								"english": "I can drive there",
+								"meaning": "I'm able to drive there (it's possible)"
+							}
+						]
+					}
+				]
+			},
+			"examples": [
+				{
+					"vietnamese": "Tôi có thể nói tiếng Việt",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"có thể": { "type": "modal", "meaning": "can" },
+						"nói": { "type": "verb", "meaning": "speak" },
+						"tiếng Việt": { "type": "object", "meaning": "Vietnamese language" }
+					},
+					"english": "I can speak Vietnamese",
+					"literalEnglish": "I can speak Vietnamese",
+					"notes": "General ability—could also use 'biết' for learned skill"
+				},
+				{
+					"vietnamese": "Trời có thể mưa",
+					"breakdown": {
+						"Trời": { "type": "subject", "meaning": "Sky/Weather" },
+						"có thể": { "type": "modal", "meaning": "might" },
+						"mưa": { "type": "verb", "meaning": "rain" }
+					},
+					"english": "It might rain",
+					"literalEnglish": "Sky might rain",
+					"notes": "Possibility—'có thể' expressing future possibility"
+				},
+				{
+					"vietnamese": "Bạn có thể ngồi đây",
+					"breakdown": {
+						"Bạn": { "type": "subject", "meaning": "You" },
+						"có thể": { "type": "modal", "meaning": "can/may" },
+						"ngồi": { "type": "verb", "meaning": "sit" },
+						"đây": { "type": "location", "meaning": "here" }
+					},
+					"english": "You can sit here / You may sit here",
+					"literalEnglish": "You can sit here",
+					"notes": "Permission—giving someone permission to sit"
+				},
+				{
+					"vietnamese": "Chúng ta được phép nói chuyện",
+					"breakdown": {
+						"Chúng ta": { "type": "subject", "meaning": "We" },
+						"được phép": { "type": "modal", "meaning": "are allowed" },
+						"nói chuyện": { "type": "verb", "meaning": "talk/chat" }
+					},
+					"english": "We're allowed to talk",
+					"literalEnglish": "We allowed talk",
+					"notes": "Permission explicitly granted—'được phép' is more explicit than 'được' alone"
+				},
+				{
+					"vietnamese": "Anh ấy biết bơi",
+					"breakdown": {
+						"Anh ấy": { "type": "subject", "meaning": "He" },
+						"biết": { "type": "modal", "meaning": "know how to" },
+						"bơi": { "type": "verb", "meaning": "swim" }
+					},
+					"english": "He knows how to swim / He can swim",
+					"literalEnglish": "He know swim",
+					"notes": "Learned skill—he learned how to swim"
+				},
+				{
+					"vietnamese": "Tôi không thể đến",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"không thể": { "type": "modal", "meaning": "cannot" },
+						"đến": { "type": "verb", "meaning": "come/arrive" }
+					},
+					"english": "I can't come",
+					"literalEnglish": "I cannot come",
+					"notes": "Negative ability—'không thể' is standard negation"
+				}
+			]
+		},
+		{
+			"id": "willingness",
+			"title": "Willingness and Intention",
+			"description": "Expressing wants, plans, willingness, and courage. These modals reveal the subject's mental state or intentions.",
+			"modals": [
+				{
+					"vietnamese": "muốn",
+					"english": "want to",
+					"nuance": "Desire or wish",
+					"usage": "Expressing wants and desires",
+					"negation": "không muốn (don't want to)",
+					"position": "before verb",
+					"keyPoint": "Pure desire—no commitment implied"
+				},
+				{
+					"vietnamese": "định",
+					"english": "intend to, plan to",
+					"nuance": "Intention or plan (more committed than muốn)",
+					"usage": "Expressing plans and intentions",
+					"negation": "không định (don't intend to)",
+					"position": "before verb",
+					"keyPoint": "Implies a formed plan, not just a wish"
+				},
+				{
+					"vietnamese": "sẵn sàng",
+					"english": "willing to, ready to",
+					"nuance": "Willingness or readiness",
+					"usage": "Expressing willingness or preparedness",
+					"negation": "không sẵn sàng (not willing/ready)",
+					"position": "before verb",
+					"keyPoint": "Emphasizes readiness and willingness to act"
+				},
+				{
+					"vietnamese": "dám",
+					"english": "dare to",
+					"nuance": "Courage or boldness",
+					"usage": "Expressing courage to do something (often difficult/scary)",
+					"negation": "không dám (don't dare to)",
+					"position": "before verb",
+					"keyPoint": "Implies the action requires courage or is risky"
+				}
+			],
+			"examples": [
+				{
+					"vietnamese": "Tôi muốn đi du lịch",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"muốn": { "type": "modal", "meaning": "want" },
+						"đi du lịch": { "type": "verb", "meaning": "travel" }
+					},
+					"english": "I want to travel",
+					"literalEnglish": "I want go travel",
+					"notes": "Simple desire—no plan made yet"
+				},
+				{
+					"vietnamese": "Tôi định đi Hà Nội tuần sau",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"định": { "type": "modal", "meaning": "plan to" },
+						"đi": { "type": "verb", "meaning": "go" },
+						"Hà Nội": { "type": "object", "meaning": "Hanoi" },
+						"tuần sau": { "type": "time", "meaning": "next week" }
+					},
+					"english": "I plan to go to Hanoi next week",
+					"literalEnglish": "I plan go Hanoi week next",
+					"notes": "Formed intention—stronger than just wanting"
+				},
+				{
+					"vietnamese": "Tôi sẵn sàng giúp bạn",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"sẵn sàng": { "type": "modal", "meaning": "willing to / ready to" },
+						"giúp": { "type": "verb", "meaning": "help" },
+						"bạn": { "type": "object", "meaning": "you" }
+					},
+					"english": "I'm willing to help you / I'm ready to help you",
+					"literalEnglish": "I willing help you",
+					"notes": "Expressing willingness and readiness"
+				},
+				{
+					"vietnamese": "Anh ấy không dám nhảy",
+					"breakdown": {
+						"Anh ấy": { "type": "subject", "meaning": "He" },
+						"không": { "type": "negation", "meaning": "not" },
+						"dám": { "type": "modal", "meaning": "dare" },
+						"nhảy": { "type": "verb", "meaning": "jump" }
+					},
+					"english": "He doesn't dare to jump",
+					"literalEnglish": "He not dare jump",
+					"notes": "Lack of courage—'dám' implies the action requires bravery"
+				}
+			]
+		},
+		{
+			"id": "combinations",
+			"title": "Combining Modals",
+			"description": "Vietnamese allows stacking multiple modals to create nuanced meanings. Common combinations follow logical patterns: possibility + necessity, ability + necessity, etc.",
+			"patterns": [
+				{
+					"pattern": "có thể + phải",
+					"meaning": "might have to / may need to",
+					"explanation": "Combining possibility with necessity"
+				},
+				{
+					"pattern": "nên + có thể",
+					"meaning": "should be able to",
+					"explanation": "Advice combined with ability"
+				},
+				{
+					"pattern": "phải + biết",
+					"meaning": "must know how to",
+					"explanation": "Necessity combined with learned skill"
+				},
+				{
+					"pattern": "muốn + có thể",
+					"meaning": "want to be able to",
+					"explanation": "Desire combined with ability"
+				}
+			],
+			"examples": [
+				{
+					"vietnamese": "Tôi có thể phải đi sớm",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"có thể": { "type": "modal", "meaning": "might" },
+						"phải": { "type": "modal", "meaning": "have to" },
+						"đi": { "type": "verb", "meaning": "go/leave" },
+						"sớm": { "type": "adverb", "meaning": "early" }
+					},
+					"english": "I might have to leave early",
+					"literalEnglish": "I might must go early",
+					"notes": "Possibility + obligation: uncertain obligation"
+				},
+				{
+					"vietnamese": "Bạn nên có thể làm được",
+					"breakdown": {
+						"Bạn": { "type": "subject", "meaning": "You" },
+						"nên": { "type": "modal", "meaning": "should" },
+						"có thể": { "type": "modal", "meaning": "be able to" },
+						"làm được": { "type": "verb", "meaning": "do successfully" }
+					},
+					"english": "You should be able to do it",
+					"literalEnglish": "You should can do successfully",
+					"notes": "Advice + ability: advising that ability exists"
+				},
+				{
+					"vietnamese": "Lái xe thì phải biết luật giao thông",
+					"breakdown": {
+						"Lái xe": { "type": "subject", "meaning": "Driving" },
+						"thì": { "type": "conditional", "meaning": "then / if" },
+						"phải": { "type": "modal", "meaning": "must" },
+						"biết": { "type": "modal", "meaning": "know" },
+						"luật giao thông": {
+							"type": "object",
+							"meaning": "traffic laws"
+						}
+					},
+					"english": "If you drive, you must know traffic laws",
+					"literalEnglish": "Drive then must know laws traffic",
+					"notes": "Necessity + knowledge: required knowledge"
+				}
+			]
+		}
+	],
+	"negationPatterns": {
+		"title": "Negation with Modal Verbs",
+		"description": "The negative particle 'không' comes BEFORE the modal verb. The pattern is consistent across all modals.",
+		"structure": "Subject + không + MODAL + Verb",
+		"specialCases": [
+			{
+				"modal": "phải",
+				"negation": "không phải",
+				"meanings": [
+					{
+						"context": "As modal: lack of obligation",
+						"example": "Bạn không phải đi",
+						"english": "You don't have to go"
+					},
+					{
+						"context": "As copula: negation of 'is'",
+						"example": "Anh ấy không phải là bác sĩ",
+						"english": "He is not a doctor"
+					}
+				],
+				"note": "'không phải' is ambiguous—context determines if it's 'don't have to' or 'is not'"
+			},
+			{
+				"modal": "được",
+				"negation": "không được",
+				"meanings": [
+					{
+						"context": "Prohibition (not allowed)",
+						"example": "Bạn không được hút thuốc ở đây",
+						"english": "You're not allowed to smoke here"
+					},
+					{
+						"context": "Inability (cannot)",
+						"example": "Tôi không được đi",
+						"english": "I can't go / I'm not allowed to go"
+					}
+				],
+				"note": "'không được' is stronger than 'không thể'—often implies prohibition"
+			}
+		],
+		"examples": [
+			{
+				"vietnamese": "Tôi không thể đến",
+				"breakdown": {
+					"Tôi": { "type": "subject", "meaning": "I" },
+					"không thể": { "type": "modal-negative", "meaning": "cannot" },
+					"đến": { "type": "verb", "meaning": "come" }
+				},
+				"english": "I can't come",
+				"pattern": "không + có thể"
+			},
+			{
+				"vietnamese": "Bạn không nên hút thuốc",
+				"breakdown": {
+					"Bạn": { "type": "subject", "meaning": "You" },
+					"không nên": { "type": "modal-negative", "meaning": "shouldn't" },
+					"hút thuốc": { "type": "verb", "meaning": "smoke" }
+				},
+				"english": "You shouldn't smoke",
+				"pattern": "không + nên"
+			},
+			{
+				"vietnamese": "Anh ấy không biết bơi",
+				"breakdown": {
+					"Anh ấy": { "type": "subject", "meaning": "He" },
+					"không biết": {
+						"type": "modal-negative",
+						"meaning": "doesn't know how to"
+					},
+					"bơi": { "type": "verb", "meaning": "swim" }
+				},
+				"english": "He doesn't know how to swim",
+				"pattern": "không + biết"
+			},
+			{
+				"vietnamese": "Chúng tôi không muốn đi",
+				"breakdown": {
+					"Chúng tôi": { "type": "subject", "meaning": "We" },
+					"không muốn": {
+						"type": "modal-negative",
+						"meaning": "don't want to"
+					},
+					"đi": { "type": "verb", "meaning": "go" }
+				},
+				"english": "We don't want to go",
+				"pattern": "không + muốn"
+			}
+		]
+	},
+	"practiceSentences": [
+		{
+			"vietnamese": "Tôi phải học tiếng Việt",
+			"english": "I must study Vietnamese",
+			"category": "necessity",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Bạn nên nghỉ ngơi",
+			"english": "You should rest",
+			"category": "necessity",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Tôi có thể giúp bạn",
+			"english": "I can help you",
+			"category": "ability",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Anh ấy biết nấu ăn",
+			"english": "He knows how to cook",
+			"category": "ability",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Tôi muốn đi chơi",
+			"english": "I want to go out",
+			"category": "willingness",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Chúng tôi không thể đến",
+			"english": "We can't come",
+			"category": "ability",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Bạn không nên làm vậy",
+			"english": "You shouldn't do that",
+			"category": "necessity",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Tôi cần mua sách",
+			"english": "I need to buy books",
+			"category": "necessity",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Anh ấy không dám thử",
+			"english": "He doesn't dare to try",
+			"category": "willingness",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Chúng ta được phép vào",
+			"english": "We're allowed to enter",
+			"category": "ability",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Tôi định học tiếng Pháp",
+			"english": "I plan to study French",
+			"category": "willingness",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Bạn có thể phải chờ",
+			"english": "You might have to wait",
+			"category": "combinations",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Trời có thể mưa chiều nay",
+			"english": "It might rain this afternoon",
+			"category": "ability",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Tôi sẵn sàng bắt đầu",
+			"english": "I'm ready to start",
+			"category": "willingness",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Anh ấy không được hút thuốc ở đây",
+			"english": "He's not allowed to smoke here",
+			"category": "ability",
+			"difficulty": "intermediate"
+		}
+	]
+}

@@ -1,0 +1,554 @@
+{
+	"introduction": {
+		"title": "Vietnamese Adjectives: Position and Function",
+		"content": [
+			"Vietnamese adjectives work fundamentally differently from English adjectives in three key ways:",
+			"1. POSITION: Adjectives come AFTER the noun they modify (opposite of English)",
+			"2. NO COPULA: No \"to be\" verb is needed when using adjectives as predicates",
+			"3. STATIVE VERBS: Vietnamese adjectives function as stative verbs - they can take tense markers and be negated directly"
+		]
+	},
+	"patterns": [
+		{
+			"type": "Attributive",
+			"description": "Adjectives modifying nouns",
+			"structure": "NOUN + ADJECTIVE",
+			"examples": [
+				{
+					"vietnamese": "con mèo đen",
+					"breakdown": {
+						"con": { "type": "classifier", "meaning": "classifier (animals)" },
+						"mèo": { "type": "noun", "meaning": "cat" },
+						"đen": { "type": "adjective", "meaning": "black" }
+					},
+					"english": "black cat",
+					"literalEnglish": "cat black"
+				},
+				{
+					"vietnamese": "cuốn sách hay",
+					"breakdown": {
+						"cuốn": { "type": "classifier", "meaning": "classifier (books)" },
+						"sách": { "type": "noun", "meaning": "book" },
+						"hay": { "type": "adjective", "meaning": "interesting" }
+					},
+					"english": "interesting book",
+					"literalEnglish": "book interesting"
+				},
+				{
+					"vietnamese": "người tốt",
+					"breakdown": {
+						"người": { "type": "noun", "meaning": "person" },
+						"tốt": { "type": "adjective", "meaning": "good" }
+					},
+					"english": "good person",
+					"literalEnglish": "person good"
+				}
+			]
+		},
+		{
+			"type": "Predicative",
+			"description": "Adjectives as sentence predicates (no 'to be' verb needed)",
+			"structure": "SUBJECT + ADJECTIVE",
+			"examples": [
+				{
+					"vietnamese": "Anh ấy thông minh",
+					"breakdown": {
+						"Anh ấy": { "type": "subject", "meaning": "he" },
+						"thông minh": { "type": "adjective", "meaning": "intelligent" }
+					},
+					"english": "He is intelligent",
+					"literalEnglish": "He intelligent",
+					"notes": "No verb 'to be' - the adjective acts as the predicate"
+				},
+				{
+					"vietnamese": "Cái này rẻ",
+					"breakdown": {
+						"Cái này": { "type": "subject", "meaning": "this (thing)" },
+						"rẻ": { "type": "adjective", "meaning": "cheap" }
+					},
+					"english": "This is cheap",
+					"literalEnglish": "This cheap"
+				},
+				{
+					"vietnamese": "Nhà đẹp",
+					"breakdown": {
+						"Nhà": { "type": "subject", "meaning": "house" },
+						"đẹp": { "type": "adjective", "meaning": "beautiful" }
+					},
+					"english": "The house is beautiful",
+					"literalEnglish": "House beautiful"
+				}
+			]
+		},
+		{
+			"type": "Multiple Adjectives",
+			"description": "When using multiple adjectives, order matters: General → Specific",
+			"structure": "NOUN + ADJ₁ (general) + ADJ₂ (specific)",
+			"examples": [
+				{
+					"vietnamese": "cô gái trẻ đẹp",
+					"breakdown": {
+						"cô gái": { "type": "noun", "meaning": "girl" },
+						"trẻ": { "type": "adjective", "meaning": "young" },
+						"đẹp": { "type": "adjective", "meaning": "beautiful" }
+					},
+					"english": "beautiful young girl",
+					"literalEnglish": "girl young beautiful",
+					"notes": "Order: general quality (age) before specific quality (appearance)"
+				},
+				{
+					"vietnamese": "cái bàn gỗ nhỏ cũ",
+					"breakdown": {
+						"cái": { "type": "classifier", "meaning": "classifier (objects)" },
+						"bàn": { "type": "noun", "meaning": "table" },
+						"gỗ": { "type": "adjective", "meaning": "wooden" },
+						"nhỏ": { "type": "adjective", "meaning": "small" },
+						"cũ": { "type": "adjective", "meaning": "old" }
+					},
+					"english": "small old wooden table",
+					"literalEnglish": "table wood small old",
+					"notes": "Order: material → size → age"
+				}
+			]
+		}
+	],
+	"intensifiers": [
+		{
+			"intensifier": "rất",
+			"meaning": "very",
+			"connotation": "neutral",
+			"strength": "moderate",
+			"examples": [
+				{
+					"vietnamese": "rất đẹp",
+					"english": "very beautiful"
+				},
+				{
+					"vietnamese": "rất lớn",
+					"english": "very big"
+				}
+			],
+			"notes": "Most common and neutral intensifier"
+		},
+		{
+			"intensifier": "quá",
+			"meaning": "too, so, excessively",
+			"connotation": "can be positive or negative",
+			"strength": "strong",
+			"examples": [
+				{
+					"vietnamese": "quá đắt",
+					"english": "too expensive",
+					"connotation": "negative"
+				},
+				{
+					"vietnamese": "quá tuyệt",
+					"english": "so wonderful!",
+					"connotation": "positive (enthusiastic)"
+				}
+			],
+			"notes": "Context-dependent: negative for problems, positive for excitement"
+		},
+		{
+			"intensifier": "hơi",
+			"meaning": "a bit, slightly",
+			"connotation": "often negative",
+			"strength": "mild",
+			"examples": [
+				{
+					"vietnamese": "hơi đắt",
+					"english": "a bit expensive"
+				},
+				{
+					"vietnamese": "hơi khó",
+					"english": "a bit difficult"
+				}
+			],
+			"notes": "Usually implies something is not ideal"
+		},
+		{
+			"intensifier": "khá",
+			"meaning": "quite, fairly",
+			"connotation": "positive",
+			"strength": "moderate",
+			"examples": [
+				{
+					"vietnamese": "khá tốt",
+					"english": "quite good"
+				},
+				{
+					"vietnamese": "khá đẹp",
+					"english": "fairly beautiful"
+				}
+			],
+			"notes": "Generally positive assessment"
+		},
+		{
+			"intensifier": "cực kỳ",
+			"meaning": "extremely",
+			"connotation": "neutral",
+			"strength": "very strong",
+			"examples": [
+				{
+					"vietnamese": "cực kỳ quan trọng",
+					"english": "extremely important"
+				},
+				{
+					"vietnamese": "cực kỳ nguy hiểm",
+					"english": "extremely dangerous"
+				}
+			],
+			"notes": "Stronger than 'rất', used for emphasis"
+		}
+	],
+	"reduplication": [
+		{
+			"type": "Full Reduplication",
+			"pattern": "ADJ + ADJ",
+			"effect": "Softens meaning, adds affection or uncertainty",
+			"examples": [
+				{
+					"base": "đẹp",
+					"reduplicated": "đẹp đẹp",
+					"baseMeaning": "beautiful",
+					"reduplicatedMeaning": "somewhat pretty, kinda pretty",
+					"vietnamese": "Cái áo này đẹp đẹp",
+					"english": "This shirt is kind of pretty"
+				},
+				{
+					"base": "nhỏ",
+					"reduplicated": "nhỏ nhỏ",
+					"baseMeaning": "small",
+					"reduplicatedMeaning": "rather small, quite small",
+					"vietnamese": "Con chó nhỏ nhỏ",
+					"english": "The dog is quite small"
+				},
+				{
+					"base": "đỏ",
+					"reduplicated": "đỏ đỏ",
+					"baseMeaning": "red",
+					"reduplicatedMeaning": "reddish",
+					"vietnamese": "Mặt anh ấy đỏ đỏ",
+					"english": "His face is reddish"
+				}
+			]
+		},
+		{
+			"type": "Partial Reduplication",
+			"pattern": "PREFIX + ADJ (with phonetic variation)",
+			"effect": "Creates refined or intensified meaning",
+			"examples": [
+				{
+					"base": "sạch",
+					"reduplicated": "sạch sẽ",
+					"baseMeaning": "clean",
+					"reduplicatedMeaning": "clean and tidy, neat",
+					"vietnamese": "Phòng này sạch sẽ",
+					"english": "This room is clean and tidy"
+				},
+				{
+					"base": "đẹp",
+					"reduplicated": "đẹp đẽ",
+					"baseMeaning": "beautiful",
+					"reduplicatedMeaning": "beautiful, refined",
+					"vietnamese": "Cô ấy đẹp đẽ",
+					"english": "She is beautifully refined"
+				},
+				{
+					"base": "xinh",
+					"reduplicated": "xinh xinh",
+					"baseMeaning": "pretty",
+					"reduplicatedMeaning": "quite pretty",
+					"vietnamese": "Bông hoa xinh xinh",
+					"english": "The flower is quite pretty"
+				}
+			]
+		},
+		{
+			"type": "ABB Pattern",
+			"pattern": "A (base) + B (intensifier/modifier)",
+			"effect": "Creates compound adjectives with enhanced meaning",
+			"examples": [
+				{
+					"base": "nhỏ",
+					"reduplicated": "nhỏ nhắn",
+					"baseMeaning": "small",
+					"reduplicatedMeaning": "small and neat, petite",
+					"vietnamese": "Cô gái nhỏ nhắn",
+					"english": "The girl is petite"
+				},
+				{
+					"base": "đỏ",
+					"reduplicated": "đỏ rực",
+					"baseMeaning": "red",
+					"reduplicatedMeaning": "bright red, flaming red",
+					"vietnamese": "Hoa hồng đỏ rực",
+					"english": "Bright red roses"
+				}
+			]
+		}
+	],
+	"categories": {
+		"size": [
+			{ "adjective": "lớn", "meaning": "big, large" },
+			{ "adjective": "nhỏ", "meaning": "small" },
+			{ "adjective": "cao", "meaning": "tall, high" },
+			{ "adjective": "thấp", "meaning": "short, low" },
+			{ "adjective": "dài", "meaning": "long" },
+			{ "adjective": "ngắn", "meaning": "short (length)" },
+			{ "adjective": "rộng", "meaning": "wide, spacious" },
+			{ "adjective": "hẹp", "meaning": "narrow" }
+		],
+		"color": [
+			{ "adjective": "đỏ", "meaning": "red" },
+			{ "adjective": "xanh", "meaning": "blue/green" },
+			{ "adjective": "vàng", "meaning": "yellow" },
+			{ "adjective": "đen", "meaning": "black" },
+			{ "adjective": "trắng", "meaning": "white" },
+			{ "adjective": "hồng", "meaning": "pink" },
+			{ "adjective": "tím", "meaning": "purple" },
+			{ "adjective": "nâu", "meaning": "brown" }
+		],
+		"age": [
+			{ "adjective": "mới", "meaning": "new" },
+			{ "adjective": "cũ", "meaning": "old (things)" },
+			{ "adjective": "trẻ", "meaning": "young" },
+			{ "adjective": "già", "meaning": "old (people/animals)" }
+		],
+		"quality": [
+			{ "adjective": "tốt", "meaning": "good" },
+			{ "adjective": "xấu", "meaning": "bad" },
+			{ "adjective": "đẹp", "meaning": "beautiful" },
+			{ "adjective": "hay", "meaning": "interesting, good" },
+			{ "adjective": "dễ", "meaning": "easy" },
+			{ "adjective": "khó", "meaning": "difficult" },
+			{ "adjective": "quan trọng", "meaning": "important" },
+			{ "adjective": "thông minh", "meaning": "intelligent, smart" }
+		],
+		"emotion": [
+			{ "adjective": "vui", "meaning": "happy" },
+			{ "adjective": "buồn", "meaning": "sad" },
+			{ "adjective": "giận", "meaning": "angry" },
+			{ "adjective": "lo", "meaning": "worried" },
+			{ "adjective": "yêu", "meaning": "loving, beloved" },
+			{ "adjective": "ghét", "meaning": "hated, hateful" }
+		],
+		"physical state": [
+			{ "adjective": "nóng", "meaning": "hot" },
+			{ "adjective": "lạnh", "meaning": "cold" },
+			{ "adjective": "ướt", "meaning": "wet" },
+			{ "adjective": "khô", "meaning": "dry" },
+			{ "adjective": "sạch", "meaning": "clean" },
+			{ "adjective": "bẩn", "meaning": "dirty" },
+			{ "adjective": "mệt", "meaning": "tired" },
+			{ "adjective": "khỏe", "meaning": "healthy, strong" }
+		]
+	},
+	"practiceSentences": [
+		{
+			"vietnamese": "Cái áo này đẹp",
+			"breakdown": {
+				"Cái": { "type": "classifier", "meaning": "classifier (objects)" },
+				"áo": { "type": "noun", "meaning": "shirt" },
+				"này": { "type": "demonstrative", "meaning": "this" },
+				"đẹp": { "type": "adjective", "meaning": "beautiful" }
+			},
+			"english": "This shirt is beautiful",
+			"literalEnglish": "Classifier shirt this beautiful",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Tôi thích con mèo đen",
+			"breakdown": {
+				"Tôi": { "type": "subject", "meaning": "I" },
+				"thích": { "type": "verb", "meaning": "like" },
+				"con": { "type": "classifier", "meaning": "classifier (animals)" },
+				"mèo": { "type": "noun", "meaning": "cat" },
+				"đen": { "type": "adjective", "meaning": "black" }
+			},
+			"english": "I like the black cat",
+			"literalEnglish": "I like classifier cat black",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Nhà của tôi rất lớn",
+			"breakdown": {
+				"Nhà": { "type": "noun", "meaning": "house" },
+				"của": { "type": "particle", "meaning": "of, belonging to" },
+				"tôi": { "type": "subject", "meaning": "I, me" },
+				"rất": { "type": "intensifier", "meaning": "very" },
+				"lớn": { "type": "adjective", "meaning": "big" }
+			},
+			"english": "My house is very big",
+			"literalEnglish": "House of me very big",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Anh ấy thông minh và tốt bụng",
+			"breakdown": {
+				"Anh ấy": { "type": "subject", "meaning": "he" },
+				"thông minh": { "type": "adjective", "meaning": "intelligent" },
+				"và": { "type": "conjunction", "meaning": "and" },
+				"tốt bụng": { "type": "adjective", "meaning": "kind-hearted" }
+			},
+			"english": "He is intelligent and kind-hearted",
+			"literalEnglish": "He intelligent and kind-hearted",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Món ăn này hơi cay",
+			"breakdown": {
+				"Món ăn": { "type": "noun", "meaning": "dish, food" },
+				"này": { "type": "demonstrative", "meaning": "this" },
+				"hơi": { "type": "intensifier", "meaning": "a bit" },
+				"cay": { "type": "adjective", "meaning": "spicy" }
+			},
+			"english": "This dish is a bit spicy",
+			"literalEnglish": "Dish this a-bit spicy",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Cô gái trẻ đẹp đang đọc sách",
+			"breakdown": {
+				"Cô gái": { "type": "noun", "meaning": "girl" },
+				"trẻ": { "type": "adjective", "meaning": "young" },
+				"đẹp": { "type": "adjective", "meaning": "beautiful" },
+				"đang": { "type": "tense-marker", "meaning": "progressive marker" },
+				"đọc": { "type": "verb", "meaning": "read" },
+				"sách": { "type": "object", "meaning": "book" }
+			},
+			"english": "The beautiful young girl is reading a book",
+			"literalEnglish": "Girl young beautiful is-reading book",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Phim này quá hay",
+			"breakdown": {
+				"Phim": { "type": "noun", "meaning": "movie" },
+				"này": { "type": "demonstrative", "meaning": "this" },
+				"quá": { "type": "intensifier", "meaning": "so, very" },
+				"hay": { "type": "adjective", "meaning": "interesting, good" }
+			},
+			"english": "This movie is so good",
+			"literalEnglish": "Movie this so interesting",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Cái bàn gỗ cũ kia không đẹp",
+			"breakdown": {
+				"Cái": { "type": "classifier", "meaning": "classifier (objects)" },
+				"bàn": { "type": "noun", "meaning": "table" },
+				"gỗ": { "type": "adjective", "meaning": "wooden" },
+				"cũ": { "type": "adjective", "meaning": "old" },
+				"kia": { "type": "demonstrative", "meaning": "that" },
+				"không": { "type": "negation", "meaning": "not" },
+				"đẹp": { "type": "adjective", "meaning": "beautiful" }
+			},
+			"english": "That old wooden table is not beautiful",
+			"literalEnglish": "Classifier table wood old that not beautiful",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Em bé nhỏ nhỏ đang ngủ",
+			"breakdown": {
+				"Em bé": { "type": "noun", "meaning": "baby" },
+				"nhỏ nhỏ": {
+					"type": "adjective",
+					"meaning": "quite small (reduplicated)"
+				},
+				"đang": { "type": "tense-marker", "meaning": "progressive marker" },
+				"ngủ": { "type": "verb", "meaning": "sleep" }
+			},
+			"english": "The quite small baby is sleeping",
+			"literalEnglish": "Baby small-small is-sleeping",
+			"difficulty": "advanced",
+			"notes": "Example of full reduplication (nhỏ → nhỏ nhỏ)"
+		},
+		{
+			"vietnamese": "Phòng này sạch sẽ và rộng rãi",
+			"breakdown": {
+				"Phòng": { "type": "noun", "meaning": "room" },
+				"này": { "type": "demonstrative", "meaning": "this" },
+				"sạch sẽ": {
+					"type": "adjective",
+					"meaning": "clean and tidy (reduplicated)"
+				},
+				"và": { "type": "conjunction", "meaning": "and" },
+				"rộng rãi": {
+					"type": "adjective",
+					"meaning": "spacious (reduplicated)"
+				}
+			},
+			"english": "This room is clean and spacious",
+			"literalEnglish": "Room this clean-tidy and wide-spacious",
+			"difficulty": "advanced",
+			"notes": "Examples of partial reduplication"
+		},
+		{
+			"vietnamese": "Trời hôm nay cực kỳ nóng",
+			"breakdown": {
+				"Trời": { "type": "noun", "meaning": "weather, sky" },
+				"hôm nay": { "type": "time", "meaning": "today" },
+				"cực kỳ": { "type": "intensifier", "meaning": "extremely" },
+				"nóng": { "type": "adjective", "meaning": "hot" }
+			},
+			"english": "The weather today is extremely hot",
+			"literalEnglish": "Weather today extremely hot",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Anh ấy có vẻ mệt",
+			"breakdown": {
+				"Anh ấy": { "type": "subject", "meaning": "he" },
+				"có vẻ": { "type": "verb", "meaning": "seems, appears" },
+				"mệt": { "type": "adjective", "meaning": "tired" }
+			},
+			"english": "He seems tired",
+			"literalEnglish": "He has-appearance tired",
+			"difficulty": "intermediate",
+			"notes": "Using 'có vẻ' (seems) with adjectives"
+		},
+		{
+			"vietnamese": "Bài tập này khá khó",
+			"breakdown": {
+				"Bài tập": { "type": "noun", "meaning": "exercise, homework" },
+				"này": { "type": "demonstrative", "meaning": "this" },
+				"khá": { "type": "intensifier", "meaning": "quite" },
+				"khó": { "type": "adjective", "meaning": "difficult" }
+			},
+			"english": "This exercise is quite difficult",
+			"literalEnglish": "Exercise this quite difficult",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Cô ấy trông trẻ hơn tuổi thật",
+			"breakdown": {
+				"Cô ấy": { "type": "subject", "meaning": "she" },
+				"trông": { "type": "verb", "meaning": "looks, appears" },
+				"trẻ": { "type": "adjective", "meaning": "young" },
+				"hơn": { "type": "comparative", "meaning": "more than" },
+				"tuổi thật": { "type": "noun", "meaning": "real age" }
+			},
+			"english": "She looks younger than her real age",
+			"literalEnglish": "She looks young more-than age real",
+			"difficulty": "advanced",
+			"notes": "Using 'trông' (looks) with comparatives"
+		},
+		{
+			"vietnamese": "Cuốn sách cũ kia không hay lắm",
+			"breakdown": {
+				"Cuốn": { "type": "classifier", "meaning": "classifier (books)" },
+				"sách": { "type": "noun", "meaning": "book" },
+				"cũ": { "type": "adjective", "meaning": "old" },
+				"kia": { "type": "demonstrative", "meaning": "that" },
+				"không": { "type": "negation", "meaning": "not" },
+				"hay": { "type": "adjective", "meaning": "interesting" },
+				"lắm": { "type": "intensifier", "meaning": "very, much" }
+			},
+			"english": "That old book is not very interesting",
+			"literalEnglish": "Classifier book old that not interesting very",
+			"difficulty": "intermediate",
+			"notes": "Negation with intensifier 'lắm' (very)"
+		}
+	]
+}

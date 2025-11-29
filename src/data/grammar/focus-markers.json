@@ -1,0 +1,283 @@
+{
+	"introduction": {
+		"title": "Focus Markers (cái)",
+		"content": [
+			"The focus marker 'cái' is a special particle that indicates contrastive focus - emphasizing one element in contrast to others. It requires specific stress/intonation and must always appear before a classifier.",
+			"This is completely different from the classifier 'cái' used for inanimate objects. The focus marker 'cái' can work with any noun regardless of animacy."
+		]
+	},
+	"classifierVsFocus": {
+		"title": "Distinguishing: Classifier 'cái' vs Focus Marker 'cái'",
+		"description": "These are two different grammatical functions with the same form",
+		"comparison": [
+			{
+				"type": "Classifier cái",
+				"function": "Categorizes inanimate objects only",
+				"pattern": "cái + noun",
+				"examples": [
+					{
+						"vietnamese": "cái bàn",
+						"english": "table",
+						"valid": true,
+						"note": "bàn (table) is inanimate - OK"
+					},
+					{
+						"vietnamese": "cái chó",
+						"english": "dog",
+						"valid": false,
+						"note": "chó (dog) is animate - WRONG"
+					}
+				]
+			},
+			{
+				"type": "Focus Marker cái",
+				"function": "Adds contrastive emphasis to any noun phrase",
+				"pattern": "cái + classifier + noun",
+				"examples": [
+					{
+						"vietnamese": "cái con chó",
+						"english": "this very dog (emphasized)",
+						"valid": true,
+						"note": "Works with animate nouns"
+					},
+					{
+						"vietnamese": "cái cuốn sách",
+						"english": "this very book (emphasized)",
+						"valid": true,
+						"note": "Works with inanimate nouns"
+					},
+					{
+						"vietnamese": "cái người lính",
+						"english": "this very soldier (emphasized)",
+						"valid": true,
+						"note": "Works with human nouns"
+					}
+				]
+			}
+		]
+	},
+	"positionRules": {
+		"title": "Position and Requirements",
+		"rules": [
+			{
+				"rule": "Must come BEFORE the classifier",
+				"correct": "cái con chó này",
+				"correctEnglish": "this very dog",
+				"incorrect": "con cái chó này",
+				"explanation": "Focus marker precedes the classifier 'con'"
+			},
+			{
+				"rule": "Always requires a classifier",
+				"correct": "cái cuốn sách",
+				"correctEnglish": "this very book",
+				"incorrect": "cái sách",
+				"explanation": "Cannot stand alone, must have classifier 'cuốn'"
+			},
+			{
+				"rule": "Precedes numerals and other modifiers",
+				"correct": "hai cái con chó đen này",
+				"correctEnglish": "these very two black dogs",
+				"incorrect": "hai con cái chó đen này",
+				"explanation": "Pattern: numeral + cái + classifier + noun"
+			}
+		]
+	},
+	"contrastiveExamples": {
+		"title": "Contrastive Focus in Action",
+		"description": "The focus marker highlights specific elements. Different stress patterns change what's being contrasted.",
+		"examples": [
+			{
+				"id": "horse-color",
+				"scenario": "Emphasizing the color",
+				"withoutFocus": {
+					"vietnamese": "Tôi thích con ngựa đen",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"thích": { "type": "verb", "meaning": "like" },
+						"con": { "type": "classifier", "meaning": "[CL]" },
+						"ngựa": { "type": "object", "meaning": "horse" },
+						"đen": { "type": "adjective", "meaning": "black" }
+					},
+					"english": "I like the black horse",
+					"literal": "I like [CL] horse black"
+				},
+				"withFocus": {
+					"vietnamese": "Tôi thích CÁI con ngựa ĐEN",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"thích": { "type": "verb", "meaning": "like" },
+						"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
+						"con": { "type": "classifier", "meaning": "[CL]" },
+						"ngựa": { "type": "object", "meaning": "horse" },
+						"ĐEN": { "type": "adjective-stressed", "meaning": "BLACK" }
+					},
+					"english": "I like the BLACK horse (not other colors)",
+					"literal": "[FOCUS] [CL] horse BLACK",
+					"stressPattern": "CÁI receives stress, ĐEN receives stress"
+				},
+				"focusedElement": "color (đen)",
+				"connotation": "neutral",
+				"explanation": "Contrasts this horse's color with other horses"
+			},
+			{
+				"id": "horse-animal",
+				"scenario": "Emphasizing the animal type",
+				"withoutFocus": {
+					"vietnamese": "Tôi thích con ngựa đen",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"thích": { "type": "verb", "meaning": "like" },
+						"con": { "type": "classifier", "meaning": "[CL]" },
+						"ngựa": { "type": "object", "meaning": "horse" },
+						"đen": { "type": "adjective", "meaning": "black" }
+					},
+					"english": "I like the black horse",
+					"literal": "I like [CL] horse black"
+				},
+				"withFocus": {
+					"vietnamese": "Tôi thích CÁI con NGỰA đen",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"thích": { "type": "verb", "meaning": "like" },
+						"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
+						"con": { "type": "classifier", "meaning": "[CL]" },
+						"NGỰA": { "type": "object-stressed", "meaning": "HORSE" },
+						"đen": { "type": "adjective", "meaning": "black" }
+					},
+					"english": "I like the black HORSE (not other animals)",
+					"literal": "[FOCUS] [CL] HORSE black",
+					"stressPattern": "CÁI receives stress, NGỰA receives stress"
+				},
+				"focusedElement": "animal type (ngựa)",
+				"connotation": "neutral",
+				"explanation": "Contrasts horses with other black animals"
+			},
+			{
+				"id": "husband-dismissive",
+				"scenario": "Dismissive/pejorative usage",
+				"withoutFocus": {
+					"vietnamese": "Thằng chồng em nó đi làm",
+					"breakdown": {
+						"Thằng": { "type": "classifier", "meaning": "[CL-male]" },
+						"chồng": { "type": "object", "meaning": "husband" },
+						"em": { "type": "pronoun", "meaning": "younger sibling" },
+						"nó": { "type": "pronoun", "meaning": "she/he" },
+						"đi": { "type": "verb", "meaning": "go" },
+						"làm": { "type": "verb", "meaning": "work" }
+					},
+					"english": "Her husband went to work",
+					"literal": "[CL-male] husband younger-sibling she go work"
+				},
+				"withFocus": {
+					"vietnamese": "CÁI thằng CHỒNG em nó đi làm",
+					"breakdown": {
+						"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
+						"thằng": { "type": "classifier", "meaning": "[CL-male]" },
+						"CHỒNG": { "type": "object-stressed", "meaning": "HUSBAND" },
+						"em": { "type": "pronoun", "meaning": "younger sibling" },
+						"nó": { "type": "pronoun", "meaning": "she/he" },
+						"đi": { "type": "verb", "meaning": "go" },
+						"làm": { "type": "verb", "meaning": "work" }
+					},
+					"english": "That husband of hers went to work (dismissive)",
+					"literal": "[FOCUS] [CL-male] HUSBAND younger-sibling she go work",
+					"stressPattern": "CÁI receives stress, CHỒNG receives stress"
+				},
+				"focusedElement": "husband (chồng)",
+				"connotation": "dismissive",
+				"explanation": "The focus marker adds a pejorative or dismissive tone"
+			},
+			{
+				"id": "girl-positive",
+				"scenario": "Positive emphasis usage",
+				"withoutFocus": {
+					"vietnamese": "Con nhỏ tử tế lắm",
+					"breakdown": {
+						"Con": { "type": "classifier", "meaning": "[CL]" },
+						"nhỏ": { "type": "adjective", "meaning": "small/young" },
+						"tử tế": { "type": "adjective", "meaning": "kind" },
+						"lắm": { "type": "intensifier", "meaning": "very" }
+					},
+					"english": "The girl is very kind",
+					"literal": "[CL] small kind very"
+				},
+				"withFocus": {
+					"vietnamese": "CÁI con nhỏ TỬ TẾ lắm",
+					"breakdown": {
+						"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
+						"con": { "type": "classifier", "meaning": "[CL]" },
+						"nhỏ": { "type": "adjective", "meaning": "small/young" },
+						"TỬ TẾ": { "type": "adjective-stressed", "meaning": "KIND" },
+						"lắm": { "type": "intensifier", "meaning": "very" }
+					},
+					"english": "The girl is very KIND (positive emphasis)",
+					"literal": "[FOCUS] [CL] small KIND very",
+					"stressPattern": "CÁI receives stress, TỬ TẾ receives stress"
+				},
+				"focusedElement": "kindness (tử tế)",
+				"connotation": "positive",
+				"explanation": "Not always pejorative - can emphasize positive qualities"
+			}
+		]
+	},
+	"commonPhrases": {
+		"title": "Common Phrases with Focus Marker",
+		"phrases": [
+			{
+				"vietnamese": "CÁI con CHÓ này",
+				"breakdown": {
+					"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
+					"con": { "type": "classifier", "meaning": "[CL]" },
+					"CHÓ": { "type": "object-stressed", "meaning": "DOG" },
+					"này": { "type": "demonstrative", "meaning": "this" }
+				},
+				"english": "this very DOG (not cat, not other animals)",
+				"connotation": "neutral"
+			},
+			{
+				"vietnamese": "CÁI thằng NÀY",
+				"breakdown": {
+					"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
+					"thằng": { "type": "classifier", "meaning": "[CL-male]" },
+					"NÀY": { "type": "demonstrative-stressed", "meaning": "THIS" }
+				},
+				"english": "THIS guy (dismissive/pejorative)",
+				"connotation": "dismissive"
+			},
+			{
+				"vietnamese": "mấy CÁI con MÈO này",
+				"breakdown": {
+					"mấy": { "type": "quantifier", "meaning": "several" },
+					"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
+					"con": { "type": "classifier", "meaning": "[CL]" },
+					"MÈO": { "type": "object-stressed", "meaning": "CAT" },
+					"này": { "type": "demonstrative", "meaning": "these" }
+				},
+				"english": "these very CATS (not other animals)",
+				"connotation": "neutral"
+			}
+		]
+	},
+	"practiceSentences": [
+		{
+			"vietnamese": "CÁI con MÈO đen này dễ thương lắm",
+			"english": "This very BLACK CAT is very cute (emphasizing the cat)",
+			"difficulty": "easy"
+		},
+		{
+			"vietnamese": "Tôi không thích CÁI cái ÁO đỏ đó",
+			"english": "I don't like that very RED SHIRT (emphasizing the color)",
+			"difficulty": "medium"
+		},
+		{
+			"vietnamese": "CÁI thằng BẠN tôi nói chuyện với em",
+			"english": "That FRIEND of mine is talking to you (dismissive tone)",
+			"difficulty": "medium"
+		},
+		{
+			"vietnamese": "Hai CÁI con CHÓ ĐEN này là của tôi",
+			"english": "These two BLACK DOGS are mine (emphasizing the dogs)",
+			"difficulty": "hard"
+		}
+	]
+}

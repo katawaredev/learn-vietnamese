@@ -1,0 +1,544 @@
+{
+	"introduction": {
+		"title": "Vietnamese Passive Voice: Semantic Encoding",
+		"content": [
+			"Vietnamese passive voice fundamentally differs from English by encoding whether an action is POSITIVE or NEGATIVE for the subject. This semantic distinction is built into the grammar itself.",
+			"While English uses a neutral 'to be + past participle' structure, Vietnamese requires choosing between 'được' (positive/beneficial passive) and 'bị' (negative/detrimental passive).",
+			"This choice isn't about the verb itself, but about the PERCEPTION of the action's effect on the subject—making Vietnamese passive voice inherently evaluative."
+		]
+	},
+	"basicStructure": {
+		"title": "Two Passive Markers",
+		"description": "Vietnamese has two passive markers that encode the speaker's evaluation of the action",
+		"markers": [
+			{
+				"marker": "được",
+				"meaning": "passive (positive/neutral)",
+				"evaluation": "beneficial, desired, or neutral outcome",
+				"pattern": "SUBJECT + được + (AGENT) + VERB",
+				"commonWith": [
+					"khen (praise)",
+					"thưởng (reward)",
+					"tặng (give/gift)",
+					"chọn (choose)",
+					"mời (invite)",
+					"giúp (help)",
+					"yêu (love)",
+					"tôn trọng (respect)",
+					"thăng chức (promote)",
+					"chữa (cure)"
+				]
+			},
+			{
+				"marker": "bị",
+				"meaning": "passive (negative)",
+				"evaluation": "harmful, undesired, or detrimental outcome",
+				"pattern": "SUBJECT + bị + (AGENT) + VERB",
+				"commonWith": [
+					"mắng (scold)",
+					"phạt (punish)",
+					"đánh (hit)",
+					"lừa (deceive)",
+					"đuổi (chase away)",
+					"sa thải (fire)",
+					"từ chối (reject)",
+					"đánh cắp (steal)",
+					"phá hoại (destroy)",
+					"bắt (arrest)"
+				]
+			}
+		]
+	},
+	"positivePassive": {
+		"id": "duoc",
+		"title": "Positive Passive: được",
+		"description": "Used when the action benefits or doesn't harm the subject. The outcome is desirable, positive, or at least neutral.",
+		"pattern": "SUBJECT + được + (AGENT) + VERB + (OBJECT)",
+		"keyPoint": "'được' signals that the subject benefits from or welcomes the action",
+		"examples": [
+			{
+				"vietnamese": "Tôi được khen",
+				"breakdown": {
+					"Tôi": { "type": "subject", "meaning": "I" },
+					"được": {
+						"type": "passive-positive",
+						"meaning": "passive [positive]"
+					},
+					"khen": { "type": "verb", "meaning": "praise" }
+				},
+				"english": "I was praised",
+				"literalEnglish": "I PASSIVE.POSITIVE praise",
+				"notes": "Being praised is positive for the subject"
+			},
+			{
+				"vietnamese": "Anh ấy được thăng chức",
+				"breakdown": {
+					"Anh ấy": { "type": "subject", "meaning": "he" },
+					"được": {
+						"type": "passive-positive",
+						"meaning": "passive [positive]"
+					},
+					"thăng chức": { "type": "verb", "meaning": "promote" }
+				},
+				"english": "He was promoted",
+				"literalEnglish": "He PASSIVE.POSITIVE promote",
+				"notes": "Promotion is beneficial"
+			},
+			{
+				"vietnamese": "Cuốn sách này được viết bởi Nguyễn Du",
+				"breakdown": {
+					"Cuốn": { "type": "classifier", "meaning": "[classifier for books]" },
+					"sách": { "type": "noun", "meaning": "book" },
+					"này": { "type": "demonstrative", "meaning": "this" },
+					"được": {
+						"type": "passive-positive",
+						"meaning": "passive [positive]"
+					},
+					"viết": { "type": "verb", "meaning": "write" },
+					"bởi": { "type": "preposition", "meaning": "by" },
+					"Nguyễn Du": { "type": "object", "meaning": "Nguyen Du" }
+				},
+				"english": "This book was written by Nguyễn Du",
+				"literalEnglish": "Book this PASSIVE.POSITIVE write by Nguyen-Du",
+				"notes": "Neutral/prestigious, uses 'bởi' to introduce agent"
+			},
+			{
+				"vietnamese": "Học sinh được tặng sách",
+				"breakdown": {
+					"Học sinh": { "type": "subject", "meaning": "students" },
+					"được": {
+						"type": "passive-positive",
+						"meaning": "passive [positive]"
+					},
+					"tặng": { "type": "verb", "meaning": "give/gift" },
+					"sách": { "type": "object", "meaning": "books" }
+				},
+				"english": "Students were given books",
+				"literalEnglish": "Students PASSIVE.POSITIVE give books",
+				"notes": "Receiving gifts is positive"
+			},
+			{
+				"vietnamese": "Tôi được bạn giúp đỡ",
+				"breakdown": {
+					"Tôi": { "type": "subject", "meaning": "I" },
+					"được": {
+						"type": "passive-positive",
+						"meaning": "passive [positive]"
+					},
+					"bạn": { "type": "object", "meaning": "friend" },
+					"giúp đỡ": { "type": "verb", "meaning": "help" }
+				},
+				"english": "I was helped by a friend",
+				"literalEnglish": "I PASSIVE.POSITIVE friend help",
+				"notes": "Agent stated directly (no 'bởi')"
+			}
+		]
+	},
+	"negativePassive": {
+		"id": "bi",
+		"title": "Negative Passive: bị",
+		"description": "Used when the action harms or negatively affects the subject. The outcome is undesired or detrimental.",
+		"pattern": "SUBJECT + bị + (AGENT) + VERB + (OBJECT)",
+		"keyPoint": "'bị' signals that the subject suffers from or is harmed by the action",
+		"examples": [
+			{
+				"vietnamese": "Tôi bị mắng",
+				"breakdown": {
+					"Tôi": { "type": "subject", "meaning": "I" },
+					"bị": { "type": "passive-negative", "meaning": "passive [negative]" },
+					"mắng": { "type": "verb", "meaning": "scold" }
+				},
+				"english": "I was scolded",
+				"literalEnglish": "I PASSIVE.NEGATIVE scold",
+				"notes": "Being scolded is negative"
+			},
+			{
+				"vietnamese": "Anh ấy bị sa thải",
+				"breakdown": {
+					"Anh ấy": { "type": "subject", "meaning": "he" },
+					"bị": { "type": "passive-negative", "meaning": "passive [negative]" },
+					"sa thải": { "type": "verb", "meaning": "fire/dismiss" }
+				},
+				"english": "He was fired",
+				"literalEnglish": "He PASSIVE.NEGATIVE fire",
+				"notes": "Being fired is negative"
+			},
+			{
+				"vietnamese": "Xe tôi bị đánh cắp",
+				"breakdown": {
+					"Xe": { "type": "noun", "meaning": "car/vehicle" },
+					"tôi": { "type": "possessive", "meaning": "my" },
+					"bị": { "type": "passive-negative", "meaning": "passive [negative]" },
+					"đánh cắp": { "type": "verb", "meaning": "steal" }
+				},
+				"english": "My car was stolen",
+				"literalEnglish": "Car my PASSIVE.NEGATIVE steal",
+				"notes": "Having property stolen is negative"
+			},
+			{
+				"vietnamese": "Tôi bị bạn lừa",
+				"breakdown": {
+					"Tôi": { "type": "subject", "meaning": "I" },
+					"bị": { "type": "passive-negative", "meaning": "passive [negative]" },
+					"bạn": { "type": "object", "meaning": "friend" },
+					"lừa": { "type": "verb", "meaning": "deceive" }
+				},
+				"english": "I was deceived by a friend",
+				"literalEnglish": "I PASSIVE.NEGATIVE friend deceive",
+				"notes": "Being deceived is harmful"
+			},
+			{
+				"vietnamese": "Nhà bị bão phá hủy",
+				"breakdown": {
+					"Nhà": { "type": "subject", "meaning": "house" },
+					"bị": { "type": "passive-negative", "meaning": "passive [negative]" },
+					"bão": { "type": "object", "meaning": "storm" },
+					"phá hủy": { "type": "verb", "meaning": "destroy" }
+				},
+				"english": "The house was destroyed by the storm",
+				"literalEnglish": "House PASSIVE.NEGATIVE storm destroy",
+				"notes": "Destruction is negative"
+			}
+		]
+	},
+	"semanticDistinction": {
+		"title": "Semantic Distinction: Context Matters",
+		"description": "The choice between 'được' and 'bị' depends on PERCEPTION, not just the verb. The same action can use different markers based on whether it's viewed positively or negatively.",
+		"comparisons": [
+			{
+				"context": "Permission vs. Coercion",
+				"examples": [
+					{
+						"vietnamese": "Tôi được bố mẹ cho đi chơi",
+						"breakdown": {
+							"Tôi": { "type": "subject", "meaning": "I" },
+							"được": {
+								"type": "passive-positive",
+								"meaning": "passive [positive]"
+							},
+							"bố mẹ": { "type": "object", "meaning": "parents" },
+							"cho": { "type": "verb", "meaning": "allow/give" },
+							"đi chơi": { "type": "verb", "meaning": "go out" }
+						},
+						"english": "I was allowed by my parents to go out",
+						"literalEnglish": "I PASSIVE.POSITIVE parents allow go-out",
+						"evaluation": "Positive: permission is welcomed"
+					},
+					{
+						"vietnamese": "Tôi bị bố mẹ bắt ở nhà",
+						"breakdown": {
+							"Tôi": { "type": "subject", "meaning": "I" },
+							"bị": {
+								"type": "passive-negative",
+								"meaning": "passive [negative]"
+							},
+							"bố mẹ": { "type": "object", "meaning": "parents" },
+							"bắt": { "type": "verb", "meaning": "force/make" },
+							"ở nhà": { "type": "location", "meaning": "stay home" }
+						},
+						"english": "I was forced by my parents to stay home",
+						"literalEnglish": "I PASSIVE.NEGATIVE parents force stay home",
+						"evaluation": "Negative: being forced is unwanted"
+					}
+				]
+			},
+			{
+				"context": "Unwanted Timing",
+				"examples": [
+					{
+						"vietnamese": "Tôi bị bạn gọi dậy lúc 5 giờ sáng",
+						"breakdown": {
+							"Tôi": { "type": "subject", "meaning": "I" },
+							"bị": {
+								"type": "passive-negative",
+								"meaning": "passive [negative]"
+							},
+							"bạn": { "type": "object", "meaning": "friend" },
+							"gọi dậy": { "type": "verb", "meaning": "wake up" },
+							"lúc": { "type": "preposition", "meaning": "at" },
+							"5 giờ sáng": { "type": "object", "meaning": "5am" }
+						},
+						"english": "I was woken up by a friend at 5am",
+						"literalEnglish": "I PASSIVE.NEGATIVE friend wake-up at 5-o'clock morning",
+						"evaluation": "Negative: waking up isn't inherently bad, but 5am is unwanted"
+					}
+				]
+			},
+			{
+				"context": "Gift vs. Burden",
+				"examples": [
+					{
+						"vietnamese": "Tôi được tặng một con chó",
+						"breakdown": {
+							"Tôi": { "type": "subject", "meaning": "I" },
+							"được": {
+								"type": "passive-positive",
+								"meaning": "passive [positive]"
+							},
+							"tặng": { "type": "verb", "meaning": "give/gift" },
+							"một": { "type": "quantifier", "meaning": "one" },
+							"con": {
+								"type": "classifier",
+								"meaning": "[classifier for animals]"
+							},
+							"chó": { "type": "noun", "meaning": "dog" }
+						},
+						"english": "I was given a dog",
+						"literalEnglish": "I PASSIVE.POSITIVE give one dog",
+						"evaluation": "Positive: receiving a gift is good"
+					},
+					{
+						"vietnamese": "Tôi bị cho một đống việc",
+						"breakdown": {
+							"Tôi": { "type": "subject", "meaning": "I" },
+							"bị": {
+								"type": "passive-negative",
+								"meaning": "passive [negative]"
+							},
+							"cho": { "type": "verb", "meaning": "give" },
+							"một": { "type": "quantifier", "meaning": "one" },
+							"đống": { "type": "classifier", "meaning": "pile/heap" },
+							"việc": { "type": "noun", "meaning": "work/tasks" }
+						},
+						"english": "I was given a pile of work",
+						"literalEnglish": "I PASSIVE.NEGATIVE give one pile work",
+						"evaluation": "Negative: receiving excessive work is a burden"
+					}
+				]
+			}
+		]
+	},
+	"tenseIntegration": {
+		"title": "Passive with Tense Markers",
+		"description": "Passive constructions can combine with tense markers (đã, sẽ, đang) to indicate when the action occurred",
+		"combinations": [
+			{
+				"tense": "Past: đã + được/bị",
+				"description": "Indicates a completed passive action",
+				"examples": [
+					{
+						"vietnamese": "Tôi đã được khen",
+						"breakdown": {
+							"Tôi": { "type": "subject", "meaning": "I" },
+							"đã": { "type": "tense-marker", "meaning": "past" },
+							"được": {
+								"type": "passive-positive",
+								"meaning": "passive [positive]"
+							},
+							"khen": { "type": "verb", "meaning": "praise" }
+						},
+						"english": "I was praised",
+						"literalEnglish": "I PAST PASSIVE.POSITIVE praise"
+					},
+					{
+						"vietnamese": "Anh ấy đã bị sa thải",
+						"breakdown": {
+							"Anh ấy": { "type": "subject", "meaning": "he" },
+							"đã": { "type": "tense-marker", "meaning": "past" },
+							"bị": {
+								"type": "passive-negative",
+								"meaning": "passive [negative]"
+							},
+							"sa thải": { "type": "verb", "meaning": "fire" }
+						},
+						"english": "He was fired",
+						"literalEnglish": "He PAST PASSIVE.NEGATIVE fire"
+					}
+				]
+			},
+			{
+				"tense": "Future: sẽ + được/bị",
+				"description": "Indicates a passive action that will happen",
+				"examples": [
+					{
+						"vietnamese": "Công trình sẽ được hoàn thành",
+						"breakdown": {
+							"Công trình": { "type": "subject", "meaning": "project" },
+							"sẽ": { "type": "tense-marker", "meaning": "will" },
+							"được": {
+								"type": "passive-positive",
+								"meaning": "passive [positive]"
+							},
+							"hoàn thành": { "type": "verb", "meaning": "complete" }
+						},
+						"english": "The project will be completed",
+						"literalEnglish": "Project FUTURE PASSIVE.POSITIVE complete"
+					},
+					{
+						"vietnamese": "Anh ấy sẽ bị phạt",
+						"breakdown": {
+							"Anh ấy": { "type": "subject", "meaning": "he" },
+							"sẽ": { "type": "tense-marker", "meaning": "will" },
+							"bị": {
+								"type": "passive-negative",
+								"meaning": "passive [negative]"
+							},
+							"phạt": { "type": "verb", "meaning": "punish" }
+						},
+						"english": "He will be punished",
+						"literalEnglish": "He FUTURE PASSIVE.NEGATIVE punish"
+					}
+				]
+			},
+			{
+				"tense": "Continuous: đang + được/bị",
+				"description": "Indicates an ongoing passive action",
+				"examples": [
+					{
+						"vietnamese": "Nhà đang được sửa",
+						"breakdown": {
+							"Nhà": { "type": "subject", "meaning": "house" },
+							"đang": { "type": "tense-marker", "meaning": "currently" },
+							"được": {
+								"type": "passive-positive",
+								"meaning": "passive [positive]"
+							},
+							"sửa": { "type": "verb", "meaning": "repair" }
+						},
+						"english": "The house is being repaired",
+						"literalEnglish": "House CONTINUOUS PASSIVE.POSITIVE repair"
+					},
+					{
+						"vietnamese": "Tôi đang bị theo dõi",
+						"breakdown": {
+							"Tôi": { "type": "subject", "meaning": "I" },
+							"đang": { "type": "tense-marker", "meaning": "currently" },
+							"bị": {
+								"type": "passive-negative",
+								"meaning": "passive [negative]"
+							},
+							"theo dõi": { "type": "verb", "meaning": "watch/monitor" }
+						},
+						"english": "I'm being watched",
+						"literalEnglish": "I CONTINUOUS PASSIVE.NEGATIVE watch"
+					}
+				]
+			}
+		]
+	},
+	"specialNotes": {
+		"title": "Special Cases & Notes",
+		"notes": [
+			{
+				"topic": "Agent Inclusion",
+				"explanation": "The agent (doer) can be omitted or explicitly stated. When stated, it can use 'bởi' (by) or appear directly after the passive marker.",
+				"examples": [
+					"Agent omitted: 'Tôi bị đánh' (I was hit)",
+					"With 'bởi': 'Bài hát được hát bởi ca sĩ' (The song was sung by the singer)",
+					"Direct agent: 'Tôi bị anh ấy đánh' (I was hit by him)"
+				]
+			},
+			{
+				"topic": "'được' as Auxiliary Verb",
+				"explanation": "'được' can also mean 'can, able to' (not passive). Context determines the meaning.",
+				"examples": [
+					"Passive permission: 'Tôi được đi' (I was allowed to go)",
+					"Ability: 'Tôi được đi' (I can go)",
+					"Context is crucial for interpretation!"
+				]
+			},
+			{
+				"topic": "'do' for Causes",
+				"explanation": "'do' (due to/because of) can indicate passive causation, especially for impersonal causes.",
+				"examples": [
+					"'Nhà bị phá hủy do bão' (The house was destroyed by the storm)",
+					"'Dự án thất bại do thiếu kinh phí' (The project failed due to lack of funding)"
+				]
+			},
+			{
+				"topic": "Avoiding Passive",
+				"explanation": "Vietnamese often prefers active constructions or topic-comment structures over passive.",
+				"examples": [
+					"Active with indefinite subject: 'Người ta nói rằng...' (People say that...)",
+					"Topic-comment: 'Cuốn sách này, tôi đã đọc rồi' (This book, I already read)"
+				]
+			}
+		]
+	},
+	"practiceSentences": [
+		{
+			"vietnamese": "Tôi được mời đến tiệc",
+			"english": "I was invited to the party",
+			"type": "positive",
+			"difficulty": "beginner",
+			"marker": "được"
+		},
+		{
+			"vietnamese": "Anh ấy bị phạt tiền",
+			"english": "He was fined",
+			"type": "negative",
+			"difficulty": "beginner",
+			"marker": "bị"
+		},
+		{
+			"vietnamese": "Học sinh được thưởng",
+			"english": "The student was rewarded",
+			"type": "positive",
+			"difficulty": "beginner",
+			"marker": "được"
+		},
+		{
+			"vietnamese": "Cô ấy bị từ chối",
+			"english": "She was rejected",
+			"type": "negative",
+			"difficulty": "beginner",
+			"marker": "bị"
+		},
+		{
+			"vietnamese": "Tôi được bạn giúp đỡ nhiều",
+			"english": "I was helped a lot by friends",
+			"type": "positive",
+			"difficulty": "intermediate",
+			"marker": "được"
+		},
+		{
+			"vietnamese": "Máy tính bị virus tấn công",
+			"english": "The computer was attacked by a virus",
+			"type": "negative",
+			"difficulty": "intermediate",
+			"marker": "bị"
+		},
+		{
+			"vietnamese": "Công ty được đầu tư thêm vốn",
+			"english": "The company was given additional investment",
+			"type": "positive",
+			"difficulty": "intermediate",
+			"marker": "được"
+		},
+		{
+			"vietnamese": "Dự án bị hủy bỏ do thiếu ngân sách",
+			"english": "The project was cancelled due to lack of budget",
+			"type": "negative",
+			"difficulty": "intermediate",
+			"marker": "bị"
+		},
+		{
+			"vietnamese": "Tôi đã được chọn làm trưởng nhóm",
+			"english": "I was chosen as team leader",
+			"type": "positive-past",
+			"difficulty": "intermediate",
+			"marker": "đã được"
+		},
+		{
+			"vietnamese": "Anh ấy đã bị sa thải vì đến muộn",
+			"english": "He was fired for being late",
+			"type": "negative-past",
+			"difficulty": "advanced",
+			"marker": "đã bị"
+		},
+		{
+			"vietnamese": "Sản phẩm mới sẽ được giới thiệu vào tuần sau",
+			"english": "The new product will be introduced next week",
+			"type": "positive-future",
+			"difficulty": "advanced",
+			"marker": "sẽ được"
+		},
+		{
+			"vietnamese": "Nếu không cẩn thận, bạn sẽ bị lừa",
+			"english": "If you're not careful, you will be deceived",
+			"type": "negative-future",
+			"difficulty": "advanced",
+			"marker": "sẽ bị"
+		}
+	]
+}

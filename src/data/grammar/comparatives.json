@@ -1,0 +1,661 @@
+{
+	"introduction": {
+		"title": "Vietnamese Comparatives: No Form Changes",
+		"content": [
+			"Unlike English (tall → taller → tallest), Vietnamese adjectives never change form. Instead, Vietnamese uses particles after the adjective to express comparison.",
+			"This makes Vietnamese comparatives simpler and more predictable: just learn the particles (hơn, bằng, nhất) and their positions.",
+			"The basic pattern is always: ADJECTIVE + PARTICLE + (comparison/scope)"
+		]
+	},
+	"sections": [
+		{
+			"id": "comparative",
+			"title": "Basic Comparative: hơn (more than)",
+			"description": "The particle 'hơn' comes AFTER the adjective to mean 'more' or '-er'. The pattern is: A + ADJECTIVE + hơn + B",
+			"patterns": [
+				{
+					"structure": "A + ADJECTIVE + hơn + B",
+					"meaning": "A is more ADJECTIVE than B",
+					"examples": [
+						{
+							"vietnamese": "Tôi cao hơn anh₁ ấy",
+							"breakdown": {
+								"Tôi": { "type": "subject", "meaning": "I" },
+								"cao": { "type": "adjective", "meaning": "tall" },
+								"hơn": { "type": "comparative", "meaning": "more than" },
+								"anh₁": { "type": "noun", "meaning": "he" },
+								"ấy": { "type": "demonstrative", "meaning": "that" }
+							},
+							"english": "I am taller than him",
+							"literalEnglish": "I tall more-than he that",
+							"notes": "'hơn' always comes after the adjective, never changes form"
+						},
+						{
+							"vietnamese": "Cái₁ này đẹp hơn cái₂ kia",
+							"breakdown": {
+								"Cái₁": {
+									"type": "classifier",
+									"meaning": "classifier for things"
+								},
+								"này": { "type": "demonstrative", "meaning": "this" },
+								"đẹp": { "type": "adjective", "meaning": "beautiful" },
+								"hơn": { "type": "comparative", "meaning": "more than" },
+								"Cái₂": {
+									"type": "classifier",
+									"meaning": "classifier for things"
+								},
+								"kia": { "type": "demonstrative", "meaning": "that" }
+							},
+							"english": "This is more beautiful than that",
+							"literalEnglish": "This beautiful more-than that"
+						},
+						{
+							"vietnamese": "Hà Nội lạnh hơn Sài Gòn",
+							"breakdown": {
+								"Hà Nội": { "type": "subject", "meaning": "Hanoi" },
+								"lạnh": { "type": "adjective", "meaning": "cold" },
+								"hơn": { "type": "comparative", "meaning": "more than" },
+								"Sài Gòn": { "type": "noun", "meaning": "Saigon" }
+							},
+							"english": "Hanoi is colder than Saigon",
+							"literalEnglish": "Hanoi cold more-than Saigon"
+						}
+					]
+				},
+				{
+					"structure": "A + ADJECTIVE + hơn + B + AMOUNT",
+					"meaning": "A is AMOUNT more ADJECTIVE than B",
+					"description": "You can specify exactly how much more by adding the amount after B",
+					"examples": [
+						{
+							"vietnamese": "Tôi cao hơn anh₁ ấy 5 cm",
+							"breakdown": {
+								"Tôi": { "type": "subject", "meaning": "I" },
+								"cao": { "type": "adjective", "meaning": "tall" },
+								"hơn": { "type": "comparative", "meaning": "more than" },
+								"anh₁": { "type": "noun", "meaning": "he" },
+								"ấy": { "type": "demonstrative", "meaning": "that" },
+								"5 cm": { "type": "quantifier", "meaning": "5 centimeters" }
+							},
+							"english": "I am 5cm taller than him",
+							"literalEnglish": "I tall more-than he that 5cm"
+						},
+						{
+							"vietnamese": "Cái₁ này đắt hơn cái₂ kia 100.000 đồng",
+							"breakdown": {
+								"Cái₁": { "type": "classifier", "meaning": "classifier" },
+								"này": { "type": "demonstrative", "meaning": "this" },
+								"đắt": { "type": "adjective", "meaning": "expensive" },
+								"hơn": { "type": "comparative", "meaning": "more than" },
+								"Cái₂": { "type": "classifier", "meaning": "classifier" },
+								"kia": { "type": "demonstrative", "meaning": "that" },
+								"100.000 đồng": {
+									"type": "quantifier",
+									"meaning": "100,000 dong"
+								}
+							},
+							"english": "This is 100,000 dong more expensive than that",
+							"literalEnglish": "This expensive more-than that 100,000 dong"
+						}
+					]
+				}
+			],
+			"intensifiers": [
+				{
+					"vietnamese": "hơn nhiều",
+					"meaning": "much more",
+					"strength": "strong",
+					"examples": [
+						{
+							"vietnamese": "Anh₁ ấy giàu hơn nhiều tôi",
+							"breakdown": {
+								"Anh₁": { "type": "subject", "meaning": "he" },
+								"ấy": { "type": "demonstrative", "meaning": "that" },
+								"giàu": { "type": "adjective", "meaning": "rich" },
+								"hơn": { "type": "comparative", "meaning": "more than" },
+								"nhiều": { "type": "intensifier", "meaning": "much" },
+								"tôi": { "type": "object", "meaning": "me" }
+							},
+							"english": "He is much richer than me",
+							"literalEnglish": "He that rich more-than much me"
+						}
+					]
+				},
+				{
+					"vietnamese": "hơn hẳn",
+					"meaning": "far more, significantly more",
+					"strength": "very strong",
+					"examples": [
+						{
+							"vietnamese": "Cái₁ này tốt hơn hẳn cái₂ kia",
+							"breakdown": {
+								"Cái₁": { "type": "classifier", "meaning": "classifier" },
+								"này": { "type": "demonstrative", "meaning": "this" },
+								"tốt": { "type": "adjective", "meaning": "good" },
+								"hơn": { "type": "comparative", "meaning": "more than" },
+								"hẳn": { "type": "intensifier", "meaning": "clearly, far" },
+								"Cái₂": { "type": "classifier", "meaning": "classifier" },
+								"kia": { "type": "demonstrative", "meaning": "that" }
+							},
+							"english": "This is far better than that",
+							"literalEnglish": "This good more-than clearly that"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "inferiority",
+			"title": "Expressing 'Less Than'",
+			"description": "Vietnamese has two ways to express inferiority. The 'không...bằng' pattern is more natural and commonly used.",
+			"patterns": [
+				{
+					"structure": "A + ADJECTIVE + kém + B",
+					"meaning": "A is less ADJECTIVE than B (inferior to)",
+					"usage": "Less common, can sound negative",
+					"examples": [
+						{
+							"vietnamese": "Tôi cao kém anh₁ ấy",
+							"breakdown": {
+								"Tôi": { "type": "subject", "meaning": "I" },
+								"cao": { "type": "adjective", "meaning": "tall" },
+								"kém": {
+									"type": "comparative",
+									"meaning": "inferior to, less than"
+								},
+								"anh₁": { "type": "noun", "meaning": "he" },
+								"ấy": { "type": "demonstrative", "meaning": "that" }
+							},
+							"english": "I am less tall than him",
+							"literalEnglish": "I tall inferior he that",
+							"notes": "Can sound negative; 'không...bằng' is preferred"
+						}
+					]
+				},
+				{
+					"structure": "A + không + ADJECTIVE + bằng + B",
+					"meaning": "A is not as ADJECTIVE as B",
+					"usage": "More natural and commonly used",
+					"examples": [
+						{
+							"vietnamese": "Tôi không cao bằng anh₁ ấy",
+							"breakdown": {
+								"Tôi": { "type": "subject", "meaning": "I" },
+								"không": { "type": "negation", "meaning": "not" },
+								"cao": { "type": "adjective", "meaning": "tall" },
+								"bằng": {
+									"type": "comparative",
+									"meaning": "as...as, equal to"
+								},
+								"anh₁": { "type": "noun", "meaning": "he" },
+								"ấy": { "type": "demonstrative", "meaning": "that" }
+							},
+							"english": "I'm not as tall as him",
+							"literalEnglish": "I not tall as he that",
+							"notes": "Natural, neutral way to express being less"
+						},
+						{
+							"vietnamese": "Cái₁ này không đẹp bằng cái₂ kia",
+							"breakdown": {
+								"Cái₁": { "type": "classifier", "meaning": "classifier" },
+								"này": { "type": "demonstrative", "meaning": "this" },
+								"không": { "type": "negation", "meaning": "not" },
+								"đẹp": { "type": "adjective", "meaning": "beautiful" },
+								"bằng": { "type": "comparative", "meaning": "as...as" },
+								"Cái₂": { "type": "classifier", "meaning": "classifier" },
+								"kia": { "type": "demonstrative", "meaning": "that" }
+							},
+							"english": "This is not as beautiful as that",
+							"literalEnglish": "This not beautiful as that"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "equality",
+			"title": "Equality: bằng (as...as)",
+			"description": "The particle 'bằng' expresses equality between two things. Pattern: A + ADJECTIVE + bằng + B",
+			"patterns": [
+				{
+					"structure": "A + ADJECTIVE + bằng + B",
+					"meaning": "A is as ADJECTIVE as B",
+					"examples": [
+						{
+							"vietnamese": "Tôi cao bằng anh₁ ấy",
+							"breakdown": {
+								"Tôi": { "type": "subject", "meaning": "I" },
+								"cao": { "type": "adjective", "meaning": "tall" },
+								"bằng": {
+									"type": "comparative",
+									"meaning": "as...as, equal to"
+								},
+								"anh₁": { "type": "noun", "meaning": "he" },
+								"ấy": { "type": "demonstrative", "meaning": "that" }
+							},
+							"english": "I am as tall as him",
+							"literalEnglish": "I tall equal he that"
+						},
+						{
+							"vietnamese": "Cái₁ này đẹp bằng cái₂ kia",
+							"breakdown": {
+								"Cái₁": { "type": "classifier", "meaning": "classifier" },
+								"này": { "type": "demonstrative", "meaning": "this" },
+								"đẹp": { "type": "adjective", "meaning": "beautiful" },
+								"bằng": { "type": "comparative", "meaning": "as...as" },
+								"Cái₂": { "type": "classifier", "meaning": "classifier" },
+								"kia": { "type": "demonstrative", "meaning": "that" }
+							},
+							"english": "This is as beautiful as that",
+							"literalEnglish": "This beautiful equal that"
+						}
+					]
+				},
+				{
+					"structure": "A + giống như + B",
+					"meaning": "A is the same as / like B",
+					"description": "Used for similarity rather than exact equality",
+					"examples": [
+						{
+							"vietnamese": "Cái₁ này giống như cái₂ kia",
+							"breakdown": {
+								"Cái₁": { "type": "classifier", "meaning": "classifier" },
+								"này": { "type": "demonstrative", "meaning": "this" },
+								"giống như": {
+									"type": "comparative",
+									"meaning": "similar to, like"
+								},
+								"Cái₂": { "type": "classifier", "meaning": "classifier" },
+								"kia": { "type": "demonstrative", "meaning": "that" }
+							},
+							"english": "This is the same as that",
+							"literalEnglish": "This similar-to that"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "superlative",
+			"title": "Superlatives: nhất (most/best)",
+			"description": "The particle 'nhất' means 'most' or '-est'. Pattern: ADJECTIVE + nhất + (optional scope)",
+			"patterns": [
+				{
+					"structure": "SUBJECT + ADJECTIVE + nhất",
+					"meaning": "SUBJECT is the most ADJECTIVE",
+					"examples": [
+						{
+							"vietnamese": "Anh₁ ấy cao nhất",
+							"breakdown": {
+								"Anh₁": { "type": "subject", "meaning": "he" },
+								"ấy": { "type": "demonstrative", "meaning": "that" },
+								"cao": { "type": "adjective", "meaning": "tall" },
+								"nhất": { "type": "superlative", "meaning": "most" }
+							},
+							"english": "He is the tallest",
+							"literalEnglish": "He that tall most"
+						}
+					]
+				},
+				{
+					"structure": "SUBJECT + ADJECTIVE + nhất + SCOPE",
+					"meaning": "SUBJECT is the most ADJECTIVE in/among SCOPE",
+					"examples": [
+						{
+							"vietnamese": "Anh₁ ấy cao nhất trong lớp",
+							"breakdown": {
+								"Anh₁": { "type": "subject", "meaning": "he" },
+								"ấy": { "type": "demonstrative", "meaning": "that" },
+								"cao": { "type": "adjective", "meaning": "tall" },
+								"nhất": { "type": "superlative", "meaning": "most" },
+								"trong": { "type": "preposition", "meaning": "in" },
+								"lớp": { "type": "noun", "meaning": "class" }
+							},
+							"english": "He is the tallest in the class",
+							"literalEnglish": "He that tall most in class"
+						},
+						{
+							"vietnamese": "Đây là quán ăn ngon nhất Hà Nội",
+							"breakdown": {
+								"Đây": { "type": "subject", "meaning": "this" },
+								"là": { "type": "verb", "meaning": "is" },
+								"quán ăn": { "type": "noun", "meaning": "restaurant" },
+								"ngon": { "type": "adjective", "meaning": "delicious" },
+								"nhất": { "type": "superlative", "meaning": "most" },
+								"Hà Nội": { "type": "location", "meaning": "Hanoi" }
+							},
+							"english": "This is the best restaurant in Hanoi",
+							"literalEnglish": "This is restaurant delicious most Hanoi"
+						},
+						{
+							"vietnamese": "Cô₁ ấy là người thông minh nhất mà tôi biết",
+							"breakdown": {
+								"Cô₁": { "type": "subject", "meaning": "she" },
+								"ấy": { "type": "demonstrative", "meaning": "that" },
+								"là": { "type": "verb", "meaning": "is" },
+								"người": { "type": "classifier", "meaning": "person" },
+								"thông minh": { "type": "adjective", "meaning": "smart" },
+								"nhất": { "type": "superlative", "meaning": "most" },
+								"mà": { "type": "particle", "meaning": "that" },
+								"tôi": { "type": "subject", "meaning": "I" },
+								"biết": { "type": "verb", "meaning": "know" }
+							},
+							"english": "She is the smartest person I know",
+							"literalEnglish": "She that is person smart most that I know"
+						}
+					]
+				},
+				{
+					"structure": "một trong những + NOUN + ADJECTIVE + nhất",
+					"meaning": "one of the most ADJECTIVE NOUN",
+					"description": "Used to express 'one of the...'",
+					"examples": [
+						{
+							"vietnamese": "Anh₁ ấy là một trong những người thông minh nhất",
+							"breakdown": {
+								"Anh₁": { "type": "subject", "meaning": "he" },
+								"ấy": { "type": "demonstrative", "meaning": "that" },
+								"là": { "type": "verb", "meaning": "is" },
+								"một": { "type": "quantifier", "meaning": "one" },
+								"trong": { "type": "preposition", "meaning": "among" },
+								"những": { "type": "article", "meaning": "plural marker" },
+								"người": { "type": "classifier", "meaning": "person" },
+								"thông minh": { "type": "adjective", "meaning": "smart" },
+								"nhất": { "type": "superlative", "meaning": "most" }
+							},
+							"english": "He is one of the smartest people",
+							"literalEnglish": "He that is one among plural person smart most"
+						},
+						{
+							"vietnamese": "Đây là một trong những thành phố đẹp nhất thế giới",
+							"breakdown": {
+								"Đây": { "type": "subject", "meaning": "this" },
+								"là": { "type": "verb", "meaning": "is" },
+								"một": { "type": "quantifier", "meaning": "one" },
+								"trong": { "type": "preposition", "meaning": "among" },
+								"những": { "type": "article", "meaning": "plural marker" },
+								"thành phố": { "type": "noun", "meaning": "city" },
+								"đẹp": { "type": "adjective", "meaning": "beautiful" },
+								"nhất": { "type": "superlative", "meaning": "most" },
+								"thế giới": { "type": "location", "meaning": "world" }
+							},
+							"english": "This is one of the most beautiful cities in the world",
+							"literalEnglish": "This is one among plural city beautiful most world"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "special-patterns",
+			"title": "Special Comparative Patterns",
+			"description": "Vietnamese has unique patterns for expressing progressive comparison and gradual change",
+			"patterns": [
+				{
+					"pattern": "càng...càng",
+					"meaning": "the more...the more",
+					"structure": "càng + VERB/ADJ₁ + càng + VERB/ADJ₂",
+					"description": "Shows correlation between two increasing quantities or qualities",
+					"examples": [
+						{
+							"vietnamese": "Càng học càng khó",
+							"breakdown": {
+								"Càng₁": { "type": "comparative", "meaning": "the more" },
+								"học": { "type": "verb", "meaning": "study" },
+								"Càng₂": { "type": "comparative", "meaning": "the more" },
+								"khó": { "type": "adjective", "meaning": "difficult" }
+							},
+							"english": "The more I study, the harder it gets",
+							"literalEnglish": "More study more difficult",
+							"notes": "Shows progressive correlation"
+						},
+						{
+							"vietnamese": "Càng ngày càng đẹp",
+							"breakdown": {
+								"Càng₁": { "type": "comparative", "meaning": "the more" },
+								"ngày": { "type": "noun", "meaning": "day" },
+								"Càng₂": { "type": "comparative", "meaning": "the more" },
+								"đẹp": { "type": "adjective", "meaning": "beautiful" }
+							},
+							"english": "Getting more beautiful each day",
+							"literalEnglish": "More day more beautiful"
+						},
+						{
+							"vietnamese": "Càng nhiều càng tốt",
+							"breakdown": {
+								"Càng₁": { "type": "comparative", "meaning": "the more" },
+								"nhiều": { "type": "adjective", "meaning": "many, much" },
+								"Càng₂": { "type": "comparative", "meaning": "the more" },
+								"tốt": { "type": "adjective", "meaning": "good" }
+							},
+							"english": "The more the better",
+							"literalEnglish": "More many more good"
+						}
+					],
+					"highlight": true
+				},
+				{
+					"pattern": "ngày càng",
+					"meaning": "increasingly, getting more and more",
+					"structure": "ngày càng + ADJECTIVE",
+					"description": "Expresses gradual change over time",
+					"examples": [
+						{
+							"vietnamese": "Anh₁ ấy ngày càng cao",
+							"breakdown": {
+								"Anh₁": { "type": "subject", "meaning": "he" },
+								"ấy": { "type": "demonstrative", "meaning": "that" },
+								"ngày càng": {
+									"type": "comparative",
+									"meaning": "increasingly"
+								},
+								"cao": { "type": "adjective", "meaning": "tall" }
+							},
+							"english": "He's getting taller",
+							"literalEnglish": "He that increasingly tall"
+						},
+						{
+							"vietnamese": "Thời tiết ngày càng nóng",
+							"breakdown": {
+								"Thời tiết": { "type": "subject", "meaning": "weather" },
+								"ngày càng": {
+									"type": "comparative",
+									"meaning": "increasingly"
+								},
+								"nóng": { "type": "adjective", "meaning": "hot" }
+							},
+							"english": "The weather is getting hotter",
+							"literalEnglish": "Weather increasingly hot"
+						}
+					],
+					"highlight": true
+				},
+				{
+					"pattern": "thích...hơn",
+					"meaning": "prefer...to / like...more than",
+					"structure": "SUBJECT + thích + A + hơn + B",
+					"description": "Expresses preference between two options",
+					"examples": [
+						{
+							"vietnamese": "Tôi thích cà phê hơn trà",
+							"breakdown": {
+								"Tôi": { "type": "subject", "meaning": "I" },
+								"thích": { "type": "verb", "meaning": "like" },
+								"cà phê": { "type": "noun", "meaning": "coffee" },
+								"hơn": { "type": "comparative", "meaning": "more than" },
+								"trà": { "type": "noun", "meaning": "tea" }
+							},
+							"english": "I like coffee more than tea",
+							"literalEnglish": "I like coffee more-than tea"
+						},
+						{
+							"vietnamese": "Anh₁ ấy thích ở nhà hơn đi chơi",
+							"breakdown": {
+								"Anh₁": { "type": "subject", "meaning": "he" },
+								"ấy": { "type": "demonstrative", "meaning": "that" },
+								"thích": { "type": "verb", "meaning": "like" },
+								"ở nhà": { "type": "verb", "meaning": "stay home" },
+								"hơn": { "type": "comparative", "meaning": "more than" },
+								"đi chơi": { "type": "verb", "meaning": "go out" }
+							},
+							"english": "He prefers staying home to going out",
+							"literalEnglish": "He that like stay-home more-than go-out"
+						}
+					]
+				},
+				{
+					"pattern": "càng...càng tốt",
+					"meaning": "as...as possible",
+					"structure": "càng + ADJECTIVE + càng tốt",
+					"description": "Expresses doing something to the maximum degree",
+					"examples": [
+						{
+							"vietnamese": "Càng sớm càng tốt",
+							"breakdown": {
+								"Càng₁": { "type": "comparative", "meaning": "the more" },
+								"sớm": { "type": "adjective", "meaning": "soon, early" },
+								"Càng₂": { "type": "comparative", "meaning": "the more" },
+								"tốt": { "type": "adjective", "meaning": "good" }
+							},
+							"english": "As soon as possible",
+							"literalEnglish": "More soon more good"
+						},
+						{
+							"vietnamese": "Càng nhanh càng tốt",
+							"breakdown": {
+								"Càng₁": { "type": "comparative", "meaning": "the more" },
+								"nhanh": { "type": "adjective", "meaning": "fast" },
+								"Càng₂": { "type": "comparative", "meaning": "the more" },
+								"tốt": { "type": "adjective", "meaning": "good" }
+							},
+							"english": "As fast as possible",
+							"literalEnglish": "More fast more good"
+						}
+					]
+				}
+			]
+		}
+	],
+	"comparisonSpectrum": {
+		"title": "Comparison Spectrum",
+		"description": "Visual representation of comparison types in Vietnamese",
+		"levels": [
+			{
+				"type": "inferiority",
+				"particle": "kém / không...bằng",
+				"meaning": "less than",
+				"example": "Tôi không cao bằng anh ấy"
+			},
+			{
+				"type": "equality",
+				"particle": "bằng",
+				"meaning": "as...as (equal)",
+				"example": "Tôi cao bằng anh ấy"
+			},
+			{
+				"type": "comparative",
+				"particle": "hơn",
+				"meaning": "more than",
+				"example": "Tôi cao hơn anh ấy"
+			},
+			{
+				"type": "superlative",
+				"particle": "nhất",
+				"meaning": "most (best)",
+				"example": "Tôi cao nhất"
+			}
+		]
+	},
+	"practiceSentences": [
+		{
+			"vietnamese": "Hà Nội lạnh hơn Sài Gòn",
+			"english": "Hanoi is colder than Saigon",
+			"type": "comparative",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Cái này đắt hơn cái kia",
+			"english": "This is more expensive than that",
+			"type": "comparative",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Anh ấy cao bằng tôi",
+			"english": "He is as tall as me",
+			"type": "equality",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Tôi không giàu bằng anh ấy",
+			"english": "I'm not as rich as him",
+			"type": "inferiority",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Đây là món ăn ngon nhất",
+			"english": "This is the most delicious dish",
+			"type": "superlative",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Cô ấy đẹp nhất trong lớp",
+			"english": "She is the most beautiful in class",
+			"type": "superlative",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Anh ấy giàu hơn nhiều tôi",
+			"english": "He is much richer than me",
+			"type": "comparative",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Càng học càng khó",
+			"english": "The more I study, the harder it gets",
+			"type": "special",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Tôi thích cà phê hơn trà",
+			"english": "I prefer coffee to tea",
+			"type": "preference",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Thời tiết ngày càng nóng",
+			"english": "The weather is getting hotter",
+			"type": "special",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Càng sớm càng tốt",
+			"english": "As soon as possible",
+			"type": "special",
+			"difficulty": "advanced"
+		},
+		{
+			"vietnamese": "Đây là một trong những thành phố đẹp nhất thế giới",
+			"english": "This is one of the most beautiful cities in the world",
+			"type": "superlative",
+			"difficulty": "advanced"
+		},
+		{
+			"vietnamese": "Cái này tốt hơn hẳn cái kia",
+			"english": "This is far better than that",
+			"type": "comparative",
+			"difficulty": "advanced"
+		},
+		{
+			"vietnamese": "Anh ấy ngày càng cao",
+			"english": "He's getting taller",
+			"type": "special",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Tôi cao hơn anh ấy 5 cm",
+			"english": "I am 5cm taller than him",
+			"type": "comparative",
+			"difficulty": "advanced"
+		}
+	]
+}

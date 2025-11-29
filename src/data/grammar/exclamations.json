@@ -1,0 +1,523 @@
+{
+	"introduction": {
+		"title": "Vietnamese Exclamations",
+		"content": [
+			"Vietnamese exclamations express emotions, feelings, and reactions through particles added to sentences. Unlike English, where intonation alone can convey excitement, Vietnamese uses specific particles to mark exclamatory mood.",
+			"The key to authentic exclamations is combining the right particle with proper intonation. The same sentence with different particles can convey different levels of intensity and formality.",
+			"Vietnamese has a rich system of exclamatory particles, each with subtle nuances. Mastering these particles will make your Vietnamese sound more natural and emotionally expressive."
+		],
+		"warning": "Intonation is CRUCIAL for exclamations! The rising tone and emphasis make all the difference between a statement and an exclamation. Always listen to native speakers."
+	},
+	"particles": [
+		{
+			"particle": "quá",
+			"meaning": "so / too / very",
+			"intensity": "High",
+			"formality": "Neutral",
+			"position": "After adjective/verb",
+			"usage": "Most common exclamation particle. Emphasizes excess or strong degree. Can be positive or negative depending on context.",
+			"pattern": "Subject + Adjective/Verb + quá!",
+			"examples": [
+				{
+					"vietnamese": "Đẹp quá!",
+					"breakdown": {
+						"Đẹp": {
+							"type": "adjective",
+							"meaning": "beautiful"
+						},
+						"quá": {
+							"type": "particle",
+							"meaning": "so/too"
+						}
+					},
+					"english": "So beautiful!",
+					"literalEnglish": "Beautiful too!",
+					"notes": "Most common way to express admiration"
+				},
+				{
+					"vietnamese": "Trời mưa to quá!",
+					"breakdown": {
+						"Trời": {
+							"type": "subject",
+							"meaning": "sky/weather"
+						},
+						"mưa": {
+							"type": "verb",
+							"meaning": "rain"
+						},
+						"to": {
+							"type": "adjective",
+							"meaning": "big/heavy"
+						},
+						"quá": {
+							"type": "particle",
+							"meaning": "so/too"
+						}
+					},
+					"english": "It's raining so hard!",
+					"literalEnglish": "Sky rains big too!",
+					"notes": "Can express concern or complaint"
+				}
+			]
+		},
+		{
+			"particle": "thế",
+			"meaning": "like that / such",
+			"intensity": "Medium",
+			"formality": "Neutral",
+			"position": "After adjective/verb",
+			"usage": "Slightly softer than 'quá'. Often implies surprise or realization.",
+			"pattern": "Subject + Adjective/Verb + thế!",
+			"examples": [
+				{
+					"vietnamese": "Đẹp thế!",
+					"breakdown": {
+						"Đẹp": {
+							"type": "adjective",
+							"meaning": "beautiful"
+						},
+						"thế": {
+							"type": "particle",
+							"meaning": "like that"
+						}
+					},
+					"english": "So beautiful!",
+					"literalEnglish": "Beautiful like that!",
+					"notes": "More surprised tone than 'quá'"
+				}
+			]
+		},
+		{
+			"particle": "thật là",
+			"meaning": "really / truly",
+			"intensity": "Medium-High",
+			"formality": "Formal/Literary",
+			"position": "Before adjective",
+			"usage": "More formal and literary. Emphasizes sincerity or strong conviction.",
+			"pattern": "Subject + thật là + Adjective!",
+			"examples": [
+				{
+					"vietnamese": "Cảnh này thật là tuyệt vời!",
+					"breakdown": {
+						"Cảnh": {
+							"type": "noun",
+							"meaning": "scenery"
+						},
+						"này": {
+							"type": "demonstrative",
+							"meaning": "this"
+						},
+						"thật là": {
+							"type": "particle",
+							"meaning": "really/truly"
+						},
+						"tuyệt vời": {
+							"type": "adjective",
+							"meaning": "wonderful"
+						}
+					},
+					"english": "This scenery is truly wonderful!",
+					"notes": "More formal, often used in writing"
+				}
+			]
+		},
+		{
+			"particle": "luôn",
+			"meaning": "really / indeed (emphasis)",
+			"intensity": "Very High",
+			"formality": "Informal/Colloquial",
+			"position": "End of sentence",
+			"usage": "Adds extra emphasis, very enthusiastic. Southern Vietnam especially.",
+			"pattern": "Subject + quá + Adjective + luôn!",
+			"examples": [
+				{
+					"vietnamese": "Ngon quá luôn!",
+					"breakdown": {
+						"Ngon": {
+							"type": "adjective",
+							"meaning": "delicious"
+						},
+						"quá": {
+							"type": "particle",
+							"meaning": "so/too"
+						},
+						"luôn": {
+							"type": "particle",
+							"meaning": "indeed/really"
+						}
+					},
+					"english": "So delicious!",
+					"literalEnglish": "Delicious too indeed!",
+					"notes": "Very enthusiastic, casual tone"
+				}
+			]
+		}
+	],
+	"emotionGroups": [
+		{
+			"emotion": "Admiration / Positive",
+			"description": "Expressing appreciation, praise, or positive feelings",
+			"color": "emerald",
+			"exclamations": [
+				{
+					"vietnamese": "Đẹp quá!",
+					"english": "So beautiful!",
+					"particle": "quá",
+					"context": "General admiration"
+				},
+				{
+					"vietnamese": "Hay quá!",
+					"english": "So interesting / So good!",
+					"particle": "quá",
+					"context": "Books, stories, ideas"
+				},
+				{
+					"vietnamese": "Tuyệt vời quá!",
+					"english": "So wonderful!",
+					"particle": "quá",
+					"context": "Strong positive reaction"
+				},
+				{
+					"vietnamese": "Giỏi quá!",
+					"english": "So skilled / Amazing!",
+					"particle": "quá",
+					"context": "Praising ability"
+				},
+				{
+					"vietnamese": "Ngon quá!",
+					"english": "So delicious!",
+					"particle": "quá",
+					"context": "Food and drink"
+				}
+			]
+		},
+		{
+			"emotion": "Surprise",
+			"description": "Expressing shock, unexpected discovery, or amazement",
+			"color": "amber",
+			"exclamations": [
+				{
+					"vietnamese": "Sao thế!",
+					"english": "How come! / What!",
+					"particle": "thế",
+					"context": "Surprised reaction"
+				},
+				{
+					"vietnamese": "Trời ơi!",
+					"english": "Oh my God!",
+					"particle": "ơi (interjection)",
+					"context": "Shock or surprise"
+				},
+				{
+					"vietnamese": "Không thể tin được!",
+					"english": "Unbelievable!",
+					"particle": "được",
+					"context": "Disbelief"
+				},
+				{
+					"vietnamese": "Thật sao!",
+					"english": "Really?! / Is it true?!",
+					"particle": "sao",
+					"context": "Seeking confirmation"
+				},
+				{
+					"vietnamese": "Ủa!",
+					"english": "Huh?! / What?!",
+					"particle": "N/A (interjection)",
+					"context": "Confusion or surprise"
+				}
+			]
+		},
+		{
+			"emotion": "Sadness / Disappointment",
+			"description": "Expressing sorrow, regret, or negative feelings",
+			"color": "blue",
+			"exclamations": [
+				{
+					"vietnamese": "Buồn quá!",
+					"english": "So sad!",
+					"particle": "quá",
+					"context": "Feeling sad"
+				},
+				{
+					"vietnamese": "Tiếc quá!",
+					"english": "What a pity! / Such a shame!",
+					"particle": "quá",
+					"context": "Regret or missed opportunity"
+				},
+				{
+					"vietnamese": "Thật đáng tiếc!",
+					"english": "Really regrettable!",
+					"particle": "thật",
+					"context": "Formal expression of regret"
+				},
+				{
+					"vietnamese": "Tội nghiệp quá!",
+					"english": "So pitiful! / Poor thing!",
+					"particle": "quá",
+					"context": "Sympathy"
+				}
+			]
+		},
+		{
+			"emotion": "Anger / Frustration",
+			"description": "Expressing annoyance, anger, or irritation",
+			"color": "red",
+			"exclamations": [
+				{
+					"vietnamese": "Khó chịu quá!",
+					"english": "So annoying!",
+					"particle": "quá",
+					"context": "Irritation"
+				},
+				{
+					"vietnamese": "Tệ quá!",
+					"english": "So bad! / Terrible!",
+					"particle": "quá",
+					"context": "Strong negative judgment"
+				},
+				{
+					"vietnamese": "Phiền quá!",
+					"english": "So bothersome!",
+					"particle": "quá",
+					"context": "Annoyance"
+				}
+			]
+		},
+		{
+			"emotion": "Happiness / Joy",
+			"description": "Expressing delight, excitement, or joy",
+			"color": "pink",
+			"exclamations": [
+				{
+					"vietnamese": "Vui quá!",
+					"english": "So happy!",
+					"particle": "quá",
+					"context": "Feeling joyful"
+				},
+				{
+					"vietnamese": "Tuyệt quá!",
+					"english": "So great! / Awesome!",
+					"particle": "quá",
+					"context": "Excitement"
+				},
+				{
+					"vietnamese": "Vui quá đi!",
+					"english": "So happy!",
+					"particle": "quá + đi",
+					"context": "Very enthusiastic"
+				},
+				{
+					"vietnamese": "Thích quá!",
+					"english": "Love it!",
+					"particle": "quá",
+					"context": "Expressing preference/liking"
+				}
+			]
+		}
+	],
+	"interjections": [
+		{
+			"interjection": "Ôi / Ối",
+			"english": "Oh!",
+			"usage": "General exclamation of surprise or emotion",
+			"example": "Ôi, đẹp quá!",
+			"exampleEnglish": "Oh, so beautiful!"
+		},
+		{
+			"interjection": "Trời ơi",
+			"english": "Oh my God! / Goodness!",
+			"usage": "Strong surprise, shock, or worry",
+			"example": "Trời ơi, sao lại thế!",
+			"exampleEnglish": "Oh my God, how come!"
+		},
+		{
+			"interjection": "Chà / Chao",
+			"english": "Wow!",
+			"usage": "Admiration or amazement",
+			"example": "Chà, giỏi thật!",
+			"exampleEnglish": "Wow, really skilled!"
+		},
+		{
+			"interjection": "Ơ",
+			"english": "Huh? / Oh?",
+			"usage": "Mild surprise or questioning",
+			"example": "Ơ, sao vậy?",
+			"exampleEnglish": "Huh? What's wrong?"
+		},
+		{
+			"interjection": "Ái chà / Ái da",
+			"english": "Ouch! / Oh dear!",
+			"usage": "Pain or sympathy",
+			"example": "Ái da, đau quá!",
+			"exampleEnglish": "Ouch, it hurts so much!"
+		},
+		{
+			"interjection": "Ủa",
+			"english": "Huh? / Wait, what?",
+			"usage": "Confusion or unexpected information",
+			"example": "Ủa, thật sao?",
+			"exampleEnglish": "Wait, really?"
+		},
+		{
+			"interjection": "Ừ / À",
+			"english": "Oh! / Ah!",
+			"usage": "Realization or understanding",
+			"example": "À, hiểu rồi!",
+			"exampleEnglish": "Ah, I understand now!"
+		}
+	],
+	"advancedPatterns": [
+		{
+			"pattern": "Sao + Adjective + thế!",
+			"meaning": "How [adjective]!",
+			"structure": "Question word used as exclamation",
+			"example": {
+				"vietnamese": "Sao đẹp thế!",
+				"breakdown": {
+					"Sao": {
+						"type": "question",
+						"meaning": "how/why"
+					},
+					"đẹp": {
+						"type": "adjective",
+						"meaning": "beautiful"
+					},
+					"thế": {
+						"type": "particle",
+						"meaning": "like that"
+					}
+				},
+				"english": "How beautiful (it is)!",
+				"literalEnglish": "Why beautiful like that!",
+				"notes": "Rhetorical question used as exclamation"
+			}
+		},
+		{
+			"pattern": "Adjective + làm sao!",
+			"meaning": "How [adjective]!",
+			"structure": "Adjective followed by rhetorical 'how'",
+			"example": {
+				"vietnamese": "Đẹp làm sao!",
+				"breakdown": {
+					"Đẹp": {
+						"type": "adjective",
+						"meaning": "beautiful"
+					},
+					"làm sao": {
+						"type": "particle",
+						"meaning": "how (rhetorical)"
+					}
+				},
+				"english": "How beautiful!",
+				"notes": "Literary or poetic style"
+			}
+		},
+		{
+			"pattern": "Quả là + Adjective!",
+			"meaning": "Indeed [adjective]!",
+			"structure": "Emphatic assertion",
+			"example": {
+				"vietnamese": "Quả là tuyệt vời!",
+				"breakdown": {
+					"Quả là": {
+						"type": "particle",
+						"meaning": "indeed/truly"
+					},
+					"tuyệt vời": {
+						"type": "adjective",
+						"meaning": "wonderful"
+					}
+				},
+				"english": "Indeed wonderful!",
+				"notes": "Formal, emphatic"
+			}
+		}
+	],
+	"practiceSentences": [
+		{
+			"vietnamese": "Món này ngon quá!",
+			"english": "This dish is so delicious!",
+			"emotion": "admiration",
+			"particle": "quá",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Trời ơi, muộn rồi!",
+			"english": "Oh my God, it's late already!",
+			"emotion": "surprise",
+			"particle": "ơi",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Tiếc quá, tôi không đi được!",
+			"english": "What a pity, I can't go!",
+			"emotion": "disappointment",
+			"particle": "quá",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Vui quá đi!",
+			"english": "So happy!",
+			"emotion": "joy",
+			"particle": "quá + đi",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Sao đẹp thế!",
+			"english": "How beautiful!",
+			"emotion": "admiration",
+			"particle": "thế",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Khó chịu quá đi!",
+			"english": "So annoying!",
+			"emotion": "frustration",
+			"particle": "quá + đi",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Cảnh này thật là tuyệt vời!",
+			"english": "This scenery is truly wonderful!",
+			"emotion": "admiration",
+			"particle": "thật là",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Ủa, sao vậy?",
+			"english": "Huh, what's wrong?",
+			"emotion": "confusion",
+			"particle": "ủa",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Giỏi quá luôn!",
+			"english": "So skilled!",
+			"emotion": "admiration",
+			"particle": "quá + luôn",
+			"difficulty": "advanced"
+		},
+		{
+			"vietnamese": "Không thể tin được!",
+			"english": "Unbelievable!",
+			"emotion": "surprise",
+			"particle": "được",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Tội nghiệp quá!",
+			"english": "So pitiful!",
+			"emotion": "sympathy",
+			"particle": "quá",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Hay quá luôn!",
+			"english": "So interesting!",
+			"emotion": "admiration",
+			"particle": "quá + luôn",
+			"difficulty": "advanced"
+		}
+	]
+}

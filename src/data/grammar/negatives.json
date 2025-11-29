@@ -1,0 +1,492 @@
+{
+	"introduction": {
+		"title": "Vietnamese Negation System",
+		"content": [
+			"Vietnamese uses different negation words depending on the context and meaning. The three main forms are: không (general negation), không phải là (identity negation), and chưa (not yet/incomplete action).",
+			"Unlike English where 'not' is used universally, Vietnamese negation is more nuanced. Choosing the wrong negation word can completely change the meaning of a sentence.",
+			"The key distinction is between không (definite negation - 'I don't/won't') and chưa (implies possibility - 'I haven't... yet'). This distinction doesn't exist in English and is crucial for natural Vietnamese."
+		]
+	},
+	"negationTypes": [
+		{
+			"id": "khong",
+			"title": "Không",
+			"subtitle": "General Negation",
+			"description": "The most common negation word in Vietnamese. Used to negate verbs, adjectives, and general statements. It expresses definite negation - something that is not happening, not true, or will not happen.",
+			"pattern": {
+				"structure": "Subject + không + Verb/Adjective + (Object)",
+				"template": "[S] + không + [V/Adj] + ([O])"
+			},
+			"keyPoints": [
+				"Most versatile and common negation",
+				"Placed directly before the verb or adjective",
+				"Works with both action verbs and stative verbs",
+				"Implies definite negation (won't/don't)",
+				"Cannot be used alone with 'là' (use 'không phải là' instead)"
+			],
+			"examples": [
+				{
+					"vietnamese": "Tôi không thích ăn cá",
+					"breakdown": {
+						"Tôi": {
+							"type": "subject",
+							"meaning": "I"
+						},
+						"không": {
+							"type": "negation",
+							"meaning": "not"
+						},
+						"thích": {
+							"type": "verb",
+							"meaning": "like"
+						},
+						"ăn": {
+							"type": "verb",
+							"meaning": "eat"
+						},
+						"cá": {
+							"type": "object",
+							"meaning": "fish"
+						}
+					},
+					"english": "I don't like eating fish",
+					"literalEnglish": "I not like eat fish",
+					"comparison": "AFFIRMATIVE: Tôi thích ăn cá (I like eating fish)"
+				},
+				{
+					"vietnamese": "Cô ấy không đẹp",
+					"breakdown": {
+						"Cô ấy": {
+							"type": "subject",
+							"meaning": "she"
+						},
+						"không": {
+							"type": "negation",
+							"meaning": "not"
+						},
+						"đẹp": {
+							"type": "adjective",
+							"meaning": "beautiful"
+						}
+					},
+					"english": "She is not beautiful",
+					"literalEnglish": "She not beautiful",
+					"notes": "Vietnamese doesn't need a separate 'to be' verb before adjectives"
+				},
+				{
+					"vietnamese": "Họ không làm việc vào cuối tuần",
+					"breakdown": {
+						"Họ": {
+							"type": "subject",
+							"meaning": "they"
+						},
+						"không": {
+							"type": "negation",
+							"meaning": "not"
+						},
+						"làm việc": {
+							"type": "verb",
+							"meaning": "work"
+						},
+						"vào": {
+							"type": "preposition",
+							"meaning": "on"
+						},
+						"cuối tuần": {
+							"type": "object",
+							"meaning": "weekend"
+						}
+					},
+					"english": "They don't work on weekends",
+					"literalEnglish": "They not work on weekend"
+				}
+			],
+			"commonMistakes": [
+				{
+					"wrong": "Tôi không là học sinh",
+					"right": "Tôi không phải là học sinh",
+					"explanation": "Cannot use 'không' alone with 'là'. Must use 'không phải là' for identity negation."
+				}
+			]
+		},
+		{
+			"id": "khong-phai-la",
+			"title": "Không Phải Là",
+			"subtitle": "Identity/Classification Negation",
+			"description": "Used specifically to negate identity, classification, or equations with the copula 'là' (to be). This is the Vietnamese equivalent of 'is not', 'are not', 'am not' when talking about what something IS.",
+			"pattern": {
+				"structure": "Subject + không phải là + Noun/Classification",
+				"template": "[S] + không phải là + [N]"
+			},
+			"keyPoints": [
+				"Required when negating 'là' (to be) for identity",
+				"Cannot use just 'không' with 'là'",
+				"Used for classification and definitions",
+				"Similar to English 'is not' / 'are not'",
+				"All three words must be used together"
+			],
+			"examples": [
+				{
+					"vietnamese": "Bạn không phải là giáo viên",
+					"breakdown": {
+						"Bạn": {
+							"type": "subject",
+							"meaning": "you"
+						},
+						"không phải là": {
+							"type": "negation",
+							"meaning": "are not"
+						},
+						"giáo viên": {
+							"type": "object",
+							"meaning": "teacher"
+						}
+					},
+					"english": "You are not a teacher",
+					"literalEnglish": "You not-is teacher",
+					"comparison": "AFFIRMATIVE: Bạn là giáo viên (You are a teacher)"
+				},
+				{
+					"vietnamese": "Đây không phải là nhà tôi",
+					"breakdown": {
+						"Đây": {
+							"type": "subject",
+							"meaning": "this"
+						},
+						"không phải là": {
+							"type": "negation",
+							"meaning": "is not"
+						},
+						"nhà": {
+							"type": "object",
+							"meaning": "house"
+						},
+						"tôi": {
+							"type": "possessive",
+							"meaning": "my"
+						}
+					},
+					"english": "This is not my house",
+					"literalEnglish": "This not-is house my"
+				},
+				{
+					"vietnamese": "Chúng ta không phải là bạn bè",
+					"breakdown": {
+						"Chúng ta": {
+							"type": "subject",
+							"meaning": "we"
+						},
+						"không phải là": {
+							"type": "negation",
+							"meaning": "are not"
+						},
+						"bạn bè": {
+							"type": "object",
+							"meaning": "friends"
+						}
+					},
+					"english": "We are not friends",
+					"literalEnglish": "We not-are friends"
+				}
+			],
+			"commonMistakes": [
+				{
+					"wrong": "Tôi không là sinh viên",
+					"right": "Tôi không phải là sinh viên",
+					"explanation": "Must use the full 'không phải là' phrase for identity negation."
+				},
+				{
+					"wrong": "Đây không phải đẹp",
+					"right": "Đây không đẹp",
+					"explanation": "'Không phải là' is only for identity with nouns, not for adjectives. Use plain 'không' for adjectives."
+				}
+			]
+		},
+		{
+			"id": "chua",
+			"title": "Chưa",
+			"subtitle": "Not Yet / Incomplete Action",
+			"description": "Expresses that an action has not happened YET, with the implication that it might happen in the future. This is fundamentally different from 'không' which is a definite negation.",
+			"pattern": {
+				"structure": "Subject + chưa + Verb + (Object)",
+				"template": "[S] + chưa + [V] + ([O])"
+			},
+			"keyPoints": [
+				"Implies the action hasn't occurred but might/will occur",
+				"Different from 'không' which is definite negation",
+				"Often used in questions with implied 'rồi': 'Ăn cơm chưa?' (Have you eaten yet?)",
+				"Common in everyday greetings and questions",
+				"Can mean 'not yet' or 'haven't... yet'"
+			],
+			"examples": [
+				{
+					"vietnamese": "Bố tôi chưa gọi cho tôi",
+					"breakdown": {
+						"Bố": {
+							"type": "subject",
+							"meaning": "father"
+						},
+						"tôi₁": {
+							"type": "possessive",
+							"meaning": "my"
+						},
+						"chưa": {
+							"type": "negation",
+							"meaning": "not yet"
+						},
+						"gọi": {
+							"type": "verb",
+							"meaning": "call"
+						},
+						"cho": {
+							"type": "preposition",
+							"meaning": "to"
+						},
+						"tôi₂": {
+							"type": "object",
+							"meaning": "me"
+						}
+					},
+					"english": "My dad hasn't called me yet",
+					"literalEnglish": "Father my not-yet call to me",
+					"notes": "Implies he might still call"
+				},
+				{
+					"vietnamese": "Tôi chưa làm bài tập",
+					"breakdown": {
+						"Tôi": {
+							"type": "subject",
+							"meaning": "I"
+						},
+						"chưa": {
+							"type": "negation",
+							"meaning": "not yet"
+						},
+						"làm": {
+							"type": "verb",
+							"meaning": "do"
+						},
+						"bài tập": {
+							"type": "object",
+							"meaning": "homework"
+						}
+					},
+					"english": "I haven't done the homework yet",
+					"literalEnglish": "I not-yet do homework",
+					"comparison": "COMPARE: Tôi không làm bài tập (I don't/won't do homework - definite refusal)"
+				},
+				{
+					"vietnamese": "Em ăn cơm chưa",
+					"breakdown": {
+						"Em": {
+							"type": "subject",
+							"meaning": "you (younger)"
+						},
+						"ăn": {
+							"type": "verb",
+							"meaning": "eat"
+						},
+						"cơm": {
+							"type": "object",
+							"meaning": "rice/meal"
+						},
+						"chưa": {
+							"type": "question",
+							"meaning": "yet?"
+						}
+					},
+					"english": "Have you eaten yet?",
+					"literalEnglish": "You eat rice yet?",
+					"notes": "Common Vietnamese greeting, literally asking about meals"
+				}
+			],
+			"commonMistakes": [
+				{
+					"wrong": "Tôi chưa thích cà phê",
+					"right": "Tôi không thích cà phê",
+					"explanation": "'Chưa' is for actions/events, not states like 'liking'. Use 'không' for preferences and states."
+				}
+			]
+		}
+	],
+	"comparisonTable": [
+		{
+			"negationForm": "không",
+			"usage": "Definite negation",
+			"meaning": "don't / doesn't / won't",
+			"example": "Tôi không ăn cơm",
+			"translation": "I don't eat rice (I won't eat it)",
+			"implication": "Definite refusal or statement of fact"
+		},
+		{
+			"negationForm": "chưa",
+			"usage": "Incomplete action",
+			"meaning": "haven't... yet / not yet",
+			"example": "Tôi chưa ăn cơm",
+			"translation": "I haven't eaten rice yet",
+			"implication": "Might happen later / still possible"
+		},
+		{
+			"negationForm": "không phải là",
+			"usage": "Identity negation",
+			"meaning": "is not / are not / am not",
+			"example": "Tôi không phải là bác sĩ",
+			"translation": "I am not a doctor",
+			"implication": "Negating classification/identity"
+		}
+	],
+	"advancedNegations": [
+		{
+			"word": "chẳng",
+			"meaning": "emphatic negation",
+			"tone": "colloquial, stronger than không",
+			"example": "Chẳng ai biết",
+			"translation": "Nobody knows (at all)"
+		},
+		{
+			"word": "chả",
+			"meaning": "very emphatic negation",
+			"tone": "informal, dismissive",
+			"example": "Chả có gì đâu",
+			"translation": "Nothing at all / It's nothing"
+		},
+		{
+			"word": "không bao giờ",
+			"meaning": "never",
+			"tone": "formal and informal",
+			"example": "Tôi không bao giờ nói dối",
+			"translation": "I never lie"
+		},
+		{
+			"word": "không ai",
+			"meaning": "nobody / no one",
+			"tone": "neutral",
+			"example": "Không ai ở nhà",
+			"translation": "Nobody is home"
+		},
+		{
+			"word": "không gì",
+			"meaning": "nothing",
+			"tone": "neutral",
+			"example": "Không gì quan trọng",
+			"translation": "Nothing important"
+		},
+		{
+			"word": "không đâu",
+			"meaning": "nowhere",
+			"tone": "neutral",
+			"example": "Tôi không đi đâu",
+			"translation": "I'm not going anywhere"
+		}
+	],
+	"practiceSentences": [
+		{
+			"vietnamese": "Bạn không đi học hôm nay",
+			"english": "You don't go to school today",
+			"type": "khong",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Anh ấy không phải là bạn trai tôi",
+			"english": "He is not my boyfriend",
+			"type": "khong-phai-la",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Chị chưa đọc cuốn sách này",
+			"english": "You haven't read this book yet",
+			"type": "chua",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Tôi không muốn ăn phở",
+			"english": "I don't want to eat pho",
+			"type": "khong",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Đó không phải là xe của em",
+			"english": "That is not my car",
+			"type": "khong-phai-la",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Họ chưa về nhà",
+			"english": "They haven't come home yet",
+			"type": "chua",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Cô ấy không biết nói tiếng Anh",
+			"english": "She doesn't know how to speak English",
+			"type": "khong",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Chúng tôi không phải là người Việt Nam",
+			"english": "We are not Vietnamese people",
+			"type": "khong-phai-la",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Tôi chưa quyết định đi hay ở",
+			"english": "I haven't decided whether to go or stay yet",
+			"type": "chua",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Bố mẹ tôi không cho phép tôi đi chơi đêm",
+			"english": "My parents don't allow me to go out at night",
+			"type": "khong",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Món này không phải là món tôi gọi",
+			"english": "This dish is not the one I ordered",
+			"type": "khong-phai-la",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Cô giáo chưa chấm bài kiểm tra",
+			"english": "The teacher hasn't graded the test yet",
+			"type": "chua",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Tôi không nghĩ anh ta sẽ đến dự tiệc",
+			"english": "I don't think he will come to the party",
+			"type": "khong",
+			"difficulty": "advanced"
+		},
+		{
+			"vietnamese": "Điều em nói không phải là sự thật",
+			"english": "What you said is not the truth",
+			"type": "khong-phai-la",
+			"difficulty": "advanced"
+		},
+		{
+			"vietnamese": "Chúng tôi chưa tìm được giải pháp cho vấn đề này",
+			"english": "We haven't found a solution to this problem yet",
+			"type": "chua",
+			"difficulty": "advanced"
+		},
+		{
+			"vietnamese": "Tôi không bao giờ quên ngày đó",
+			"english": "I will never forget that day",
+			"type": "khong-bao-gio",
+			"difficulty": "advanced"
+		},
+		{
+			"vietnamese": "Không ai hiểu tôi cả",
+			"english": "Nobody understands me at all",
+			"type": "khong-ai",
+			"difficulty": "advanced"
+		},
+		{
+			"vietnamese": "Cô ấy chẳng quan tâm đến lời nói của họ",
+			"english": "She doesn't care about what they say at all",
+			"type": "chang",
+			"difficulty": "advanced"
+		}
+	]
+}

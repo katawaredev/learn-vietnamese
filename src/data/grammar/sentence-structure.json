@@ -1,0 +1,321 @@
+{
+	"introduction": {
+		"title": "Vietnamese Sentence Structure",
+		"content": [
+			"Vietnamese follows a Subject-Verb-Object (SVO) word order, similar to English. However, it's a topic-prominent language, meaning the topic of discussion is often fronted for emphasis.",
+			"Unlike English, Vietnamese uses head-initial phrases where the main word comes first, followed by modifiers. This means descriptive words come AFTER the noun they modify."
+		]
+	},
+	"patterns": [
+		{
+			"id": "svo",
+			"title": "Basic SVO Pattern",
+			"description": "The fundamental sentence structure in Vietnamese mirrors English: Subject → Verb → Object",
+			"pattern": {
+				"structure": "Subject + Verb + Object",
+				"template": "[S] + [V] + [O]"
+			},
+			"examples": [
+				{
+					"vietnamese": "Tôi ăn cơm",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"ăn": { "type": "verb", "meaning": "eat" },
+						"cơm": { "type": "object", "meaning": "rice" }
+					},
+					"english": "I eat rice",
+					"notes": "Simple SVO - identical to English word order"
+				},
+				{
+					"vietnamese": "Em học tiếng Việt",
+					"breakdown": {
+						"Em": { "type": "subject", "meaning": "I (younger)" },
+						"học": { "type": "verb", "meaning": "study" },
+						"tiếng Việt": { "type": "object", "meaning": "Vietnamese language" }
+					},
+					"english": "I study Vietnamese",
+					"notes": "Compound object 'tiếng Việt' still follows SVO"
+				},
+				{
+					"vietnamese": "Cô ấy thích cà phê",
+					"breakdown": {
+						"Cô ấy": { "type": "subject", "meaning": "She" },
+						"thích": { "type": "verb", "meaning": "likes" },
+						"cà phê": { "type": "object", "meaning": "coffee" }
+					},
+					"english": "She likes coffee",
+					"notes": "Compound subject 'cô ấy' and compound object 'cà phê'"
+				}
+			]
+		},
+		{
+			"id": "topic-comment",
+			"title": "Topic-Comment Structure",
+			"description": "Vietnamese is a topic-prominent language. The topic (what you're talking about) can be fronted and marked with 'thì' for emphasis.",
+			"pattern": {
+				"structure": "Topic + (thì) + Comment",
+				"template": "[Topic] + (thì) + [Subject] + [Verb] + ..."
+			},
+			"examples": [
+				{
+					"vietnamese": "Sách này thì tôi đọc rồi",
+					"breakdown": {
+						"Sách này": { "type": "topic", "meaning": "This book" },
+						"thì": { "type": "marker", "meaning": "[topic marker]" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"đọc": { "type": "verb", "meaning": "read" },
+						"rồi": { "type": "particle", "meaning": "already" }
+					},
+					"english": "This book, I've already read it",
+					"literalEnglish": "This book [topic], I read already",
+					"notes": "'Sách này' is fronted as the topic; 'thì' marks the topic boundary"
+				},
+				{
+					"vietnamese": "Cà phê tôi không thích",
+					"breakdown": {
+						"Cà phê": { "type": "topic", "meaning": "Coffee" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"không": { "type": "negation", "meaning": "not" },
+						"thích": { "type": "verb", "meaning": "like" }
+					},
+					"english": "Coffee, I don't like it",
+					"literalEnglish": "Coffee, I not like",
+					"notes": "Topic 'cà phê' fronted without 'thì' - still topic-prominent"
+				},
+				{
+					"vietnamese": "Người đó thì anh ấy không biết",
+					"breakdown": {
+						"Người đó": { "type": "topic", "meaning": "That person" },
+						"thì": { "type": "marker", "meaning": "[topic marker]" },
+						"anh ấy": { "type": "subject", "meaning": "he" },
+						"không": { "type": "negation", "meaning": "not" },
+						"biết": { "type": "verb", "meaning": "know" }
+					},
+					"english": "That person, he doesn't know them",
+					"literalEnglish": "That person [topic], he not know",
+					"notes": "Topic and subject are different entities"
+				}
+			]
+		},
+		{
+			"id": "noun-phrase",
+			"title": "Noun Phrase Structure",
+			"description": "Vietnamese noun phrases are head-initial: the main noun comes first, followed by all modifiers. This is opposite to English in most cases.",
+			"pattern": {
+				"structure": "Noun + Modifiers + Demonstrative",
+				"template": "[Classifier] + [Noun] + [Adjective] + [Modifier] + [Demonstrative]",
+				"fullPattern": "Totality + Article + Quantifier + Classifier + HEAD NOUN + Attributive Modifiers + Demonstrative + Prepositional Phrase"
+			},
+			"examples": [
+				{
+					"vietnamese": "con mèo đen",
+					"breakdown": {
+						"con": { "type": "classifier", "meaning": "[animal]" },
+						"mèo": { "type": "noun", "meaning": "cat" },
+						"đen": { "type": "adjective", "meaning": "black" }
+					},
+					"english": "the black cat",
+					"comparison": "Vietnamese: cat black | English: black cat",
+					"notes": "Adjective 'đen' comes AFTER noun 'mèo'"
+				},
+				{
+					"vietnamese": "cái bàn gỗ lớn này",
+					"breakdown": {
+						"cái": { "type": "classifier", "meaning": "[thing]" },
+						"bàn": { "type": "noun", "meaning": "table" },
+						"gỗ": { "type": "modifier", "meaning": "wood/wooden" },
+						"lớn": { "type": "adjective", "meaning": "big" },
+						"này": { "type": "demonstrative", "meaning": "this" }
+					},
+					"english": "this big wooden table",
+					"comparison": "Vietnamese: table wood big this | English: this big wooden table",
+					"notes": "Demonstrative 'này' comes LAST in Vietnamese"
+				},
+				{
+					"vietnamese": "cả hai cuốn từ điển Việt Anh này của nó",
+					"breakdown": {
+						"cả": { "type": "totality", "meaning": "all" },
+						"hai": { "type": "quantifier", "meaning": "two" },
+						"cuốn": { "type": "classifier", "meaning": "[book]" },
+						"từ điển": { "type": "noun", "meaning": "dictionary" },
+						"Việt Anh": { "type": "modifier", "meaning": "Vietnamese-English" },
+						"này": { "type": "demonstrative", "meaning": "this/these" },
+						"của nó": { "type": "possessive", "meaning": "of his/hers" }
+					},
+					"english": "both of these Vietnamese-English dictionaries of his",
+					"notes": "Full noun phrase showing complete pattern"
+				},
+				{
+					"vietnamese": "những người bạn tốt của tôi",
+					"breakdown": {
+						"những": { "type": "article", "meaning": "[plural marker]" },
+						"người": { "type": "classifier", "meaning": "[person]" },
+						"bạn": { "type": "noun", "meaning": "friend" },
+						"tốt": { "type": "adjective", "meaning": "good" },
+						"của tôi": { "type": "possessive", "meaning": "of mine" }
+					},
+					"english": "my good friends",
+					"comparison": "Vietnamese: [plural] friend good of mine | English: my good friends",
+					"notes": "Possessive comes at the end in Vietnamese"
+				}
+			]
+		},
+		{
+			"id": "verb-serialization",
+			"title": "Verb Serialization",
+			"description": "Vietnamese commonly uses multiple verbs in sequence without conjunctions. These serial verb constructions express a single complex action or event.",
+			"pattern": {
+				"structure": "Subject + Verb₁ + Verb₂ + (Verb₃...) + Object",
+				"template": "[S] + [V₁] + [V₂] + [O]"
+			},
+			"examples": [
+				{
+					"vietnamese": "Tôi đi chợ mua rau",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"đi": { "type": "verb1", "meaning": "go" },
+						"chợ": { "type": "location", "meaning": "market" },
+						"mua": { "type": "verb2", "meaning": "buy" },
+						"rau": { "type": "object", "meaning": "vegetables" }
+					},
+					"english": "I go to the market to buy vegetables",
+					"literalEnglish": "I go market buy vegetables",
+					"notes": "Two verbs 'đi' and 'mua' serialized without conjunction"
+				},
+				{
+					"vietnamese": "Anh ấy về nhà ngủ",
+					"breakdown": {
+						"Anh ấy": { "type": "subject", "meaning": "He" },
+						"về": { "type": "verb1", "meaning": "return" },
+						"nhà": { "type": "location", "meaning": "home" },
+						"ngủ": { "type": "verb2", "meaning": "sleep" }
+					},
+					"english": "He goes home to sleep",
+					"literalEnglish": "He return home sleep",
+					"notes": "Serial verbs 'về' and 'ngủ' express purpose"
+				},
+				{
+					"vietnamese": "Chúng tôi ngồi ăn cơm",
+					"breakdown": {
+						"Chúng tôi": { "type": "subject", "meaning": "We" },
+						"ngồi": { "type": "verb1", "meaning": "sit" },
+						"ăn": { "type": "verb2", "meaning": "eat" },
+						"cơm": { "type": "object", "meaning": "rice/meal" }
+					},
+					"english": "We sit and eat",
+					"literalEnglish": "We sit eat rice",
+					"notes": "Serial verbs 'ngồi' and 'ăn' describe simultaneous actions"
+				},
+				{
+					"vietnamese": "Em đứng đợi xe buýt",
+					"breakdown": {
+						"Em": { "type": "subject", "meaning": "I (younger)" },
+						"đứng": { "type": "verb1", "meaning": "stand" },
+						"đợi": { "type": "verb2", "meaning": "wait for" },
+						"xe buýt": { "type": "object", "meaning": "bus" }
+					},
+					"english": "I stand waiting for the bus",
+					"literalEnglish": "I stand wait bus",
+					"notes": "Describes manner and action together"
+				}
+			]
+		},
+		{
+			"id": "verb-interleaving",
+			"title": "Verb Interleaving & Reduplication",
+			"description": "For emphasis or expressiveness, Vietnamese uses verb interleaving (splitting compound words with repeated verbs) and reduplication patterns. This creates rhythmic, emphatic expressions.",
+			"pattern": {
+				"structure": "Verb + Part₁ + Verb + Part₂",
+				"template": "[V] + [Component₁] + [V] + [Component₂]"
+			},
+			"examples": [
+				{
+					"vietnamese": "biết thân biết phận",
+					"breakdown": {
+						"biết₁": { "type": "verb1", "meaning": "know" },
+						"thân": { "type": "noun", "meaning": "self/body" },
+						"biết₂": { "type": "verb2", "meaning": "know" },
+						"phận": { "type": "noun", "meaning": "status/place" }
+					},
+					"english": "know one's place (humble)",
+					"literalEnglish": "know self know place",
+					"notes": "Verb 'biết' repeated for emphasis, splitting 'thân phận' (one's place)"
+				},
+				{
+					"vietnamese": "đi tới đi lui",
+					"breakdown": {
+						"đi₁": { "type": "verb1", "meaning": "go" },
+						"tới": { "type": "direction", "meaning": "forward/to" },
+						"đi₂": { "type": "verb2", "meaning": "go" },
+						"lui": { "type": "direction", "meaning": "back/backward" }
+					},
+					"english": "go back and forth, pace around",
+					"literalEnglish": "go forward go back",
+					"notes": "Verb 'đi' interleaved with directional words for emphasis"
+				},
+				{
+					"vietnamese": "nghĩ đi nghĩ lại",
+					"breakdown": {
+						"nghĩ₁": { "type": "verb1", "meaning": "think" },
+						"đi": { "type": "particle", "meaning": "[action marker]" },
+						"nghĩ₂": { "type": "verb2", "meaning": "think" },
+						"lại": { "type": "particle", "meaning": "again/back" }
+					},
+					"english": "think over and over, ponder repeatedly",
+					"literalEnglish": "think [forward] think [back]",
+					"notes": "Verb 'nghĩ' repeated with directional particles to show repeated action"
+				},
+				{
+					"vietnamese": "ăn uống ăn nằm",
+					"breakdown": {
+						"ăn₁": { "type": "verb1", "meaning": "eat" },
+						"uống": { "type": "verb", "meaning": "drink" },
+						"ăn₂": { "type": "verb2", "meaning": "eat" },
+						"nằm": { "type": "verb", "meaning": "lie down" }
+					},
+					"english": "daily living, basic sustenance",
+					"literalEnglish": "eat drink eat sleep",
+					"notes": "Interleaved pattern describing basic life activities"
+				}
+			]
+		}
+	],
+	"practiceSentences": [
+		{
+			"vietnamese": "Bạn tôi học tiếng Việt",
+			"english": "My friend studies Vietnamese",
+			"pattern": "svo",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Cái nhà đỏ lớn này",
+			"english": "This big red house",
+			"pattern": "noun-phrase",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Món này thì tôi không ăn",
+			"english": "This dish, I don't eat it",
+			"pattern": "topic-comment",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Họ đi siêu thị mua đồ ăn",
+			"english": "They go to the supermarket to buy food",
+			"pattern": "verb-serialization",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Những cuốn sách hay này của anh ấy",
+			"english": "These interesting books of his",
+			"pattern": "noun-phrase",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Con chó nhỏ đen này",
+			"english": "This small black dog",
+			"pattern": "noun-phrase",
+			"difficulty": "beginner"
+		}
+	]
+}

@@ -31,17 +31,20 @@ import { Route as NumbersTimeRouteImport } from './routes/numbers/time'
 import { Route as NumbersPracticeRouteImport } from './routes/numbers/practice'
 import { Route as NumbersDatesRouteImport } from './routes/numbers/dates'
 import { Route as NumbersCountingRouteImport } from './routes/numbers/counting'
-import { Route as GrammarWordOrderRouteImport } from './routes/grammar/word-order'
 import { Route as GrammarTensesRouteImport } from './routes/grammar/tenses'
 import { Route as GrammarSentenceStructureRouteImport } from './routes/grammar/sentence-structure'
 import { Route as GrammarQuestionsRouteImport } from './routes/grammar/questions'
+import { Route as GrammarPassiveVoiceRouteImport } from './routes/grammar/passive-voice'
 import { Route as GrammarNegativesRouteImport } from './routes/grammar/negatives'
+import { Route as GrammarModalVerbsRouteImport } from './routes/grammar/modal-verbs'
 import { Route as GrammarFocusMarkersRouteImport } from './routes/grammar/focus-markers'
 import { Route as GrammarExclamationsRouteImport } from './routes/grammar/exclamations'
 import { Route as GrammarDemonstrativesRouteImport } from './routes/grammar/demonstratives'
 import { Route as GrammarConditionalsRouteImport } from './routes/grammar/conditionals'
+import { Route as GrammarComparativesRouteImport } from './routes/grammar/comparatives'
 import { Route as GrammarCommandsRouteImport } from './routes/grammar/commands'
 import { Route as GrammarClassifiersRouteImport } from './routes/grammar/classifiers'
+import { Route as GrammarAdjectivesRouteImport } from './routes/grammar/adjectives'
 import { Route as DictationSpeakSlugRouteImport } from './routes/dictation/speak.$slug'
 import { Route as DictationListenSlugRouteImport } from './routes/dictation/listen.$slug'
 
@@ -156,11 +159,6 @@ const NumbersCountingRoute = NumbersCountingRouteImport.update({
   path: '/numbers/counting',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarWordOrderRoute = GrammarWordOrderRouteImport.update({
-  id: '/grammar/word-order',
-  path: '/grammar/word-order',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const GrammarTensesRoute = GrammarTensesRouteImport.update({
   id: '/grammar/tenses',
   path: '/grammar/tenses',
@@ -177,9 +175,19 @@ const GrammarQuestionsRoute = GrammarQuestionsRouteImport.update({
   path: '/grammar/questions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GrammarPassiveVoiceRoute = GrammarPassiveVoiceRouteImport.update({
+  id: '/grammar/passive-voice',
+  path: '/grammar/passive-voice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GrammarNegativesRoute = GrammarNegativesRouteImport.update({
   id: '/grammar/negatives',
   path: '/grammar/negatives',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GrammarModalVerbsRoute = GrammarModalVerbsRouteImport.update({
+  id: '/grammar/modal-verbs',
+  path: '/grammar/modal-verbs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GrammarFocusMarkersRoute = GrammarFocusMarkersRouteImport.update({
@@ -202,6 +210,11 @@ const GrammarConditionalsRoute = GrammarConditionalsRouteImport.update({
   path: '/grammar/conditionals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GrammarComparativesRoute = GrammarComparativesRouteImport.update({
+  id: '/grammar/comparatives',
+  path: '/grammar/comparatives',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GrammarCommandsRoute = GrammarCommandsRouteImport.update({
   id: '/grammar/commands',
   path: '/grammar/commands',
@@ -210,6 +223,11 @@ const GrammarCommandsRoute = GrammarCommandsRouteImport.update({
 const GrammarClassifiersRoute = GrammarClassifiersRouteImport.update({
   id: '/grammar/classifiers',
   path: '/grammar/classifiers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GrammarAdjectivesRoute = GrammarAdjectivesRouteImport.update({
+  id: '/grammar/adjectives',
+  path: '/grammar/adjectives',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DictationSpeakSlugRoute = DictationSpeakSlugRouteImport.update({
@@ -228,17 +246,20 @@ export interface FileRoutesByFullPath {
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
+  '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
+  '/grammar/comparatives': typeof GrammarComparativesRoute
   '/grammar/conditionals': typeof GrammarConditionalsRoute
   '/grammar/demonstratives': typeof GrammarDemonstrativesRoute
   '/grammar/exclamations': typeof GrammarExclamationsRoute
   '/grammar/focus-markers': typeof GrammarFocusMarkersRoute
+  '/grammar/modal-verbs': typeof GrammarModalVerbsRoute
   '/grammar/negatives': typeof GrammarNegativesRoute
+  '/grammar/passive-voice': typeof GrammarPassiveVoiceRoute
   '/grammar/questions': typeof GrammarQuestionsRoute
   '/grammar/sentence-structure': typeof GrammarSentenceStructureRoute
   '/grammar/tenses': typeof GrammarTensesRoute
-  '/grammar/word-order': typeof GrammarWordOrderRoute
   '/numbers/counting': typeof NumbersCountingRoute
   '/numbers/dates': typeof NumbersDatesRoute
   '/numbers/practice': typeof NumbersPracticeRoute
@@ -265,17 +286,20 @@ export interface FileRoutesByTo {
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
+  '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
+  '/grammar/comparatives': typeof GrammarComparativesRoute
   '/grammar/conditionals': typeof GrammarConditionalsRoute
   '/grammar/demonstratives': typeof GrammarDemonstrativesRoute
   '/grammar/exclamations': typeof GrammarExclamationsRoute
   '/grammar/focus-markers': typeof GrammarFocusMarkersRoute
+  '/grammar/modal-verbs': typeof GrammarModalVerbsRoute
   '/grammar/negatives': typeof GrammarNegativesRoute
+  '/grammar/passive-voice': typeof GrammarPassiveVoiceRoute
   '/grammar/questions': typeof GrammarQuestionsRoute
   '/grammar/sentence-structure': typeof GrammarSentenceStructureRoute
   '/grammar/tenses': typeof GrammarTensesRoute
-  '/grammar/word-order': typeof GrammarWordOrderRoute
   '/numbers/counting': typeof NumbersCountingRoute
   '/numbers/dates': typeof NumbersDatesRoute
   '/numbers/practice': typeof NumbersPracticeRoute
@@ -303,17 +327,20 @@ export interface FileRoutesById {
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
+  '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
+  '/grammar/comparatives': typeof GrammarComparativesRoute
   '/grammar/conditionals': typeof GrammarConditionalsRoute
   '/grammar/demonstratives': typeof GrammarDemonstrativesRoute
   '/grammar/exclamations': typeof GrammarExclamationsRoute
   '/grammar/focus-markers': typeof GrammarFocusMarkersRoute
+  '/grammar/modal-verbs': typeof GrammarModalVerbsRoute
   '/grammar/negatives': typeof GrammarNegativesRoute
+  '/grammar/passive-voice': typeof GrammarPassiveVoiceRoute
   '/grammar/questions': typeof GrammarQuestionsRoute
   '/grammar/sentence-structure': typeof GrammarSentenceStructureRoute
   '/grammar/tenses': typeof GrammarTensesRoute
-  '/grammar/word-order': typeof GrammarWordOrderRoute
   '/numbers/counting': typeof NumbersCountingRoute
   '/numbers/dates': typeof NumbersDatesRoute
   '/numbers/practice': typeof NumbersPracticeRoute
@@ -342,17 +369,20 @@ export interface FileRouteTypes {
     | '/chat'
     | '/flag'
     | '/showcase'
+    | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
+    | '/grammar/comparatives'
     | '/grammar/conditionals'
     | '/grammar/demonstratives'
     | '/grammar/exclamations'
     | '/grammar/focus-markers'
+    | '/grammar/modal-verbs'
     | '/grammar/negatives'
+    | '/grammar/passive-voice'
     | '/grammar/questions'
     | '/grammar/sentence-structure'
     | '/grammar/tenses'
-    | '/grammar/word-order'
     | '/numbers/counting'
     | '/numbers/dates'
     | '/numbers/practice'
@@ -379,17 +409,20 @@ export interface FileRouteTypes {
     | '/chat'
     | '/flag'
     | '/showcase'
+    | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
+    | '/grammar/comparatives'
     | '/grammar/conditionals'
     | '/grammar/demonstratives'
     | '/grammar/exclamations'
     | '/grammar/focus-markers'
+    | '/grammar/modal-verbs'
     | '/grammar/negatives'
+    | '/grammar/passive-voice'
     | '/grammar/questions'
     | '/grammar/sentence-structure'
     | '/grammar/tenses'
-    | '/grammar/word-order'
     | '/numbers/counting'
     | '/numbers/dates'
     | '/numbers/practice'
@@ -416,17 +449,20 @@ export interface FileRouteTypes {
     | '/chat'
     | '/flag'
     | '/showcase'
+    | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
+    | '/grammar/comparatives'
     | '/grammar/conditionals'
     | '/grammar/demonstratives'
     | '/grammar/exclamations'
     | '/grammar/focus-markers'
+    | '/grammar/modal-verbs'
     | '/grammar/negatives'
+    | '/grammar/passive-voice'
     | '/grammar/questions'
     | '/grammar/sentence-structure'
     | '/grammar/tenses'
-    | '/grammar/word-order'
     | '/numbers/counting'
     | '/numbers/dates'
     | '/numbers/practice'
@@ -454,17 +490,20 @@ export interface RootRouteChildren {
   ChatRoute: typeof ChatRoute
   FlagRoute: typeof FlagRoute
   ShowcaseRoute: typeof ShowcaseRoute
+  GrammarAdjectivesRoute: typeof GrammarAdjectivesRoute
   GrammarClassifiersRoute: typeof GrammarClassifiersRoute
   GrammarCommandsRoute: typeof GrammarCommandsRoute
+  GrammarComparativesRoute: typeof GrammarComparativesRoute
   GrammarConditionalsRoute: typeof GrammarConditionalsRoute
   GrammarDemonstrativesRoute: typeof GrammarDemonstrativesRoute
   GrammarExclamationsRoute: typeof GrammarExclamationsRoute
   GrammarFocusMarkersRoute: typeof GrammarFocusMarkersRoute
+  GrammarModalVerbsRoute: typeof GrammarModalVerbsRoute
   GrammarNegativesRoute: typeof GrammarNegativesRoute
+  GrammarPassiveVoiceRoute: typeof GrammarPassiveVoiceRoute
   GrammarQuestionsRoute: typeof GrammarQuestionsRoute
   GrammarSentenceStructureRoute: typeof GrammarSentenceStructureRoute
   GrammarTensesRoute: typeof GrammarTensesRoute
-  GrammarWordOrderRoute: typeof GrammarWordOrderRoute
   NumbersCountingRoute: typeof NumbersCountingRoute
   NumbersDatesRoute: typeof NumbersDatesRoute
   NumbersPracticeRoute: typeof NumbersPracticeRoute
@@ -643,13 +682,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NumbersCountingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/grammar/word-order': {
-      id: '/grammar/word-order'
-      path: '/grammar/word-order'
-      fullPath: '/grammar/word-order'
-      preLoaderRoute: typeof GrammarWordOrderRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/grammar/tenses': {
       id: '/grammar/tenses'
       path: '/grammar/tenses'
@@ -671,11 +703,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GrammarQuestionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/grammar/passive-voice': {
+      id: '/grammar/passive-voice'
+      path: '/grammar/passive-voice'
+      fullPath: '/grammar/passive-voice'
+      preLoaderRoute: typeof GrammarPassiveVoiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/grammar/negatives': {
       id: '/grammar/negatives'
       path: '/grammar/negatives'
       fullPath: '/grammar/negatives'
       preLoaderRoute: typeof GrammarNegativesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/modal-verbs': {
+      id: '/grammar/modal-verbs'
+      path: '/grammar/modal-verbs'
+      fullPath: '/grammar/modal-verbs'
+      preLoaderRoute: typeof GrammarModalVerbsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/grammar/focus-markers': {
@@ -706,6 +752,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GrammarConditionalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/grammar/comparatives': {
+      id: '/grammar/comparatives'
+      path: '/grammar/comparatives'
+      fullPath: '/grammar/comparatives'
+      preLoaderRoute: typeof GrammarComparativesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/grammar/commands': {
       id: '/grammar/commands'
       path: '/grammar/commands'
@@ -718,6 +771,13 @@ declare module '@tanstack/react-router' {
       path: '/grammar/classifiers'
       fullPath: '/grammar/classifiers'
       preLoaderRoute: typeof GrammarClassifiersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/adjectives': {
+      id: '/grammar/adjectives'
+      path: '/grammar/adjectives'
+      fullPath: '/grammar/adjectives'
+      preLoaderRoute: typeof GrammarAdjectivesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dictation/speak/$slug': {
@@ -742,17 +802,20 @@ const rootRouteChildren: RootRouteChildren = {
   ChatRoute: ChatRoute,
   FlagRoute: FlagRoute,
   ShowcaseRoute: ShowcaseRoute,
+  GrammarAdjectivesRoute: GrammarAdjectivesRoute,
   GrammarClassifiersRoute: GrammarClassifiersRoute,
   GrammarCommandsRoute: GrammarCommandsRoute,
+  GrammarComparativesRoute: GrammarComparativesRoute,
   GrammarConditionalsRoute: GrammarConditionalsRoute,
   GrammarDemonstrativesRoute: GrammarDemonstrativesRoute,
   GrammarExclamationsRoute: GrammarExclamationsRoute,
   GrammarFocusMarkersRoute: GrammarFocusMarkersRoute,
+  GrammarModalVerbsRoute: GrammarModalVerbsRoute,
   GrammarNegativesRoute: GrammarNegativesRoute,
+  GrammarPassiveVoiceRoute: GrammarPassiveVoiceRoute,
   GrammarQuestionsRoute: GrammarQuestionsRoute,
   GrammarSentenceStructureRoute: GrammarSentenceStructureRoute,
   GrammarTensesRoute: GrammarTensesRoute,
-  GrammarWordOrderRoute: GrammarWordOrderRoute,
   NumbersCountingRoute: NumbersCountingRoute,
   NumbersDatesRoute: NumbersDatesRoute,
   NumbersPracticeRoute: NumbersPracticeRoute,

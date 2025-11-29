@@ -1,0 +1,594 @@
+{
+	"introduction": {
+		"title": "Commands and Imperatives in Vietnamese",
+		"content": [
+			"Vietnamese commands are simpler than English in structure but more complex in politeness. Unlike English, there's no special imperative form—just use the base verb.",
+			"The critical factor is politeness level. Vietnamese culture places enormous weight on social hierarchy and respect, so choosing the right command form is essential to avoid offending.",
+			"Commands can range from harsh (bare verb) to extremely polite (vui lòng, xin mời). The particle 'đi' is your friend—it softens commands and makes them feel encouraging rather than demanding."
+		]
+	},
+	"commandTypes": [
+		{
+			"id": "basic",
+			"title": "Basic Commands",
+			"description": "The simplest form: just the verb. Adding 'đi' after the verb softens it significantly.",
+			"pattern": {
+				"structure": "Verb + (đi) + !",
+				"template": "[Verb] + (đi)"
+			},
+			"warning": "Using bare verbs (without đi or politeness markers) can sound harsh. Only appropriate with close friends, family, or children.",
+			"keyPoints": [
+				"Bare verb = direct and potentially harsh",
+				"Verb + đi = softer, encouraging",
+				"Subject is usually omitted in commands",
+				"Adding pronoun clarifies who you're addressing but can sound more direct"
+			],
+			"examples": [
+				{
+					"vietnamese": "Ăn đi!",
+					"breakdown": {
+						"Ăn": {
+							"type": "verb",
+							"meaning": "eat"
+						},
+						"đi": {
+							"type": "particle",
+							"meaning": "softening/encouraging particle"
+						}
+					},
+					"english": "Eat! / Go ahead and eat!",
+					"literalEnglish": "Eat (softly)",
+					"notes": "The 'đi' makes this encouraging rather than demanding. Without it, 'Ăn!' sounds harsh."
+				},
+				{
+					"vietnamese": "Ngồi xuống!",
+					"breakdown": {
+						"Ngồi": {
+							"type": "verb",
+							"meaning": "sit"
+						},
+						"xuống": {
+							"type": "direction",
+							"meaning": "down"
+						}
+					},
+					"english": "Sit down!",
+					"literalEnglish": "Sit down",
+					"notes": "No 'đi' makes this more direct—appropriate for immediate action or with subordinates"
+				},
+				{
+					"vietnamese": "Nhanh lên!",
+					"breakdown": {
+						"Nhanh": {
+							"type": "verb",
+							"meaning": "be quick"
+						},
+						"lên": {
+							"type": "particle",
+							"meaning": "urging particle"
+						}
+					},
+					"english": "Hurry up!",
+					"literalEnglish": "Quick up",
+					"notes": "'Lên' adds urgency and encouragement, similar to 'đi' but with more emphasis on speed"
+				},
+				{
+					"vietnamese": "Con ăn cơm đi!",
+					"breakdown": {
+						"Con": {
+							"type": "subject",
+							"meaning": "child (when parent addresses child)"
+						},
+						"ăn": {
+							"type": "verb",
+							"meaning": "eat"
+						},
+						"cơm": {
+							"type": "object",
+							"meaning": "rice/meal"
+						},
+						"đi": {
+							"type": "particle",
+							"meaning": "softening particle"
+						}
+					},
+					"english": "Eat your meal! (parent to child)",
+					"literalEnglish": "Child eat meal (softly)",
+					"notes": "Adding 'con' clarifies you're speaking to your child and maintains gentle tone"
+				}
+			]
+		},
+		{
+			"id": "polite",
+			"title": "Polite Commands",
+			"description": "Essential for strangers, customers, elders, or professional contexts. Vietnamese has three main politeness markers, each with different connotations.",
+			"politenessMarkers": [
+				{
+					"marker": "vui lòng",
+					"formality": "Formal/Professional",
+					"meaning": "please (lit: happily, willingly)",
+					"usage": "Customer service, official settings, written requests",
+					"position": "Before verb",
+					"example": {
+						"vietnamese": "Quý khách vui lòng chờ trong giây lát",
+						"breakdown": {
+							"Quý khách": {
+								"type": "subject",
+								"meaning": "honored guest/customer"
+							},
+							"vui lòng": {
+								"type": "modal",
+								"meaning": "please (formal)"
+							},
+							"chờ": {
+								"type": "verb",
+								"meaning": "wait"
+							},
+							"trong": {
+								"type": "preposition",
+								"meaning": "in/for"
+							},
+							"giây lát": {
+								"type": "object",
+								"meaning": "a moment"
+							}
+						},
+						"english": "Please wait a moment (to customers)",
+						"literalEnglish": "Honored guest please wait in moment",
+						"notes": "Standard in service industry—very respectful and professional"
+					}
+				},
+				{
+					"marker": "xin mời",
+					"formality": "Very Formal/Invitational",
+					"meaning": "please (lit: humbly invite)",
+					"usage": "Inviting someone to do something, extremely polite",
+					"position": "Before subject and verb",
+					"example": {
+						"vietnamese": "Xin mời anh ngồi",
+						"breakdown": {
+							"Xin mời": {
+								"type": "modal",
+								"meaning": "please (invitational)"
+							},
+							"anh": {
+								"type": "subject",
+								"meaning": "you (older male)"
+							},
+							"ngồi": {
+								"type": "verb",
+								"meaning": "sit"
+							}
+						},
+						"english": "Please have a seat",
+						"literalEnglish": "Humbly invite you sit",
+						"notes": "Extremely polite—used when inviting someone to do something for their benefit"
+					}
+				},
+				{
+					"marker": "làm ơn",
+					"formality": "Polite/Conversational",
+					"meaning": "please (lit: do a favor)",
+					"usage": "Everyday politeness, asking favors",
+					"position": "Before verb",
+					"example": {
+						"vietnamese": "Làm ơn giúp tôi",
+						"breakdown": {
+							"Làm ơn": {
+								"type": "modal",
+								"meaning": "please (favor)"
+							},
+							"giúp": {
+								"type": "verb",
+								"meaning": "help"
+							},
+							"tôi": {
+								"type": "object",
+								"meaning": "me"
+							}
+						},
+						"english": "Please help me",
+						"literalEnglish": "Do favor help me",
+						"notes": "Less formal than 'vui lòng' but still polite—implies asking a favor"
+					}
+				}
+			],
+			"examples": [
+				{
+					"vietnamese": "Anh vui lòng điền thông tin vào đây",
+					"breakdown": {
+						"Anh": {
+							"type": "subject",
+							"meaning": "you (older male/sir)"
+						},
+						"vui lòng": {
+							"type": "modal",
+							"meaning": "please (formal)"
+						},
+						"điền": {
+							"type": "verb",
+							"meaning": "fill in"
+						},
+						"thông tin": {
+							"type": "object",
+							"meaning": "information"
+						},
+						"vào đây": {
+							"type": "location",
+							"meaning": "here"
+						}
+					},
+					"english": "Please fill in your information here",
+					"literalEnglish": "You please fill information in here"
+				},
+				{
+					"vietnamese": "Xin mời chị dùng trà",
+					"breakdown": {
+						"Xin mời": {
+							"type": "modal",
+							"meaning": "please (invitational)"
+						},
+						"chị": {
+							"type": "subject",
+							"meaning": "you (older female/ma'am)"
+						},
+						"dùng": {
+							"type": "verb",
+							"meaning": "use/have"
+						},
+						"trà": {
+							"type": "object",
+							"meaning": "tea"
+						}
+					},
+					"english": "Please have some tea",
+					"literalEnglish": "Humbly invite you have tea",
+					"notes": "Host offering tea to guest—extremely polite"
+				}
+			]
+		},
+		{
+			"id": "negative",
+			"title": "Negative Commands (Prohibitions)",
+			"description": "Telling someone NOT to do something. Vietnamese has two main forms: đừng (softer, more common) and không được (stronger, prohibition).",
+			"pattern": {
+				"structure": "Đừng/Không (được) + Verb + !",
+				"template": "[Đừng/Không] + [Verb]"
+			},
+			"keyPoints": [
+				"Đừng = don't (softer, more common)",
+				"Không được = must not, not allowed to (stronger)",
+				"Không alone can be used but is harsher",
+				"Can combine with đi: 'đừng... nha' or 'đừng... nhé' for softer prohibition"
+			],
+			"examples": [
+				{
+					"vietnamese": "Đừng đi!",
+					"breakdown": {
+						"Đừng": {
+							"type": "negation",
+							"meaning": "don't"
+						},
+						"đi": {
+							"type": "verb",
+							"meaning": "go"
+						}
+					},
+					"english": "Don't go!",
+					"literalEnglish": "Don't go",
+					"notes": "Soft prohibition—expressing concern or advice"
+				},
+				{
+					"vietnamese": "Đừng quên nhé!",
+					"breakdown": {
+						"Đừng": {
+							"type": "negation",
+							"meaning": "don't"
+						},
+						"quên": {
+							"type": "verb",
+							"meaning": "forget"
+						},
+						"nhé": {
+							"type": "particle",
+							"meaning": "softening particle (okay?)"
+						}
+					},
+					"english": "Don't forget, okay?",
+					"literalEnglish": "Don't forget (softly)",
+					"notes": "'Nhé' makes it gentle and caring, like a reminder rather than order"
+				},
+				{
+					"vietnamese": "Không được làm vậy!",
+					"breakdown": {
+						"Không được": {
+							"type": "negation",
+							"meaning": "must not / not allowed"
+						},
+						"làm": {
+							"type": "verb",
+							"meaning": "do"
+						},
+						"vậy": {
+							"type": "demonstrative",
+							"meaning": "that way / like that"
+						}
+					},
+					"english": "You must not do that! / That's not allowed!",
+					"literalEnglish": "Not allowed do that-way",
+					"notes": "Strong prohibition—expressing rule or serious warning"
+				},
+				{
+					"vietnamese": "Đừng khóc nữa!",
+					"breakdown": {
+						"Đừng": {
+							"type": "negation",
+							"meaning": "don't"
+						},
+						"khóc": {
+							"type": "verb",
+							"meaning": "cry"
+						},
+						"nữa": {
+							"type": "particle",
+							"meaning": "anymore"
+						}
+					},
+					"english": "Don't cry anymore!",
+					"literalEnglish": "Don't cry anymore",
+					"notes": "Common when comforting someone"
+				}
+			]
+		},
+		{
+			"id": "particles",
+			"title": "Command Particles & Softeners",
+			"description": "Vietnamese has several particles that modify the tone of commands, making them softer, more urgent, or more insistent.",
+			"particles": [
+				{
+					"particle": "đi",
+					"function": "Soften, encourage",
+					"effect": "Makes command feel like encouragement rather than order",
+					"position": "After verb",
+					"examples": [
+						{
+							"command": "Học đi!",
+							"english": "Study! (encouragingly)",
+							"notes": "Encouraging someone to study, not demanding"
+						},
+						{
+							"command": "Thử đi!",
+							"english": "Try it! (go ahead)",
+							"notes": "Encouraging someone to give something a try"
+						}
+					]
+				},
+				{
+					"particle": "lên",
+					"function": "Urge, add urgency",
+					"effect": "Adds sense of urgency or upward motion",
+					"position": "After verb (especially with nhanh)",
+					"examples": [
+						{
+							"command": "Nhanh lên!",
+							"english": "Hurry up!",
+							"notes": "Adding urgency to hurrying"
+						},
+						{
+							"command": "Mau lên!",
+							"english": "Quick! Hurry!",
+							"notes": "Even more urgent than 'nhanh lên'"
+						}
+					]
+				},
+				{
+					"particle": "nhé / nha / nào",
+					"function": "Soften with friendly tone",
+					"effect": "Makes command sound like friendly suggestion",
+					"position": "End of sentence",
+					"examples": [
+						{
+							"command": "Ăn cơm đi nhé!",
+							"english": "Eat your meal, okay?",
+							"notes": "Very gentle—like a caring parent or friend"
+						},
+						{
+							"command": "Cố gắng lên nào!",
+							"english": "Try your best! (come on)",
+							"notes": "Encouraging someone with friendly support"
+						}
+					]
+				},
+				{
+					"particle": "đã",
+					"function": "Request to do first, before other actions",
+					"effect": "Indicates priority or sequence",
+					"position": "After verb",
+					"examples": [
+						{
+							"command": "Nghe đã!",
+							"english": "Listen first! / Wait, listen!",
+							"notes": "Asking someone to listen before continuing"
+						},
+						{
+							"command": "Chờ đã!",
+							"english": "Wait first!",
+							"notes": "Stopping someone before they do something"
+						}
+					]
+				}
+			]
+		}
+	],
+	"politenessComparison": {
+		"title": "Politeness Hierarchy",
+		"description": "The same command at different politeness levels. Choose based on relationship and context.",
+		"examples": [
+			{
+				"english": "Wait",
+				"levels": [
+					{
+						"level": "Harsh/Direct",
+						"vietnamese": "Chờ!",
+						"context": "Emergency, to subordinates, or very close friends",
+						"appropriate": "Rarely appropriate"
+					},
+					{
+						"level": "Casual",
+						"vietnamese": "Chờ đi!",
+						"context": "Friends, family (softer than bare verb)",
+						"appropriate": "Common with friends"
+					},
+					{
+						"level": "Polite",
+						"vietnamese": "Làm ơn chờ",
+						"context": "Strangers, casual professional",
+						"appropriate": "Everyday politeness"
+					},
+					{
+						"level": "Formal",
+						"vietnamese": "Anh vui lòng chờ",
+						"context": "Professional, customer service",
+						"appropriate": "Work, business"
+					},
+					{
+						"level": "Very Formal",
+						"vietnamese": "Xin mời anh chờ trong giây lát",
+						"context": "High-level professional, honored guests",
+						"appropriate": "VIP service, formal occasions"
+					}
+				]
+			},
+			{
+				"english": "Come in",
+				"levels": [
+					{
+						"level": "Casual",
+						"vietnamese": "Vào đi!",
+						"context": "Family, close friends",
+						"appropriate": "Home, informal"
+					},
+					{
+						"level": "Polite",
+						"vietnamese": "Mời vào",
+						"context": "Guests, acquaintances",
+						"appropriate": "General hospitality"
+					},
+					{
+						"level": "Formal",
+						"vietnamese": "Xin mời anh/chị vào",
+						"context": "Professional guests, customers",
+						"appropriate": "Business, formal hosting"
+					}
+				]
+			}
+		]
+	},
+	"practiceSentences": [
+		{
+			"vietnamese": "Học bài đi!",
+			"english": "Study! (encouragingly)",
+			"type": "basic-soft",
+			"difficulty": "beginner",
+			"context": "Parent to child"
+		},
+		{
+			"vietnamese": "Đừng lo!",
+			"english": "Don't worry!",
+			"type": "negative",
+			"difficulty": "beginner",
+			"context": "Comforting friend"
+		},
+		{
+			"vietnamese": "Vui lòng ký tên vào đây",
+			"english": "Please sign here",
+			"type": "polite-formal",
+			"difficulty": "beginner",
+			"context": "Professional"
+		},
+		{
+			"vietnamese": "Nhanh lên!",
+			"english": "Hurry up!",
+			"type": "basic-urgent",
+			"difficulty": "beginner",
+			"context": "Urging someone"
+		},
+		{
+			"vietnamese": "Xin mời ngồi",
+			"english": "Please have a seat",
+			"type": "polite-very-formal",
+			"difficulty": "beginner",
+			"context": "Formal hospitality"
+		},
+		{
+			"vietnamese": "Làm ơn giúp tôi",
+			"english": "Please help me",
+			"type": "polite-casual",
+			"difficulty": "beginner",
+			"context": "Asking favor"
+		},
+		{
+			"vietnamese": "Đừng quên nhé!",
+			"english": "Don't forget, okay?",
+			"type": "negative-soft",
+			"difficulty": "beginner",
+			"context": "Friendly reminder"
+		},
+		{
+			"vietnamese": "Không được nói dối!",
+			"english": "You must not lie!",
+			"type": "negative-strong",
+			"difficulty": "intermediate",
+			"context": "Parent to child (rule)"
+		},
+		{
+			"vietnamese": "Cố gắng lên nào!",
+			"english": "Try your best! (come on)",
+			"type": "basic-encouraging",
+			"difficulty": "intermediate",
+			"context": "Encouraging friend"
+		},
+		{
+			"vietnamese": "Chờ đã!",
+			"english": "Wait first!",
+			"type": "basic-priority",
+			"difficulty": "intermediate",
+			"context": "Stopping someone"
+		},
+		{
+			"vietnamese": "Quý khách vui lòng giữ trật tự",
+			"english": "Please maintain order (to customers)",
+			"type": "polite-formal",
+			"difficulty": "intermediate",
+			"context": "Public announcement"
+		},
+		{
+			"vietnamese": "Đừng làm phiền tôi!",
+			"english": "Don't bother me!",
+			"type": "negative",
+			"difficulty": "intermediate",
+			"context": "Annoyed response"
+		},
+		{
+			"vietnamese": "Hãy thử xem!",
+			"english": "Try it and see!",
+			"type": "basic-encouraging",
+			"difficulty": "intermediate",
+			"context": "Encouraging experimentation"
+		},
+		{
+			"vietnamese": "Em đừng khóc nữa nhé",
+			"english": "Don't cry anymore, okay? (to younger person)",
+			"type": "negative-soft",
+			"difficulty": "intermediate",
+			"context": "Comforting younger person"
+		},
+		{
+			"vietnamese": "Xin vui lòng tắt điện thoại",
+			"english": "Please turn off your phone",
+			"type": "polite-formal",
+			"difficulty": "intermediate",
+			"context": "Public announcement"
+		}
+	]
+}

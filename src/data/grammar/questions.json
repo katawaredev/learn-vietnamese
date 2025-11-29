@@ -1,0 +1,417 @@
+{
+	"introduction": {
+		"title": "Vietnamese Questions",
+		"content": [
+			"Vietnamese has three main types of questions: questions with question words (wh-questions), yes-no questions, and rhetorical questions.",
+			"Unlike English, Vietnamese question words stay in their logical position in the sentence—there is no 'wh-movement' to the front. Yes-no questions are formed by adding particles at the end of statements."
+		]
+	},
+	"questionTypes": [
+		{
+			"id": "wh-questions",
+			"title": "Questions with Question Words",
+			"description": "Vietnamese question words (what, who, where, when, why, how) stay in their logical position in the sentence. This is called 'wh-in-situ'—the question word remains where its answer would appear.",
+			"questionWords": [
+				{
+					"vietnamese": "Gì / Cái gì",
+					"english": "What",
+					"usage": "Asking about things or actions",
+					"example": "Bạn làm gì? (You do what? = What are you doing?)"
+				},
+				{
+					"vietnamese": "Ai",
+					"english": "Who / Whom",
+					"usage": "Asking about people",
+					"example": "Ai đến? (Who comes? = Who is coming?)"
+				},
+				{
+					"vietnamese": "Của ai",
+					"english": "Whose",
+					"usage": "Asking about possession",
+					"example": "Đây là sách của ai? (This is book of whom? = Whose book is this?)"
+				},
+				{
+					"vietnamese": "Đâu / Ở đâu",
+					"english": "Where",
+					"usage": "Asking about location",
+					"example": "Bạn ở đâu? (You at where? = Where are you?)"
+				},
+				{
+					"vietnamese": "Khi nào / Bao giờ",
+					"english": "When",
+					"usage": "Asking about time",
+					"example": "Bạn đến khi nào? (You come when? = When will you come?)"
+				},
+				{
+					"vietnamese": "Tại sao / Vì sao / Sao",
+					"english": "Why",
+					"usage": "Asking about reasons",
+					"example": "Tại sao bạn học tiếng Việt? (Why you study Vietnamese?)"
+				},
+				{
+					"vietnamese": "Như thế nào / Thế nào",
+					"english": "How (manner/state)",
+					"usage": "Asking about manner or feeling",
+					"example": "Bạn cảm thấy như thế nào? (You feel how? = How do you feel?)"
+				},
+				{
+					"vietnamese": "Bằng cách nào",
+					"english": "How (method)",
+					"usage": "Asking about methods",
+					"example": "Bạn làm bằng cách nào? (You do by method what? = How do you do it?)"
+				},
+				{
+					"vietnamese": "Cái nào / Nào",
+					"english": "Which",
+					"usage": "Asking about choice among options",
+					"example": "Bạn thích cái nào? (You like which? = Which one do you like?)"
+				},
+				{
+					"vietnamese": "Bao nhiêu",
+					"english": "How much/many",
+					"usage": "Asking about quantity",
+					"example": "Cái này giá bao nhiêu? (This price how much?)"
+				}
+			],
+			"patterns": [
+				{
+					"id": "wh-in-situ",
+					"title": "Question Word in Logical Position",
+					"description": "The question word stays where its answer would appear in a statement. This is the most common pattern.",
+					"structure": "Subject + Verb + [Question Word at answer position]",
+					"examples": [
+						{
+							"vietnamese": "Bạn đọc sách gì?",
+							"breakdown": {
+								"Bạn": { "type": "subject", "meaning": "You" },
+								"đọc": { "type": "verb", "meaning": "read" },
+								"sách": { "type": "object", "meaning": "book" },
+								"gì": { "type": "question", "meaning": "what" }
+							},
+							"english": "What book are you reading?",
+							"literalEnglish": "You read book what?",
+							"notes": "Question word 'gì' stays in object position where the answer would be"
+						},
+						{
+							"vietnamese": "Anh ấy mua cái này ở đâu?",
+							"breakdown": {
+								"Anh ấy": { "type": "subject", "meaning": "He" },
+								"mua": { "type": "verb", "meaning": "buy" },
+								"cái này": { "type": "object", "meaning": "this" },
+								"ở": { "type": "preposition", "meaning": "at" },
+								"đâu": { "type": "question", "meaning": "where" }
+							},
+							"english": "Where did he buy this?",
+							"literalEnglish": "He buy this at where?",
+							"notes": "Question word 'đâu' stays in location position"
+						},
+						{
+							"vietnamese": "Cô ấy đi đâu?",
+							"breakdown": {
+								"Cô ấy": { "type": "subject", "meaning": "She" },
+								"đi": { "type": "verb", "meaning": "go" },
+								"đâu": { "type": "question", "meaning": "where" }
+							},
+							"english": "Where is she going?",
+							"literalEnglish": "She go where?",
+							"notes": "Simple wh-in-situ pattern"
+						}
+					]
+				},
+				{
+					"id": "wh-subject",
+					"title": "Question Word as Subject",
+					"description": "When the question word is the subject, it naturally appears at the beginning of the sentence.",
+					"structure": "[Question Word as Subject] + Verb + Object",
+					"examples": [
+						{
+							"vietnamese": "Ai nói với em?",
+							"breakdown": {
+								"Ai": { "type": "question", "meaning": "Who" },
+								"nói": { "type": "verb", "meaning": "speak/talk" },
+								"với": { "type": "preposition", "meaning": "with" },
+								"em": { "type": "object", "meaning": "you (younger)" }
+							},
+							"english": "Who talked to you?",
+							"literalEnglish": "Who speak with you?",
+							"notes": "When question word is subject, it's at the front naturally"
+						},
+						{
+							"vietnamese": "Cái gì làm bạn vui?",
+							"breakdown": {
+								"Cái gì": { "type": "question", "meaning": "What" },
+								"làm": { "type": "verb", "meaning": "make" },
+								"bạn": { "type": "object", "meaning": "you" },
+								"vui": { "type": "adjective", "meaning": "happy" }
+							},
+							"english": "What makes you happy?",
+							"literalEnglish": "What make you happy?",
+							"notes": "Subject question word at the beginning"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "yes-no-questions",
+			"title": "Yes-No Questions",
+			"description": "Yes-no questions are formed by adding particles at the end of a statement. Different particles convey different levels of certainty or expectation.",
+			"particles": [
+				{
+					"vietnamese": "không",
+					"english": "or not",
+					"nuance": "Neutral yes-no question, no assumption",
+					"formality": "neutral",
+					"example": "Bạn thích du lịch không? (You like travel not? = Do you like traveling?)"
+				},
+				{
+					"vietnamese": "phải không",
+					"english": "right?",
+					"nuance": "Seeking confirmation, slight assumption of 'yes'",
+					"formality": "neutral",
+					"example": "Bạn là sinh viên phải không? (You are student right? = You're a student, right?)"
+				},
+				{
+					"vietnamese": "đúng không",
+					"english": "isn't it? / don't you?",
+					"nuance": "Seeking confirmation, expecting agreement",
+					"formality": "neutral",
+					"example": "Bạn thích cà phê đúng không? (You like coffee correct not? = You like coffee, don't you?)"
+				},
+				{
+					"vietnamese": "phải chứ",
+					"english": "right? (stronger)",
+					"nuance": "Strong expectation of confirmation",
+					"formality": "neutral",
+					"example": "Anh sẽ đến phải chứ? (You will come right? = You'll come, right?)"
+				},
+				{
+					"vietnamese": "đúng chứ",
+					"english": "isn't that right?",
+					"nuance": "Expecting strong agreement",
+					"formality": "neutral",
+					"example": "Đây là cách tốt nhất đúng chứ? (This is way best correct? = This is the best way, isn't it?)"
+				},
+				{
+					"vietnamese": "được không",
+					"english": "is it okay? / can...?",
+					"nuance": "Asking for permission or feasibility",
+					"formality": "polite",
+					"example": "Tôi ngồi đây được không? (I sit here okay not? = Can I sit here?)"
+				},
+				{
+					"vietnamese": "được chứ",
+					"english": "it's okay, right?",
+					"nuance": "Assuming permission, seeking confirmation",
+					"formality": "neutral",
+					"example": "Tôi có thể mượn sách này được chứ? (I can borrow book this okay? = I can borrow this book, right?)"
+				},
+				{
+					"vietnamese": "chứ",
+					"english": "isn't it?",
+					"nuance": "Informal, expecting agreement",
+					"formality": "informal",
+					"example": "Ngon chứ? (Delicious? = It's delicious, isn't it?)"
+				},
+				{
+					"vietnamese": "nhỉ",
+					"english": "huh? / isn't it?",
+					"nuance": "Soft question, inviting agreement",
+					"formality": "informal/friendly",
+					"example": "Trời đẹp nhỉ? (Weather beautiful huh? = The weather is nice, isn't it?)"
+				},
+				{
+					"vietnamese": "hả",
+					"english": "really?",
+					"nuance": "Surprise or seeking confirmation",
+					"formality": "informal",
+					"example": "Bạn đi Việt Nam hả? (You go Vietnam really? = You're going to Vietnam?)"
+				}
+			],
+			"examples": [
+				{
+					"vietnamese": "Bạn thích du lịch không?",
+					"breakdown": {
+						"Bạn": { "type": "subject", "meaning": "You" },
+						"thích": { "type": "verb", "meaning": "like" },
+						"du lịch": { "type": "object", "meaning": "travel" },
+						"không": { "type": "particle", "meaning": "[yes-no marker]" }
+					},
+					"english": "Do you like traveling?",
+					"particleUsed": "không",
+					"notes": "Neutral question, no assumption about answer"
+				},
+				{
+					"vietnamese": "Bạn thích du lịch đúng không?",
+					"breakdown": {
+						"Bạn": { "type": "subject", "meaning": "You" },
+						"thích": { "type": "verb", "meaning": "like" },
+						"du lịch": { "type": "object", "meaning": "travel" },
+						"đúng không": {
+							"type": "particle",
+							"meaning": "[confirmation marker]"
+						}
+					},
+					"english": "You like traveling, don't you?",
+					"particleUsed": "đúng không",
+					"notes": "Seeking confirmation, expecting 'yes'"
+				},
+				{
+					"vietnamese": "Tôi ngồi đây được không?",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"ngồi": { "type": "verb", "meaning": "sit" },
+						"đây": { "type": "location", "meaning": "here" },
+						"được không": {
+							"type": "particle",
+							"meaning": "[permission marker]"
+						}
+					},
+					"english": "Can I sit here? / May I sit here?",
+					"particleUsed": "được không",
+					"notes": "Asking for permission"
+				},
+				{
+					"vietnamese": "Trời đẹp nhỉ?",
+					"breakdown": {
+						"Trời": { "type": "subject", "meaning": "Weather/Sky" },
+						"đẹp": { "type": "adjective", "meaning": "beautiful/nice" },
+						"nhỉ": { "type": "particle", "meaning": "[soft agreement marker]" }
+					},
+					"english": "The weather is nice, isn't it?",
+					"particleUsed": "nhỉ",
+					"notes": "Friendly, inviting agreement"
+				}
+			]
+		},
+		{
+			"id": "rhetorical-questions",
+			"title": "Rhetorical Questions",
+			"description": "Rhetorical questions express opinions or feelings without expecting an answer. They're commonly used in writing and speeches to engage the reader or create emphasis.",
+			"phrases": [
+				{
+					"vietnamese": "chẳng phải",
+					"english": "isn't it that...?",
+					"usage": "Emphasizing something obvious",
+					"example": "Chẳng phải chúng ta cần thay đổi sao? (Isn't it we need change? = Don't we need to change?)"
+				},
+				{
+					"vietnamese": "có lẽ nào",
+					"english": "could it be that...?",
+					"usage": "Expressing doubt or disbelief",
+					"example": "Có lẽ nào anh không biết điều này? (Could be you not know this? = How could you not know this?)"
+				},
+				{
+					"vietnamese": "phải chăng",
+					"english": "could it be...? / is it perhaps...?",
+					"usage": "Pondering, philosophical tone",
+					"example": "Phải chăng đây là điều chúng ta đang tìm kiếm? (Could be this is thing we are seeking? = Could this be what we're looking for?)"
+				},
+				{
+					"vietnamese": "liệu rằng",
+					"english": "I wonder if...?",
+					"usage": "Expressing uncertainty or contemplation",
+					"example": "Liệu rằng chúng ta có thể thành công? (Wonder if we can succeed? = I wonder if we can succeed?)"
+				}
+			],
+			"examples": [
+				{
+					"vietnamese": "Chẳng phải đã đến lúc chúng ta phải hành động?",
+					"breakdown": {
+						"Chẳng phải": { "type": "rhetorical", "meaning": "Isn't it that" },
+						"đã đến": { "type": "verb", "meaning": "has arrived" },
+						"lúc": { "type": "noun", "meaning": "time" },
+						"chúng ta": { "type": "subject", "meaning": "we" },
+						"phải": { "type": "modal", "meaning": "must" },
+						"hành động": { "type": "verb", "meaning": "act/take action" }
+					},
+					"english": "Isn't it time we take action?",
+					"literalEnglish": "Isn't it has arrived time we must act?",
+					"notes": "Rhetorical question emphasizing urgency"
+				},
+				{
+					"vietnamese": "Có lẽ nào bạn không biết điều này?",
+					"breakdown": {
+						"Có lẽ nào": {
+							"type": "rhetorical",
+							"meaning": "Could it be that"
+						},
+						"bạn": { "type": "subject", "meaning": "you" },
+						"không": { "type": "negation", "meaning": "not" },
+						"biết": { "type": "verb", "meaning": "know" },
+						"điều này": { "type": "object", "meaning": "this thing" }
+					},
+					"english": "How could you not know this?",
+					"literalEnglish": "Could it be you not know this?",
+					"notes": "Expressing surprise or disbelief"
+				},
+				{
+					"vietnamese": "Phải chăng đây là ý nghĩa thật sự của cuộc sống?",
+					"breakdown": {
+						"Phải chăng": { "type": "rhetorical", "meaning": "Could it be" },
+						"đây": { "type": "demonstrative", "meaning": "this" },
+						"là": { "type": "verb", "meaning": "is" },
+						"ý nghĩa": { "type": "noun", "meaning": "meaning" },
+						"thật sự": { "type": "adjective", "meaning": "true/real" },
+						"của": { "type": "preposition", "meaning": "of" },
+						"cuộc sống": { "type": "noun", "meaning": "life" }
+					},
+					"english": "Could this be the true meaning of life?",
+					"literalEnglish": "Could it be this is meaning true of life?",
+					"notes": "Philosophical, contemplative tone"
+				},
+				{
+					"vietnamese": "Liệu rằng ngày mai sẽ tốt đẹp hơn?",
+					"breakdown": {
+						"Liệu rằng": { "type": "rhetorical", "meaning": "I wonder if" },
+						"ngày mai": { "type": "subject", "meaning": "tomorrow" },
+						"sẽ": { "type": "modal", "meaning": "will" },
+						"tốt đẹp": { "type": "adjective", "meaning": "good/beautiful" },
+						"hơn": { "type": "comparative", "meaning": "more" }
+					},
+					"english": "I wonder if tomorrow will be better?",
+					"literalEnglish": "Wonder if tomorrow will beautiful more?",
+					"notes": "Expressing hope or contemplation about the future"
+				}
+			]
+		}
+	],
+	"practiceSentences": [
+		{
+			"vietnamese": "Bạn ăn gì?",
+			"english": "What are you eating?",
+			"type": "wh-question",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Ai là giáo viên?",
+			"english": "Who is the teacher?",
+			"type": "wh-question",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Bạn có thích cà phê không?",
+			"english": "Do you like coffee?",
+			"type": "yes-no",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Chúng ta đi bây giờ được không?",
+			"english": "Can we go now?",
+			"type": "yes-no",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Bạn học tiếng Việt ở đâu?",
+			"english": "Where do you study Vietnamese?",
+			"type": "wh-question",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Món này ngon phải không?",
+			"english": "This dish is delicious, isn't it?",
+			"type": "yes-no",
+			"difficulty": "intermediate"
+		}
+	]
+}

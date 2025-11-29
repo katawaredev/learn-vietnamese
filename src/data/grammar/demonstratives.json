@@ -1,0 +1,377 @@
+{
+	"introduction": {
+		"title": "Understanding Vietnamese Demonstratives",
+		"content": [
+			"Vietnamese uses a three-term deictic system to indicate distance and position, similar to 'this/that/yonder' in older English.",
+			"The key difference from English: demonstratives come AFTER the noun they modify, not before.",
+			"There are four main categories: nominal (can be a noun), modifier (modifies nouns), proportion (with measure words), and manner (how something is done).",
+			"Regional variations exist, especially between Northern and Southern dialects."
+		]
+	},
+	"sections": [
+		{
+			"id": "modifiers",
+			"title": "Demonstrative Modifiers (After Noun)",
+			"description": "These words modify nouns and always come AFTER the noun, unlike English 'this/that'.",
+			"distanceLevels": [
+				{
+					"distance": "proximal",
+					"label": "Close (this)",
+					"forms": ["này", "nầy (Southern)", "ni (Central)"],
+					"primary": "này"
+				},
+				{
+					"distance": "medial",
+					"label": "Far (that)",
+					"forms": ["đó", "ấy", "nấy"],
+					"primary": "đó"
+				},
+				{
+					"distance": "distal",
+					"label": "Very far (yonder)",
+					"forms": ["kia", "kìa", "nọ (past only)"],
+					"primary": "kia"
+				},
+				{
+					"distance": "indefinite",
+					"label": "Which/any",
+					"forms": ["nào", "mô (Central)"],
+					"primary": "nào"
+				}
+			],
+			"examples": [
+				{
+					"vietnamese": "bà₁ này₂",
+					"breakdown": {
+						"bà₁": { "type": "noun", "meaning": "lady/grandmother" },
+						"này₂": { "type": "demonstrative", "meaning": "this" }
+					},
+					"english": "this lady",
+					"literalEnglish": "lady this",
+					"notes": "Demonstrative comes AFTER the noun"
+				},
+				{
+					"vietnamese": "con₁ chó₂ đen₃ này₄",
+					"breakdown": {
+						"con₁": {
+							"type": "classifier",
+							"meaning": "classifier for animals"
+						},
+						"chó₂": { "type": "noun", "meaning": "dog" },
+						"đen₃": { "type": "adjective", "meaning": "black" },
+						"này₄": { "type": "demonstrative", "meaning": "this" }
+					},
+					"english": "this black dog",
+					"literalEnglish": "classifier dog black this",
+					"notes": "Demonstrative comes at the very end, after adjectives"
+				},
+				{
+					"vietnamese": "người₁ đó₂",
+					"breakdown": {
+						"người₁": { "type": "noun", "meaning": "person" },
+						"đó₂": { "type": "demonstrative", "meaning": "that" }
+					},
+					"english": "that person"
+				},
+				{
+					"vietnamese": "ngày₁ kia₂",
+					"breakdown": {
+						"ngày₁": { "type": "noun", "meaning": "day" },
+						"kia₂": { "type": "demonstrative", "meaning": "yonder/some other" }
+					},
+					"english": "some day (future or past)",
+					"notes": "kia is bidirectional - can refer to past OR future"
+				},
+				{
+					"vietnamese": "ngày₁ nọ₂",
+					"breakdown": {
+						"ngày₁": { "type": "noun", "meaning": "day" },
+						"nọ₂": { "type": "demonstrative", "meaning": "yonder" }
+					},
+					"english": "the other day (past only)",
+					"notes": "nọ only refers to the past, never future"
+				},
+				{
+					"vietnamese": "cái₁ nào₂",
+					"breakdown": {
+						"cái₁": {
+							"type": "classifier",
+							"meaning": "classifier for objects"
+						},
+						"nào₂": { "type": "demonstrative", "meaning": "which" }
+					},
+					"english": "which one"
+				}
+			]
+		},
+		{
+			"id": "nominals",
+			"title": "Nominal Demonstratives (Standalone)",
+			"description": "These can function as nouns themselves or modify nouns. They often translate to 'here/there' or can be subjects/objects.",
+			"examples": [
+				{
+					"vietnamese": "Đây₁ là₂ anh₃ nó₄",
+					"breakdown": {
+						"Đây₁": { "type": "demonstrative", "meaning": "this/here" },
+						"là₂": { "type": "verb", "meaning": "is" },
+						"anh₃": { "type": "noun", "meaning": "older brother" },
+						"nó₄": { "type": "pronoun", "meaning": "his/her" }
+					},
+					"english": "This is his brother",
+					"notes": "đây functions as a noun (subject)"
+				},
+				{
+					"vietnamese": "Đấy₁ là₂ nhà₃ tôi₄",
+					"breakdown": {
+						"Đấy₁": { "type": "demonstrative", "meaning": "that/there" },
+						"là₂": { "type": "verb", "meaning": "is" },
+						"nhà₃": { "type": "noun", "meaning": "house" },
+						"tôi₄": { "type": "pronoun", "meaning": "I/my" }
+					},
+					"english": "That is my house"
+				},
+				{
+					"vietnamese": "Đâu₁ là₂ chỗ₃ bạn₄ muốn₅ đi₆",
+					"breakdown": {
+						"Đâu₁": { "type": "demonstrative", "meaning": "where" },
+						"là₂": { "type": "verb", "meaning": "is" },
+						"chỗ₃": { "type": "noun", "meaning": "place" },
+						"bạn₄": { "type": "pronoun", "meaning": "you" },
+						"muốn₅": { "type": "verb", "meaning": "want" },
+						"đi₆": { "type": "verb", "meaning": "go" }
+					},
+					"english": "Where is the place you want to go?"
+				},
+				{
+					"vietnamese": "Tôi₁ đi₂ đây₃",
+					"breakdown": {
+						"Tôi₁": { "type": "subject", "meaning": "I" },
+						"đi₂": { "type": "verb", "meaning": "go" },
+						"đây₃": { "type": "demonstrative", "meaning": "here" }
+					},
+					"english": "I'm going here",
+					"notes": "đây as destination"
+				}
+			]
+		},
+		{
+			"id": "proportion",
+			"title": "Proportion Demonstratives (Time & Quantity)",
+			"description": "Used with measure words to express 'this much', 'that long', 'when', etc. These are essential for expressing time and quantity.",
+			"types": [
+				{
+					"form": "bây",
+					"distance": "proximal",
+					"meaning": "this (extent/time)"
+				},
+				{
+					"form": "bấy",
+					"distance": "medial",
+					"meaning": "that (extent/time)"
+				},
+				{
+					"form": "bao",
+					"distance": "indefinite",
+					"meaning": "what (extent/time)"
+				}
+			],
+			"examples": [
+				{
+					"vietnamese": "bây₁ giờ₂",
+					"breakdown": {
+						"bây₁": { "type": "demonstrative", "meaning": "this" },
+						"giờ₂": { "type": "noun", "meaning": "time/hour" }
+					},
+					"english": "now",
+					"literalEnglish": "this time"
+				},
+				{
+					"vietnamese": "bấy₁ giờ₂",
+					"breakdown": {
+						"bấy₁": { "type": "demonstrative", "meaning": "that" },
+						"giờ₂": { "type": "noun", "meaning": "time/hour" }
+					},
+					"english": "then, at that time",
+					"literalEnglish": "that time"
+				},
+				{
+					"vietnamese": "bao₁ giờ₂",
+					"breakdown": {
+						"bao₁": { "type": "demonstrative", "meaning": "what" },
+						"giờ₂": { "type": "noun", "meaning": "time/hour" }
+					},
+					"english": "when",
+					"literalEnglish": "what time"
+				},
+				{
+					"vietnamese": "bây₁ nhiêu₂",
+					"breakdown": {
+						"bây₁": { "type": "demonstrative", "meaning": "this" },
+						"nhiêu₂": { "type": "quantifier", "meaning": "much/many" }
+					},
+					"english": "this much/many"
+				},
+				{
+					"vietnamese": "bấy₁ nhiêu₂",
+					"breakdown": {
+						"bấy₁": { "type": "demonstrative", "meaning": "that" },
+						"nhiêu₂": { "type": "quantifier", "meaning": "much/many" }
+					},
+					"english": "that much/many"
+				},
+				{
+					"vietnamese": "bao₁ nhiêu₂",
+					"breakdown": {
+						"bao₁": { "type": "demonstrative", "meaning": "what" },
+						"nhiêu₂": { "type": "quantifier", "meaning": "much/many" }
+					},
+					"english": "how much/many"
+				},
+				{
+					"vietnamese": "bao₁ lâu₂",
+					"breakdown": {
+						"bao₁": { "type": "demonstrative", "meaning": "what" },
+						"lâu₂": { "type": "adjective", "meaning": "long (time)" }
+					},
+					"english": "how long"
+				}
+			]
+		},
+		{
+			"id": "manner",
+			"title": "Manner Demonstratives (How)",
+			"description": "Express 'this way', 'that way', 'how' - describing the manner in which something is done.",
+			"examples": [
+				{
+					"vietnamese": "Làm₁ vầy₂",
+					"breakdown": {
+						"Làm₁": { "type": "verb", "meaning": "do/make" },
+						"vầy₂": { "type": "demonstrative", "meaning": "this way/thus" }
+					},
+					"english": "Do it this way"
+				},
+				{
+					"vietnamese": "Làm₁ vậy₂",
+					"breakdown": {
+						"Làm₁": { "type": "verb", "meaning": "do/make" },
+						"vậy₂": { "type": "demonstrative", "meaning": "that way/so" }
+					},
+					"english": "Do it that way"
+				},
+				{
+					"vietnamese": "Làm₁ sao₂",
+					"breakdown": {
+						"Làm₁": { "type": "verb", "meaning": "do/make" },
+						"sao₂": { "type": "demonstrative", "meaning": "how" }
+					},
+					"english": "How to do it?"
+				},
+				{
+					"vietnamese": "như₁ vậy₂",
+					"breakdown": {
+						"như₁": { "type": "particle", "meaning": "like/as" },
+						"vậy₂": { "type": "demonstrative", "meaning": "that way" }
+					},
+					"english": "like that, in that way",
+					"notes": "Common combination for 'so/thus'"
+				}
+			]
+		},
+		{
+			"id": "metaphorical",
+			"title": "Metaphorical Use (Referring to People)",
+			"description": "In colloquial speech, demonstratives can refer to people contextually, especially in informal situations.",
+			"examples": [
+				{
+					"vietnamese": "Đây₁ đi₂ chợ₃ đấy₄ có₅ đi₆ không₇",
+					"breakdown": {
+						"Đây₁": { "type": "demonstrative", "meaning": "this one (I)" },
+						"đi₂": { "type": "verb", "meaning": "go" },
+						"chợ₃": { "type": "noun", "meaning": "market" },
+						"đấy₄": { "type": "demonstrative", "meaning": "that one (you)" },
+						"có₅": { "type": "particle", "meaning": "question particle" },
+						"đi₆": { "type": "verb", "meaning": "go" },
+						"không₇": { "type": "negation", "meaning": "not/no" }
+					},
+					"english": "I'm going to the market, are you going?",
+					"literalEnglish": "This goes market, that go or not?",
+					"notes": "Very colloquial - đây = I, đấy = you"
+				}
+			]
+		}
+	],
+	"practiceSentences": [
+		{
+			"vietnamese": "Cái áo này đẹp",
+			"english": "This shirt is beautiful",
+			"type": "modifiers",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Người đó là ai",
+			"english": "Who is that person?",
+			"type": "modifiers",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Đây là bạn tôi",
+			"english": "This is my friend",
+			"type": "nominals",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Bây giờ mấy giờ rồi",
+			"english": "What time is it now?",
+			"type": "proportion",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Bạn muốn mua cái nào",
+			"english": "Which one do you want to buy?",
+			"type": "modifiers",
+			"difficulty": "beginner"
+		},
+		{
+			"vietnamese": "Nhà kia rất đẹp",
+			"english": "That house over there is very beautiful",
+			"type": "modifiers",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Làm sao để học tiếng Việt",
+			"english": "How to learn Vietnamese?",
+			"type": "manner",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Bao nhiêu tiền một cái",
+			"english": "How much money for one?",
+			"type": "proportion",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Ngày nọ tôi gặp cô ấy",
+			"english": "The other day I met her",
+			"type": "modifiers",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Đừng làm vậy",
+			"english": "Don't do it that way",
+			"type": "manner",
+			"difficulty": "intermediate"
+		},
+		{
+			"vietnamese": "Bấy giờ tôi chưa biết",
+			"english": "At that time I didn't know yet",
+			"type": "proportion",
+			"difficulty": "advanced"
+		},
+		{
+			"vietnamese": "Người nào cũng thích",
+			"english": "Everyone likes it",
+			"type": "modifiers",
+			"difficulty": "advanced"
+		}
+	]
+}

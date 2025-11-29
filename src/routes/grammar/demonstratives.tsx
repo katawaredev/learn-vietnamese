@@ -1,114 +1,298 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Disclosure } from "~/components/Disclosure";
+import { SpeakButton } from "~/components/SpeakButton";
+import demonstrativesData from "~/data/grammar/demonstratives.json";
+import { PracticeGrid } from "~/layout/PracticeGrid";
+import { GRAMMAR_TYPE_COLORS } from "~/routes/grammar/-grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/demonstratives")({
 	component: DemonstrativesComponent,
 });
 
-/**
- * TODO: Implement Demonstratives page
- *
- * Vietnamese demonstratives mark distance and position (deixis)
- *
- * Three-term deictic system + indefinite:
- *
- * 1. PROXIMAL (close - "this, here")
- *    Nominal: đây "here"
- *    Nominal/Modifier: (none at this level)
- *    Modifier: này/nầy/nay/ni "this"
- *    Proportion: bây "to this extent"
- *    Manner: vầy "this way, thus"
- *
- * 2. MEDIAL (far - "that, there")
- *    Nominal: đấy "there"
- *    Nominal/Modifier: đó "there, that"
- *    Modifier: nấy/ấy "that"
- *    Proportion: bấy "to that extent"
- *    Manner: vậy "that way, so"
- *
- * 3. DISTAL (very far - "yonder, over there")
- *    Nominal: (none)
- *    Nominal/Modifier: kia/kìa "over there, yonder"
- *    Modifier: nọ "yonder" (past only)
- *    Proportion: bao "to what extent"
- *    Manner: sao "how"
- *
- * 4. INDEFINITE/INTERROGATIVE ("which, where")
- *    Nominal: đâu "where, wherever"
- *    Modifier: nào "which(ever)"
- *
- * Regional variations:
- * - Northern: này
- * - Southern: nầy
- * - North-Central/Central: ni, nớ (instead of nọ), mô (instead of nào/đâu),
- *   rứa (instead of vậy), răng (instead of sao)
- * - Hanoi: thế/như thế "so, this way" (instead of vầy)
- *
- * Key patterns:
- *
- * 1. Demonstrative position: AFTER noun (unlike English)
- *    - Example: "bà này" (lady this) = "this lady"
- *    - Example: "con chó đen này" (dog black this) = "this black dog"
- *
- * 2. Function types:
- *    - Nominal: can be noun ("đây là anh nó" = "this is his brother")
- *    - Modifier: modify nouns only ("người đó" = "that person")
- *    - Nominal/Modifier: can do both ("đó là anh nó" or "người đó")
- *
- * 3. Distance indicated by tone:
- *    - ngang tone (no mark): closest
- *    - huyền tone (falling `): further
- *    - sắc/nặng tone (rising/broken): even further
- *    - Example: đây (here-close) → đấy (there-further) → ...
- *    - Example: kia → kìa → kía → kịa → kĩa (increasingly far future)
- *
- * 4. Temporal demonstratives (directional differences):
- *    - kia: bidirectional (past OR future)
- *      "ngày kia" = "some day to come" OR "the other day"
- *    - nọ: unidirectional (past only)
- *      "ngày nọ" = "the other day" (only past)
- *
- * 5. Proportion demonstratives (with measure words):
- *    - "bây giờ" (this time) = "now"
- *    - "bấy giờ" (that time) = "then"
- *    - "bao giờ" (what time) = "when"
- *    - "bây nhiêu" (this much/many)
- *    - "bấy nhiêu" (that much/many)
- *    - "bao nhiêu" (how much/many)
- *    - "bấy lâu" (that long)
- *    - "bao lâu" (how long)
- *
- * 6. Metaphorical use (referring to people):
- *    - "đây đi chợ, đấy có đi không?"
- *      Literal: "this goes market, that go or not?"
- *      Meaning: "I'm going to the market, what about you?"
- *
- * Data structure suggestion:
- * - Create demonstratives.json
- * - Group by: proximal, medial, distal, indefinite
- * - Include: form, function, examples, regional variants
- * - Show nominal vs modifier usage
- *
- * Component structure:
- * - Disclosure introducing deictic system
- * - Visual distance diagram (proximal → medial → distal)
- * - Table showing all forms by function
- * - Regional variant notes
- * - Interactive examples showing position in sentences
- * - Special section on temporal demonstratives
- * - Proportion demonstratives with common phrases
- */
+interface BreakdownItem {
+	type: string;
+	meaning: string;
+}
+
+interface Example {
+	vietnamese: string;
+	breakdown: Record<string, BreakdownItem>;
+	english: string;
+	literalEnglish?: string;
+	notes?: string;
+}
+
+interface DistanceLevel {
+	distance: string;
+	label: string;
+	forms: string[];
+	primary: string;
+}
+
+interface Section {
+	id: string;
+	title: string;
+	description: string;
+	distanceLevels?: DistanceLevel[];
+	examples: Example[];
+	types?: Array<{
+		form: string;
+		distance: string;
+		meaning: string;
+	}>;
+}
+
+function AnnotatedSentence({ example }: { example: Example }) {
+	// Strip subscript numbers from display
+	const stripSubscript = (text: string) => text.replace(/[₀-₉]+$/, "");
+
+	return (
+		<div className="space-y-4 rounded-lg border border-white/10 bg-white/5 p-6">
+			{/* Vietnamese sentence with color-coded words */}
+			<div className="flex flex-wrap items-center gap-3">
+				{Object.entries(example.breakdown).map(([word, info]) => (
+					<div key={word} className="text-center">
+						<div
+							className={`font-bold text-xl ${GRAMMAR_TYPE_COLORS[info.type] || "text-white"}`}
+						>
+							{stripSubscript(word)}
+						</div>
+						<div className="mt-1 text-white/50 text-xs">{info.type}</div>
+					</div>
+				))}
+				<SpeakButton text={example.vietnamese} size="small" />
+			</div>
+
+			{/* Breakdown with meanings */}
+			<div className="grid gap-2 border-white/10 border-t pt-4">
+				{Object.entries(example.breakdown).map(([word, info]) => (
+					<div key={word} className="flex items-baseline gap-3 text-sm">
+						<span
+							className={`font-mono font-semibold ${GRAMMAR_TYPE_COLORS[info.type] || "text-white"}`}
+						>
+							{stripSubscript(word)}
+						</span>
+						<span className="text-white/40">→</span>
+						<span className="text-white/70">{info.meaning}</span>
+						<span className="text-white/40 text-xs italic">({info.type})</span>
+					</div>
+				))}
+			</div>
+
+			{/* English translation */}
+			<div className="border-white/10 border-t pt-4">
+				<div className="text-sm text-white/50">English:</div>
+				<div className="font-semibold text-gold">{example.english}</div>
+				{example.literalEnglish && (
+					<div className="mt-1 text-sm text-white/50 italic">
+						Literal: {example.literalEnglish}
+					</div>
+				)}
+			</div>
+
+			{example.notes && (
+				<div className="text-sm text-white/60 italic">
+					<span className="text-gold">Note:</span> {example.notes}
+				</div>
+			)}
+		</div>
+	);
+}
+
+function DistanceDiagram({ levels }: { levels: DistanceLevel[] }) {
+	const colorMap: Record<string, string> = {
+		proximal: "bg-blue-500/20 border-blue-500/50 text-blue-300",
+		medial: "bg-purple-500/20 border-purple-500/50 text-purple-300",
+		distal: "bg-red-500/20 border-red-500/50 text-red-300",
+		indefinite: "bg-gray-500/20 border-gray-500/50 text-gray-300",
+	};
+
+	return (
+		<div className="my-8 space-y-6">
+			<h3 className="font-semibold text-lg text-white">
+				Distance System (Deixis)
+			</h3>
+			<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+				{levels.map((level) => (
+					<div
+						key={level.distance}
+						className={`rounded-lg border p-4 ${colorMap[level.distance] || "border-white/10 bg-white/5 text-white"}`}
+					>
+						<div className="mb-2 font-bold text-sm uppercase tracking-wider">
+							{level.label}
+						</div>
+						<div className="mb-3 font-bold text-2xl">{level.primary}</div>
+						<div className="space-y-1 text-xs">
+							{level.forms.map((form) => (
+								<div key={form} className="opacity-70">
+									{form}
+								</div>
+							))}
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	);
+}
 
 function DemonstrativesComponent() {
+	const data = demonstrativesData as unknown as {
+		introduction: {
+			title: string;
+			content: string[];
+		};
+		sections: Section[];
+		practiceSentences: Array<{
+			vietnamese: string;
+			english: string;
+			type: string;
+			difficulty: string;
+		}>;
+	};
+
+	// Prepare practice data for PracticeGrid
+	const practiceData = data.practiceSentences.reduce(
+		(acc, sentence) => {
+			acc[sentence.vietnamese] = {
+				meaning: sentence.english,
+				type: sentence.type,
+				difficulty: sentence.difficulty,
+			};
+			return acc;
+		},
+		{} as Record<string, { meaning: string; type: string; difficulty: string }>,
+	);
+
 	return (
 		<Layout>
-			<div className="space-y-6">
-				<h1 className="font-bold font-serif text-3xl text-gold">
-					Demonstratives (này, đó, kia)
-				</h1>
-				<p className="text-lg text-white/70">
-					Content coming soon. Check the source code for implementation notes.
-				</p>
+			<div className="space-y-8">
+				{/* Introduction */}
+				<Disclosure
+					className="w-full"
+					title={
+						<span className="font-bold text-gold text-lg">
+							{data.introduction.title}
+						</span>
+					}
+				>
+					<div className="space-y-4">
+						{data.introduction.content.map((paragraph) => (
+							<p key={paragraph.slice(0, 50)}>{paragraph}</p>
+						))}
+
+						<div className="mt-6 rounded-lg border border-gold/30 bg-gold/10 p-4">
+							<p className="font-semibold text-gold">
+								⚠️ Key Difference from English:
+							</p>
+							<p className="mt-2">
+								Vietnamese demonstratives come <strong>AFTER</strong> the noun,
+								not before!
+							</p>
+							<div className="mt-3 space-y-1 font-mono text-sm">
+								<div>
+									<span className="text-white/50">English:</span>{" "}
+									<span className="text-warm-cream">this book</span>
+								</div>
+								<div>
+									<span className="text-white/50">Vietnamese:</span>{" "}
+									<span className="text-warm-cream">quyển sách này</span>{" "}
+									<span className="text-white/40">(book this)</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</Disclosure>
+
+				{/* Sections */}
+				{data.sections.map((section) => (
+					<div key={section.id} className="space-y-6">
+						<div>
+							<h2 className="font-bold font-serif text-2xl text-gold">
+								{section.title}
+							</h2>
+							<p className="mt-2 text-white/70">{section.description}</p>
+						</div>
+
+						{/* Distance Diagram (for modifiers section) */}
+						{section.distanceLevels && (
+							<DistanceDiagram levels={section.distanceLevels} />
+						)}
+
+						{/* Proportion types table (for proportion section) */}
+						{section.types && (
+							<div className="overflow-hidden rounded-lg border border-white/10">
+								<table className="w-full">
+									<thead className="bg-white/5">
+										<tr>
+											<th className="px-4 py-3 text-left font-semibold text-sm text-white">
+												Form
+											</th>
+											<th className="px-4 py-3 text-left font-semibold text-sm text-white">
+												Distance
+											</th>
+											<th className="px-4 py-3 text-left font-semibold text-sm text-white">
+												Meaning
+											</th>
+										</tr>
+									</thead>
+									<tbody className="divide-y divide-white/10">
+										{section.types.map((type) => (
+											<tr key={type.form} className="hover:bg-white/5">
+												<td className="px-4 py-3 font-bold font-mono text-fuchsia-400">
+													{type.form}
+												</td>
+												<td className="px-4 py-3 text-sm text-white/70">
+													{type.distance}
+												</td>
+												<td className="px-4 py-3 text-sm text-white/70">
+													{type.meaning}
+												</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
+						)}
+
+						{/* Examples */}
+						<div className="space-y-4">
+							{section.examples.map((example) => (
+								<AnnotatedSentence key={example.vietnamese} example={example} />
+							))}
+						</div>
+					</div>
+				))}
+
+				{/* Practice Section */}
+				<div className="space-y-6 border-white/10 border-t pt-8">
+					<div>
+						<h2 className="font-bold font-serif text-2xl text-gold">
+							Practice Demonstratives
+						</h2>
+						<p className="mt-2 text-sm text-white/60">
+							Practice using demonstratives in different contexts
+						</p>
+					</div>
+
+					<PracticeGrid<{ meaning: string; type: string; difficulty: string }>
+						data={practiceData}
+						getSubtitle={(item) => item.meaning}
+						getDetails={(vietnamese, item) => ({
+							Vietnamese: <span className="text-warm-cream">{vietnamese}</span>,
+							English: (
+								<span className="font-bold text-gold">{item.meaning}</span>
+							),
+							Type:
+								item.type.charAt(0).toUpperCase() +
+								item.type.slice(1).replace(/-/g, " "),
+							Difficulty:
+								item.difficulty.charAt(0).toUpperCase() +
+								item.difficulty.slice(1),
+						})}
+					/>
+				</div>
 			</div>
 		</Layout>
 	);
