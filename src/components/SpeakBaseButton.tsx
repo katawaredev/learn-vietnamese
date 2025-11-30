@@ -238,3 +238,32 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 		</button>
 	);
 };
+
+export const SpeakButtonLoading = ({
+	size,
+	className,
+}: Pick<SpeakBaseButtonProps, "size" | "className">) => {
+	return (
+		<button
+			type="button"
+			className={twMerge(
+				buttonVariants({ size, state: "idle", disabled: true }),
+				className,
+			)}
+			disabled
+			aria-label="Loading"
+		>
+			<Volume2
+				className={`${
+					size === "small"
+						? "h-5 w-5"
+						: size === "medium"
+							? "h-7 w-7"
+							: "h-9 w-9"
+				} text-sky-200`}
+			/>
+
+			<StateIndicator state="processing" loadingProgress={0} theme="sky" />
+		</button>
+	);
+};

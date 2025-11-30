@@ -155,3 +155,32 @@ export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 		</button>
 	);
 };
+
+export const ListenButtonLoading = ({
+	className,
+	size,
+}: Pick<ListenButtonProps, "className" | "size">) => {
+	return (
+		<button
+			type="button"
+			className={twMerge(
+				buttonVariants({ size, state: "idle", disabled: true }),
+				className,
+			)}
+			disabled
+			aria-label="Loading"
+		>
+			<Mic
+				className={`${
+					size === "small"
+						? "h-5 w-5"
+						: size === "medium"
+							? "h-7 w-7"
+							: "h-9 w-9"
+				} text-red-400`}
+			/>
+
+			<StateIndicator state="processing" loadingProgress={0} theme="stone" />
+		</button>
+	);
+};
