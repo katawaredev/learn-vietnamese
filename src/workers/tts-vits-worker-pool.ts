@@ -1,7 +1,9 @@
-interface TTSRequest {
+import type { VoiceId } from "@diffusionstudio/vits-web";
+
+interface TTSVitsRequest {
 	id: string;
 	text: string;
-	modelId: string;
+	voiceId: VoiceId;
 	resolve: (audio: HTMLAudioElement) => void;
 	reject: (error: Error) => void;
 	onProgress?: (progress: number) => void;
@@ -21,14 +23,14 @@ interface WorkerResponse {
 }
 
 /**
- * Singleton TTS worker pool that manages a single worker instance.
+ * Singleton VITS TTS worker pool that manages a single worker instance.
  * Handles request queuing, audio caching with blob URL lifecycle,
  * and proper cleanup.
  */
-class TTSWorkerPool {
+class TTSVitsWorkerPool {
 	private worker: Worker | null = null;
-	private requestQueue: TTSRequest[] = [];
-	private activeRequest: TTSRequest | null = null;
+	private requestQueue: TTSVitsRequest[] = [];
+	private activeRequest: TTSVitsRequest | null = null;
 	private cache = new Map<string, CacheEntry>();
 	private readonly MAX_CACHE_SIZE = 50; // Limit cache to 50 entries
 	private isInitialized = false;
@@ -39,7 +41,7 @@ class TTSWorkerPool {
 	private ensureInitialized(): void {
 		if (this.isInitialized && this.worker) return;
 
-		this.worker = new Worker(new URL("./tts-worker.ts", import.meta.url), {
+		this.worker = new Worker(new URL("./tts-vits-worker.ts", import.meta.url), {
 			type: "module",
 		});
 
@@ -48,7 +50,7 @@ class TTSWorkerPool {
 		};
 
 		this.worker.onerror = (error) => {
-			console.error("[TTS Pool] Worker error:", error);
+			console.error("[VITS TTS Pool] Worker error:", error);
 			if (this.activeRequest) {
 				this.activeRequest.reject(new Error("Worker encountered an error"));
 				this.activeRequest = null;
@@ -60,10 +62,10 @@ class TTSWorkerPool {
 	}
 
 	/**
-	 * Generate cache key from text and model ID
+	 * Generate cache key from text and voice ID
 	 */
-	private getCacheKey(text: string, modelId: string): string {
-		return `${modelId}:${text}`;
+	private getCacheKey(text: string, voiceId: VoiceId): string {
+		return `${voiceId}:${text}`;
 	}
 
 	/**
@@ -94,7 +96,9 @@ class TTSWorkerPool {
 
 		// Validate requestId to prevent stale responses from resolving wrong promises
 		if (message.requestId !== this.activeRequest.id) {
-			console.warn("[TTS Pool] Received response for wrong request, ignoring");
+			console.warn(
+				"[VITS TTS Pool] Received response for wrong request, ignoring",
+			);
 			return;
 		}
 
@@ -113,7 +117,7 @@ class TTSWorkerPool {
 					// Cache the blob URL
 					const cacheKey = this.getCacheKey(
 						this.activeRequest.text,
-						this.activeRequest.modelId,
+						this.activeRequest.voiceId,
 					);
 
 					// If we already have this in cache (shouldn't happen), revoke old URL
@@ -163,7 +167,7 @@ class TTSWorkerPool {
 		this.worker.postMessage({
 			type: "predict",
 			text: this.activeRequest.text,
-			modelId: this.activeRequest.modelId,
+			voiceId: this.activeRequest.voiceId,
 			requestId: this.activeRequest.id,
 		});
 	}
@@ -173,10 +177,10 @@ class TTSWorkerPool {
 	 */
 	public async generateAudio(
 		text: string,
-		modelId: string,
+		voiceId: VoiceId,
 		onProgress?: (progress: number) => void,
 	): Promise<HTMLAudioElement> {
-		const cacheKey = this.getCacheKey(text, modelId);
+		const cacheKey = this.getCacheKey(text, voiceId);
 
 		// Check cache first
 		const cached = this.cache.get(cacheKey);
@@ -190,10 +194,10 @@ class TTSWorkerPool {
 		this.ensureInitialized();
 
 		return new Promise<HTMLAudioElement>((resolve, reject) => {
-			const request: TTSRequest = {
+			const request: TTSVitsRequest = {
 				id: crypto.randomUUID(),
 				text,
-				modelId,
+				voiceId,
 				resolve,
 				reject,
 				onProgress,
@@ -215,11 +219,11 @@ class TTSWorkerPool {
 	}
 
 	/**
-	 * Clear cache for a specific model ID (e.g., when model changes)
+	 * Clear cache for a specific voice ID (e.g., when voice changes)
 	 */
-	public clearCacheForModel(modelId: string): void {
+	public clearCacheForVoice(voiceId: VoiceId): void {
 		for (const [key, entry] of this.cache.entries()) {
-			if (key.startsWith(`${modelId}:`)) {
+			if (key.startsWith(`${voiceId}:`)) {
 				URL.revokeObjectURL(entry.blobUrl);
 				this.cache.delete(key);
 			}
@@ -261,17 +265,17 @@ class TTSWorkerPool {
 	/**
 	 * Check if a specific audio is cached
 	 */
-	public isCached(text: string, modelId: string): boolean {
-		return this.cache.has(this.getCacheKey(text, modelId));
+	public isCached(text: string, voiceId: VoiceId): boolean {
+		return this.cache.has(this.getCacheKey(text, voiceId));
 	}
 }
 
 // Export singleton instance
-export const ttsPool = new TTSWorkerPool();
+export const ttsVitsPool = new TTSVitsWorkerPool();
 
 // Cleanup on page unload
 if (typeof window !== "undefined") {
 	window.addEventListener("beforeunload", () => {
-		ttsPool.terminate();
+		ttsVitsPool.terminate();
 	});
 }

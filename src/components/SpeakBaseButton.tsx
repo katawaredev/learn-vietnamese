@@ -147,6 +147,11 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 			audio.playbackRate = isHolding ? 0.5 : 0.8;
 			await audio.play();
 		} catch (error) {
+			// Ignore AbortError - happens when playback is interrupted (expected behavior)
+			if (error instanceof DOMException && error.name === "AbortError") {
+				setState("idle");
+				return;
+			}
 			console.error("Audio playback failed:", error);
 			setState("idle");
 		}

@@ -15,6 +15,7 @@
 	},
 	"dependencies": {
 		"@base-ui-components/react": "^1.0.0-beta.4",
+		"@diffusionstudio/vits-web": "^1.0.3",
 		"@huggingface/transformers": "^3.7.6",
 		"@mlc-ai/web-llm": "^0.2.79",
 		"@t3-oss/env-core": "^0.13.8",
@@ -32,7 +33,6 @@
 		"zod": "^4.1.12"
 	},
 	"devDependencies": {
-		"babel-plugin-react-compiler": "^1.0.0",
 		"@biomejs/biome": "^2.3.4",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.1.16",
@@ -46,6 +46,7 @@
 		"@types/react-dom": "^19.2.2",
 		"@vitejs/plugin-react": "^5.1.0",
 		"@webgpu/types": "^0.1.66",
+		"babel-plugin-react-compiler": "^1.0.0",
 		"jsdom": "^27.1.0",
 		"lefthook": "^1.13.6",
 		"tailwindcss": "^4.1.16",

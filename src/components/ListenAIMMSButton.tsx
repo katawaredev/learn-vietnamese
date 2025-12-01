@@ -5,7 +5,7 @@ import { sttPool } from "~/workers/stt-worker-pool";
 import { ListenBaseButton, type RecordingState } from "./ListenBaseButton";
 import type { ListenButtonProps } from "./ListenButton";
 
-export const ListenAIButton: FC<ListenButtonProps> = ({
+export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 	onTranscription,
 	lang = "vn",
 	size = "medium",

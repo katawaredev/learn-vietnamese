@@ -8,15 +8,38 @@ All models run in your browser. Nothing sent to servers after initial download.
 
 ## Text-to-Speech (TTS)
 
+The app supports multiple TTS providers, each with different quality and model size trade-offs:
+
+### MMS (Meta Multilingual Speech)
+
 **Library**: `@huggingface/transformers`
 
 **Models**: Xenova/mms-tts-vie (Vietnamese), Xenova/mms-tts-eng (English)
 
-### How TTS Works
-
 Text → MMS (VITS-based) neural network → WAV audio
 
-First use downloads model. Subsequent uses are cached.
+### VITS (Diffusion Studio)
+
+**Library**: `@diffusionstudio/vits-web`
+
+**Models**: Multiple quality options (low/medium) for both Vietnamese and English
+
+Text → VITS neural network → WAV audio
+
+**Vietnamese voices**:
+
+- vi_VN-25hours_single-low (Low Quality)
+- vi_VN-vais1000-medium (Medium Quality)
+- vi_VN-vivos-x_low (Low Quality)
+
+**English voices**:
+
+- en_US-amy-medium, en_US-hfc_female-medium, en_US-hfc_male-medium
+- en_US-lessac-medium, en_US-ryan-medium
+
+### How TTS Works
+
+All TTS models are loaded lazily - the library and models are only downloaded when you select a voice from that provider. First use downloads the model, subsequent uses are cached.
 
 ## Speech-to-Text (STT)
 

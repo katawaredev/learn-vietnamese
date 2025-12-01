@@ -1,10 +1,10 @@
 import { type FC, useCallback, useEffect, useRef, useState } from "react";
 import { useTTS } from "~/providers/tts-provider";
-import { ttsPool } from "~/workers/tts-worker-pool";
+import { ttsMMSPool } from "~/workers/tts-mms-worker-pool";
 import { SpeakBaseButton } from "./SpeakBaseButton";
 import type { SpeakButtonProps } from "./SpeakButton";
 
-export const SpeakAIButton: FC<SpeakButtonProps> = ({
+export const SpeakAIMMSButton: FC<SpeakButtonProps> = ({
 	text,
 	lang = "vn",
 	size = "medium",
@@ -32,9 +32,9 @@ export const SpeakAIButton: FC<SpeakButtonProps> = ({
 			(lang === "vn" ? "Xenova/mms-tts-vie" : "Xenova/mms-tts-eng");
 
 		// Check if cached (won't trigger generation)
-		if (ttsPool.isCached(trimmedText, modelId)) {
+		if (ttsMMSPool.isCached(trimmedText, modelId)) {
 			// Cached audio returns immediately, no loading state needed
-			return ttsPool.generateAudio(trimmedText, modelId);
+			return ttsMMSPool.generateAudio(trimmedText, modelId);
 		}
 
 		// Not cached - show loading state
@@ -42,7 +42,7 @@ export const SpeakAIButton: FC<SpeakButtonProps> = ({
 		setLoadingProgress(0);
 
 		try {
-			const audio = await ttsPool.generateAudio(
+			const audio = await ttsMMSPool.generateAudio(
 				trimmedText,
 				modelId,
 				(progress) => {

@@ -10,7 +10,9 @@ JavaScript is single-threaded. ML models on main thread = frozen UI.
 
 ## Worker Types
 
-### TTS Worker (`src/workers/tts-worker.ts`)
+The app uses separate workers for different TTS providers, loaded lazily only when needed.
+
+### TTS MMS Worker (`src/workers/tts-mms-worker.ts`)
 
 Converts text → audio using MMS (VITS-based) models via transformers.js.
 
@@ -23,6 +25,20 @@ Converts text → audio using MMS (VITS-based) models via transformers.js.
 ```
 
 Runs entirely in WebAssembly via ONNX Runtime. Progress events for UI feedback.
+
+### TTS VITS Worker (`src/workers/tts-vits-worker.ts`)
+
+Converts text → audio using VITS models from @diffusionstudio/vits-web.
+
+```ts
+// Receives
+{ type: "predict", text: "Xin chào", voiceId: "vi_VN-vais1000-medium" }
+
+// Returns
+{ status: "complete", audio: Blob }
+```
+
+Lazy-loaded only when user selects a VITS voice. Each provider has its own worker pool to avoid loading unused libraries.
 
 ### STT Worker (`src/workers/stt-worker.ts`)
 
@@ -60,10 +76,11 @@ Requires WebGPU. Streams tokens for instant feedback.
 
 ## Worker Pool Pattern
 
-Singleton worker pool:
+Each TTS provider has its own singleton worker pool to enable code splitting:
 
 ```tsx
-class TTSWorkerPool {
+// src/workers/tts-mms-worker-pool.ts (for MMS)
+class TTSMMSWorkerPool {
   private worker: Worker | null = null;
   private cache = new Map();
   private requestQueue = [];
@@ -78,16 +95,21 @@ class TTSWorkerPool {
   }
 }
 
-export const ttsPool = new TTSWorkerPool();
+export const ttsMMSPool = new TTSMMSWorkerPool();
+
+// src/workers/tts-vits-worker-pool.ts (for VITS)
+export const ttsVitsPool = new TTSVitsWorkerPool();
 ```
 
-Components use pool:
+Components use the appropriate pool based on provider:
 
 ```tsx
-const audio = await ttsPool.generateAudio(text, modelId);
+// Lazy-loaded components use their specific pool
+const audio = await ttsMMSPool.generateAudio(text, modelId);     // MMS
+const audio = await ttsVitsPool.generateAudio(text, voiceId);    // VITS
 ```
 
-One worker for entire app, not per component.
+One worker per provider for entire app, not per component. Providers only load when selected.
 
 ## Worker Lifecycle Management
 

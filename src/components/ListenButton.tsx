@@ -4,8 +4,8 @@ import { useSTT } from "~/providers/stt-provider";
 import type { Language } from "~/providers/tts-provider";
 import { ListenButtonLoading } from "./ListenBaseButton";
 
-const ListenAIButton = lazy(() =>
-	import("./ListenAIButton").then((m) => ({ default: m.ListenAIButton })),
+const ListenAIMMSButton = lazy(() =>
+	import("./ListenAIMMSButton").then((m) => ({ default: m.ListenAIMMSButton })),
 );
 const ListenWebButton = lazy(() =>
 	import("./ListenWebButton").then((m) => ({ default: m.ListenWebButton })),
@@ -35,7 +35,7 @@ export const ListenButton: FC<ListenButtonProps> = ({
 			{selectedModel.provider === "web-speech" ? (
 				<ListenWebButton {...props} lang={lang} />
 			) : (
-				<ListenAIButton {...props} lang={lang} />
+				<ListenAIMMSButton {...props} lang={lang} />
 			)}
 		</Suspense>
 	);

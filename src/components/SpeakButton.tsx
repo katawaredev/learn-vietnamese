@@ -3,8 +3,11 @@ import { lazy, Suspense } from "react";
 import { type Language, useTTS } from "~/providers/tts-provider";
 import { SpeakButtonLoading } from "./SpeakBaseButton";
 
-const SpeakAIButton = lazy(() =>
-	import("./SpeakAIButton").then((m) => ({ default: m.SpeakAIButton })),
+const SpeakAIMMSButton = lazy(() =>
+	import("./SpeakAIMMSButton").then((m) => ({ default: m.SpeakAIMMSButton })),
+);
+const SpeakAIVitsButton = lazy(() =>
+	import("./SpeakAIVitsButton").then((m) => ({ default: m.SpeakAIVitsButton })),
 );
 const SpeakWebButton = lazy(() =>
 	import("./SpeakWebButton").then((m) => ({ default: m.SpeakWebButton })),
@@ -38,8 +41,15 @@ export const SpeakButton: FC<SpeakButtonProps> = ({
 					size={size}
 					className={className}
 				/>
+			) : selectedVoice.provider === "vits" ? (
+				<SpeakAIVitsButton
+					text={text}
+					lang={lang}
+					size={size}
+					className={className}
+				/>
 			) : (
-				<SpeakAIButton
+				<SpeakAIMMSButton
 					text={text}
 					lang={lang}
 					size={size}
