@@ -272,12 +272,12 @@ export interface FileRoutesByFullPath {
   '/pronunciation/vowels': typeof PronunciationVowelsRoute
   '/relations/practice': typeof RelationsPracticeRoute
   '/relations/pronouns': typeof RelationsPronounsRoute
-  '/conversation': typeof ConversationIndexRoute
-  '/dictation': typeof DictationIndexRoute
-  '/grammar': typeof GrammarIndexRoute
-  '/numbers': typeof NumbersIndexRoute
-  '/pronunciation': typeof PronunciationIndexRoute
-  '/relations': typeof RelationsIndexRoute
+  '/conversation/': typeof ConversationIndexRoute
+  '/dictation/': typeof DictationIndexRoute
+  '/grammar/': typeof GrammarIndexRoute
+  '/numbers/': typeof NumbersIndexRoute
+  '/pronunciation/': typeof PronunciationIndexRoute
+  '/relations/': typeof RelationsIndexRoute
   '/dictation/listen/$slug': typeof DictationListenSlugRoute
   '/dictation/speak/$slug': typeof DictationSpeakSlugRoute
 }
@@ -395,12 +395,12 @@ export interface FileRouteTypes {
     | '/pronunciation/vowels'
     | '/relations/practice'
     | '/relations/pronouns'
-    | '/conversation'
-    | '/dictation'
-    | '/grammar'
-    | '/numbers'
-    | '/pronunciation'
-    | '/relations'
+    | '/conversation/'
+    | '/dictation/'
+    | '/grammar/'
+    | '/numbers/'
+    | '/pronunciation/'
+    | '/relations/'
     | '/dictation/listen/$slug'
     | '/dictation/speak/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -559,42 +559,42 @@ declare module '@tanstack/react-router' {
     '/relations/': {
       id: '/relations/'
       path: '/relations'
-      fullPath: '/relations'
+      fullPath: '/relations/'
       preLoaderRoute: typeof RelationsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pronunciation/': {
       id: '/pronunciation/'
       path: '/pronunciation'
-      fullPath: '/pronunciation'
+      fullPath: '/pronunciation/'
       preLoaderRoute: typeof PronunciationIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/numbers/': {
       id: '/numbers/'
       path: '/numbers'
-      fullPath: '/numbers'
+      fullPath: '/numbers/'
       preLoaderRoute: typeof NumbersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/grammar/': {
       id: '/grammar/'
       path: '/grammar'
-      fullPath: '/grammar'
+      fullPath: '/grammar/'
       preLoaderRoute: typeof GrammarIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dictation/': {
       id: '/dictation/'
       path: '/dictation'
-      fullPath: '/dictation'
+      fullPath: '/dictation/'
       preLoaderRoute: typeof DictationIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/conversation/': {
       id: '/conversation/'
       path: '/conversation'
-      fullPath: '/conversation'
+      fullPath: '/conversation/'
       preLoaderRoute: typeof ConversationIndexRouteImport
       parentRoute: typeof rootRouteImport
     }

@@ -1,4 +1,4 @@
-import { Popover as BasePopover } from "@base-ui-components/react/popover";
+import { Popover as BasePopover } from "@base-ui/react/popover";
 import type { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -39,7 +39,7 @@ export function Popover({
 							className,
 						)}
 					>
-						<BasePopover.Arrow className="data-[side=bottom]:-top-[6px] data-[side=top]:-bottom-[6px] data-[side=left]:-right-[13px] data-[side=right]:-left-[13px] data-[side=right]:-rotate-90 data-[side=left]:rotate-90 data-[side=top]:rotate-180">
+						<BasePopover.Arrow className="data-[side=bottom]:-top-[6px] data-[side=left]:-right-[13px] data-[side=top]:-bottom-[6px] data-[side=right]:-left-[13px] data-[side=left]:rotate-90 data-[side=right]:-rotate-90 data-[side=top]:rotate-180">
 							<div className="h-3 w-3 rotate-45 rounded-tl-sm border-gold border-t border-l bg-burgundy-dark" />
 						</BasePopover.Arrow>
 						{children}

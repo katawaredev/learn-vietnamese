@@ -332,12 +332,12 @@ function CommandsComponent() {
 										key={level.level}
 										className="flex items-start gap-4 rounded-lg border border-white/10 bg-black/20 p-4"
 									>
-										<div className="w-32 flex-shrink-0">
+										<div className="w-32 shrink-0">
 											<div className="font-semibold text-sm text-white/60">
 												{level.level}
 											</div>
 										</div>
-										<div className="flex-grow space-y-1">
+										<div className="grow space-y-1">
 											<div className="flex items-center gap-2">
 												<span className="font-bold text-lg text-warm-cream">
 													{level.vietnamese}

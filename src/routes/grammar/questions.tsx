@@ -139,7 +139,7 @@ function QuestionsComponent() {
 											key={qw.vietnamese}
 											className="flex items-start gap-4 rounded-lg border border-white/10 bg-white/5 p-4"
 										>
-											<div className="flex-shrink-0">
+											<div className="shrink-0">
 												<div className="font-bold text-pink-500 text-xl">
 													{qw.vietnamese}
 												</div>
@@ -147,7 +147,7 @@ function QuestionsComponent() {
 													{qw.english}
 												</div>
 											</div>
-											<div className="flex-grow">
+											<div className="grow">
 												<div className="text-sm text-white/70">{qw.usage}</div>
 												<div className="mt-2 font-mono text-sm text-warm-cream">
 													{qw.example}
@@ -192,7 +192,7 @@ function QuestionsComponent() {
 											key={particle.vietnamese}
 											className="flex items-start gap-4 rounded-lg border border-white/10 bg-white/5 p-4"
 										>
-											<div className="w-32 flex-shrink-0">
+											<div className="w-32 shrink-0">
 												<div className="font-bold text-lg text-orange-400">
 													{particle.vietnamese}
 												</div>
@@ -200,7 +200,7 @@ function QuestionsComponent() {
 													{particle.formality}
 												</div>
 											</div>
-											<div className="flex-grow">
+											<div className="grow">
 												<div className="font-semibold text-sm text-white">
 													{particle.english}
 												</div>
@@ -229,7 +229,7 @@ function QuestionsComponent() {
 											key={phrase.vietnamese}
 											className="flex items-start gap-4 rounded-lg border border-white/10 bg-white/5 p-4"
 										>
-											<div className="flex-shrink-0">
+											<div className="shrink-0">
 												<div className="font-bold text-lg text-rose-500">
 													{phrase.vietnamese}
 												</div>
@@ -237,7 +237,7 @@ function QuestionsComponent() {
 													{phrase.english}
 												</div>
 											</div>
-											<div className="flex-grow">
+											<div className="grow">
 												<div className="text-sm text-white/70">
 													{phrase.usage}
 												</div>

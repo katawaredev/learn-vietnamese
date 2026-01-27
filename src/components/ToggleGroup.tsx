@@ -1,5 +1,5 @@
-import { Toggle as BaseToggle } from "@base-ui-components/react/toggle";
-import { ToggleGroup as BaseToggleGroup } from "@base-ui-components/react/toggle-group";
+import { Toggle as BaseToggle } from "@base-ui/react/toggle";
+import { ToggleGroup as BaseToggleGroup } from "@base-ui/react/toggle-group";
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
@@ -79,9 +79,9 @@ export function Toggle({
 			{...props}
 			className={twMerge(
 				toggleVariants({ size, orientation }),
-				"data-[pressed]:bg-gold data-[pressed]:text-burgundy-dark",
+				"data-pressed:bg-gold data-pressed:text-burgundy-dark",
 				"bg-transparent text-gold hover:bg-gold hover:text-burgundy-dark",
-				"data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
+				"data-disabled:cursor-not-allowed data-disabled:opacity-50",
 				className,
 			)}
 		/>

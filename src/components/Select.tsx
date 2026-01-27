@@ -1,4 +1,4 @@
-import { Select as BaseSelect } from "@base-ui-components/react/select";
+import { Select as BaseSelect } from "@base-ui/react/select";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { Fragment } from "react";
@@ -117,7 +117,7 @@ export function Select({
 				>
 					<BaseSelect.Popup
 						className={twMerge(
-							"max-h-96 w-[var(--anchor-width)] overflow-y-auto rounded-2xl border border-gold bg-burgundy-dark shadow-xl focus:outline-none",
+							"max-h-96 w-(--anchor-width) overflow-y-auto rounded-2xl border border-gold bg-burgundy-dark shadow-xl focus:outline-none",
 							menuClassName,
 						)}
 					>

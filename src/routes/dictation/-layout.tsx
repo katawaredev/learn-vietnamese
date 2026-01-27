@@ -68,7 +68,7 @@ export function DictationLayout({
 	};
 
 	return (
-		<div className="flex min-h-screen flex-col bg-gradient-to-br from-burgundy-dark to-burgundy">
+		<div className="flex min-h-screen flex-col bg-linear-to-br from-burgundy-dark to-burgundy">
 			<Header>
 				<div className="text-center">
 					<h1 className="font-bold font-serif text-warm-cream text-xl">

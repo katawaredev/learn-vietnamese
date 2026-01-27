@@ -50,7 +50,7 @@ export const StateIndicator: FC<StateIndicatorProps> = ({
 		if (loadingProgress > 0 && loadingProgress < 100) {
 			return (
 				<svg
-					className="-rotate-90 absolute inset-1"
+					className="absolute inset-1 -rotate-90"
 					viewBox="0 0 36 36"
 					xmlns="http://www.w3.org/2000/svg"
 					aria-label={`Loading model: ${loadingProgress}%`}
@@ -86,7 +86,7 @@ export const StateIndicator: FC<StateIndicatorProps> = ({
 	if (state === "active") {
 		return (
 			<div
-				className={`-inset-1 absolute animate-ping rounded-full border-2 ${colors.activeBorder}`}
+				className={`absolute -inset-1 animate-ping rounded-full border-2 ${colors.activeBorder}`}
 			/>
 		);
 	}

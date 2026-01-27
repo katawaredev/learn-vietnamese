@@ -137,14 +137,14 @@ export const WordInputMultiple = ({
 							onChange={(e) => handleChange(wordIndex, e.target.value)}
 							onKeyDown={(e) => handleKeyDown(wordIndex, e)}
 						/>
-						<div className="-bottom-2 absolute flex select-none flex-row space-x-[1ch] font-mono text-3xl">
+						<div className="absolute -bottom-2 flex select-none flex-row space-x-[1ch] font-mono text-3xl">
 							{hintChars.map((char, charIndex) => (
 								<div
 									// biome-ignore lint/suspicious/noArrayIndexKey: No valid key
 									key={charIndex}
 									className="w-[3ch] border-gold border-b-2 font-mono text-3xl"
 								>
-									<span className="-top-1.5 relative ml-[1ch] opacity-50">
+									<span className="relative -top-1.5 ml-[1ch] opacity-50">
 										{char}
 									</span>
 								</div>

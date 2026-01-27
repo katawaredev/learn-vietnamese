@@ -30,14 +30,14 @@ export const WordInputSingle = ({
 				className="relative z-10 ml-[1ch] font-mono text-3xl tracking-[3ch] outline-none"
 				onChange={handleChange}
 			/>
-			<div className="-bottom-2 absolute flex select-none flex-row space-x-[1ch] font-mono text-3xl">
+			<div className="absolute -bottom-2 flex select-none flex-row space-x-[1ch] font-mono text-3xl">
 				{hintChars.map((char, i) => (
 					<div
 						// biome-ignore lint/suspicious/noArrayIndexKey: No valid key
 						key={i}
 						className="w-[3ch] border-gold border-b-2 font-mono text-3xl"
 					>
-						<span className="-top-1.5 relative ml-[1ch] opacity-50">
+						<span className="relative -top-1.5 ml-[1ch] opacity-50">
 							{char}
 						</span>
 					</div>

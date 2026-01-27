@@ -1,4 +1,4 @@
-import { Dialog } from "@base-ui-components/react/dialog";
+import { Dialog } from "@base-ui/react/dialog";
 import { X } from "lucide-react";
 import { LabeledSwitch } from "~/components/LabeledSwitch";
 import { Select } from "~/components/Select";
@@ -75,10 +75,10 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 		>
 			<Dialog.Portal>
 				{/* Backdrop */}
-				<Dialog.Backdrop className="data-[closed]:fade-out-0 data-[open]:fade-in-0 fixed inset-0 z-50 bg-black/25 transition-opacity duration-300 data-[closed]:animate-out data-[open]:animate-in" />
+				<Dialog.Backdrop className="data-closed:fade-out-0 data-open:fade-in-0 fixed inset-0 z-50 bg-black/25 transition-opacity duration-300 data-closed:animate-out data-open:animate-in" />
 
 				{/* Drawer */}
-				<Dialog.Popup className="data-[closed]:slide-out-to-right data-[open]:slide-in-from-right fixed top-0 right-0 z-50 h-full w-screen max-w-md bg-burgundy-dark shadow-xl transition-transform duration-300 data-[closed]:animate-out data-[open]:animate-in">
+				<Dialog.Popup className="data-closed:slide-out-to-right data-open:slide-in-from-right fixed top-0 right-0 z-50 h-full w-screen max-w-md bg-burgundy-dark shadow-xl transition-transform duration-300 data-closed:animate-out data-open:animate-in">
 					<div className="flex h-full flex-col">
 						{/* Header */}
 						<div className="flex items-center justify-between border-gold/20 border-b px-6 py-4">

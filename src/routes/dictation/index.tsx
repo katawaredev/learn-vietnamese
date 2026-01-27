@@ -26,7 +26,7 @@ function DictationComponent() {
 	const entries = Object.values(A1) as DictationEntry[];
 
 	return (
-		<div className="flex min-h-screen flex-col bg-gradient-to-br from-burgundy-dark to-burgundy">
+		<div className="flex min-h-screen flex-col bg-linear-to-br from-burgundy-dark to-burgundy">
 			<Header />
 			<main className="flex flex-1 flex-col px-4 pb-8">
 				<div className="mx-auto w-full max-w-6xl">

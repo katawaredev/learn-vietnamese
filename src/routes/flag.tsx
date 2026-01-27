@@ -7,11 +7,11 @@ export const Route = createFileRoute("/flag")({
 function Flag() {
 	return (
 		<div className="flex min-h-screen items-center justify-center p-4">
-			<div className="relative aspect-[3/2] w-full max-w-2xl">
+			<div className="relative aspect-3/2 w-full max-w-2xl">
 				<svg
 					viewBox="0 0 100 88"
 					fill="currentColor"
-					className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 w-4/5 text-gold"
+					className="absolute top-1/2 left-1/2 w-4/5 -translate-x-1/2 -translate-y-1/2 text-gold"
 					aria-label="Star"
 				>
 					<title>Star</title>

@@ -32,7 +32,7 @@ function App() {
 	];
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-burgundy-dark to-burgundy">
+		<div className="min-h-screen bg-linear-to-br from-burgundy-dark to-burgundy">
 			<Header hideBackButton />
 
 			{/* Main Content */}

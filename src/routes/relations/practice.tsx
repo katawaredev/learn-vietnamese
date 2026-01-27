@@ -208,7 +208,7 @@ function TypeInput({
 				onChange={setUserInput}
 			/>
 			{isFilled && (
-				<span className="-bottom-6 -right-2 absolute">
+				<span className="absolute -right-2 -bottom-6">
 					<ResultTextIndicator
 						size="small"
 						key={userInput}
@@ -237,7 +237,7 @@ function SpeakInput({
 				size="small"
 			/>
 			{userTranscription && (
-				<span className="-bottom-6 -right-1 absolute scale-75">
+				<span className="absolute -right-1 -bottom-6 scale-75">
 					<ResultVoiceIndicator
 						key={userTranscription}
 						transcription={userTranscription}

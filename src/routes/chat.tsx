@@ -330,7 +330,7 @@ function ChatRoute() {
 	};
 
 	return (
-		<div className="flex min-h-screen flex-col bg-gradient-to-br from-burgundy-dark to-burgundy">
+		<div className="flex min-h-screen flex-col bg-linear-to-br from-burgundy-dark to-burgundy">
 			<Header>
 				{messages.length !== 0 && (
 					<Button

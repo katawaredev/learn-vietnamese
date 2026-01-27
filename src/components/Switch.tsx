@@ -1,4 +1,4 @@
-import { Switch as BaseSwitch } from "@base-ui-components/react/switch";
+import { Switch as BaseSwitch } from "@base-ui/react/switch";
 import { cva, type VariantProps } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
@@ -9,7 +9,7 @@ const switchRootVariants = cva(
 			size: {
 				small: "h-6 w-10",
 				medium: "h-8 w-14",
-				large: "h-10 w-[4.5rem]",
+				large: "h-10 w-18",
 			},
 			checked: {
 				true: "border-gold bg-gold",

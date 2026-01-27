@@ -462,7 +462,7 @@ function ShowcasePage() {
 									size="large"
 								/>
 							</div>
-							<p className="mt-4 min-h-[1.5rem] text-warm-cream">
+							<p className="mt-4 min-h-6 text-warm-cream">
 								{transcriptionVN && (
 									<>
 										Transcription:{" "}
@@ -493,7 +493,7 @@ function ShowcasePage() {
 									size="large"
 								/>
 							</div>
-							<p className="mt-4 min-h-[1.5rem] text-warm-cream">
+							<p className="mt-4 min-h-6 text-warm-cream">
 								{transcriptionEN && (
 									<>
 										Transcription:{" "}

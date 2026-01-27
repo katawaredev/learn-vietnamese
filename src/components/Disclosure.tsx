@@ -1,4 +1,4 @@
-import { Collapsible } from "@base-ui-components/react/collapsible";
+import { Collapsible } from "@base-ui/react/collapsible";
 import { ChevronDown } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
@@ -33,7 +33,7 @@ export function Disclosure({
 					/>
 				</Collapsible.Trigger>
 
-				<Collapsible.Panel className="data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:slide-out-to-top-2 data-[open]:slide-in-from-top-2 border-white/10 border-t px-6 py-4 data-[closed]:animate-out data-[open]:animate-in">
+				<Collapsible.Panel className="data-closed:fade-out-0 data-open:fade-in-0 data-closed:slide-out-to-top-2 data-open:slide-in-from-top-2 border-white/10 border-t px-6 py-4 data-closed:animate-out data-open:animate-in">
 					{children}
 				</Collapsible.Panel>
 			</div>

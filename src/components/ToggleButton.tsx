@@ -1,4 +1,4 @@
-import { Checkbox } from "@base-ui-components/react/checkbox";
+import { Checkbox } from "@base-ui/react/checkbox";
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentType } from "react";
 import { twMerge } from "tailwind-merge";
