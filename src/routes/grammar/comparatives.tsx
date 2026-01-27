@@ -3,8 +3,11 @@ import { Card } from "~/components/Card";
 import { Disclosure } from "~/components/Disclosure";
 import { SpeakButton } from "~/components/SpeakButton";
 import comparativesData from "~/data/grammar/comparatives.json";
+import {
+	type Example,
+	GrammarPracticeGrid,
+} from "~/layout/GrammarPracticeGrid";
 import { PracticeGrid } from "~/layout/PracticeGrid";
-import { GRAMMAR_TYPE_COLORS } from "~/routes/grammar/-grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/comparatives")({
@@ -12,19 +15,6 @@ export const Route = createFileRoute("/grammar/comparatives")({
 });
 
 // Types matching the JSON structure
-interface Breakdown {
-	type: string;
-	meaning: string;
-}
-
-interface Example {
-	vietnamese: string;
-	breakdown: Record<string, Breakdown>;
-	english: string;
-	literalEnglish?: string;
-	notes?: string;
-}
-
 interface Pattern {
 	structure: string;
 	meaning: string;
@@ -79,57 +69,6 @@ interface ComparativesData {
 }
 
 const data = comparativesData as ComparativesData;
-
-// Helper to strip subscript numbers from Vietnamese words
-const stripSubscript = (text: string) => text.replace(/[₀-₉]+$/, "");
-
-// Component for displaying annotated example sentences
-function AnnotatedSentence({ example }: { example: Example }) {
-	return (
-		<div className="space-y-3 rounded-lg border border-white/10 bg-black/20 p-4">
-			{/* Vietnamese sentence with audio */}
-			<div className="flex items-center gap-2">
-				<span className="font-medium text-lg text-warm-cream">
-					{example.vietnamese}
-				</span>
-				<SpeakButton text={example.vietnamese} size="small" />
-			</div>
-
-			{/* Word-by-word breakdown */}
-			<div className="flex flex-wrap gap-3">
-				{Object.entries(example.breakdown).map(([word, info]) => {
-					const displayWord = stripSubscript(word);
-					const colorClass =
-						GRAMMAR_TYPE_COLORS[
-							info.type as keyof typeof GRAMMAR_TYPE_COLORS
-						] || "text-white/70";
-
-					return (
-						<div key={word} className="flex flex-col">
-							<span className={`font-medium ${colorClass}`}>{displayWord}</span>
-							<span className="text-white/50 text-xs">{info.meaning}</span>
-						</div>
-					);
-				})}
-			</div>
-
-			{/* English translation */}
-			<div className="space-y-1 border-white/10 border-t pt-2">
-				<div className="font-semibold text-gold text-sm">{example.english}</div>
-				{example.literalEnglish && (
-					<div className="text-white/40 text-xs italic">
-						Literal: {example.literalEnglish}
-					</div>
-				)}
-			</div>
-
-			{/* Optional notes */}
-			{example.notes && (
-				<div className="text-blue-300 text-xs">{example.notes}</div>
-			)}
-		</div>
-	);
-}
 
 function ComparativesComponent() {
 	// Transform practice sentences for PracticeGrid
@@ -366,12 +305,7 @@ function ComparativesComponent() {
 
 										{/* Examples */}
 										<div className="space-y-3">
-											{pattern.examples.map((example) => (
-												<AnnotatedSentence
-													key={example.vietnamese}
-													example={example}
-												/>
-											))}
+											<GrammarPracticeGrid examples={pattern.examples} />
 										</div>
 									</div>
 								</Card>
@@ -408,12 +342,9 @@ function ComparativesComponent() {
 														{intensifier.meaning}
 													</div>
 													<div className="space-y-2 border-white/10 border-t pt-2">
-														{intensifier.examples.map((example) => (
-															<AnnotatedSentence
-																key={example.vietnamese}
-																example={example}
-															/>
-														))}
+														<GrammarPracticeGrid
+															examples={intensifier.examples}
+														/>
 													</div>
 												</div>
 											</Card>
@@ -488,12 +419,7 @@ function ComparativesComponent() {
 
 												{/* Examples */}
 												<div className="space-y-2 border-white/10 border-t pt-2">
-													{pattern.examples.map((example) => (
-														<AnnotatedSentence
-															key={example.vietnamese}
-															example={example}
-														/>
-													))}
+													<GrammarPracticeGrid examples={pattern.examples} />
 												</div>
 											</div>
 										</Card>

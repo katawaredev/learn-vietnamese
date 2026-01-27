@@ -328,8 +328,11 @@ function TimeComponent() {
 								return `${h12}:${minute.toString().padStart(2, "0")} ${ampm}`;
 							}
 							if (item.type === "duration" && item.unit) {
-								if (item.unit === "rưỡi") {
-									return "2.5 hours";
+								if (
+									item.unit === "rưỡi" &&
+									typeof item.numericValue === "number"
+								) {
+									return `${item.numericValue} hours`;
 								}
 								if (typeof item.numericValue === "number") {
 									return `${item.numericValue} ${DURATION_UNITS[item.unit as DurationUnit]}`;

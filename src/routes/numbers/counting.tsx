@@ -189,6 +189,7 @@ function CountingComponent() {
 					</div>
 					<PracticeGrid<NumberData>
 						data={hundreds}
+						size="medium"
 						getSubtitle={(item) => item.value.toString()}
 						getDetails={getDetails}
 					/>
@@ -204,6 +205,7 @@ function CountingComponent() {
 					</div>
 					<PracticeGrid<NumberData>
 						data={thousands}
+						size="medium"
 						getSubtitle={(item) => item.value.toLocaleString()}
 						getDetails={getDetails}
 					/>
@@ -221,6 +223,7 @@ function CountingComponent() {
 					</div>
 					<PracticeGrid<NumberData>
 						data={large}
+						size="medium"
 						getSubtitle={(item) => item.value.toLocaleString()}
 						getDetails={getDetails}
 					/>

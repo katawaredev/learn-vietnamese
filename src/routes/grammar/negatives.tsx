@@ -2,27 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Disclosure } from "~/components/Disclosure";
 import { SpeakButton } from "~/components/SpeakButton";
 import data from "~/data/grammar/negatives.json";
+import {
+	type Example,
+	GrammarPracticeGrid,
+} from "~/layout/GrammarPracticeGrid";
 import { PracticeGrid } from "~/layout/PracticeGrid";
-import { GRAMMAR_TYPE_COLORS } from "./-grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/negatives")({
 	component: NegativesComponent,
 });
-
-interface BreakdownItem {
-	type: string;
-	meaning: string;
-}
-
-interface Example {
-	vietnamese: string;
-	breakdown: Record<string, BreakdownItem>;
-	english: string;
-	literalEnglish?: string;
-	notes?: string;
-	comparison?: string;
-}
 
 interface CommonMistake {
 	wrong: string;
@@ -42,104 +31,6 @@ interface NegationType {
 	keyPoints: string[];
 	examples: Example[];
 	commonMistakes: CommonMistake[];
-}
-
-/**
- * Removes subscript numbers from Vietnamese words (e.g., "biết₁" → "biết")
- * Used for tracking multiple instances of the same word in breakdown annotations
- */
-function stripSubscript(word: string): string {
-	return word.replace(/[₀-₉]+$/, "");
-}
-
-function AnnotatedSentence({ example }: { example: Example }) {
-	const words = Object.keys(example.breakdown);
-
-	return (
-		<div className="space-y-3 rounded-lg border border-white/10 bg-white/5 p-4">
-			{/* Vietnamese sentence with word-by-word breakdown */}
-			<div className="space-y-2">
-				<div className="flex flex-wrap items-start gap-x-4 gap-y-2">
-					{words.map((word) => {
-						const item = example.breakdown[word];
-						const displayWord = stripSubscript(word);
-						const colorClass =
-							GRAMMAR_TYPE_COLORS[item.type] || "text-gray-400";
-
-						return (
-							<div key={word} className="flex flex-col items-center">
-								<div className="font-medium text-lg text-warm-cream">
-									{displayWord}
-								</div>
-								<div className={`text-xs ${colorClass}`}>{item.type}</div>
-							</div>
-						);
-					})}
-					<SpeakButton text={example.vietnamese} />
-				</div>
-			</div>
-
-			{/* Breakdown table */}
-			<div className="overflow-x-auto">
-				<table className="w-full text-sm">
-					<thead>
-						<tr className="border-white/10 border-b">
-							<th className="py-2 pr-4 text-left font-medium text-warm-cream">
-								Vietnamese
-							</th>
-							<th className="px-4 py-2 text-left font-medium text-warm-cream">
-								Type
-							</th>
-							<th className="py-2 pl-4 text-left font-medium text-warm-cream">
-								Meaning
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						{words.map((word) => {
-							const item = example.breakdown[word];
-							const displayWord = stripSubscript(word);
-							const colorClass =
-								GRAMMAR_TYPE_COLORS[item.type] || "text-gray-400";
-
-							return (
-								<tr key={word} className="border-white/10 border-b">
-									<td className="py-2 pr-4 font-medium text-warm-cream">
-										{displayWord}
-									</td>
-									<td className={`px-4 py-2 ${colorClass}`}>{item.type}</td>
-									<td className="py-2 pl-4 text-white/70">{item.meaning}</td>
-								</tr>
-							);
-						})}
-					</tbody>
-				</table>
-			</div>
-
-			{/* Translations */}
-			<div className="space-y-1 border-white/10 border-t pt-3">
-				<div className="text-white/90">
-					<span className="font-semibold">English:</span> {example.english}
-				</div>
-				{example.literalEnglish && (
-					<div className="text-sm text-white/60">
-						<span className="font-semibold">Literal:</span>{" "}
-						{example.literalEnglish}
-					</div>
-				)}
-				{example.notes && (
-					<div className="text-blue-300 text-sm">
-						<span className="font-semibold">Note:</span> {example.notes}
-					</div>
-				)}
-				{example.comparison && (
-					<div className="text-green-300 text-sm">
-						<span className="font-semibold">Compare:</span> {example.comparison}
-					</div>
-				)}
-			</div>
-		</div>
-	);
 }
 
 function NegationTypeSection({ negation }: { negation: NegationType }) {
@@ -180,9 +71,7 @@ function NegationTypeSection({ negation }: { negation: NegationType }) {
 			{/* Examples */}
 			<div className="space-y-4">
 				<div className="font-semibold text-white/90">Examples:</div>
-				{negation.examples.map((example) => (
-					<AnnotatedSentence key={example.vietnamese} example={example} />
-				))}
+				<GrammarPracticeGrid examples={negation.examples} />
 			</div>
 
 			{/* Common Mistakes */}

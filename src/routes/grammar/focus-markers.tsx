@@ -3,8 +3,12 @@ import { Card } from "~/components/Card";
 import { Disclosure } from "~/components/Disclosure";
 import { SpeakButton } from "~/components/SpeakButton";
 import focusMarkersData from "~/data/grammar/focus-markers.json";
+import {
+	type Example,
+	GrammarPracticeGrid,
+} from "~/layout/GrammarPracticeGrid";
 import { PracticeGrid } from "~/layout/PracticeGrid";
-import { GRAMMAR_TYPE_COLORS } from "~/routes/grammar/-grammar-colors";
+import { GRAMMAR_TYPE_COLORS } from "~/lib/grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/focus-markers")({
@@ -15,14 +19,6 @@ export const Route = createFileRoute("/grammar/focus-markers")({
 interface Breakdown {
 	type: string;
 	meaning: string;
-}
-
-interface Example {
-	vietnamese: string;
-	breakdown: Record<string, Breakdown>;
-	english: string;
-	literal?: string;
-	stressPattern?: string;
 }
 
 interface ContrastiveExample {
@@ -110,55 +106,6 @@ const FOCUS_TYPE_COLORS = {
 	"demonstrative-stressed": "text-purple-300 font-bold",
 };
 
-// Component for displaying annotated example sentences
-function AnnotatedSentence({ example }: { example: Example }) {
-	return (
-		<div className="space-y-3 rounded-lg border border-white/10 bg-black/20 p-4">
-			{/* Vietnamese sentence with audio */}
-			<div className="flex items-center gap-2">
-				<span className="font-medium text-lg text-warm-cream">
-					{example.vietnamese}
-				</span>
-				<SpeakButton text={example.vietnamese} size="small" />
-			</div>
-
-			{/* Word-by-word breakdown */}
-			<div className="flex flex-wrap gap-3">
-				{Object.entries(example.breakdown).map(([word, info]) => {
-					const displayWord = stripSubscript(word);
-					const colorClass =
-						FOCUS_TYPE_COLORS[info.type as keyof typeof FOCUS_TYPE_COLORS] ||
-						"text-white/70";
-
-					return (
-						<div key={word} className="flex flex-col">
-							<span className={`font-medium ${colorClass}`}>{displayWord}</span>
-							<span className="text-white/50 text-xs">{info.meaning}</span>
-						</div>
-					);
-				})}
-			</div>
-
-			{/* English translation */}
-			<div className="space-y-1 border-white/10 border-t pt-2">
-				<div className="font-semibold text-gold text-sm">{example.english}</div>
-				{example.literal && (
-					<div className="text-white/40 text-xs italic">
-						Literal: {example.literal}
-					</div>
-				)}
-			</div>
-
-			{/* Stress pattern */}
-			{example.stressPattern && (
-				<div className="text-pink-300 text-xs">
-					Stress: {example.stressPattern}
-				</div>
-			)}
-		</div>
-	);
-}
-
 // Component for side-by-side comparison of with/without focus marker
 function ContrastiveComparison({ example }: { example: ContrastiveExample }) {
 	const getConnotationColor = (connotation: string) => {
@@ -197,7 +144,7 @@ function ContrastiveComparison({ example }: { example: ContrastiveExample }) {
 						<div className="font-semibold text-sm text-white/50">
 							Without Focus Marker
 						</div>
-						<AnnotatedSentence example={example.withoutFocus} />
+						<GrammarPracticeGrid examples={[example.withoutFocus]} />
 					</div>
 
 					{/* With focus */}
@@ -205,7 +152,7 @@ function ContrastiveComparison({ example }: { example: ContrastiveExample }) {
 						<div className="font-semibold text-pink-300 text-sm">
 							With Focus Marker
 						</div>
-						<AnnotatedSentence example={example.withFocus} />
+						<GrammarPracticeGrid examples={[example.withFocus]} />
 					</div>
 				</div>
 

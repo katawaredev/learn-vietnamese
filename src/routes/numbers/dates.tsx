@@ -234,6 +234,7 @@ function DatesComponent() {
 					</Disclosure>
 					<PracticeGrid<DateData>
 						data={sampleDates}
+						size="large"
 						getSubtitle={(item) => {
 							if (
 								typeof item.numericValue === "object" &&

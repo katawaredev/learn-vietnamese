@@ -3,8 +3,11 @@ import { Card } from "~/components/Card";
 import { Disclosure } from "~/components/Disclosure";
 import { SpeakButton } from "~/components/SpeakButton";
 import conditionalsData from "~/data/grammar/conditionals.json";
+import {
+	type Example,
+	GrammarPracticeGrid,
+} from "~/layout/GrammarPracticeGrid";
 import { PracticeGrid } from "~/layout/PracticeGrid";
-import { GRAMMAR_TYPE_COLORS } from "~/routes/grammar/-grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/conditionals")({
@@ -12,19 +15,6 @@ export const Route = createFileRoute("/grammar/conditionals")({
 });
 
 // Types matching the JSON structure
-interface BreakdownItem {
-	type: string;
-	meaning: string;
-}
-
-interface Example {
-	vietnamese: string;
-	breakdown: Record<string, BreakdownItem>;
-	english: string;
-	literalEnglish?: string;
-	notes?: string;
-}
-
 interface Component {
 	word: string;
 	meaning: string;
@@ -90,65 +80,6 @@ interface ConditionalsData {
 }
 
 const data = conditionalsData as unknown as ConditionalsData;
-
-// Helper to strip subscript numbers
-const stripSubscript = (text: string) => text.replace(/[₀-₉]+$/, "");
-
-// Component for annotated sentence examples
-function AnnotatedSentence({ example }: { example: Example }) {
-	return (
-		<div className="space-y-4 rounded-lg border border-white/10 bg-white/5 p-6">
-			{/* Vietnamese sentence with color-coded words */}
-			<div className="flex flex-wrap items-center gap-3">
-				{Object.entries(example.breakdown).map(([word, info]) => (
-					<div key={word} className="text-center">
-						<div
-							className={`font-bold text-xl ${GRAMMAR_TYPE_COLORS[info.type] || "text-white"}`}
-						>
-							{stripSubscript(word)}
-						</div>
-						<div className="mt-1 text-white/50 text-xs">{info.type}</div>
-					</div>
-				))}
-				<SpeakButton text={example.vietnamese} size="small" />
-			</div>
-
-			{/* Word-by-word breakdown */}
-			<div className="grid gap-2 border-white/10 border-t pt-4">
-				{Object.entries(example.breakdown).map(([word, info]) => (
-					<div key={word} className="flex items-baseline gap-3 text-sm">
-						<span
-							className={`font-mono font-semibold ${GRAMMAR_TYPE_COLORS[info.type] || "text-white"}`}
-						>
-							{stripSubscript(word)}
-						</span>
-						<span className="text-white/40">→</span>
-						<span className="text-white/70">{info.meaning}</span>
-						<span className="text-white/40 text-xs italic">({info.type})</span>
-					</div>
-				))}
-			</div>
-
-			{/* English translation */}
-			<div className="border-white/10 border-t pt-4">
-				<div className="text-sm text-white/50">English:</div>
-				<div className="font-semibold text-gold">{example.english}</div>
-				{example.literalEnglish && (
-					<div className="mt-1 text-sm text-white/50 italic">
-						Literal: {example.literalEnglish}
-					</div>
-				)}
-			</div>
-
-			{/* Optional notes */}
-			{example.notes && (
-				<div className="text-sm text-white/60 italic">
-					<span className="text-gold">Note:</span> {example.notes}
-				</div>
-			)}
-		</div>
-	);
-}
 
 function ConditionalsComponent() {
 	// Prepare practice data for PracticeGrid
@@ -258,9 +189,7 @@ function ConditionalsComponent() {
 
 					{/* Examples */}
 					<div className="space-y-4">
-						{data.basicStructure.examples.map((example) => (
-							<AnnotatedSentence key={example.vietnamese} example={example} />
-						))}
+						<GrammarPracticeGrid examples={data.basicStructure.examples} />
 					</div>
 				</section>
 
@@ -338,12 +267,7 @@ function ConditionalsComponent() {
 
 								{/* Examples for this type */}
 								<div className="space-y-4">
-									{type.examples.map((example) => (
-										<AnnotatedSentence
-											key={example.vietnamese}
-											example={example}
-										/>
-									))}
+									<GrammarPracticeGrid examples={type.examples} />
 								</div>
 							</div>
 						);
