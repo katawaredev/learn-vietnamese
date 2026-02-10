@@ -9,6 +9,7 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { LLMProvider } from "~/providers/llm-provider";
 import { STTProvider } from "~/providers/stt-provider";
 import { TTSProvider } from "~/providers/tts-provider";
+import { UIProvider } from "~/providers/ui-provider";
 
 import appCss from "~/styles.css?url";
 
@@ -65,13 +66,15 @@ export const Route = createRootRoute({
 
 function RootComponent() {
 	return (
-		<TTSProvider>
-			<STTProvider>
-				<LLMProvider>
-					<Outlet />
-				</LLMProvider>
-			</STTProvider>
-		</TTSProvider>
+		<UIProvider>
+			<TTSProvider>
+				<STTProvider>
+					<LLMProvider>
+						<Outlet />
+					</LLMProvider>
+				</STTProvider>
+			</TTSProvider>
+		</UIProvider>
 	);
 }
 

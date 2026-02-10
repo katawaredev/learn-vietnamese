@@ -1,5 +1,6 @@
 import { type ChangeEvent, useCallback } from "react";
 import { twMerge } from "tailwind-merge";
+import { useNotifyTelexActive } from "~/providers/ui-provider";
 
 import type { WordInputProps } from "./WordInput";
 
@@ -9,6 +10,8 @@ export const WordInputSingle = ({
 	onChange,
 	className,
 }: WordInputProps) => {
+	useNotifyTelexActive();
+
 	if (hint && hint.length !== text.length)
 		throw new Error(
 			`Hint length (${hint.length}) does not match text length (${text.length})`,

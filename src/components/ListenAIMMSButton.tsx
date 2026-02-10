@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSTT } from "~/providers/stt-provider";
+import { isSilent } from "~/utils/audio";
 import { sttPool } from "~/workers/stt-worker-pool";
 import { ListenBaseButton, type RecordingState } from "./ListenBaseButton";
 import type { ListenButtonProps } from "./ListenButton";
@@ -61,6 +62,15 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 
 				// Close the AudioContext to free resources
 				await audioContext.close();
+
+				// Skip transcription if audio is silent or too short
+				if (isSilent(audioData)) {
+					if (isMountedRef.current) {
+						setState("idle");
+						setLoadingProgress(0);
+					}
+					return;
+				}
 
 				// Get model path
 				const modelPath =

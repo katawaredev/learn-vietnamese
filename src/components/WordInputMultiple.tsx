@@ -1,5 +1,6 @@
 import { type KeyboardEvent, useCallback, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { useNotifyTelexActive } from "~/providers/ui-provider";
 
 import type { WordInputProps } from "./WordInput";
 
@@ -9,6 +10,8 @@ export const WordInputMultiple = ({
 	className,
 	onChange,
 }: WordInputProps) => {
+	useNotifyTelexActive();
+
 	const words = text.split(" ");
 
 	// Parse hint by matching word positions in the original text
