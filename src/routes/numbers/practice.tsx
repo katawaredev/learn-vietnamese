@@ -245,6 +245,7 @@ const getRandomPracticeItem = createServerFn({ method: "GET" }).handler(
 export const Route = createFileRoute("/numbers/practice")({
 	component: PracticeComponent,
 	loader: async () => await getRandomPracticeItem(),
+	ssr: false,
 });
 
 function PracticeContainer({
@@ -269,8 +270,9 @@ function TextInputWithResult({
 	expectedText: string;
 	onInputChange?: (value: string) => void;
 }) {
+	const expectedTextClear = expectedText.replaceAll(" ", "");
 	const [userInput, setUserInput] = useState("");
-	const showResult = userInput.length === expectedText.length;
+	const showResult = userInput.length === expectedTextClear.length;
 
 	const handleChange = (value: string) => {
 		setUserInput(value);
@@ -285,7 +287,7 @@ function TextInputWithResult({
 					<ResultTextIndicator
 						key={userInput}
 						inputText={userInput}
-						expectedText={expectedText}
+						expectedText={expectedTextClear}
 					/>
 				)}
 			</div>
@@ -449,7 +451,6 @@ function UnifiedPractice({
 	displayMode: DisplayMode;
 	inputMode: InputMode;
 }) {
-	// Hook must be called unconditionally at top level
 	const [typeDigits] = useState(() => Math.random() < 0.5);
 
 	const vietnameseText = getDisplayText(item);

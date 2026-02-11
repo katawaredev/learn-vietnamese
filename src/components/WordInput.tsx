@@ -48,6 +48,8 @@ export const WordInput = ({
 	className,
 	autoFocus,
 }: WordInputProps) => {
+	useNotifyTelexActive();
+
 	const words = text.split(" ");
 	const totalLength = text.replace(/ /g, "").length;
 
@@ -64,8 +66,6 @@ export const WordInput = ({
 		return { word, start };
 	});
 
-	useNotifyTelexActive();
-
 	return (
 		<OTPInput
 			maxLength={totalLength}
@@ -73,6 +73,7 @@ export const WordInput = ({
 			containerClassName={twMerge("flex flex-wrap gap-x-8 gap-y-6", className)}
 			inputMode="text"
 			autoFocus={autoFocus}
+			pasteTransformer={(pasted) => pasted.replaceAll(" ", "")}
 			render={({ slots }) => (
 				<>
 					{wordSlots.map(({ word, start }, wi) => (

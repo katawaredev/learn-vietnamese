@@ -51,6 +51,7 @@ const getRandomPracticeItem = createServerFn({ method: "GET" }).handler(
 export const Route = createFileRoute("/pronunciation/practice")({
 	component: PracticeComponent,
 	loader: async () => await getRandomPracticeItem(),
+	ssr: false,
 });
 
 function ListenPractice({

@@ -31,11 +31,12 @@ function TextInputWithResult({
 
 	// Strip all punctuation for comparison in listen mode
 	const normalizedExpected = expectedText.replace(/[.,!?;:'"]/g, "").trim();
-	const showResult = userInput.length === normalizedExpected.length;
+	const normalizedExpectedClear = normalizedExpected.replaceAll(" ", "");
+	const showResult = userInput.length === normalizedExpectedClear.length;
 
 	const handleChange = (value: string) => {
 		setUserInput(value);
-		if (value === normalizedExpected) {
+		if (value === normalizedExpectedClear) {
 			// Delay to show the result before enabling next
 			setTimeout(() => onCorrect(), 500);
 		}
@@ -55,7 +56,7 @@ function TextInputWithResult({
 					<ResultTextIndicator
 						key={userInput}
 						inputText={userInput}
-						expectedText={normalizedExpected}
+						expectedText={normalizedExpectedClear}
 					/>
 				)}
 			</div>

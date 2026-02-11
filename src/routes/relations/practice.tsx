@@ -47,6 +47,7 @@ const getRandomPracticeItem = createServerFn({ method: "GET" }).handler(
 export const Route = createFileRoute("/relations/practice")({
 	component: PracticeComponent,
 	loader: () => getRandomPracticeItem(),
+	ssr: false,
 });
 
 function PracticeComponent() {
