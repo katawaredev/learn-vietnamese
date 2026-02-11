@@ -96,7 +96,7 @@ function SentenceStructureComponent() {
 		<Layout>
 			<div className="space-y-8">
 				<Disclosure
-					className="w-full"
+					defaultOpen
 					title={
 						<span className="font-bold text-gold text-lg">
 							Understanding Vietnamese Sentence Structure

@@ -13,200 +13,77 @@
 			"id": "past",
 			"title": "Past Tense",
 			"description": "Markers that indicate completed actions in the past",
-			"items": [
-				{
-					"vietnamese": "đã",
+			"markers": {
+				"đã": {
 					"meaning": "already, completed action (past)",
-					"position": "before",
+					"position": "before verb",
 					"usage": "Most common past tense marker. Indicates action was completed in the past.",
-					"examples": [
-						{
-							"vietnamese": "Tôi đã ăn cơm",
-							"breakdown": {
-								"Tôi₁": { "type": "subject", "meaning": "I" },
-								"đã₂": { "type": "tense-marker", "meaning": "already/past" },
-								"ăn₃": { "type": "verb", "meaning": "eat" },
-								"cơm₄": { "type": "object", "meaning": "rice" }
-							},
-							"english": "I ate rice",
-							"literalEnglish": "I [past] eat rice",
-							"notes": "Standard past tense construction"
-						}
-					]
+					"example": "Tôi đã ăn cơm → I ate rice"
 				},
-				{
-					"vietnamese": "có",
+				"có": {
 					"meaning": "did (emphatic past)",
-					"position": "before",
-					"usage": "Emphatic past tense, similar to 'đã' but stronger. Also used for affirmation.",
-					"examples": [
-						{
-							"vietnamese": "Tôi có đi",
-							"breakdown": {
-								"Tôi₁": { "type": "subject", "meaning": "I" },
-								"có₂": { "type": "tense-marker", "meaning": "did/emphatic" },
-								"đi₃": { "type": "verb", "meaning": "go" }
-							},
-							"english": "I DID go",
-							"literalEnglish": "I [emphatic past] go",
-							"notes": "Stronger than 'đã', often used to contradict or emphasize"
-						}
-					]
+					"position": "before verb",
+					"usage": "Emphatic past tense, similar to 'đã' but stronger. Also used for affirmation. Often used to contradict or emphasize.",
+					"example": "Tôi có đi → I DID go"
 				},
-				{
-					"vietnamese": "rồi",
+				"rồi": {
 					"meaning": "already (completed)",
-					"position": "after",
-					"usage": "Placed AFTER the verb. Often combined with 'đã' for stronger emphasis. Unique position!",
-					"examples": [
-						{
-							"vietnamese": "Tôi ăn rồi",
-							"breakdown": {
-								"Tôi₁": { "type": "subject", "meaning": "I" },
-								"ăn₂": { "type": "verb", "meaning": "eat" },
-								"rồi₃": { "type": "tense-marker", "meaning": "already" }
-							},
-							"english": "I already ate",
-							"literalEnglish": "I eat [already]",
-							"notes": "Note: 'rồi' comes AFTER the verb"
-						},
-						{
-							"vietnamese": "Tôi đã ăn rồi",
-							"breakdown": {
-								"Tôi₁": { "type": "subject", "meaning": "I" },
-								"đã₂": { "type": "tense-marker", "meaning": "past" },
-								"ăn₃": { "type": "verb", "meaning": "eat" },
-								"rồi₄": { "type": "tense-marker", "meaning": "already" }
-							},
-							"english": "I already ate",
-							"literalEnglish": "I [past] eat [already]",
-							"notes": "Combining 'đã' and 'rồi' adds emphasis"
-						}
-					]
+					"position": "after verb",
+					"usage": "Placed AFTER the verb (unique position!). Often combined with 'đã' for stronger emphasis.",
+					"example": "Tôi ăn rồi → I already ate"
 				}
-			]
+			}
 		},
 		{
 			"id": "recent-past",
 			"title": "Recent Past",
 			"description": "Actions that just happened",
-			"items": [
-				{
-					"vietnamese": "vừa mới",
+			"markers": {
+				"vừa mới": {
 					"meaning": "just (recently completed)",
-					"position": "before",
-					"usage": "Indicates action was completed very recently. Can drop 'vừa' in casual speech.",
-					"examples": [
-						{
-							"vietnamese": "Tôi vừa mới ăn xong",
-							"breakdown": {
-								"Tôi₁": { "type": "subject", "meaning": "I" },
-								"vừa mới₂": { "type": "tense-marker", "meaning": "just" },
-								"ăn₃": { "type": "verb", "meaning": "eat" },
-								"xong₄": { "type": "particle", "meaning": "finished" }
-							},
-							"english": "I just finished eating",
-							"literalEnglish": "I [just] eat finished",
-							"notes": "Emphasizes very recent completion"
-						},
-						{
-							"vietnamese": "Tôi mới ăn",
-							"breakdown": {
-								"Tôi₁": { "type": "subject", "meaning": "I" },
-								"mới₂": { "type": "tense-marker", "meaning": "just" },
-								"ăn₃": { "type": "verb", "meaning": "eat" }
-							},
-							"english": "I just ate",
-							"literalEnglish": "I [just] eat",
-							"notes": "More common in casual speech. 'vừa' is dropped."
-						}
-					]
+					"position": "before verb",
+					"usage": "Indicates action was completed very recently. More formal/emphatic than 'mới' alone.",
+					"example": "Tôi vừa mới ăn xong → I just finished eating"
+				},
+				"mới": {
+					"meaning": "just (recently completed) - casual",
+					"position": "before verb",
+					"usage": "Casual form of 'vừa mới'. More common in everyday speech.",
+					"example": "Tôi mới ăn → I just ate"
 				}
-			]
+			}
 		},
 		{
 			"id": "future",
 			"title": "Future Tense",
 			"description": "Actions that will happen",
-			"items": [
-				{
-					"vietnamese": "sẽ",
+			"markers": {
+				"sẽ": {
 					"meaning": "will (future)",
-					"position": "before",
+					"position": "before verb",
 					"usage": "Standard future tense marker. Indicates action will happen in the future.",
-					"examples": [
-						{
-							"vietnamese": "Tôi sẽ đi học",
-							"breakdown": {
-								"Tôi₁": { "type": "subject", "meaning": "I" },
-								"sẽ₂": { "type": "tense-marker", "meaning": "will" },
-								"đi₃": { "type": "verb", "meaning": "go" },
-								"học₄": { "type": "verb", "meaning": "study" }
-							},
-							"english": "I will go to school",
-							"literalEnglish": "I [will] go study",
-							"notes": "Standard future construction"
-						}
-					]
+					"example": "Tôi sẽ đi học → I will go to school"
 				},
-				{
-					"vietnamese": "sắp",
+				"sắp": {
 					"meaning": "about to (near future)",
-					"position": "before",
-					"usage": "Indicates action is about to happen soon. Imminent future.",
-					"examples": [
-						{
-							"vietnamese": "Tôi sắp đi",
-							"breakdown": {
-								"Tôi₁": { "type": "subject", "meaning": "I" },
-								"sắp₂": { "type": "tense-marker", "meaning": "about to" },
-								"đi₃": { "type": "verb", "meaning": "go" }
-							},
-							"english": "I'm about to go",
-							"literalEnglish": "I [about to] go",
-							"notes": "Implies very near future, more immediate than 'sẽ'"
-						}
-					]
+					"position": "before verb",
+					"usage": "Indicates action is about to happen soon. Imminent future, more immediate than 'sẽ'.",
+					"example": "Tôi sắp đi → I'm about to go"
 				}
-			]
+			}
 		},
 		{
 			"id": "continuous",
 			"title": "Continuous Tense",
 			"description": "Ongoing actions",
-			"items": [
-				{
-					"vietnamese": "đang",
+			"markers": {
+				"đang": {
 					"meaning": "currently (in progress)",
-					"position": "before",
-					"usage": "Indicates action is currently happening. Equivalent to English '-ing' form.",
-					"examples": [
-						{
-							"vietnamese": "Tôi đang ăn",
-							"breakdown": {
-								"Tôi₁": { "type": "subject", "meaning": "I" },
-								"đang₂": { "type": "tense-marker", "meaning": "currently" },
-								"ăn₃": { "type": "verb", "meaning": "eat" }
-							},
-							"english": "I am eating",
-							"literalEnglish": "I [currently] eat",
-							"notes": "Present continuous"
-						},
-						{
-							"vietnamese": "Tôi đã đang ăn",
-							"breakdown": {
-								"Tôi₁": { "type": "subject", "meaning": "I" },
-								"đã₂": { "type": "tense-marker", "meaning": "past" },
-								"đang₃": { "type": "tense-marker", "meaning": "currently" },
-								"ăn₄": { "type": "verb", "meaning": "eat" }
-							},
-							"english": "I was eating",
-							"literalEnglish": "I [past] [currently] eat",
-							"notes": "Past continuous. Combining markers is uncommon but valid."
-						}
-					]
+					"position": "before verb",
+					"usage": "Indicates action is currently happening. Equivalent to English '-ing' form. Can combine with 'đã' for past continuous (uncommon but valid).",
+					"example": "Tôi đang ăn → I am eating"
 				}
-			]
+			}
 		}
 	],
 	"combinations": {
@@ -217,18 +94,21 @@
 				"markers": "đã + rồi",
 				"meaning": "Completed action with emphasis",
 				"example": "Tôi đã ăn rồi",
+				"translation": "I already ate",
 				"notes": "Very common combination. 'rồi' always comes after the verb."
 			},
 			{
 				"markers": "đã + đang",
 				"meaning": "Past continuous (was doing)",
 				"example": "Tôi đã đang ngủ",
+				"translation": "I was sleeping",
 				"notes": "Uncommon but grammatically correct. Describes ongoing action in the past."
 			},
 			{
 				"markers": "sẽ + đang",
 				"meaning": "Future continuous (will be doing)",
 				"example": "Tôi sẽ đang làm việc",
+				"translation": "I will be working",
 				"notes": "Rare. Describes action that will be in progress at a future time."
 			}
 		]

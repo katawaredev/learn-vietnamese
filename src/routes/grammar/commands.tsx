@@ -96,20 +96,9 @@ function CommandsComponent() {
 	return (
 		<Layout>
 			<div className="space-y-8">
-				{/* Page Header */}
-				<div>
-					<h1 className="font-bold font-serif text-3xl text-gold">
-						Commands & Imperatives
-					</h1>
-					<p className="mt-2 text-lg text-white/70">
-						Simple structure, complex politeness—choosing the right command form
-						is critical in Vietnamese culture
-					</p>
-				</div>
-
 				{/* Introduction */}
 				<Disclosure
-					className="w-full"
+					defaultOpen
 					title={
 						<span className="font-bold text-gold text-lg">
 							{data.introduction.title}

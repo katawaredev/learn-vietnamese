@@ -155,19 +155,15 @@ function AdjectivesComponent() {
 	return (
 		<Layout>
 			<div className="space-y-8">
-				{/* Header */}
-				<div>
-					<h1 className="font-bold font-serif text-3xl text-gold">
-						Adjectives
-					</h1>
-					<p className="mt-2 text-white/60">
-						Vietnamese adjectives follow different rules than English - they
-						come after nouns and function as stative verbs
-					</p>
-				</div>
-
 				{/* Introduction */}
-				<Disclosure title={data.introduction.title}>
+				<Disclosure
+					defaultOpen
+					title={
+						<span className="font-bold text-gold text-lg">
+							{data.introduction.title}
+						</span>
+					}
+				>
 					<div className="space-y-3">
 						{data.introduction.content.map((paragraph, idx) => (
 							// biome-ignore lint/suspicious/noArrayIndexKey: content is static text without unique identifiers

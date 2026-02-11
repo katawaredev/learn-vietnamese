@@ -112,20 +112,9 @@ function ConditionalsComponent() {
 	return (
 		<Layout>
 			<div className="space-y-8">
-				{/* Header */}
-				<div>
-					<h1 className="font-bold font-serif text-3xl text-gold">
-						Conditional Sentences
-					</h1>
-					<p className="mt-2 text-white/60">
-						Vietnamese conditionals use 'Nếu...thì' to express if-then
-						relationships
-					</p>
-				</div>
-
 				{/* Introduction */}
 				<Disclosure
-					className="w-full"
+					defaultOpen
 					title={
 						<span className="font-bold text-gold text-lg">
 							{data.introduction.title}

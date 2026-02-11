@@ -102,7 +102,7 @@ function DemonstrativesComponent() {
 			<div className="space-y-8">
 				{/* Introduction */}
 				<Disclosure
-					className="w-full"
+					defaultOpen
 					title={
 						<span className="font-bold text-gold text-lg">
 							{data.introduction.title}

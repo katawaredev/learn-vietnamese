@@ -108,19 +108,9 @@ function ExclamationsComponent() {
 	return (
 		<Layout>
 			<div className="space-y-8">
-				{/* Page Header */}
-				<div>
-					<h1 className="font-bold font-serif text-3xl text-gold">
-						Exclamations & Emphasis
-					</h1>
-					<p className="mt-2 text-lg text-white/70">
-						Express emotions naturally through particles and intonation
-					</p>
-				</div>
-
 				{/* Introduction */}
 				<Disclosure
-					className="w-full"
+					defaultOpen
 					title={
 						<span className="font-bold text-gold text-lg">
 							{data.introduction.title}

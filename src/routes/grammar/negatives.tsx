@@ -121,19 +121,15 @@ function NegativesComponent() {
 	return (
 		<Layout>
 			<div className="space-y-8">
-				{/* Page Title */}
-				<div>
-					<h1 className="font-bold font-serif text-3xl text-gold">
-						Negative Sentences
-					</h1>
-					<p className="mt-2 text-lg text-white/70">
-						Master the three main negation patterns in Vietnamese: không, không
-						phải là, and chưa
-					</p>
-				</div>
-
 				{/* Introduction */}
-				<Disclosure title={data.introduction.title}>
+				<Disclosure
+					defaultOpen
+					title={
+						<span className="font-bold text-gold text-lg">
+							{data.introduction.title}
+						</span>
+					}
+				>
 					{data.introduction.content.map((paragraph) => (
 						<p
 							key={paragraph.slice(0, 50)}

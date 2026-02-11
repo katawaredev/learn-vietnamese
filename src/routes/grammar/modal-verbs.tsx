@@ -101,7 +101,7 @@ function ModalVerbsComponent() {
 		<Layout>
 			<div className="space-y-8">
 				<Disclosure
-					className="w-full"
+					defaultOpen
 					title={
 						<span className="font-bold text-gold text-lg">
 							Understanding Vietnamese Modal Verbs

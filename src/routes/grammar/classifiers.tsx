@@ -61,7 +61,7 @@ function ClassifiersComponent() {
 	return (
 		<Layout>
 			<Disclosure
-				className="w-full"
+				defaultOpen
 				title={
 					<span className="font-bold text-gold text-lg">
 						What Are Classifiers?
