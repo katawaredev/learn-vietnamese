@@ -9,7 +9,7 @@ import {
 	ResultVoiceIndicator,
 } from "~/components/ResultIndicator";
 import { SpeakButton } from "~/components/SpeakButton";
-import { WordInputSingle } from "~/components/WordInputSingle";
+import { WordInput } from "~/components/WordInput";
 import consonantsData from "~/data/pronunciation/consonants.json";
 import doubleVowelsData from "~/data/pronunciation/double-vowels.json";
 import tones from "~/data/pronunciation/tones.json";
@@ -75,11 +75,11 @@ function ListenPractice({
 		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500">
 			<SpeakButton text={itemKey} size="large" />
 			<div className="flex flex-col items-center space-y-4">
-				<WordInputSingle
-					className="ml-[6ch]"
+				<WordInput
 					text={itemKey}
 					hint={hint}
 					onChange={handleChange}
+					autoFocus
 				/>
 				<div className="mt-8 h-8">
 					{showResult && (

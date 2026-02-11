@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
-import { twMerge } from "tailwind-merge";
 import { Button, LinkButton } from "~/components/Button";
 import { ListenButton } from "~/components/ListenButton";
 import { PracticeModeToggle } from "~/components/PracticeModeToggle";
@@ -9,7 +8,7 @@ import {
 	ResultTextIndicator,
 	ResultVoiceIndicator,
 } from "~/components/ResultIndicator";
-import { WordInputSingle } from "~/components/WordInputSingle";
+import { WordInput } from "~/components/WordInput";
 import practiceData from "~/data/relations/practice.json";
 import { getRandomElement, pickOne } from "~/utils/random";
 import { Layout } from "./-layout";
@@ -170,7 +169,7 @@ function Practice({
 								<TypeInput
 									expectedText={exp}
 									textHint={hintParts[i]}
-									index={i}
+									autoFocus={!i}
 								/>
 							) : (
 								<SpeakInput expectedText={exp} textHint={hintParts[i]} />
@@ -189,11 +188,11 @@ function Practice({
 function TypeInput({
 	expectedText,
 	textHint,
-	index,
+	autoFocus,
 }: {
 	expectedText: string;
 	textHint: string;
-	index: number;
+	autoFocus?: boolean;
 }) {
 	const [userInput, setUserInput] = useState("");
 
@@ -201,11 +200,11 @@ function TypeInput({
 
 	return (
 		<span className="relative inline-block">
-			<WordInputSingle
-				className={twMerge("-mr-[3ch] inline-block", index === 1 && "ml-[1ch]")}
+			<WordInput
 				text={expectedText}
 				hint={textHint}
 				onChange={setUserInput}
+				autoFocus={autoFocus}
 			/>
 			{isFilled && (
 				<span className="absolute -right-2 -bottom-6">

@@ -279,11 +279,7 @@ function TextInputWithResult({
 
 	return (
 		<>
-			<WordInput
-				className="ml-[6ch] justify-center"
-				text={expectedText}
-				onChange={handleChange}
-			/>
+			<WordInput text={expectedText} onChange={handleChange} autoFocus />
 			<div className="mt-8 h-8">
 				{showResult && (
 					<ResultTextIndicator

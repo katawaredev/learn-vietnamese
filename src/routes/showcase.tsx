@@ -22,8 +22,7 @@ import { Select } from "~/components/Select";
 import { SpeakButton } from "~/components/SpeakButton";
 import { ToggleButton } from "~/components/ToggleButton";
 import { Toggle, ToggleGroup } from "~/components/ToggleGroup";
-import { WordInputMultiple } from "~/components/WordInputMultiple";
-import { WordInputSingle } from "~/components/WordInputSingle";
+import { WordInput } from "~/components/WordInput";
 
 export const Route = createFileRoute("/showcase")({
 	component: ShowcasePage,
@@ -39,8 +38,6 @@ function ShowcasePage() {
 	const [transcriptionEN, setTranscriptionEN] = useState("");
 	const [spokenTextVN, setSpokenTextVN] = useState("Xin chào");
 	const [spokenTextEN, setSpokenTextEN] = useState("Hello");
-	const [_singleInput, setSingleInput] = useState("");
-	const [_multipleInput, setMultipleInput] = useState("");
 
 	const selectOptions = [
 		{ label: "Option 1", value: "option1" },
@@ -554,44 +551,38 @@ function ShowcasePage() {
 					</div>
 				</section>
 
-				{/* Word Input Components */}
+				{/* WordInput Component */}
 				<section className="space-y-6">
 					<h2 className="font-serif text-3xl text-gold">Word Inputs</h2>
 
 					<div className="space-y-8">
 						<div>
-							<h3 className="mb-3 text-lg text-warm-cream">
-								Single Word Input
+							<h3 className="mb-6 text-lg text-warm-cream">
+								Single Word with Hint
 							</h3>
-							<WordInputSingle
-								text="Xin chào"
-								hint="X       "
-								onChange={(text) => {
-									setSingleInput(text);
-									console.log("Single input:", text);
-								}}
+							<WordInput
+								text="Xin"
+								hint="X  "
+								onChange={(text) => console.log("WordInput single:", text)}
 							/>
 						</div>
 
 						<div>
-							<h3 className="mb-3 text-lg text-warm-cream">
-								Multiple Word Input
+							<h3 className="mb-6 text-lg text-warm-cream">
+								Multi-Word with Hints
 							</h3>
-							<WordInputMultiple
+							<WordInput
 								text="Chào buổi sáng"
 								hint="C       ổ     "
-								onChange={(text) => {
-									setMultipleInput(text);
-									console.log("Multiple input:", text);
-								}}
+								onChange={(text) => console.log("WordInput multi-hint:", text)}
 							/>
 						</div>
 
 						<div>
-							<h3 className="mb-3 text-lg text-warm-cream">Without Hints</h3>
-							<WordInputMultiple
+							<h3 className="mb-6 text-lg text-warm-cream">Without Hints</h3>
+							<WordInput
 								text="Cảm ơn bạn"
-								onChange={(text) => console.log("No hints input:", text)}
+								onChange={(text) => console.log("WordInput no-hints:", text)}
 							/>
 						</div>
 					</div>

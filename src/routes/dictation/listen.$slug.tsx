@@ -44,10 +44,11 @@ function TextInputWithResult({
 	return (
 		<>
 			<WordInput
-				className="ml-[6ch] justify-center"
+				className="justify-center"
 				text={normalizedExpected}
 				hint={hint}
 				onChange={handleChange}
+				autoFocus
 			/>
 			<div className="mt-8 h-8">
 				{showResult && (
