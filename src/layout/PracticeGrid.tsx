@@ -1,6 +1,5 @@
 import { Info } from "lucide-react";
 import type { ReactNode } from "react";
-import { twMerge } from "tailwind-merge";
 import { Card } from "~/components/Card";
 import { ListenButton } from "~/components/ListenButton";
 import { Popover } from "~/components/Popover";
@@ -8,6 +7,7 @@ import { ResultVoiceIndicator } from "~/components/ResultIndicator";
 import { SpeakButton } from "~/components/SpeakButton";
 import { SpeakUrlButton } from "~/components/SpeakUrlButton";
 import { useTranscriptionTracking } from "~/hooks/useTranscriptionTracking";
+import { cn } from "~/lib/utils";
 
 type PracticeItem<T> = T & {
 	url?: string | null;
@@ -37,8 +37,7 @@ export function PracticeGrid<T>({
 		useTranscriptionTracking();
 
 	const gridClassName = {
-		small:
-			"grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5",
+		small: "grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4",
 		medium: "grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4",
 		large: "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3",
 	}[size];
@@ -49,21 +48,11 @@ export function PracticeGrid<T>({
 				const transcription = transcriptions[key];
 				const details = getDetails?.(key, item);
 				const hasDetails = details && Object.keys(details).length > 0;
-
-				let titleClassName = "text-6xl";
-				if (size === "small") {
-					if (key.length > 6) titleClassName = "text-3xl";
-					else if (key.length > 4) titleClassName = "text-5xl";
-				} else if (size === "medium") {
-					if (key.length > 8) titleClassName = "text-4xl";
-					else if (key.length > 5) titleClassName = "text-6xl";
-					else titleClassName = "text-7xl";
-				} else {
-					// large
-					if (key.length > 10) titleClassName = "text-5xl";
-					else if (key.length > 6) titleClassName = "text-7xl";
-					else titleClassName = "text-8xl";
-				}
+				const titleClassName = cn("font-bold", {
+					"text-[clamp(1rem,5vw,1.75rem)]": key.length > 12,
+					"text-[clamp(1rem,5vw,2.5rem)]": key.length > 6 && key.length <= 12,
+					"text-[clamp(1rem,5vw,3.75rem)]": key.length <= 6,
+				});
 
 				return (
 					<Card key={key} className="flex flex-col">
@@ -98,9 +87,7 @@ export function PracticeGrid<T>({
 						{/* Main display */}
 						<div className="flex flex-1 flex-col justify-center pt-8 text-center">
 							<div className="mb-2">
-								<div className={twMerge("font-bold", titleClassName)}>
-									{key}
-								</div>
+								<div className={titleClassName}>{key}</div>
 							</div>
 							<div className="mb-4 px-2 font-mono text-sm text-white/70">
 								{getSubtitle?.(item) || ""}

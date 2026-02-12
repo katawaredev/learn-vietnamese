@@ -48,29 +48,34 @@ function CountingComponent() {
 	const getDetails = (_text: string, item: NumberData) => {
 		const num = item.value;
 
-		// Special cases that need explanation
-		if (num === 5)
-			return {
-				Note: "Base form 'năm' becomes 'lăm' in units position after mươi (e.g., 15, 25)",
-			};
-		if (num === 1)
-			return {
-				Note: "Base form 'một' becomes 'mốt' in units position after mươi (e.g., 21, 31)",
-			};
-		if (num === 10) return { Rule: "Uses 'mười' (not 'một mươi')" };
-		if (num === 15) return { Rule: "Uses 'lăm' instead of 'năm': 'mười lăm'" };
-		if (num === 21)
-			return { Rule: "Uses 'mốt' instead of 'một': 'hai mươi mốt'" };
-		if (num === 25)
-			return { Rule: "Uses 'lăm' instead of 'năm': 'hai mươi lăm'" };
-		if (num === 105)
-			return {
-				Rule: "Uses 'lẻ' to bridge hundreds and units when tens = 0: 'một trăm lẻ năm'",
-			};
-		if (num >= 20 && num < 100 && num % 10 === 0)
-			return { Rule: "Tens use 'mươi': [digit] + mươi" };
-
-		return undefined;
+		switch (num) {
+			case 0:
+				return { Note: "Also means 'No' / 'None'" };
+			case 1:
+				return {
+					Note: "Base form 'một' becomes 'mốt' in units position after mươi (e.g., 21, 31)",
+				};
+			case 5:
+				return {
+					Note: "Base form 'năm' becomes 'lăm' in units position after mươi (e.g., 15, 25)",
+				};
+			case 10:
+				return { Rule: "Uses 'mười' (not 'một mươi')" };
+			case 15:
+				return { Rule: "Uses 'lăm' instead of 'năm': 'mười lăm'" };
+			case 21:
+				return { Rule: "Uses 'mốt' instead of 'một': 'hai mươi mốt'" };
+			case 25:
+				return { Rule: "Uses 'lăm' instead of 'năm': 'hai mươi lăm'" };
+			case 105:
+				return {
+					Rule: "Uses 'lẻ' to bridge hundreds and units when tens = 0: 'một trăm lẻ năm'",
+				};
+			default:
+				if (num >= 20 && num < 100 && num % 10 === 0)
+					return { Rule: "Tens use 'mươi': [digit] + mươi" };
+				return undefined;
+		}
 	};
 
 	return (
