@@ -13,8 +13,19 @@ export const ListenWebButton: FC<ListenButtonProps> = ({
 	const [state, setState] = useState<RecordingState>("idle");
 	const recognition = useRef<SpeechRecognition | null>(null);
 
-	// Initialize Web Speech API recognition
-	const initWebSpeechAPI = useCallback(() => {
+	// Cleanup effect
+	useEffect(() => {
+		return () => {
+			if (recognition.current) {
+				recognition.current.stop();
+				recognition.current = null;
+			}
+		};
+	}, []);
+
+	// Start recording - create a fresh instance each time (required for Safari)
+	const handleStartRecording = useCallback(() => {
+		if (state !== "idle") return;
 		if (typeof window === "undefined") return;
 
 		const SpeechRecognition =
@@ -26,14 +37,11 @@ export const ListenWebButton: FC<ListenButtonProps> = ({
 		speechRecognition.interimResults = false;
 		speechRecognition.lang = lang === "vn" ? "vi-VN" : "en-US";
 
-		speechRecognition.onstart = () => {
-			setState("recording");
-		};
+		speechRecognition.onstart = () => setState("recording");
 
 		speechRecognition.onresult = (event) => {
 			if (event.results.length > 0) {
-				const transcript = event.results[0][0].transcript;
-				onTranscription(transcript.trim());
+				onTranscription(event.results[0][0].transcript.trim());
 			}
 			setState("idle");
 		};
@@ -43,35 +51,11 @@ export const ListenWebButton: FC<ListenButtonProps> = ({
 			setState("idle");
 		};
 
-		speechRecognition.onend = () => {
-			setState("idle");
-		};
+		speechRecognition.onend = () => setState("idle");
 
 		recognition.current = speechRecognition;
-	}, [lang, onTranscription]);
-
-	// Initialize recognition on component mount
-	useEffect(() => {
-		initWebSpeechAPI();
-	}, [initWebSpeechAPI]);
-
-	// Cleanup effect
-	useEffect(() => {
-		return () => {
-			if (recognition.current) {
-				recognition.current.stop();
-			}
-		};
-	}, []);
-
-	// Start recording
-	const handleStartRecording = useCallback(() => {
-		if (state !== "idle") return;
-
-		if (recognition.current) {
-			recognition.current.start();
-		}
-	}, [state]);
+		recognition.current.start();
+	}, [state, lang, onTranscription]);
 
 	// Stop recording
 	const handleStopRecording = useCallback(() => {
