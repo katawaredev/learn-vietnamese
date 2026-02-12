@@ -7,7 +7,7 @@ import { StateIndicator } from "./StateIndicator";
 export type SpeechState = "idle" | "processing" | "speaking" | "ended";
 
 const buttonVariants = cva(
-	"relative flex select-none items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out",
+	"relative flex shrink-0 select-none items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out",
 	{
 		variants: {
 			size: {
