@@ -55,13 +55,20 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 				// Convert blob to audio buffer
 				const arrayBuffer = await audioBlob.arrayBuffer();
 
-				// Create AudioContext to decode audio data
+				// Decode audio — use callback form for broader Safari compatibility.
+				// Always close in finally to avoid leaking AudioContext instances
+				// (Safari enforces a hard limit of 4 concurrent contexts).
 				const audioContext = new AudioContext({ sampleRate: 16000 });
-				const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-				const audioData = audioBuffer.getChannelData(0); // Get Float32Array
-
-				// Close the AudioContext to free resources
-				await audioContext.close();
+				let audioData: Float32Array;
+				try {
+					const audioBuffer = await new Promise<AudioBuffer>(
+						(resolve, reject) =>
+							audioContext.decodeAudioData(arrayBuffer, resolve, reject),
+					);
+					audioData = audioBuffer.getChannelData(0);
+				} finally {
+					await audioContext.close().catch(() => {});
+				}
 
 				// Skip transcription if audio is silent or too short
 				if (isSilent(audioData)) {
@@ -118,7 +125,21 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-			mediaRecorder.current = new MediaRecorder(stream);
+
+			// Pick a MIME type the current browser actually supports.
+			// Safari records audio/mp4; Chrome/Firefox prefer audio/webm.
+			const mimeType =
+				["audio/webm;codecs=opus", "audio/webm", "audio/mp4"].find((type) =>
+					MediaRecorder.isTypeSupported(type),
+				) ?? "";
+
+			mediaRecorder.current = new MediaRecorder(
+				stream,
+				mimeType ? { mimeType } : undefined,
+			);
+			// Capture the type the recorder actually chose (may differ from mimeType hint)
+			const actualMimeType =
+				mediaRecorder.current.mimeType || mimeType || "audio/mp4";
 			audioChunks.current = [];
 
 			mediaRecorder.current.ondataavailable = (event) => {
@@ -128,7 +149,9 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 			};
 
 			mediaRecorder.current.onstop = async () => {
-				const audioBlob = new Blob(audioChunks.current, { type: "audio/webm" });
+				const audioBlob = new Blob(audioChunks.current, {
+					type: actualMimeType,
+				});
 				stream.getTracks().forEach((track) => {
 					track.stop();
 				});

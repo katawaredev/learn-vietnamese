@@ -45,7 +45,6 @@ import { Route as GrammarComparativesRouteImport } from './routes/grammar/compar
 import { Route as GrammarCommandsRouteImport } from './routes/grammar/commands'
 import { Route as GrammarClassifiersRouteImport } from './routes/grammar/classifiers'
 import { Route as GrammarAdjectivesRouteImport } from './routes/grammar/adjectives'
-import { Route as DebugSpeechRecognitionCrashRouteImport } from './routes/debug/speech-recognition-crash'
 import { Route as DictationSpeakSlugRouteImport } from './routes/dictation/speak.$slug'
 import { Route as DictationListenSlugRouteImport } from './routes/dictation/listen.$slug'
 
@@ -231,12 +230,6 @@ const GrammarAdjectivesRoute = GrammarAdjectivesRouteImport.update({
   path: '/grammar/adjectives',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DebugSpeechRecognitionCrashRoute =
-  DebugSpeechRecognitionCrashRouteImport.update({
-    id: '/debug/speech-recognition-crash',
-    path: '/debug/speech-recognition-crash',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const DictationSpeakSlugRoute = DictationSpeakSlugRouteImport.update({
   id: '/dictation/speak/$slug',
   path: '/dictation/speak/$slug',
@@ -253,7 +246,6 @@ export interface FileRoutesByFullPath {
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
-  '/debug/speech-recognition-crash': typeof DebugSpeechRecognitionCrashRoute
   '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
@@ -294,7 +286,6 @@ export interface FileRoutesByTo {
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
-  '/debug/speech-recognition-crash': typeof DebugSpeechRecognitionCrashRoute
   '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
@@ -336,7 +327,6 @@ export interface FileRoutesById {
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
   '/showcase': typeof ShowcaseRoute
-  '/debug/speech-recognition-crash': typeof DebugSpeechRecognitionCrashRoute
   '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
@@ -379,7 +369,6 @@ export interface FileRouteTypes {
     | '/chat'
     | '/flag'
     | '/showcase'
-    | '/debug/speech-recognition-crash'
     | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
@@ -420,7 +409,6 @@ export interface FileRouteTypes {
     | '/chat'
     | '/flag'
     | '/showcase'
-    | '/debug/speech-recognition-crash'
     | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
@@ -461,7 +449,6 @@ export interface FileRouteTypes {
     | '/chat'
     | '/flag'
     | '/showcase'
-    | '/debug/speech-recognition-crash'
     | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
@@ -503,7 +490,6 @@ export interface RootRouteChildren {
   ChatRoute: typeof ChatRoute
   FlagRoute: typeof FlagRoute
   ShowcaseRoute: typeof ShowcaseRoute
-  DebugSpeechRecognitionCrashRoute: typeof DebugSpeechRecognitionCrashRoute
   GrammarAdjectivesRoute: typeof GrammarAdjectivesRoute
   GrammarClassifiersRoute: typeof GrammarClassifiersRoute
   GrammarCommandsRoute: typeof GrammarCommandsRoute
@@ -794,13 +780,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GrammarAdjectivesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/debug/speech-recognition-crash': {
-      id: '/debug/speech-recognition-crash'
-      path: '/debug/speech-recognition-crash'
-      fullPath: '/debug/speech-recognition-crash'
-      preLoaderRoute: typeof DebugSpeechRecognitionCrashRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/dictation/speak/$slug': {
       id: '/dictation/speak/$slug'
       path: '/dictation/speak/$slug'
@@ -823,7 +802,6 @@ const rootRouteChildren: RootRouteChildren = {
   ChatRoute: ChatRoute,
   FlagRoute: FlagRoute,
   ShowcaseRoute: ShowcaseRoute,
-  DebugSpeechRecognitionCrashRoute: DebugSpeechRecognitionCrashRoute,
   GrammarAdjectivesRoute: GrammarAdjectivesRoute,
   GrammarClassifiersRoute: GrammarClassifiersRoute,
   GrammarCommandsRoute: GrammarCommandsRoute,

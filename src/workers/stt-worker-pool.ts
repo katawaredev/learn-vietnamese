@@ -70,6 +70,12 @@ class STTWorkerPool {
 				this.activeRequest = null;
 			}
 
+			// Reset so ensureInitialized() creates a fresh worker on the next call
+			// instead of reusing a dead/crashed worker instance.
+			this.worker = null;
+			this.isInitialized = false;
+			this.currentModelPath = null;
+
 			this.processQueue();
 		};
 
