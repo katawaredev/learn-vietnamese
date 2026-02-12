@@ -30,6 +30,13 @@ interface WorkerResponse {
  * Singleton STT worker pool that manages a single worker instance.
  * Handles model switching, request queuing, and proper cleanup.
  */
+// iOS Safari kills the tab if WASM model memory stays resident after transcription.
+// Detecting iOS once at pool creation is sufficient.
+const isIOS =
+	typeof navigator !== "undefined" &&
+	(/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+		(navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
+
 class STTWorkerPool {
 	private worker: Worker | null = null;
 	private currentModelPath: string | null = null;
@@ -111,6 +118,11 @@ class STTWorkerPool {
 					this.activeRequest.resolve(message.text || "");
 					this.activeRequest = null;
 				}
+				// On iOS the worker disposed the model to free WASM memory —
+				// reset so the next transcribe call knows to reload it.
+				if (isIOS) {
+					this.currentModelPath = null;
+				}
 				this.processQueue();
 				break;
 
@@ -161,6 +173,7 @@ class STTWorkerPool {
 				type: "transcribe",
 				audio,
 				language: this.activeRequest.language,
+				disposeAfterUse: isIOS,
 			},
 			[audio.buffer],
 		);

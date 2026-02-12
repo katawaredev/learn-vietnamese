@@ -17,6 +17,9 @@ interface TranscribeMessage {
 	type: "transcribe";
 	audio: Float32Array;
 	language: "vn" | "en";
+	// When true, the model is disposed after transcription to free WASM memory.
+	// Used on iOS Safari where the OS will kill the tab if memory stays high.
+	disposeAfterUse?: boolean;
 }
 
 type WorkerMessage = InitMessage | TranscribeMessage;
@@ -45,6 +48,7 @@ async function initModel(modelPath: string) {
 
 	// Dispose of old model if exists
 	if (transcriber) {
+		await transcriber.dispose();
 		transcriber = null;
 	}
 
@@ -72,7 +76,11 @@ async function initModel(modelPath: string) {
 }
 
 // Transcribe audio
-async function transcribe(audio: Float32Array, language: "vn" | "en") {
+async function transcribe(
+	audio: Float32Array,
+	language: "vn" | "en",
+	disposeAfterUse: boolean,
+) {
 	if (!transcriber) {
 		throw new Error("Model not initialized");
 	}
@@ -82,7 +90,15 @@ async function transcribe(audio: Float32Array, language: "vn" | "en") {
 		task: "transcribe",
 	})) as AutomaticSpeechRecognitionOutput;
 
-	return result.text || "";
+	const text = result.text || "";
+
+	if (disposeAfterUse) {
+		await transcriber.dispose();
+		transcriber = null;
+		currentModelPath = null;
+	}
+
+	return text;
 }
 
 // Message handler
@@ -96,7 +112,11 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 				break;
 
 			case "transcribe": {
-				const text = await transcribe(message.audio, message.language);
+				const text = await transcribe(
+					message.audio,
+					message.language,
+					message.disposeAfterUse ?? false,
+				);
 				self.postMessage({
 					status: "complete",
 					text,
