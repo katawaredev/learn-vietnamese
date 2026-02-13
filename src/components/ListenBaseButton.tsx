@@ -1,6 +1,7 @@
 import { cva } from "class-variance-authority";
 import { Mic } from "lucide-react";
-import { type FC, useCallback, useRef, useState } from "react";
+import type { FC } from "react";
+import { useCallback } from "react";
 import { twMerge } from "tailwind-merge";
 import type { ListenButtonProps } from "./ListenButton";
 import { StateIndicator } from "./StateIndicator";
@@ -72,44 +73,16 @@ export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 	disabled = false,
 	loadingProgress = 0,
 }) => {
-	const [isHolding, setIsHolding] = useState(false);
-	const holdTimeout = useRef<NodeJS.Timeout | null>(null);
-
-	// Handle click (toggle recording)
+	// Click to toggle recording. Using only the click handler ensures getUserMedia
+	// runs in a user-activation context on all browsers (Safari rejects it from
+	// touchstart/mousedown which are not activating events).
 	const handleClick = useCallback(() => {
-		// If we're in hold mode, don't process click
-		if (isHolding) return;
-
 		if (state === "recording") {
 			onStopRecording();
 		} else if (state === "idle") {
 			onStartRecording();
 		}
-	}, [state, isHolding, onStartRecording, onStopRecording]);
-
-	// Handle mouse/touch down (start hold)
-	const handlePressStart = useCallback(() => {
-		if (state !== "idle") return;
-
-		// Set a timeout to detect hold vs click
-		holdTimeout.current = setTimeout(() => {
-			setIsHolding(true);
-			onStartRecording();
-		}, 200); // 200ms threshold for hold detection
-	}, [state, onStartRecording]);
-
-	// Handle mouse/touch up (end hold)
-	const handlePressEnd = useCallback(() => {
-		if (holdTimeout.current) {
-			clearTimeout(holdTimeout.current);
-			holdTimeout.current = null;
-		}
-
-		if (isHolding && state === "recording") {
-			onStopRecording();
-			setIsHolding(false);
-		}
-	}, [isHolding, state, onStopRecording]);
+	}, [state, onStartRecording, onStopRecording]);
 
 	const isDisabled = disabled || state === "processing";
 
@@ -121,11 +94,6 @@ export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 				className,
 			)}
 			onClick={handleClick}
-			onMouseDown={handlePressStart}
-			onMouseUp={handlePressEnd}
-			onMouseLeave={handlePressEnd}
-			onTouchStart={handlePressStart}
-			onTouchEnd={handlePressEnd}
 			disabled={isDisabled}
 			aria-label={state === "recording" ? "Stop recording" : "Start recording"}
 		>

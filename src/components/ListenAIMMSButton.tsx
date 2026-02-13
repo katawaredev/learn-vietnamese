@@ -124,6 +124,16 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 		if (state !== "idle") return;
 
 		try {
+			// navigator.mediaDevices requires a secure context (HTTPS or localhost).
+			// Mobile Safari enforces this strictly — it's undefined over plain HTTP.
+			if (!navigator.mediaDevices?.getUserMedia) {
+				throw new Error(
+					window.isSecureContext === false
+						? "Microphone access requires HTTPS. Please use a secure connection."
+						: "Microphone access is not supported in this browser.",
+				);
+			}
+
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
 			// Pick a MIME type the current browser actually supports.
@@ -161,7 +171,14 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 			mediaRecorder.current.start();
 			setState("recording");
 		} catch (error) {
-			console.error("Failed to start recording:", error);
+			// DOMException properties aren't enumerable — Safari logs them as {}.
+			if (error instanceof DOMException) {
+				console.error(
+					`Failed to start recording: ${error.name}: ${error.message}`,
+				);
+			} else {
+				console.error("Failed to start recording:", error);
+			}
 			setState("idle");
 		}
 	}, [state, processAudio]);

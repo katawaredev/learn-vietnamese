@@ -1,3 +1,6 @@
+// import { ttsMMSPool } from "./tts-mms-worker-pool";
+// import { ttsVitsPool } from "./tts-vits-worker-pool";
+
 type Language = "vn" | "en";
 
 interface STTRequest {
@@ -29,13 +32,12 @@ interface WorkerResponse {
 /**
  * Singleton STT worker pool that manages a single worker instance.
  * Handles model switching, request queuing, and proper cleanup.
+ *
+ * After each transcription, the worker is terminated to reclaim WASM memory
+ * (WASM heaps can only grow, never shrink). A fresh empty worker is immediately
+ * pre-warmed so the JS modules are loaded and ready for the next request —
+ * only the model weights need to be reloaded.
  */
-// iOS Safari kills the tab if WASM model memory stays resident after transcription.
-// Detecting iOS once at pool creation is sufficient.
-const isIOS =
-	typeof navigator !== "undefined" &&
-	(/iPad|iPhone|iPod/.test(navigator.userAgent) ||
-		(navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
 
 class STTWorkerPool {
 	private worker: Worker | null = null;
@@ -118,11 +120,10 @@ class STTWorkerPool {
 					this.activeRequest.resolve(message.text || "");
 					this.activeRequest = null;
 				}
-				// On iOS the worker disposed the model to free WASM memory —
-				// reset so the next transcribe call knows to reload it.
-				if (isIOS) {
-					this.currentModelPath = null;
-				}
+				// Terminate the worker to reclaim WASM memory (WASM heaps never shrink),
+				// then immediately pre-warm a fresh empty worker so JS modules are loaded
+				// and ready for the next request.
+				this.terminateAndPrewarm();
 				this.processQueue();
 				break;
 
@@ -173,7 +174,6 @@ class STTWorkerPool {
 				type: "transcribe",
 				audio,
 				language: this.activeRequest.language,
-				disposeAfterUse: isIOS,
 			},
 			[audio.buffer],
 		);
@@ -231,6 +231,21 @@ class STTWorkerPool {
 	}
 
 	/**
+	 * Terminate the current worker and immediately create a fresh empty one.
+	 * The new worker loads JS modules but has no model — ready for a fast initModel().
+	 */
+	private terminateAndPrewarm(): void {
+		if (this.worker) {
+			this.worker.terminate();
+			this.worker = null;
+		}
+		this.currentModelPath = null;
+		this.isModelLoading = false;
+		this.isInitialized = false;
+		this.ensureInitialized();
+	}
+
+	/**
 	 * Transcribe audio. Automatically initializes model if needed.
 	 */
 	public async transcribe(
@@ -239,6 +254,12 @@ class STTWorkerPool {
 		language: Language,
 		onProgress?: (progress: number) => void,
 	): Promise<string> {
+		// Terminate TTS workers before loading the STT model to free WASM memory.
+		// TTS audio caches are preserved — only the workers (and their WASM heaps) are freed.
+		// They will lazily re-create on the next cache miss.
+		// ttsMMSPool.terminateWorker();
+		// ttsVitsPool.terminateWorker();
+
 		// Ensure model is loaded
 		await this.initModel(modelPath, language, onProgress);
 
