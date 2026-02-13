@@ -1,12 +1,18 @@
 import { pipeline } from "@huggingface/transformers";
 import "./transformers-config";
-import type { ErrorResponse, ProgressResponse } from "./worker-types";
+import type {
+	ErrorResponse,
+	ModelDType,
+	TTSProgressResponse,
+} from "./worker-types";
 
 // Message types
 interface PredictMessage {
 	type: "predict";
 	text: string;
 	modelId: string;
+	device: "webgpu" | "wasm";
+	dtype: ModelDType;
 	requestId: string;
 }
 
@@ -73,10 +79,17 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 		switch (message.type) {
 			case "predict": {
 				// Get or create pipeline for this model
-				let synthesizer = pipelineCache.get(message.modelId);
+				// Cache key includes device+dtype so switching backends on the same modelId
+				// doesn't silently reuse an incompatible pipeline.
+				const pipelineKey = `${message.modelId}:${message.device}:${message.dtype}`;
+				let synthesizer = pipelineCache.get(pipelineKey);
 
 				if (!synthesizer) {
+					// device and dtype come from the voice definition in tts-provider.tsx.
+					// Default: device="wasm", dtype="q8" — works for all Xenova/mms-tts-* repos.
 					synthesizer = await pipeline("text-to-speech", message.modelId, {
+						device: message.device,
+						dtype: message.dtype,
 						progress_callback: (progress) => {
 							if (progress.status === "progress") {
 								const progressPercent =
@@ -90,11 +103,11 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 									progress: progressPercent,
 									loaded: progress.loaded,
 									total: progress.total,
-								} satisfies ProgressResponse);
+								} satisfies TTSProgressResponse);
 							}
 						},
 					});
-					pipelineCache.set(message.modelId, synthesizer);
+					pipelineCache.set(pipelineKey, synthesizer);
 				}
 
 				// Generate speech

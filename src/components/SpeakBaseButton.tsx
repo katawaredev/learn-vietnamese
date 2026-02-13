@@ -84,16 +84,34 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 		null,
 	);
 	const holdTimeout = useRef<NodeJS.Timeout | null>(null);
+	// Stable refs for the currently attached audio event listeners so we can
+	// remove them when the audio element is replaced or the component unmounts.
+	const audioListeners = useRef<{
+		play: () => void;
+		ended: () => void;
+		error: (e: Event) => void;
+	} | null>(null);
 
-	// Cleanup effect - stop audio but don't revoke URLs
-	// URLs are managed by the worker pool cache
+	// Helper: detach listeners from an audio element and clear the ref
+	const detachAudioListeners = useCallback((audio: HTMLAudioElement) => {
+		if (audioListeners.current) {
+			audio.removeEventListener("play", audioListeners.current.play);
+			audio.removeEventListener("ended", audioListeners.current.ended);
+			audio.removeEventListener("error", audioListeners.current.error);
+			audioListeners.current = null;
+		}
+	}, []);
+
+	// Cleanup effect - stop audio and remove listeners when the element changes or on unmount
+	// URLs are managed by the worker pool cache — do not revoke here
 	useEffect(() => {
 		return () => {
 			if (currentAudio) {
+				detachAudioListeners(currentAudio);
 				currentAudio.pause();
 			}
 		};
-	}, [currentAudio]);
+	}, [currentAudio, detachAudioListeners]);
 
 	// Update playback rate when holding state changes
 	useEffect(() => {
@@ -128,20 +146,24 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 
 			// Get audio from the worker pool (may be cached at pool level)
 			const audio = await getAudio();
+
+			// Remove listeners from the previous audio element before replacing it
+			if (currentAudio) {
+				detachAudioListeners(currentAudio);
+			}
 			setCurrentAudio(audio);
 
-			audio.addEventListener("play", () => {
-				setState("speaking");
-			});
-
-			audio.addEventListener("ended", () => {
-				setState("ended");
-			});
-
-			audio.addEventListener("error", (e) => {
+			const onPlay = () => setState("speaking");
+			const onEnded = () => setState("ended");
+			const onError = (e: Event) => {
 				console.error("Audio playback failed:", e);
 				setState("idle");
-			});
+			};
+			audioListeners.current = { play: onPlay, ended: onEnded, error: onError };
+
+			audio.addEventListener("play", onPlay);
+			audio.addEventListener("ended", onEnded);
+			audio.addEventListener("error", onError);
 
 			// Set initial speed based on current hold state
 			audio.playbackRate = isHolding ? 0.5 : 0.8;
@@ -155,7 +177,15 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 			console.error("Audio playback failed:", error);
 			setState("idle");
 		}
-	}, [state, stop, getAudio, canPlay, isHolding]);
+	}, [
+		state,
+		stop,
+		getAudio,
+		canPlay,
+		isHolding,
+		currentAudio,
+		detachAudioListeners,
+	]);
 
 	// Handle press start (mouse/touch down)
 	const handlePressStart = useCallback(() => {

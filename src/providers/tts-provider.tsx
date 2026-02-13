@@ -6,6 +6,8 @@ import {
 	useState,
 } from "react";
 
+import type { ModelDType } from "~/workers/worker-types";
+
 export type Language = "vn" | "en";
 export type TTSProvider = "web-speech" | "mms" | "vits";
 
@@ -17,6 +19,17 @@ export interface TTSVoiceOption {
 	modelId?: string; // For MMS (HuggingFace transformers)
 	voiceId?: string; // For VITS (@diffusionstudio/vits-web)
 	webSpeechVoice?: SpeechSynthesisVoice; // For Web Speech API
+	/**
+	 * ONNX inference backend. Defaults to "wasm" when omitted.
+	 * Only applicable to MMS models. Set to "webgpu" only for models whose
+	 * HuggingFace repo includes WebGPU-compatible ONNX exports.
+	 */
+	device?: "webgpu" | "wasm";
+	/**
+	 * ONNX model precision/quantization. Defaults to "q8" when omitted.
+	 * Only applicable to MMS models. Must match an available ONNX file in the repo.
+	 */
+	dtype?: ModelDType;
 }
 
 interface TTSContextValue {

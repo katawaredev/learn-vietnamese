@@ -1,3 +1,5 @@
+import type { ModelDType } from "./worker-types";
+
 type Language = "vn" | "en";
 
 interface STTRequest {
@@ -16,6 +18,8 @@ interface ModelInitWaiter {
 
 interface ModelInitState {
 	modelPath: string;
+	device: "webgpu" | "wasm";
+	dtype: ModelDType;
 	waiters: ModelInitWaiter[];
 }
 
@@ -172,6 +176,8 @@ class STTWorkerPool {
 	public async initModel(
 		modelPath: string,
 		language: Language,
+		device: "webgpu" | "wasm",
+		dtype: ModelDType,
 		onProgress?: (progress: number) => void,
 	): Promise<void> {
 		// If model is already loaded, skip
@@ -206,6 +212,8 @@ class STTWorkerPool {
 		return new Promise<void>((resolve, reject) => {
 			this.pendingModelInit = {
 				modelPath,
+				device,
+				dtype,
 				waiters: [{ resolve, reject, onProgress }],
 			};
 
@@ -213,6 +221,8 @@ class STTWorkerPool {
 				type: "init",
 				modelPath,
 				language,
+				device,
+				dtype,
 			});
 		});
 	}
@@ -224,10 +234,12 @@ class STTWorkerPool {
 		audio: Float32Array,
 		modelPath: string,
 		language: Language,
+		device: "webgpu" | "wasm" = "wasm",
+		dtype: ModelDType = "q8",
 		onProgress?: (progress: number) => void,
 	): Promise<string> {
 		// Ensure model is loaded
-		await this.initModel(modelPath, language, onProgress);
+		await this.initModel(modelPath, language, device, dtype, onProgress);
 
 		return new Promise<string>((resolve, reject) => {
 			const request: STTRequest = {

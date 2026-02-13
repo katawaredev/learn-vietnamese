@@ -6,7 +6,7 @@ import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 
-const config = defineConfig(({ mode }) => ({
+const config = defineConfig({
 	plugins: [
 		// this is the plugin that enables path aliases
 		viteTsConfigPaths({
@@ -28,16 +28,21 @@ const config = defineConfig(({ mode }) => ({
 	optimizeDeps: {
 		exclude: ["onnxruntime-web", "@huggingface/transformers"],
 	},
-	// Enable Cross-Origin Isolation in production for ONNX Runtime multi-threading
-	preview: {
-		headers:
-			mode === "production"
-				? {
-						"Cross-Origin-Opener-Policy": "same-origin",
-						"Cross-Origin-Embedder-Policy": "require-corp",
-					}
-				: {},
+	// Cross-Origin Isolation headers are required for SharedArrayBuffer, which ONNX Runtime
+	// uses for multi-threaded WASM inference. Applied in both dev and production so that
+	// numThreads > 1 actually takes effect during development as well.
+	server: {
+		headers: {
+			"Cross-Origin-Opener-Policy": "same-origin",
+			"Cross-Origin-Embedder-Policy": "require-corp",
+		},
 	},
-}));
+	preview: {
+		headers: {
+			"Cross-Origin-Opener-Policy": "same-origin",
+			"Cross-Origin-Embedder-Policy": "require-corp",
+		},
+	},
+});
 
 export default config;

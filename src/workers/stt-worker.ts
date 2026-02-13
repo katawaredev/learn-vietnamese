@@ -4,13 +4,19 @@ import {
 	pipeline,
 } from "@huggingface/transformers";
 import "./transformers-config";
-import type { ErrorResponse, ProgressResponse } from "./worker-types";
+import type {
+	ErrorResponse,
+	ModelDType,
+	STTProgressResponse,
+} from "./worker-types";
 
 // Message types
 interface InitMessage {
 	type: "init";
 	modelPath: string;
 	language: "vn" | "en";
+	device: "webgpu" | "wasm";
+	dtype: ModelDType;
 }
 
 interface TranscribeMessage {
@@ -36,7 +42,11 @@ let transcriber: AutomaticSpeechRecognitionPipeline | null = null;
 let currentModelPath: string | null = null;
 
 // Initialize the model
-async function initModel(modelPath: string) {
+async function initModel(
+	modelPath: string,
+	device: "webgpu" | "wasm",
+	dtype: ModelDType,
+) {
 	// If model is already loaded with the same path, skip
 	if (transcriber && currentModelPath === modelPath) {
 		self.postMessage({ status: "ready" } as ReadyResponse);
@@ -51,8 +61,12 @@ async function initModel(modelPath: string) {
 
 	currentModelPath = modelPath;
 
-	// Load new model with progress tracking
+	// device and dtype come from the model definition in stt-provider.tsx.
+	// Default: device="wasm", dtype="q8" — works for all Xenova/* and huuquyet/* repos.
+	// To use WebGPU (e.g. onnx-community/whisper-*), set device="webgpu" on the model option.
 	const model = await pipeline("automatic-speech-recognition", modelPath, {
+		device,
+		dtype,
 		progress_callback: (progress) => {
 			// Forward progress to main thread
 			if (progress.status === "progress") {
@@ -62,7 +76,7 @@ async function initModel(modelPath: string) {
 					progress: progress.progress || 0,
 					loaded: progress.loaded || 0,
 					total: progress.total || 0,
-				} satisfies ProgressResponse);
+				} satisfies STTProgressResponse);
 			}
 		},
 	});
@@ -93,7 +107,7 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 	try {
 		switch (message.type) {
 			case "init":
-				await initModel(message.modelPath);
+				await initModel(message.modelPath, message.device, message.dtype);
 				break;
 
 			case "transcribe": {

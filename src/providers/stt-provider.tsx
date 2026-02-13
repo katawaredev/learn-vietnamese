@@ -5,6 +5,7 @@ import {
 	useEffect,
 	useState,
 } from "react";
+import type { ModelDType } from "~/workers/worker-types";
 import type { Language } from "./tts-provider";
 
 export type STTProvider = "web-speech" | "whisper" | "phowhisper";
@@ -16,6 +17,36 @@ export interface STTModelOption {
 	language: Language;
 	modelSize?: "tiny" | "small" | "medium" | "large"; // For Whisper
 	modelPath?: string; // For PhoWhisper
+	/**
+	 * ONNX inference backend. Defaults to "wasm" when omitted.
+	 * Set to "webgpu" only for models whose HuggingFace repo includes
+	 * WebGPU-compatible ONNX exports (e.g. onnx-community/* repos).
+	 */
+	device?: "webgpu" | "wasm";
+	/**
+	 * ONNX model precision/quantization. Defaults to "q8" when omitted.
+	 * Must match an available ONNX file in the model repo
+	 * (e.g. "fp16" requires onnx/encoder_model_fp16.onnx to exist).
+	 */
+	dtype?: ModelDType;
+}
+
+/**
+ * Derives the HuggingFace model path for an STTModelOption.
+ * Centralises the path-construction logic so UI components don't need to know
+ * about the Xenova namespace or provider-specific conventions.
+ *
+ * Returns an empty string for web-speech models (they don't use a model path).
+ */
+export function getModelPath(model: STTModelOption): string {
+	switch (model.provider) {
+		case "phowhisper":
+			return model.modelPath ?? "";
+		case "whisper":
+			return model.modelSize ? `Xenova/whisper-${model.modelSize}` : "";
+		default:
+			return "";
+	}
 }
 
 interface STTContextValue {

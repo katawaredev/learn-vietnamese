@@ -31,10 +31,13 @@ export const SpeakAIMMSButton: FC<SpeakButtonProps> = ({
 			selectedVoice.modelId ||
 			(lang === "vn" ? "Xenova/mms-tts-vie" : "Xenova/mms-tts-eng");
 
+		const device = selectedVoice.device ?? "wasm";
+		const dtype = selectedVoice.dtype ?? "q8";
+
 		// Check if cached (won't trigger generation)
 		if (ttsMMSPool.isCached(trimmedText, modelId)) {
 			// Cached audio returns immediately, no loading state needed
-			return ttsMMSPool.generateAudio(trimmedText, modelId);
+			return ttsMMSPool.generateAudio(trimmedText, modelId, device, dtype);
 		}
 
 		// Not cached - show loading state
@@ -45,6 +48,8 @@ export const SpeakAIMMSButton: FC<SpeakButtonProps> = ({
 			const audio = await ttsMMSPool.generateAudio(
 				trimmedText,
 				modelId,
+				device,
+				dtype,
 				(progress) => {
 					if (isMountedRef.current) {
 						setLoadingProgress(Math.round(progress));
@@ -65,7 +70,13 @@ export const SpeakAIMMSButton: FC<SpeakButtonProps> = ({
 			}
 			throw error;
 		}
-	}, [text, selectedVoice.modelId, lang]);
+	}, [
+		text,
+		selectedVoice.modelId,
+		lang,
+		selectedVoice.device,
+		selectedVoice.dtype,
+	]);
 
 	const canPlay = useCallback(() => !!text.trim(), [text]);
 

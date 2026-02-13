@@ -1,10 +1,25 @@
 import type { FC } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useSTT } from "~/providers/stt-provider";
+import { getModelPath, useSTT } from "~/providers/stt-provider";
 import { isSilent } from "~/utils/audio";
 import { sttPool } from "~/workers/stt-worker-pool";
 import { ListenBaseButton, type RecordingState } from "./ListenBaseButton";
 import type { ListenButtonProps } from "./ListenButton";
+
+// Module-level AudioContext singleton — created once and reused across transcriptions.
+// We suspend it between uses rather than closing it to avoid the construction/teardown
+// overhead of creating a new context per recording, while still respecting Safari's
+// limit on concurrent AudioContext instances (which counts suspended contexts as idle).
+let sharedAudioContext: AudioContext | null = null;
+
+async function getAudioContext(): Promise<AudioContext> {
+	if (!sharedAudioContext || sharedAudioContext.state === "closed") {
+		sharedAudioContext = new AudioContext({ sampleRate: 16000 });
+	} else if (sharedAudioContext.state === "suspended") {
+		await sharedAudioContext.resume();
+	}
+	return sharedAudioContext;
+}
 
 export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 	onTranscription,
@@ -55,10 +70,11 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 				// Convert blob to audio buffer
 				const arrayBuffer = await audioBlob.arrayBuffer();
 
-				// Decode audio — use callback form for broader Safari compatibility.
-				// Always close in finally to avoid leaking AudioContext instances
-				// (Safari enforces a hard limit of 4 concurrent contexts).
-				const audioContext = new AudioContext({ sampleRate: 16000 });
+				// Decode audio using the shared AudioContext singleton.
+				// We suspend after use rather than closing, which avoids the construction/teardown
+				// overhead of a new context per recording while keeping the context idle between uses.
+				// Use callback form of decodeAudioData for broader Safari compatibility.
+				const audioContext = await getAudioContext();
 				let audioData: Float32Array;
 				try {
 					const audioBuffer = await new Promise<AudioBuffer>(
@@ -67,7 +83,7 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 					);
 					audioData = audioBuffer.getChannelData(0);
 				} finally {
-					await audioContext.close().catch(() => {});
+					await audioContext.suspend().catch(() => {});
 				}
 
 				// Skip transcription if audio is silent or too short
@@ -79,21 +95,20 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 					return;
 				}
 
-				// Get model path
-				const modelPath =
-					selectedModel.provider === "phowhisper"
-						? selectedModel.modelPath || ""
-						: `Xenova/whisper-${selectedModel.modelSize}`;
+				// Get model path from the provider utility (keeps HuggingFace path logic out of UI)
+				const modelPath = getModelPath(selectedModel);
 
 				if (!modelPath) {
 					throw new Error("No model path available");
 				}
 
-				// Transcribe using worker pool
+				// Transcribe using worker pool — device/dtype come from the model definition
 				const text = await sttPool.transcribe(
 					audioData,
 					modelPath,
 					lang,
+					selectedModel.device ?? "wasm",
+					selectedModel.dtype ?? "q8",
 					(progress) => {
 						if (isMountedRef.current) {
 							setLoadingProgress(Math.round(progress));

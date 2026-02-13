@@ -1,4 +1,5 @@
 import { predict, type VoiceId } from "@diffusionstudio/vits-web";
+import type { ErrorResponse, TTSProgressResponse } from "./worker-types";
 
 // Message types
 interface PredictMessage {
@@ -11,25 +12,10 @@ interface PredictMessage {
 type WorkerMessage = PredictMessage;
 
 // Response types specific to VITS
-interface ProgressResponse {
-	requestId: string;
-	status: "progress";
-	url: string;
-	progress: number;
-	loaded: number;
-	total: number;
-}
-
 interface CompleteResponse {
 	requestId: string;
 	status: "complete";
 	audio: Blob;
-}
-
-interface ErrorResponse {
-	requestId: string;
-	status: "error";
-	error: string;
 }
 
 // Message handler
@@ -55,7 +41,7 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 							progress: progressPercent,
 							loaded: progress.loaded,
 							total: progress.total,
-						} satisfies ProgressResponse);
+						} satisfies TTSProgressResponse);
 					},
 				);
 
