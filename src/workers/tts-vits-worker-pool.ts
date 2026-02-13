@@ -241,26 +241,6 @@ class TTSVitsWorkerPool {
 	}
 
 	/**
-	 * Terminate only the worker to free WASM memory, but preserve the audio cache.
-	 * The worker will be lazily re-created on the next cache miss.
-	 */
-	public terminateWorker(): void {
-		this.cancelPendingRequests();
-
-		if (this.activeRequest) {
-			this.activeRequest.reject(new Error("Worker terminated"));
-			this.activeRequest = null;
-		}
-
-		if (this.worker) {
-			this.worker.terminate();
-			this.worker = null;
-		}
-
-		this.isInitialized = false;
-	}
-
-	/**
 	 * Terminate the worker and clean up all resources.
 	 * Should be called when the app is shutting down or navigating away.
 	 */

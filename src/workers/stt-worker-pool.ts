@@ -1,6 +1,3 @@
-import { ttsMMSPool } from "./tts-mms-worker-pool";
-import { ttsVitsPool } from "./tts-vits-worker-pool";
-
 type Language = "vn" | "en";
 
 interface STTRequest {
@@ -32,12 +29,7 @@ interface WorkerResponse {
 /**
  * Singleton STT worker pool that manages a single worker instance.
  * Handles model switching, request queuing, and proper cleanup.
- *
- * After each transcription, the worker is terminated to reclaim WASM memory
- * (WASM heaps can only grow, never shrink). A fresh worker is created lazily
- * on the next transcription request.
  */
-
 class STTWorkerPool {
 	private worker: Worker | null = null;
 	private currentModelPath: string | null = null;
@@ -119,9 +111,6 @@ class STTWorkerPool {
 					this.activeRequest.resolve(message.text || "");
 					this.activeRequest = null;
 				}
-				// Terminate the worker to reclaim WASM memory (WASM heaps never shrink).
-				// A fresh worker will be created lazily on the next transcription.
-				this.terminateWorkerOnly();
 				this.processQueue();
 				break;
 
@@ -229,20 +218,6 @@ class STTWorkerPool {
 	}
 
 	/**
-	 * Terminate the worker to reclaim WASM memory without creating a replacement.
-	 * The next transcription will create a fresh worker via ensureInitialized().
-	 */
-	private terminateWorkerOnly(): void {
-		if (this.worker) {
-			this.worker.terminate();
-			this.worker = null;
-		}
-		this.currentModelPath = null;
-		this.isModelLoading = false;
-		this.isInitialized = false;
-	}
-
-	/**
 	 * Transcribe audio. Automatically initializes model if needed.
 	 */
 	public async transcribe(
@@ -251,12 +226,6 @@ class STTWorkerPool {
 		language: Language,
 		onProgress?: (progress: number) => void,
 	): Promise<string> {
-		// Terminate TTS workers before loading the STT model to free WASM memory.
-		// TTS audio caches are preserved — only the workers (and their WASM heaps) are freed.
-		// They will lazily re-create on the next cache miss.
-		ttsMMSPool.terminateWorker();
-		ttsVitsPool.terminateWorker();
-
 		// Ensure model is loaded
 		await this.initModel(modelPath, language, onProgress);
 
