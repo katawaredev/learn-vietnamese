@@ -1,4 +1,5 @@
 import type { VoiceId } from "@diffusionstudio/vits-web";
+import { getVoiceAudio, saveVoiceAudio } from "~/utils/audio-cache";
 import { type BaseTTSRequest, BaseTTSWorkerPool } from "./base-tts-worker-pool";
 
 interface TTSVitsRequest extends BaseTTSRequest {
@@ -32,8 +33,29 @@ class TTSVitsWorkerPool extends BaseTTSWorkerPool<TTSVitsRequest> {
 		};
 	}
 
+	private static isVietnamese(voiceId: VoiceId): boolean {
+		return (voiceId as string).startsWith("vi_");
+	}
+
+	protected shouldMemoryCache(request: TTSVitsRequest): boolean {
+		return !TTSVitsWorkerPool.isVietnamese(request.voiceId);
+	}
+
+	protected onAudioGenerated(
+		_cacheKey: string,
+		blob: Blob,
+		request: TTSVitsRequest,
+	): void {
+		if (!TTSVitsWorkerPool.isVietnamese(request.voiceId)) return;
+		saveVoiceAudio(request.text, request.voiceId as string, blob).catch(
+			() => {},
+		);
+	}
+
 	/**
-	 * Request audio generation. Returns cached audio immediately if available.
+	 * Request audio generation. Returns cached audio immediately if available,
+	 * then checks the IndexedDB persistent cache (Vietnamese voices only) before
+	 * falling through to the worker.
 	 */
 	public async generateAudio(
 		text: string,
@@ -44,6 +66,11 @@ class TTSVitsWorkerPool extends BaseTTSWorkerPool<TTSVitsRequest> {
 
 		const cached = this.getCachedAudio(cacheKey);
 		if (cached) return cached;
+
+		if (TTSVitsWorkerPool.isVietnamese(voiceId)) {
+			const blob = await getVoiceAudio(text, voiceId as string);
+			if (blob) return new Audio(URL.createObjectURL(blob));
+		}
 
 		this.ensureInitialized();
 
@@ -59,17 +86,13 @@ class TTSVitsWorkerPool extends BaseTTSWorkerPool<TTSVitsRequest> {
 	}
 
 	/**
-	 * Check if a specific audio is cached
+	 * Check if audio is cached in memory or (for Vietnamese) IndexedDB.
 	 */
-	public isCached(text: string, voiceId: VoiceId): boolean {
-		return this.cache.has(`${voiceId}:${text}`);
-	}
-
-	/**
-	 * Clear cache for a specific voice ID (e.g., when voice changes)
-	 */
-	public clearCacheForVoice(voiceId: VoiceId): void {
-		this.clearCacheByPrefix(`${voiceId}:`);
+	public async isCached(text: string, voiceId: VoiceId): Promise<boolean> {
+		if (TTSVitsWorkerPool.isVietnamese(voiceId)) {
+			return (await getVoiceAudio(text, voiceId as string)) !== null;
+		}
+		return this.hasCached(`${voiceId}:${text}`);
 	}
 }
 

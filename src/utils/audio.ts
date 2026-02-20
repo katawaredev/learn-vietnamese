@@ -19,6 +19,14 @@ export const calculateRMS = (audioData: Float32Array): number => {
  * @param audioData The audio buffer to check
  * @param threshold The RMS threshold below which audio is considered silent (default: 0.05)
  * @param minSamples Minimum number of samples required (default: 1600 - 100ms at 16kHz)
+ *
+ * NOTE: Trimming trailing silence before sending to Whisper has no effect on inference
+ * cost. Whisper's encoder always processes a fixed 30-second mel spectrogram (3000
+ * time positions) regardless of actual audio length — shorter audio is zero-padded to
+ * fill the window. Trimming 3s of silence from a 10s recording still produces the same
+ * 30s encoder input. Pre-trimming would only help with chunked inference (chunk_length_s),
+ * which itself only pays off for recordings longer than ~30s.
+ * Ref: https://gattanasio.cc/post/whisper-encoder/
  */
 export const isSilent = (
 	audioData: Float32Array,

@@ -32,7 +32,7 @@ export const SpeakAIVitsButton: FC<SpeakButtonProps> = ({
 			(selectedVoice.voiceId as VoiceId) || "vi_VN-vais1000-medium";
 
 		// Check if cached (won't trigger generation)
-		if (ttsVitsPool.isCached(trimmedText, voiceId)) {
+		if (await ttsVitsPool.isCached(trimmedText, voiceId)) {
 			// Cached audio returns immediately, no loading state needed
 			return ttsVitsPool.generateAudio(trimmedText, voiceId);
 		}

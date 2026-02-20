@@ -35,7 +35,7 @@ export interface WorkerResponse {
  * - `buildCacheKey(request)` — derives the Map key from the request
  * - `buildWorkerMessage(request)` — constructs the postMessage payload
  * - `generateAudio(...)` — typed public API matching the worker's specific fields
- * - `isCached(...)` — typed public check matching the worker's specific fields
+ * - `isCached(...)` — typed public async check (in-memory + optional persistent store)
  */
 export abstract class BaseTTSWorkerPool<TRequest extends BaseTTSRequest> {
 	protected worker: Worker | null = null;
@@ -49,6 +49,26 @@ export abstract class BaseTTSWorkerPool<TRequest extends BaseTTSRequest> {
 
 	/** Create and return the dedicated Web Worker for this pool. */
 	protected abstract createWorker(): Worker;
+
+	/**
+	 * Whether to store the generated audio in the in-memory cache.
+	 * Subclasses can return false for entries that are persisted elsewhere
+	 * (e.g. Vietnamese voices backed by IndexedDB).
+	 */
+	protected shouldMemoryCache(_request: TRequest): boolean {
+		return true;
+	}
+
+	/**
+	 * Called after a successful inference, before the request is resolved.
+	 * Subclasses can override to persist the audio blob to a durable store.
+	 * The base implementation is a no-op.
+	 */
+	protected onAudioGenerated(
+		_cacheKey: string,
+		_blob: Blob,
+		_request: TRequest,
+	): void {}
 
 	/** Build the cache lookup key from the request. */
 	protected abstract buildCacheKey(request: TRequest): string;
@@ -118,14 +138,17 @@ export abstract class BaseTTSWorkerPool<TRequest extends BaseTTSRequest> {
 
 					const cacheKey = this.buildCacheKey(this.activeRequest);
 
-					// Revoke existing entry if somehow already cached
-					const existing = this.cache.get(cacheKey);
-					if (existing) {
-						URL.revokeObjectURL(existing.blobUrl);
-					}
+					if (this.shouldMemoryCache(this.activeRequest)) {
+						// Revoke existing entry if somehow already cached
+						const existing = this.cache.get(cacheKey);
+						if (existing) {
+							URL.revokeObjectURL(existing.blobUrl);
+						}
 
-					this.cache.set(cacheKey, { blobUrl, lastUsed: Date.now() });
-					this.evictOldCache();
+						this.cache.set(cacheKey, { blobUrl, lastUsed: Date.now() });
+						this.evictOldCache();
+					}
+					this.onAudioGenerated(cacheKey, message.audio, this.activeRequest);
 
 					this.activeRequest.resolve(audio);
 				} else {
@@ -158,10 +181,7 @@ export abstract class BaseTTSWorkerPool<TRequest extends BaseTTSRequest> {
 		this.worker.postMessage(this.buildWorkerMessage(this.activeRequest));
 	}
 
-	/**
-	 * Enqueue a request and return a Promise that resolves with an HTMLAudioElement.
-	 * Callers should check the cache first with `isCached()` before calling this.
-	 */
+	/** Enqueue a request and return a Promise that resolves with an HTMLAudioElement. */
 	protected enqueueRequest(request: TRequest): Promise<HTMLAudioElement> {
 		return new Promise<HTMLAudioElement>((resolve, reject) => {
 			request.resolve = resolve;
@@ -169,6 +189,10 @@ export abstract class BaseTTSWorkerPool<TRequest extends BaseTTSRequest> {
 			this.requestQueue.push(request);
 			this.processQueue();
 		});
+	}
+
+	protected hasCached(cacheKey: string): boolean {
+		return this.cache.has(cacheKey);
 	}
 
 	/**
@@ -182,42 +206,21 @@ export abstract class BaseTTSWorkerPool<TRequest extends BaseTTSRequest> {
 		return new Audio(cached.blobUrl);
 	}
 
-	public cancelPendingRequests(): void {
+	public terminate(): void {
 		for (const request of this.requestQueue) {
 			request.reject(new Error("Request cancelled"));
 		}
 		this.requestQueue = [];
-	}
-
-	public clearCache(): void {
-		for (const entry of this.cache.values()) {
-			URL.revokeObjectURL(entry.blobUrl);
-		}
-		this.cache.clear();
-	}
-
-	/**
-	 * Clear all cache entries whose key starts with the given prefix.
-	 * Useful for evicting all audio for a specific voice/model when it changes.
-	 */
-	protected clearCacheByPrefix(prefix: string): void {
-		for (const [key, entry] of this.cache.entries()) {
-			if (key.startsWith(prefix)) {
-				URL.revokeObjectURL(entry.blobUrl);
-				this.cache.delete(key);
-			}
-		}
-	}
-
-	public terminate(): void {
-		this.cancelPendingRequests();
 
 		if (this.activeRequest) {
 			this.activeRequest.reject(new Error("Worker terminated"));
 			this.activeRequest = null;
 		}
 
-		this.clearCache();
+		for (const entry of this.cache.values()) {
+			URL.revokeObjectURL(entry.blobUrl);
+		}
+		this.cache.clear();
 
 		if (this.worker) {
 			this.worker.terminate();

@@ -83,6 +83,11 @@ async function initModel(
 
 	transcriber = model as AutomaticSpeechRecognitionPipeline;
 
+	// NOTE: chunk_length_s / stride_length_s (chunked inference) were evaluated and ruled out.
+	// Chunking splits audio into overlapping 30s windows processed sequentially — it only reduces
+	// latency when the recording itself exceeds 30s (multiple encoder passes). For recordings
+	// under ~10s there is always exactly one chunk, so chunking adds overhead with no benefit.
+	// Ref: https://gattanasio.cc/post/whisper-encoder/
 	self.postMessage({ status: "ready" } as ReadyResponse);
 }
 

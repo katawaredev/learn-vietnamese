@@ -5,6 +5,7 @@ import { Button } from "~/components/Button";
 import { ListenButton } from "~/components/ListenButton";
 import { SpeakButton } from "~/components/SpeakButton";
 import { TypeInputButton } from "~/components/TypeInputButton";
+import { AISettingsDrawer } from "~/layout/AISettingsDrawer";
 import Header from "~/layout/Header";
 import { useLLM } from "~/providers/llm-provider";
 import type { Language } from "~/providers/tts-provider";
@@ -298,18 +299,21 @@ function ConversationRoute() {
 	return (
 		<div className="flex min-h-screen flex-col bg-linear-to-br from-burgundy-dark to-burgundy">
 			<Header>
-				{messages.length !== 0 && (
-					<Button
-						variant="outline"
-						size="medium"
-						onClick={resetConversation}
-						className="gap-2"
-						title="Reset conversation"
-					>
-						<RefreshCw className="mr-2 inline-block h-5 w-5" />
-						<span className="font-serif text-lg">Reset</span>
-					</Button>
-				)}
+				<div className="flex items-center gap-3">
+					<AISettingsDrawer />
+					{messages.length !== 0 && (
+						<Button
+							variant="outline"
+							size="medium"
+							onClick={resetConversation}
+							className="gap-2"
+							title="Reset conversation"
+						>
+							<RefreshCw className="mr-2 inline-block h-5 w-5" />
+							<span className="font-serif text-lg">Reset</span>
+						</Button>
+					)}
+				</div>
 			</Header>
 
 			{/* Microphone Controls */}

@@ -5,6 +5,7 @@ import {
 	useEffect,
 	useState,
 } from "react";
+import { isLowEndDevice } from "~/utils/device";
 import type { ModelDType } from "~/workers/worker-types";
 import type { Language } from "./tts-provider";
 
@@ -173,16 +174,43 @@ function getWebSpeechSTTOption(language: Language): STTModelOption | null {
 	};
 }
 
-const DEFAULT_MODEL_VN = PHOWHISPER_MODELS[0]; // phowhisper-tiny
-const DEFAULT_MODEL_EN = WHISPER_MODELS_EN[0]; // whisper-en-tiny
 const STORAGE_KEY_VN = "stt-vn-model";
 const STORAGE_KEY_EN = "stt-en-model";
 
+function getInitialSTTModel(language: Language): STTModelOption {
+	const storageKey = language === "vn" ? STORAGE_KEY_VN : STORAGE_KEY_EN;
+	const savedId =
+		typeof localStorage !== "undefined" &&
+		typeof localStorage.getItem === "function"
+			? localStorage.getItem(storageKey)
+			: null;
+
+	if (savedId) {
+		const staticModels =
+			language === "vn"
+				? [...PHOWHISPER_MODELS, ...WHISPER_MODELS_VN]
+				: [...WHISPER_MODELS_EN];
+		const saved = staticModels.find((m) => m.id === savedId);
+		if (saved) return saved;
+		const webSpeech = getWebSpeechSTTOption(language);
+		if (webSpeech && webSpeech.id === savedId) return webSpeech;
+	}
+
+	if (isLowEndDevice()) {
+		const webSpeech = getWebSpeechSTTOption(language);
+		if (webSpeech) return webSpeech;
+	}
+
+	return language === "vn" ? PHOWHISPER_MODELS[0] : WHISPER_MODELS_EN[0];
+}
+
 export function STTProvider({ children }: { children: ReactNode }) {
-	const [selectedModelVN, setSelectedModelVNState] =
-		useState<STTModelOption>(DEFAULT_MODEL_VN);
-	const [selectedModelEN, setSelectedModelENState] =
-		useState<STTModelOption>(DEFAULT_MODEL_EN);
+	const [selectedModelVN, setSelectedModelVNState] = useState<STTModelOption>(
+		() => getInitialSTTModel("vn"),
+	);
+	const [selectedModelEN, setSelectedModelENState] = useState<STTModelOption>(
+		() => getInitialSTTModel("en"),
+	);
 	const [webSpeechSTTVN, setWebSpeechSTTVN] = useState<STTModelOption | null>(
 		null,
 	);
@@ -197,40 +225,6 @@ export function STTProvider({ children }: { children: ReactNode }) {
 		setWebSpeechSTTVN(webSpeechOptionVN);
 		setWebSpeechSTTEN(webSpeechOptionEN);
 	}, []);
-
-	// Load saved models from localStorage
-	useEffect(() => {
-		// Load Vietnamese model
-		const savedModelIdVN = localStorage.getItem(STORAGE_KEY_VN);
-		if (savedModelIdVN) {
-			const allModelsVN = [
-				...PHOWHISPER_MODELS,
-				...WHISPER_MODELS_VN,
-				...(webSpeechSTTVN ? [webSpeechSTTVN] : []),
-			];
-			const savedModel = allModelsVN.find(
-				(model) => model.id === savedModelIdVN,
-			);
-			if (savedModel) {
-				setSelectedModelVNState(savedModel);
-			}
-		}
-
-		// Load English model
-		const savedModelIdEN = localStorage.getItem(STORAGE_KEY_EN);
-		if (savedModelIdEN) {
-			const allModelsEN = [
-				...WHISPER_MODELS_EN,
-				...(webSpeechSTTEN ? [webSpeechSTTEN] : []),
-			];
-			const savedModel = allModelsEN.find(
-				(model) => model.id === savedModelIdEN,
-			);
-			if (savedModel) {
-				setSelectedModelENState(savedModel);
-			}
-		}
-	}, [webSpeechSTTVN, webSpeechSTTEN]);
 
 	const getSelectedModel = (language: Language): STTModelOption => {
 		return language === "vn" ? selectedModelVN : selectedModelEN;

@@ -1,5 +1,8 @@
+import { getVoiceAudio, saveVoiceAudio } from "~/utils/audio-cache";
 import { type BaseTTSRequest, BaseTTSWorkerPool } from "./base-tts-worker-pool";
 import type { ModelDType } from "./worker-types";
+
+const VN_MMS_MODEL = "Xenova/mms-tts-vie";
 
 interface TTSMMSRequest extends BaseTTSRequest {
 	modelId: string;
@@ -36,8 +39,23 @@ class TTSMMSWorkerPool extends BaseTTSWorkerPool<TTSMMSRequest> {
 		};
 	}
 
+	protected shouldMemoryCache(request: TTSMMSRequest): boolean {
+		return request.modelId !== VN_MMS_MODEL;
+	}
+
+	protected onAudioGenerated(
+		_cacheKey: string,
+		blob: Blob,
+		request: TTSMMSRequest,
+	): void {
+		if (request.modelId !== VN_MMS_MODEL) return;
+		saveVoiceAudio(request.text, request.modelId, blob).catch(() => {});
+	}
+
 	/**
-	 * Request audio generation. Returns cached audio immediately if available.
+	 * Request audio generation. Returns cached audio immediately if available,
+	 * then checks the IndexedDB persistent cache (Vietnamese only) before
+	 * falling through to the worker.
 	 */
 	public async generateAudio(
 		text: string,
@@ -50,6 +68,11 @@ class TTSMMSWorkerPool extends BaseTTSWorkerPool<TTSMMSRequest> {
 
 		const cached = this.getCachedAudio(cacheKey);
 		if (cached) return cached;
+
+		if (modelId === VN_MMS_MODEL) {
+			const blob = await getVoiceAudio(text, modelId);
+			if (blob) return new Audio(URL.createObjectURL(blob));
+		}
 
 		this.ensureInitialized();
 
@@ -67,17 +90,13 @@ class TTSMMSWorkerPool extends BaseTTSWorkerPool<TTSMMSRequest> {
 	}
 
 	/**
-	 * Check if a specific audio is cached
+	 * Check if audio is cached in memory or (for Vietnamese) IndexedDB.
 	 */
-	public isCached(text: string, modelId: string): boolean {
-		return this.cache.has(`${modelId}:${text}`);
-	}
-
-	/**
-	 * Clear cache for a specific model ID (e.g., when model changes)
-	 */
-	public clearCacheForModel(modelId: string): void {
-		this.clearCacheByPrefix(`${modelId}:`);
+	public async isCached(text: string, modelId: string): Promise<boolean> {
+		if (modelId === VN_MMS_MODEL) {
+			return (await getVoiceAudio(text, modelId)) !== null;
+		}
+		return this.hasCached(`${modelId}:${text}`);
 	}
 }
 

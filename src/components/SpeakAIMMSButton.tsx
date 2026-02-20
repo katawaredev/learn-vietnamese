@@ -35,7 +35,7 @@ export const SpeakAIMMSButton: FC<SpeakButtonProps> = ({
 		const dtype = selectedVoice.dtype ?? "q8";
 
 		// Check if cached (won't trigger generation)
-		if (ttsMMSPool.isCached(trimmedText, modelId)) {
+		if (await ttsMMSPool.isCached(trimmedText, modelId)) {
 			// Cached audio returns immediately, no loading state needed
 			return ttsMMSPool.generateAudio(trimmedText, modelId, device, dtype);
 		}

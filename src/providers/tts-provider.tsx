@@ -6,6 +6,7 @@ import {
 	useState,
 } from "react";
 
+import { isLowEndDevice } from "~/utils/device";
 import type { ModelDType } from "~/workers/worker-types";
 
 export type Language = "vn" | "en";
@@ -148,16 +149,37 @@ function getWebSpeechVoices(language: Language): TTSVoiceOption[] {
 	}));
 }
 
-const DEFAULT_VOICE_VN = MMS_VOICES_VN[0]; // Xenova/mms-tts-vie
-const DEFAULT_VOICE_EN = MMS_VOICES_EN[0]; // Xenova/mms-tts-eng
 const STORAGE_KEY_VN = "tts-vn-voice";
 const STORAGE_KEY_EN = "tts-en-voice";
 
+function getInitialTTSVoice(language: Language): TTSVoiceOption {
+	const storageKey = language === "vn" ? STORAGE_KEY_VN : STORAGE_KEY_EN;
+	const savedId =
+		typeof localStorage !== "undefined" &&
+		typeof localStorage.getItem === "function"
+			? localStorage.getItem(storageKey)
+			: null;
+
+	if (savedId) {
+		const staticVoices =
+			language === "vn"
+				? [...MMS_VOICES_VN, ...VITS_VOICES_VN]
+				: [...MMS_VOICES_EN, ...VITS_VOICES_EN];
+		const saved = staticVoices.find((v) => v.id === savedId);
+		if (saved) return saved;
+		// Web speech voices load async; handled in loadVoices
+	}
+
+	return language === "vn" ? MMS_VOICES_VN[0] : MMS_VOICES_EN[0];
+}
+
 export function TTSProvider({ children }: { children: ReactNode }) {
-	const [selectedVoiceVN, setSelectedVoiceVNState] =
-		useState<TTSVoiceOption>(DEFAULT_VOICE_VN);
-	const [selectedVoiceEN, setSelectedVoiceENState] =
-		useState<TTSVoiceOption>(DEFAULT_VOICE_EN);
+	const [selectedVoiceVN, setSelectedVoiceVNState] = useState<TTSVoiceOption>(
+		() => getInitialTTSVoice("vn"),
+	);
+	const [selectedVoiceEN, setSelectedVoiceENState] = useState<TTSVoiceOption>(
+		() => getInitialTTSVoice("en"),
+	);
 	const [webSpeechVoicesVN, setWebSpeechVoicesVN] = useState<TTSVoiceOption[]>(
 		[],
 	);
@@ -174,6 +196,23 @@ export function TTSProvider({ children }: { children: ReactNode }) {
 			const voicesEN = getWebSpeechVoices("en");
 			setWebSpeechVoicesVN(voicesVN);
 			setWebSpeechVoicesEN(voicesEN);
+
+			const savedVN = localStorage.getItem(STORAGE_KEY_VN);
+			const savedEN = localStorage.getItem(STORAGE_KEY_EN);
+
+			if (savedVN) {
+				const saved = voicesVN.find((v) => v.id === savedVN);
+				if (saved) setSelectedVoiceVNState(saved);
+			} else if (isLowEndDevice() && voicesVN.length > 0) {
+				setSelectedVoiceVNState(voicesVN[0]);
+			}
+
+			if (savedEN) {
+				const saved = voicesEN.find((v) => v.id === savedEN);
+				if (saved) setSelectedVoiceENState(saved);
+			} else if (isLowEndDevice() && voicesEN.length > 0) {
+				setSelectedVoiceENState(voicesEN[0]);
+			}
 		};
 
 		// Load voices immediately if available
@@ -186,41 +225,6 @@ export function TTSProvider({ children }: { children: ReactNode }) {
 			window.speechSynthesis.onvoiceschanged = null;
 		};
 	}, []);
-
-	// Load saved voices from localStorage
-	useEffect(() => {
-		// Load Vietnamese voice
-		const savedVoiceIdVN = localStorage.getItem(STORAGE_KEY_VN);
-		if (savedVoiceIdVN) {
-			const allVoicesVN = [
-				...MMS_VOICES_VN,
-				...VITS_VOICES_VN,
-				...webSpeechVoicesVN,
-			];
-			const savedVoice = allVoicesVN.find(
-				(voice) => voice.id === savedVoiceIdVN,
-			);
-			if (savedVoice) {
-				setSelectedVoiceVNState(savedVoice);
-			}
-		}
-
-		// Load English voice
-		const savedVoiceIdEN = localStorage.getItem(STORAGE_KEY_EN);
-		if (savedVoiceIdEN) {
-			const allVoicesEN = [
-				...MMS_VOICES_EN,
-				...VITS_VOICES_EN,
-				...webSpeechVoicesEN,
-			];
-			const savedVoice = allVoicesEN.find(
-				(voice) => voice.id === savedVoiceIdEN,
-			);
-			if (savedVoice) {
-				setSelectedVoiceENState(savedVoice);
-			}
-		}
-	}, [webSpeechVoicesVN, webSpeechVoicesEN]);
 
 	const getSelectedVoice = (language: Language): TTSVoiceOption => {
 		return language === "vn" ? selectedVoiceVN : selectedVoiceEN;
