@@ -131,7 +131,7 @@ export function AISettingsDrawer() {
 												label: model.name,
 												value: model.id,
 											}))}
-											value={selectedLLM.id}
+											value={selectedLLM?.id ?? ""}
 											onChange={handleLLMChange}
 											placeholder="Select model"
 											size="medium"

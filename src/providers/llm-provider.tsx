@@ -1,4 +1,3 @@
-import { prebuiltAppConfig } from "@mlc-ai/web-llm";
 import {
 	createContext,
 	type ReactNode,
@@ -14,7 +13,7 @@ export interface LLMModelOption {
 }
 
 interface LLMContextValue {
-	selectedModel: LLMModelOption;
+	selectedModel: LLMModelOption | null;
 	setSelectedModel: (model: LLMModelOption) => void;
 	availableModels: LLMModelOption[];
 	thinkingEnabled: boolean;
@@ -27,51 +26,43 @@ const LLMContext = createContext<LLMContextValue | undefined>(undefined);
 // Most users have 2-4GB available VRAM, so limit to 3GB to be safe
 const MAX_VRAM_MB = 3000;
 
-// Get available models from WebLLM's prebuilt config
-const AVAILABLE_MODELS: LLMModelOption[] = prebuiltAppConfig.model_list
-	.filter(
-		(model) =>
-			model.vram_required_MB &&
-			model.vram_required_MB <= MAX_VRAM_MB &&
-			model.low_resource_required,
-	)
-	.map((model) => ({
-		id: model.model_id,
-		name: model.model_id.replace(/-MLC$/, "").replace(/-/g, " "),
-		modelId: model.model_id,
-	}))
-	.sort((a, b) => {
-		// Sort by model ID for consistent ordering
-		return a.modelId.localeCompare(b.modelId);
-	});
-
-if (AVAILABLE_MODELS.length === 0) {
-	throw new Error(
-		`No models found with VRAM <= ${MAX_VRAM_MB}MB. WebLLM may have changed their model format.`,
-	);
-}
-
-// Prefer smallest available model (likely most compatible)
-const DEFAULT_MODEL = AVAILABLE_MODELS[0];
 const STORAGE_KEY = "llm-selected-model";
 const THINKING_STORAGE_KEY = "llm-thinking-enabled";
 
 export function LLMProvider({ children }: { children: ReactNode }) {
+	const [availableModels, setAvailableModels] = useState<LLMModelOption[]>([]);
 	const [selectedModel, setSelectedModelState] =
-		useState<LLMModelOption>(DEFAULT_MODEL);
+		useState<LLMModelOption | null>(null);
 	const [thinkingEnabled, setThinkingEnabledState] = useState<boolean>(true);
 
-	// Load saved model and thinking mode from localStorage
 	useEffect(() => {
-		const savedModelId = localStorage.getItem(STORAGE_KEY);
-		if (savedModelId) {
-			const savedModel = AVAILABLE_MODELS.find(
-				(model) => model.id === savedModelId,
-			);
-			if (savedModel) {
-				setSelectedModelState(savedModel);
-			}
-		}
+		// Dynamically import @mlc-ai/web-llm only in the browser - it's WebGPU-only
+		// and its bundled CJS dependencies cannot be loaded in Node.js/SSR context
+		import("@mlc-ai/web-llm").then(({ prebuiltAppConfig }) => {
+			const models = prebuiltAppConfig.model_list
+				.filter(
+					(model) =>
+						model.vram_required_MB &&
+						model.vram_required_MB <= MAX_VRAM_MB &&
+						model.low_resource_required,
+				)
+				.map((model) => ({
+					id: model.model_id,
+					name: model.model_id.replace(/-MLC$/, "").replace(/-/g, " "),
+					modelId: model.model_id,
+				}))
+				.sort((a, b) => {
+					return a.modelId.localeCompare(b.modelId);
+				});
+
+			setAvailableModels(models);
+
+			const savedModelId = localStorage.getItem(STORAGE_KEY);
+			const savedModel = savedModelId
+				? models.find((m) => m.id === savedModelId)
+				: null;
+			setSelectedModelState(savedModel ?? models[0] ?? null);
+		});
 
 		const savedThinking = localStorage.getItem(THINKING_STORAGE_KEY);
 		if (savedThinking !== null) {
@@ -94,7 +85,7 @@ export function LLMProvider({ children }: { children: ReactNode }) {
 			value={{
 				selectedModel,
 				setSelectedModel,
-				availableModels: AVAILABLE_MODELS,
+				availableModels,
 				thinkingEnabled,
 				setThinkingEnabled,
 			}}

@@ -169,7 +169,7 @@ function ConversationRoute() {
 
 	// Initialize model when selectedModel or thinkingEnabled changes
 	useEffect(() => {
-		if (!worker.current) return;
+		if (!worker.current || !selectedModel) return;
 
 		const newConfig = {
 			modelId: selectedModel.modelId,
@@ -401,7 +401,7 @@ function ConversationRoute() {
 						) : (
 							<p className="font-serif text-warm-cream/50">
 								{modelStatus === "loading"
-									? `Loading ${selectedModel.name}... ${loadingProgress}%`
+									? `Loading ${selectedModel?.name ?? "model"}... ${loadingProgress}%`
 									: "Initializing..."}
 							</p>
 						)}

@@ -26,7 +26,11 @@ const config = defineConfig({
 		format: "es",
 	},
 	optimizeDeps: {
-		exclude: ["onnxruntime-web", "@huggingface/transformers"],
+		exclude: [
+			"onnxruntime-web",
+			"@huggingface/transformers",
+			"@mlc-ai/web-llm",
+		],
 	},
 	// Cross-Origin Isolation headers are required for SharedArrayBuffer, which ONNX Runtime
 	// uses for multi-threaded WASM inference. Applied in both dev and production so that

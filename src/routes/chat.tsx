@@ -231,7 +231,7 @@ function ChatRoute() {
 
 	// Initialize model when selectedModel or thinkingEnabled changes
 	useEffect(() => {
-		if (!worker.current) return;
+		if (!worker.current || !selectedModel) return;
 
 		const newConfig = {
 			modelId: selectedModel.modelId,
@@ -374,7 +374,7 @@ function ChatRoute() {
 												NOTE: AI can make mistakes. Verify what matters.
 											</>
 										) : modelStatus === "loading" ? (
-											`Loading ${selectedModel.name}...`
+											`Loading ${selectedModel?.name ?? "model"}...`
 										) : (
 											"Initializing..."
 										)}

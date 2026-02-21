@@ -8,7 +8,7 @@ import { StateIndicator } from "./StateIndicator";
 export type SendButtonState = "idle" | "sending" | "loading" | "generating";
 
 const buttonVariants = cva(
-	"relative flex transform cursor-pointer select-none items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-xl active:scale-95",
+	"relative flex shrink-0 transform cursor-pointer select-none items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-xl active:scale-95",
 	{
 		variants: {
 			size: {
