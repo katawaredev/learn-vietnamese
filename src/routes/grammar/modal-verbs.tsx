@@ -272,7 +272,7 @@ function ModalVerbsComponent() {
 						{/* Examples */}
 						{category.examples && category.examples.length > 0 && (
 							<div className="space-y-4">
-								<h3 className="font-semibold text-lg text-white">Examples:</h3>
+								<h3>Examples:</h3>
 								<GrammarPracticeGrid examples={category.examples} />
 							</div>
 						)}
@@ -347,7 +347,7 @@ function ModalVerbsComponent() {
 
 					{/* Negation Examples */}
 					<div className="space-y-4">
-						<h3 className="font-semibold text-lg text-white">Examples:</h3>
+						<h3>Examples:</h3>
 						<GrammarPracticeGrid examples={data.negationPatterns.examples} />
 					</div>
 				</div>

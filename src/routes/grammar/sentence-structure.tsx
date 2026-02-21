@@ -59,7 +59,7 @@ function PatternSection({ pattern }: { pattern: Pattern }) {
 
 			{/* Examples */}
 			<div className="space-y-4">
-				<h3 className="font-semibold text-lg text-white">Examples:</h3>
+				<h3>Examples:</h3>
 				<GrammarPracticeGrid examples={pattern.examples} />
 			</div>
 		</div>
