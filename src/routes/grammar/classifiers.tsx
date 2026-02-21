@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Disclosure } from "~/components/Disclosure";
 import classifiersData from "~/data/grammar/classifiers.json";
 import { PracticeGrid } from "~/layout/PracticeGrid";
+import { GRAMMAR_TYPE_COLORS } from "~/lib/grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/classifiers")({
@@ -144,6 +145,7 @@ function ClassifiersComponent() {
 							</div>
 							<PracticeGrid<ClassifierData>
 								data={data}
+								titleClassName={GRAMMAR_TYPE_COLORS.classifier}
 								getSubtitle={(item) => item.meaning}
 								getDetails={(name, item) => {
 									const details: Record<string, React.ReactNode> = {

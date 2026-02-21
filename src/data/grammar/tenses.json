@@ -15,43 +15,234 @@
 			"description": "Markers that indicate completed actions in the past",
 			"markers": {
 				"đã": {
-					"meaning": "already, completed action (past)",
-					"position": "before verb",
-					"usage": "Most common past tense marker. Indicates action was completed in the past.",
-					"example": "Tôi đã ăn cơm → I ate rice"
+					"meaning": "Already / completed action",
+					"notes": [
+						"Most common past tense marker — placed before the verb",
+						"Often combined with 'rồi' after the verb for stronger emphasis: 'Tôi đã ăn rồi' (I already ate)",
+						"In questions, 'đã...chưa' asks if something has happened yet: 'Bạn đã ăn chưa?' (Have you eaten yet?)",
+						"Can be omitted when context is clear: 'Hôm qua tôi ăn phở' (Yesterday I ate phở)"
+					]
 				},
 				"có": {
-					"meaning": "did (emphatic past)",
-					"position": "before verb",
-					"usage": "Emphatic past tense, similar to 'đã' but stronger. Also used for affirmation. Often used to contradict or emphasize.",
-					"example": "Tôi có đi → I DID go"
+					"meaning": "Did (emphatic past)",
+					"notes": [
+						"Emphatic — used to contradict or strongly affirm: 'Tôi CÓ nói!' (I DID say it!)",
+						"Placed before the verb, often stressed in speech",
+						"Also used in yes-no questions: 'Bạn có đi không?' (Did you go?)",
+						"Different from 'có' meaning 'to have' — context determines meaning"
+					]
 				},
 				"rồi": {
-					"meaning": "already (completed)",
-					"position": "after verb",
-					"usage": "Placed AFTER the verb (unique position!). Often combined with 'đã' for stronger emphasis.",
-					"example": "Tôi ăn rồi → I already ate"
+					"meaning": "Already (completed)",
+					"notes": [
+						"Unique position: placed AFTER the verb (all other markers go before)",
+						"Can be used alone: 'Tôi ăn rồi' (I ate already) or with 'đã': 'Tôi đã ăn rồi'",
+						"Also used to signal state change: 'Tôi hiểu rồi' (I understand now / I got it)",
+						"Very common in everyday speech — often the simplest way to express past"
+					]
 				}
-			}
+			},
+			"examples": [
+				{
+					"vietnamese": "Tôi đã học tiếng Việt",
+					"breakdown": {
+						"Tôi": {
+							"type": "subject",
+							"meaning": "I"
+						},
+						"đã": {
+							"type": "tense-marker",
+							"meaning": "already (past)"
+						},
+						"học": {
+							"type": "verb",
+							"meaning": "study"
+						},
+						"tiếng Việt": {
+							"type": "object",
+							"meaning": "Vietnamese"
+						}
+					},
+					"english": "I studied Vietnamese",
+					"literalEnglish": "I already study Vietnamese",
+					"notes": "Standard past tense with đã"
+				},
+				{
+					"vietnamese": "Tôi có nói với anh ấy rồi",
+					"breakdown": {
+						"Tôi": {
+							"type": "subject",
+							"meaning": "I"
+						},
+						"có": {
+							"type": "tense-marker",
+							"meaning": "DID (emphatic)"
+						},
+						"nói": {
+							"type": "verb",
+							"meaning": "tell/say"
+						},
+						"với": {
+							"type": "preposition",
+							"meaning": "with/to"
+						},
+						"anh ấy": {
+							"type": "object",
+							"meaning": "him"
+						},
+						"rồi": {
+							"type": "tense-marker",
+							"meaning": "already"
+						}
+					},
+					"english": "I DID tell him already",
+					"literalEnglish": "I DID say to him already",
+					"notes": "Emphatic 'có' combined with 'rồi' — strong assertion"
+				},
+				{
+					"vietnamese": "Họ đã đi rồi",
+					"breakdown": {
+						"Họ": {
+							"type": "subject",
+							"meaning": "they"
+						},
+						"đã": {
+							"type": "tense-marker",
+							"meaning": "already (past)"
+						},
+						"đi": {
+							"type": "verb",
+							"meaning": "go/leave"
+						},
+						"rồi": {
+							"type": "tense-marker",
+							"meaning": "already (completed)"
+						}
+					},
+					"english": "They already left",
+					"literalEnglish": "They already go already",
+					"notes": "đã + rồi — very common double emphasis"
+				},
+				{
+					"vietnamese": "Em đã ăn cơm chưa?",
+					"breakdown": {
+						"Em": {
+							"type": "subject",
+							"meaning": "you (younger)"
+						},
+						"đã": {
+							"type": "tense-marker",
+							"meaning": "already"
+						},
+						"ăn": {
+							"type": "verb",
+							"meaning": "eat"
+						},
+						"cơm": {
+							"type": "object",
+							"meaning": "rice/meal"
+						},
+						"chưa": {
+							"type": "particle",
+							"meaning": "yet? (not yet)"
+						}
+					},
+					"english": "Have you eaten yet?",
+					"literalEnglish": "You already eat rice not-yet?",
+					"notes": "đã...chưa pattern for 'have you...yet?' questions"
+				}
+			]
 		},
 		{
 			"id": "recent-past",
 			"title": "Recent Past",
 			"description": "Actions that just happened",
 			"markers": {
-				"vừa mới": {
-					"meaning": "just (recently completed)",
-					"position": "before verb",
-					"usage": "Indicates action was completed very recently. More formal/emphatic than 'mới' alone.",
-					"example": "Tôi vừa mới ăn xong → I just finished eating"
-				},
 				"mới": {
-					"meaning": "just (recently completed) - casual",
-					"position": "before verb",
-					"usage": "Casual form of 'vừa mới'. More common in everyday speech.",
-					"example": "Tôi mới ăn → I just ate"
+					"meaning": "Just (recently)",
+					"notes": [
+						"Indicates action was completed very recently — placed before the verb",
+						"Most common in everyday speech: 'Tôi mới ăn' (I just ate)",
+						"'Vừa mới' is the more formal/emphatic variant: 'Tôi vừa mới đến' (I just arrived)",
+						"'Vừa' alone also works but is less common than 'mới' in casual speech",
+						"Often combined with 'xong' (finished) for completion: 'Tôi mới ăn xong' (I just finished eating)"
+					]
 				}
-			}
+			},
+			"examples": [
+				{
+					"vietnamese": "Tôi mới ăn sáng",
+					"breakdown": {
+						"Tôi": {
+							"type": "subject",
+							"meaning": "I"
+						},
+						"mới": {
+							"type": "tense-marker",
+							"meaning": "just (recently)"
+						},
+						"ăn": {
+							"type": "verb",
+							"meaning": "eat"
+						},
+						"sáng": {
+							"type": "noun",
+							"meaning": "morning/breakfast"
+						}
+					},
+					"english": "I just had breakfast",
+					"literalEnglish": "I just eat morning",
+					"notes": "Casual 'mới' — most common form"
+				},
+				{
+					"vietnamese": "Tôi vừa mới đến Việt Nam",
+					"breakdown": {
+						"Tôi": {
+							"type": "subject",
+							"meaning": "I"
+						},
+						"vừa mới": {
+							"type": "tense-marker",
+							"meaning": "just (formal)"
+						},
+						"đến": {
+							"type": "verb",
+							"meaning": "arrive at"
+						},
+						"Việt Nam": {
+							"type": "object",
+							"meaning": "Vietnam"
+						}
+					},
+					"english": "I just arrived in Vietnam",
+					"literalEnglish": "I just-now arrive Vietnam",
+					"notes": "Formal 'vừa mới' — more emphatic than 'mới' alone"
+				},
+				{
+					"vietnamese": "Họ vừa mới kết hôn xong",
+					"breakdown": {
+						"Họ": {
+							"type": "subject",
+							"meaning": "they"
+						},
+						"vừa mới": {
+							"type": "tense-marker",
+							"meaning": "just (formal)"
+						},
+						"kết hôn": {
+							"type": "verb",
+							"meaning": "get married"
+						},
+						"xong": {
+							"type": "particle",
+							"meaning": "finished/done"
+						}
+					},
+					"english": "They just got married",
+					"literalEnglish": "They just-now marry finished",
+					"notes": "'vừa mới' + 'xong' — recently completed action"
+				}
+			]
 		},
 		{
 			"id": "future",
@@ -59,18 +250,130 @@
 			"description": "Actions that will happen",
 			"markers": {
 				"sẽ": {
-					"meaning": "will (future)",
-					"position": "before verb",
-					"usage": "Standard future tense marker. Indicates action will happen in the future.",
-					"example": "Tôi sẽ đi học → I will go to school"
+					"meaning": "Will (future)",
+					"notes": [
+						"Standard future tense marker — placed before the verb",
+						"Used for plans, predictions, and promises: 'Tôi sẽ đi' (I will go)",
+						"Can be omitted when future is clear from context: 'Ngày mai tôi đi Hà Nội' (Tomorrow I go to Hanoi)",
+						"In questions: 'Bạn sẽ làm gì?' (What will you do?)"
+					]
 				},
 				"sắp": {
-					"meaning": "about to (near future)",
-					"position": "before verb",
-					"usage": "Indicates action is about to happen soon. Imminent future, more immediate than 'sẽ'.",
-					"example": "Tôi sắp đi → I'm about to go"
+					"meaning": "About to (near future)",
+					"notes": [
+						"Indicates action is about to happen soon — more immediate than 'sẽ'",
+						"Implies imminence: 'Trời sắp mưa' (It's about to rain)",
+						"Cannot be used for distant future — use 'sẽ' instead",
+						"Often carries a sense of urgency or warning: 'Sắp trễ rồi!' (We're about to be late!)"
+					]
 				}
-			}
+			},
+			"examples": [
+				{
+					"vietnamese": "Chúng tôi sẽ đi chợ",
+					"breakdown": {
+						"Chúng tôi": {
+							"type": "subject",
+							"meaning": "we"
+						},
+						"sẽ": {
+							"type": "tense-marker",
+							"meaning": "will (future)"
+						},
+						"đi": {
+							"type": "verb",
+							"meaning": "go"
+						},
+						"chợ": {
+							"type": "noun",
+							"meaning": "market"
+						}
+					},
+					"english": "We will go to the market",
+					"literalEnglish": "We will go market",
+					"notes": "Standard future with sẽ"
+				},
+				{
+					"vietnamese": "Anh sẽ làm gì vào cuối tuần?",
+					"breakdown": {
+						"Anh": {
+							"type": "subject",
+							"meaning": "you (male)"
+						},
+						"sẽ": {
+							"type": "tense-marker",
+							"meaning": "will"
+						},
+						"làm": {
+							"type": "verb",
+							"meaning": "do"
+						},
+						"gì": {
+							"type": "question",
+							"meaning": "what"
+						},
+						"vào": {
+							"type": "preposition",
+							"meaning": "on/at"
+						},
+						"cuối tuần": {
+							"type": "noun",
+							"meaning": "weekend"
+						}
+					},
+					"english": "What will you do on the weekend?",
+					"literalEnglish": "You will do what on weekend?",
+					"notes": "Future tense in a question"
+				},
+				{
+					"vietnamese": "Cô ấy sắp về nhà",
+					"breakdown": {
+						"Cô ấy": {
+							"type": "subject",
+							"meaning": "she"
+						},
+						"sắp": {
+							"type": "tense-marker",
+							"meaning": "about to"
+						},
+						"về": {
+							"type": "verb",
+							"meaning": "return"
+						},
+						"nhà": {
+							"type": "noun",
+							"meaning": "home"
+						}
+					},
+					"english": "She's about to go home",
+					"literalEnglish": "She about-to return home",
+					"notes": "Near future with sắp — happening very soon"
+				},
+				{
+					"vietnamese": "Trời sắp mưa rồi",
+					"breakdown": {
+						"Trời": {
+							"type": "subject",
+							"meaning": "sky/weather"
+						},
+						"sắp": {
+							"type": "tense-marker",
+							"meaning": "about to"
+						},
+						"mưa": {
+							"type": "verb",
+							"meaning": "rain"
+						},
+						"rồi": {
+							"type": "particle",
+							"meaning": "already (emphasis)"
+						}
+					},
+					"english": "It's about to rain!",
+					"literalEnglish": "Sky about-to rain already",
+					"notes": "sắp + rồi — imminent warning"
+				}
+			]
 		},
 		{
 			"id": "continuous",
@@ -78,125 +381,141 @@
 			"description": "Ongoing actions",
 			"markers": {
 				"đang": {
-					"meaning": "currently (in progress)",
-					"position": "before verb",
-					"usage": "Indicates action is currently happening. Equivalent to English '-ing' form. Can combine with 'đã' for past continuous (uncommon but valid).",
-					"example": "Tôi đang ăn → I am eating"
+					"meaning": "Currently (in progress)",
+					"notes": [
+						"Equivalent to English '-ing' form — placed before the verb",
+						"Indicates action is happening right now: 'Tôi đang ăn' (I am eating)",
+						"Can combine with past/future markers for past/future continuous (uncommon but valid)",
+						"Often used to explain why you can't do something: 'Tôi đang bận' (I'm busy right now)"
+					]
 				}
-			}
-		}
-	],
-	"combinations": {
-		"title": "Combining Tense Markers",
-		"description": "While uncommon, some tense markers can be combined for nuanced meanings",
-		"examples": [
-			{
-				"markers": "đã + rồi",
-				"meaning": "Completed action with emphasis",
-				"example": "Tôi đã ăn rồi",
-				"translation": "I already ate",
-				"notes": "Very common combination. 'rồi' always comes after the verb."
 			},
-			{
-				"markers": "đã + đang",
-				"meaning": "Past continuous (was doing)",
-				"example": "Tôi đã đang ngủ",
-				"translation": "I was sleeping",
-				"notes": "Uncommon but grammatically correct. Describes ongoing action in the past."
-			},
-			{
-				"markers": "sẽ + đang",
-				"meaning": "Future continuous (will be doing)",
-				"example": "Tôi sẽ đang làm việc",
-				"translation": "I will be working",
-				"notes": "Rare. Describes action that will be in progress at a future time."
-			}
-		]
-	},
-	"practiceSentences": [
-		{
-			"vietnamese": "Tôi đã học tiếng Việt",
-			"english": "I studied Vietnamese",
-			"marker": "đã (past)",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Chúng tôi sẽ đi chợ",
-			"english": "We will go to the market",
-			"marker": "sẽ (future)",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Anh ấy đang làm việc",
-			"english": "He is working",
-			"marker": "đang (continuous)",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Tôi mới ăn sáng",
-			"english": "I just had breakfast",
-			"marker": "mới (recent past)",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Cô ấy sắp về nhà",
-			"english": "She's about to go home",
-			"marker": "sắp (near future)",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Em đã ăn cơm chưa",
-			"english": "Have you eaten yet?",
-			"marker": "đã (past in question)",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Họ đã đi rồi",
-			"english": "They already left",
-			"marker": "đã + rồi (emphatic past)",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Tôi vừa mới đến Việt Nam",
-			"english": "I just arrived in Vietnam",
-			"marker": "vừa mới (recent past)",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Chúng ta đang học về thì",
-			"english": "We are learning about tenses",
-			"marker": "đang (continuous)",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Anh sẽ làm gì vào cuối tuần",
-			"english": "What will you do on the weekend?",
-			"marker": "sẽ (future in question)",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Tôi có nói với anh ấy rồi",
-			"english": "I DID tell him already",
-			"marker": "có + rồi (emphatic)",
-			"difficulty": "advanced"
-		},
-		{
-			"vietnamese": "Khi tôi đến, họ đã đang ăn tối",
-			"english": "When I arrived, they were having dinner",
-			"marker": "đã + đang (past continuous)",
-			"difficulty": "advanced"
-		},
-		{
-			"vietnamese": "Ngày mai lúc này tôi sẽ đang bay đến Hà Nội",
-			"english": "This time tomorrow I'll be flying to Hanoi",
-			"marker": "sẽ + đang (future continuous)",
-			"difficulty": "advanced"
-		},
-		{
-			"vietnamese": "Họ vừa mới kết hôn xong",
-			"english": "They just got married",
-			"marker": "vừa mới + xong (recent completion)",
-			"difficulty": "advanced"
+			"examples": [
+				{
+					"vietnamese": "Anh ấy đang làm việc",
+					"breakdown": {
+						"Anh ấy": {
+							"type": "subject",
+							"meaning": "he"
+						},
+						"đang": {
+							"type": "tense-marker",
+							"meaning": "currently"
+						},
+						"làm việc": {
+							"type": "verb",
+							"meaning": "work"
+						}
+					},
+					"english": "He is working",
+					"literalEnglish": "He currently work",
+					"notes": "Standard continuous with đang"
+				},
+				{
+					"vietnamese": "Chúng ta đang học về thì",
+					"breakdown": {
+						"Chúng ta": {
+							"type": "subject",
+							"meaning": "we"
+						},
+						"đang": {
+							"type": "tense-marker",
+							"meaning": "currently"
+						},
+						"học": {
+							"type": "verb",
+							"meaning": "study/learn"
+						},
+						"về": {
+							"type": "preposition",
+							"meaning": "about"
+						},
+						"thì": {
+							"type": "noun",
+							"meaning": "tenses"
+						}
+					},
+					"english": "We are learning about tenses",
+					"literalEnglish": "We currently learn about tenses",
+					"notes": "Meta example — đang for ongoing activity"
+				},
+				{
+					"vietnamese": "Khi tôi đến, họ đã đang ăn tối",
+					"breakdown": {
+						"Khi": {
+							"type": "adverb",
+							"meaning": "when"
+						},
+						"tôi": {
+							"type": "subject",
+							"meaning": "I"
+						},
+						"đến": {
+							"type": "verb",
+							"meaning": "arrive"
+						},
+						"họ": {
+							"type": "subject",
+							"meaning": "they"
+						},
+						"đã": {
+							"type": "tense-marker",
+							"meaning": "already (past)"
+						},
+						"đang": {
+							"type": "tense-marker",
+							"meaning": "currently"
+						},
+						"ăn tối": {
+							"type": "verb",
+							"meaning": "have dinner"
+						}
+					},
+					"english": "When I arrived, they were having dinner",
+					"literalEnglish": "When I arrive, they already currently eat dinner",
+					"notes": "đã + đang — past continuous (uncommon but valid)"
+				},
+				{
+					"vietnamese": "Ngày mai lúc này tôi sẽ đang bay đến Hà Nội",
+					"breakdown": {
+						"Ngày mai": {
+							"type": "noun",
+							"meaning": "tomorrow"
+						},
+						"lúc này": {
+							"type": "adverb",
+							"meaning": "this time"
+						},
+						"tôi": {
+							"type": "subject",
+							"meaning": "I"
+						},
+						"sẽ": {
+							"type": "tense-marker",
+							"meaning": "will"
+						},
+						"đang": {
+							"type": "tense-marker",
+							"meaning": "currently"
+						},
+						"bay": {
+							"type": "verb",
+							"meaning": "fly"
+						},
+						"đến": {
+							"type": "preposition",
+							"meaning": "to"
+						},
+						"Hà Nội": {
+							"type": "noun",
+							"meaning": "Hanoi"
+						}
+					},
+					"english": "This time tomorrow I'll be flying to Hanoi",
+					"literalEnglish": "Tomorrow this-time I will currently fly to Hanoi",
+					"notes": "sẽ + đang — future continuous (rare but grammatically correct)"
+				}
+			]
 		}
 	]
 }

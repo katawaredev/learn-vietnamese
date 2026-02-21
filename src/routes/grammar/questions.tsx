@@ -6,6 +6,7 @@ import {
 	GrammarPracticeGrid,
 } from "~/layout/GrammarPracticeGrid";
 import { PracticeGrid } from "~/layout/PracticeGrid";
+import { GRAMMAR_TYPE_COLORS } from "~/lib/grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/questions")({
@@ -123,7 +124,7 @@ function QuestionsComponent() {
 						{whQuestions.questionWords && (
 							<WordGrid
 								data={whQuestions.questionWords}
-								titleClassName="text-pink-500"
+								titleClassName={GRAMMAR_TYPE_COLORS.question}
 							/>
 						)}
 
@@ -169,7 +170,7 @@ function QuestionsComponent() {
 
 								<WordGrid
 									data={group.particles}
-									titleClassName="text-orange-400"
+									titleClassName={GRAMMAR_TYPE_COLORS.particle}
 								/>
 							</div>
 						))}
@@ -198,7 +199,7 @@ function QuestionsComponent() {
 						{rhetoricalQuestions.rhetoricalPhrases && (
 							<WordGrid
 								data={rhetoricalQuestions.rhetoricalPhrases}
-								titleClassName="text-rose-500"
+								titleClassName={GRAMMAR_TYPE_COLORS.rhetorical}
 							/>
 						)}
 
