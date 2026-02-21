@@ -199,9 +199,7 @@ function FocusMarkersComponent() {
 				<Disclosure
 					defaultOpen
 					title={
-						<span className="font-bold text-gold text-lg">
-							{data.introduction.title}
-						</span>
+						<span className="font-bold text-lg">{data.introduction.title}</span>
 					}
 				>
 					<div className="space-y-3">

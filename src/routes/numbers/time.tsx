@@ -222,7 +222,7 @@ function TimeComponent() {
 					<Disclosure
 						className="mb-4 w-full"
 						title={
-							<span className="font-bold text-2xl text-gold">
+							<span className="font-bold text-2xl">
 								Time Periods (Buổi trong ngày)
 							</span>
 						}
@@ -269,7 +269,7 @@ function TimeComponent() {
 					<Disclosure
 						className="mb-4 w-full"
 						title={
-							<span className="font-bold text-2xl text-gold">
+							<span className="font-bold text-2xl">
 								Duration Units (Đơn vị thời gian)
 							</span>
 						}

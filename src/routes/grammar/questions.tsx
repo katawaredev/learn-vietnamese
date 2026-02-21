@@ -95,9 +95,7 @@ function QuestionsComponent() {
 				<Disclosure
 					defaultOpen
 					title={
-						<span className="font-bold text-gold text-lg">
-							{data.introduction.title}
-						</span>
+						<span className="font-bold text-lg">{data.introduction.title}</span>
 					}
 				>
 					<div className="space-y-4">
@@ -143,8 +141,9 @@ function QuestionsComponent() {
 										Pattern: {pattern.structure}
 									</div>
 								</div>
-								<h3>Examples:</h3>
-								<GrammarPracticeGrid examples={pattern.examples} />
+								<Disclosure plain title="Examples" defaultOpen>
+									<GrammarPracticeGrid examples={pattern.examples} />
+								</Disclosure>
 							</div>
 						))}
 					</div>
@@ -177,10 +176,9 @@ function QuestionsComponent() {
 
 						{/* Yes-No Examples */}
 						{yesNoQuestions.examples && yesNoQuestions.examples.length > 0 && (
-							<>
-								<h3>Examples:</h3>
+							<Disclosure plain title="Examples" defaultOpen>
 								<GrammarPracticeGrid examples={yesNoQuestions.examples} />
-							</>
+							</Disclosure>
 						)}
 					</div>
 				)}
@@ -206,12 +204,11 @@ function QuestionsComponent() {
 
 						{rhetoricalQuestions.examples &&
 							rhetoricalQuestions.examples.length > 0 && (
-								<>
-									<h3>Examples:</h3>
+								<Disclosure plain title="Examples" defaultOpen>
 									<GrammarPracticeGrid
 										examples={rhetoricalQuestions.examples}
 									/>
-								</>
+								</Disclosure>
 							)}
 					</div>
 				)}

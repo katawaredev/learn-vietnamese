@@ -62,11 +62,7 @@ function ClassifiersComponent() {
 		<Layout>
 			<Disclosure
 				defaultOpen
-				title={
-					<span className="font-bold text-gold text-lg">
-						What Are Classifiers?
-					</span>
-				}
+				title={<span className="font-bold text-lg">What Are Classifiers?</span>}
 			>
 				<div className="space-y-4">
 					<p>

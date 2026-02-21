@@ -55,9 +55,7 @@ function PronounsComponent() {
 		<Layout>
 			<Disclosure
 				className="w-full"
-				title={
-					<span className="font-bold text-gold text-lg">Core Principles</span>
-				}
+				title={<span className="font-bold text-lg">Core Principles</span>}
 			>
 				<div className="space-y-4">
 					<p>

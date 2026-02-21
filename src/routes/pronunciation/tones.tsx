@@ -33,7 +33,7 @@ function ToneDisclosure({
 		<Disclosure
 			title={
 				<>
-					<span className="font-bold text-gold text-lg">{name}</span>
+					<span className="font-bold text-lg">{name}</span>
 					<span className="font-mono">{direction}</span>
 				</>
 			}

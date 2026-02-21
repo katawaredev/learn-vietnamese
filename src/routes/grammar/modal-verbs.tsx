@@ -103,7 +103,7 @@ function ModalVerbsComponent() {
 				<Disclosure
 					defaultOpen
 					title={
-						<span className="font-bold text-gold text-lg">
+						<span className="font-bold text-lg">
 							Understanding Vietnamese Modal Verbs
 						</span>
 					}

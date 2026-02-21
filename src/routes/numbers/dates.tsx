@@ -106,7 +106,7 @@ function DatesComponent() {
 					<Disclosure
 						className="mb-4 w-full"
 						title={
-							<span className="font-bold text-2xl text-gold">
+							<span className="font-bold text-2xl">
 								Days of Week (Thứ trong tuần)
 							</span>
 						}
@@ -153,7 +153,7 @@ function DatesComponent() {
 					<Disclosure
 						className="mb-4 w-full"
 						title={
-							<span className="font-bold text-2xl text-gold">
+							<span className="font-bold text-2xl">
 								Months (Tháng trong năm)
 							</span>
 						}
@@ -198,7 +198,7 @@ function DatesComponent() {
 					<Disclosure
 						className="mb-4 w-full"
 						title={
-							<span className="font-bold text-2xl text-gold">
+							<span className="font-bold text-2xl">
 								Full Dates (Ngày tháng năm)
 							</span>
 						}

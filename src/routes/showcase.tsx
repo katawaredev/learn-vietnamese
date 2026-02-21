@@ -204,9 +204,7 @@ function ShowcasePage() {
 					<div className="space-y-4">
 						<Disclosure
 							title={
-								<span className="font-serif text-gold text-xl">
-									What is Vietnamese?
-								</span>
+								<span className="font-serif text-xl">What is Vietnamese?</span>
 							}
 						>
 							<p className="text-warm-cream">
@@ -218,9 +216,7 @@ function ShowcasePage() {
 
 						<Disclosure
 							title={
-								<span className="font-serif text-gold text-xl">
-									How do tones work?
-								</span>
+								<span className="font-serif text-xl">How do tones work?</span>
 							}
 							defaultOpen
 						>
@@ -233,11 +229,7 @@ function ShowcasePage() {
 						</Disclosure>
 
 						<Disclosure
-							title={
-								<span className="font-serif text-gold text-xl">
-									Practice Tips
-								</span>
-							}
+							title={<span className="font-serif text-xl">Practice Tips</span>}
 						>
 							<ul className="list-inside list-disc space-y-2 text-warm-cream">
 								<li>Listen to native speakers regularly</li>

@@ -82,9 +82,7 @@ function CountingComponent() {
 		<Layout>
 			<Disclosure
 				className="w-full"
-				title={
-					<span className="font-bold text-gold text-lg">Number Rules</span>
-				}
+				title={<span className="font-bold text-lg">Number Rules</span>}
 			>
 				<div className="space-y-4">
 					<p>
