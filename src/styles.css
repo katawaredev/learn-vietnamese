@@ -83,6 +83,7 @@
 		font-family: var(--font-serif);
 		font-optical-sizing: auto;
 		color: var(--color-gold);
+		font-weight: 600;
 	}
 
 	p {

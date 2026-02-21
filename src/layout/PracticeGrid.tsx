@@ -25,6 +25,7 @@ interface PracticeGridProps<T> {
 		item: PracticeItem<T>,
 	) => Record<string, ReactNode> | undefined;
 	size?: "small" | "medium" | "large";
+	titleClassName?: string;
 }
 
 export function PracticeGrid<T>({
@@ -32,6 +33,7 @@ export function PracticeGrid<T>({
 	getSubtitle,
 	getDetails,
 	size = "small",
+	titleClassName: titleClassNameProp,
 }: PracticeGridProps<T>) {
 	const { transcriptions, newTranscriptions, handleTranscription } =
 		useTranscriptionTracking();
@@ -48,7 +50,7 @@ export function PracticeGrid<T>({
 				const transcription = transcriptions[key];
 				const details = getDetails?.(key, item);
 				const hasDetails = details && Object.keys(details).length > 0;
-				const titleClassName = cn("font-bold", {
+				const titleClassName = cn("font-bold", titleClassNameProp, {
 					"text-[clamp(1rem,5vw,1.75rem)]": key.length > 12,
 					"text-[clamp(1rem,5vw,2.5rem)]": key.length > 6 && key.length <= 12,
 					"text-[clamp(1rem,5vw,3.75rem)]": key.length <= 6,

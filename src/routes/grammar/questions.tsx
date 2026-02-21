@@ -12,6 +12,11 @@ export const Route = createFileRoute("/grammar/questions")({
 	component: QuestionsComponent,
 });
 
+interface WordData {
+	meaning: string;
+	notes: string[];
+}
+
 interface Pattern {
 	id: string;
 	title: string;
@@ -20,147 +25,112 @@ interface Pattern {
 	examples: Example[];
 }
 
-interface QuestionWord {
-	vietnamese: string;
-	english: string;
-	usage: string;
-	example: string;
-}
-
-interface Particle {
-	vietnamese: string;
-	english: string;
-	nuance: string;
-	formality: string;
-	example: string;
-}
-
-interface RhetoricalPhrase {
-	vietnamese: string;
-	english: string;
-	usage: string;
-	example: string;
+interface ParticleGroup {
+	id: string;
+	title: string;
+	description: string;
+	particles: Record<string, WordData>;
 }
 
 interface QuestionType {
 	id: string;
 	title: string;
 	description: string;
-	questionWords?: QuestionWord[];
+	questionWords?: Record<string, WordData>;
 	patterns?: Pattern[];
-	particles?: Particle[];
-	phrases?: RhetoricalPhrase[];
+	particleGroups?: ParticleGroup[];
+	rhetoricalPhrases?: Record<string, WordData>;
 	examples?: Example[];
 }
 
-function QuestionsComponent() {
-	const data = questionsData as unknown as {
-		introduction: {
-			title: string;
-			content: string[];
-		};
-		questionTypes: QuestionType[];
-		practiceSentences: Array<{
-			vietnamese: string;
-			english: string;
-			type: string;
-			difficulty: string;
-		}>;
+interface QuestionsData {
+	introduction: {
+		title: string;
+		content: string[];
 	};
+	questionTypes: QuestionType[];
+}
 
-	// Prepare practice data for PracticeGrid
-	const practiceData = data.practiceSentences.reduce(
-		(acc, sentence) => {
-			acc[sentence.vietnamese] = {
-				meaning: sentence.english,
-				type: sentence.type,
-				difficulty: sentence.difficulty,
-			};
-			return acc;
-		},
-		{} as Record<string, { meaning: string; type: string; difficulty: string }>,
+function WordGrid({
+	data,
+	titleClassName,
+}: {
+	data: Record<string, WordData>;
+	titleClassName?: string;
+}) {
+	return (
+		<PracticeGrid<WordData>
+			data={data}
+			titleClassName={titleClassName}
+			getSubtitle={(item) => item.meaning}
+			getDetails={(_word, item) => ({
+				Notes: (
+					<ul className="mt-1 ml-4 list-disc space-y-1 text-sm text-white/70">
+						{item.notes.map((note) => (
+							<li key={note.slice(0, 30)}>{note}</li>
+						))}
+					</ul>
+				),
+			})}
+			size="medium"
+		/>
+	);
+}
+
+function QuestionsComponent() {
+	const data = questionsData as unknown as QuestionsData;
+
+	const whQuestions = data.questionTypes.find((t) => t.id === "wh-questions");
+	const yesNoQuestions = data.questionTypes.find(
+		(t) => t.id === "yes-no-questions",
+	);
+	const rhetoricalQuestions = data.questionTypes.find(
+		(t) => t.id === "rhetorical-questions",
 	);
 
 	return (
 		<Layout>
 			<div className="space-y-8">
+				{/* Introduction */}
 				<Disclosure
 					defaultOpen
 					title={
 						<span className="font-bold text-gold text-lg">
-							Understanding Vietnamese Questions
+							{data.introduction.title}
 						</span>
 					}
 				>
 					<div className="space-y-4">
 						{data.introduction.content.map((paragraph) => (
-							<p key={paragraph.slice(0, 50)}>{paragraph}</p>
+							<p
+								key={paragraph.slice(0, 50)}
+								className="text-white/80 leading-relaxed"
+							>
+								{paragraph}
+							</p>
 						))}
-
-						<div className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
-							<p className="font-semibold text-gold">Three Question Types:</p>
-							<ul className="mt-2 ml-6 list-disc space-y-2">
-								<li>
-									<strong>Wh-Questions:</strong> Use question words (who, what,
-									where, when, why, how) that stay in logical position
-								</li>
-								<li>
-									<strong>Yes-No Questions:</strong> Add particles at the end
-									(không, phải không, etc.) with different nuances
-								</li>
-								<li>
-									<strong>Rhetorical Questions:</strong> Express opinions or
-									feelings without expecting answers
-								</li>
-							</ul>
-						</div>
 					</div>
 				</Disclosure>
 
-				{/* Question Types Sections */}
-				{data.questionTypes.map((type) => (
-					<div key={type.id} className="space-y-6">
+				{/* Wh-Questions */}
+				{whQuestions && (
+					<div className="space-y-6">
 						<div>
 							<h2 className="font-bold font-serif text-2xl text-gold">
-								{type.title}
+								{whQuestions.title}
 							</h2>
-							<p className="mt-2 text-white/70">{type.description}</p>
+							<p className="mt-1 text-white/60">{whQuestions.description}</p>
 						</div>
 
-						{/* Question Words Table */}
-						{type.questionWords && (
-							<div className="space-y-4">
-								<h3 className="font-semibold text-lg text-white">
-									Question Words:
-								</h3>
-								<div className="grid gap-3">
-									{type.questionWords.map((qw) => (
-										<div
-											key={qw.vietnamese}
-											className="flex items-start gap-4 rounded-lg border border-white/10 bg-white/5 p-4"
-										>
-											<div className="shrink-0">
-												<div className="font-bold text-pink-500 text-xl">
-													{qw.vietnamese}
-												</div>
-												<div className="text-sm text-white/50">
-													{qw.english}
-												</div>
-											</div>
-											<div className="grow">
-												<div className="text-sm text-white/70">{qw.usage}</div>
-												<div className="mt-2 font-mono text-sm text-warm-cream">
-													{qw.example}
-												</div>
-											</div>
-										</div>
-									))}
-								</div>
-							</div>
+						{whQuestions.questionWords && (
+							<WordGrid
+								data={whQuestions.questionWords}
+								titleClassName="text-pink-500"
+							/>
 						)}
 
 						{/* Patterns with Examples */}
-						{type.patterns?.map((pattern) => (
+						{whQuestions.patterns?.map((pattern) => (
 							<div key={pattern.id} className="space-y-4">
 								<div className="rounded-lg border border-gold/30 bg-gold/5 p-5">
 									<div className="mb-2 font-semibold text-gold">
@@ -173,125 +143,78 @@ function QuestionsComponent() {
 										Pattern: {pattern.structure}
 									</div>
 								</div>
+								<h3>Examples:</h3>
+								<GrammarPracticeGrid examples={pattern.examples} />
+							</div>
+						))}
+					</div>
+				)}
 
-								<div className="space-y-4">
-									<GrammarPracticeGrid examples={pattern.examples} />
+				{/* Yes-No Questions */}
+				{yesNoQuestions && (
+					<div className="space-y-6">
+						<div>
+							<h2 className="font-bold font-serif text-2xl text-gold">
+								{yesNoQuestions.title}
+							</h2>
+							<p className="mt-1 text-white/60">{yesNoQuestions.description}</p>
+						</div>
+
+						{/* Particle Groups */}
+						{yesNoQuestions.particleGroups?.map((group) => (
+							<div key={group.id} className="space-y-4">
+								<div>
+									<h3>{group.title}</h3>
+									<p className="text-sm text-white/50">{group.description}</p>
 								</div>
+
+								<WordGrid
+									data={group.particles}
+									titleClassName="text-orange-400"
+								/>
 							</div>
 						))}
 
-						{/* Particles Table */}
-						{type.particles && (
-							<div className="space-y-4">
-								<h3 className="font-semibold text-lg text-white">
-									Question Particles & Their Nuances:
-								</h3>
-								<div className="grid gap-3">
-									{type.particles.map((particle) => (
-										<div
-											key={particle.vietnamese}
-											className="flex items-start gap-4 rounded-lg border border-white/10 bg-white/5 p-4"
-										>
-											<div className="w-32 shrink-0">
-												<div className="font-bold text-lg text-orange-400">
-													{particle.vietnamese}
-												</div>
-												<div className="text-white/50 text-xs">
-													{particle.formality}
-												</div>
-											</div>
-											<div className="grow">
-												<div className="font-semibold text-sm text-white">
-													{particle.english}
-												</div>
-												<div className="mt-1 text-sm text-white/60">
-													{particle.nuance}
-												</div>
-												<div className="mt-2 font-mono text-sm text-warm-cream">
-													{particle.example}
-												</div>
-											</div>
-										</div>
-									))}
-								</div>
-							</div>
-						)}
-
-						{/* Rhetorical Phrases */}
-						{type.phrases && (
-							<div className="space-y-4">
-								<h3 className="font-semibold text-lg text-white">
-									Rhetorical Question Phrases:
-								</h3>
-								<div className="grid gap-3">
-									{type.phrases.map((phrase) => (
-										<div
-											key={phrase.vietnamese}
-											className="flex items-start gap-4 rounded-lg border border-white/10 bg-white/5 p-4"
-										>
-											<div className="shrink-0">
-												<div className="font-bold text-lg text-rose-500">
-													{phrase.vietnamese}
-												</div>
-												<div className="text-sm text-white/50">
-													{phrase.english}
-												</div>
-											</div>
-											<div className="grow">
-												<div className="text-sm text-white/70">
-													{phrase.usage}
-												</div>
-												<div className="mt-2 font-mono text-sm text-warm-cream">
-													{phrase.example}
-												</div>
-											</div>
-										</div>
-									))}
-								</div>
-							</div>
-						)}
-
-						{/* Examples */}
-						{type.examples && type.examples.length > 0 && (
-							<div className="space-y-4">
-								<h3 className="font-semibold text-lg text-white">Examples:</h3>
-								<GrammarPracticeGrid examples={type.examples} />
-							</div>
+						{/* Yes-No Examples */}
+						{yesNoQuestions.examples && yesNoQuestions.examples.length > 0 && (
+							<>
+								<h3>Examples:</h3>
+								<GrammarPracticeGrid examples={yesNoQuestions.examples} />
+							</>
 						)}
 					</div>
-				))}
+				)}
 
-				{/* Practice Section */}
-				<div className="space-y-6 border-white/10 border-t pt-8">
-					<div>
-						<h2 className="font-bold font-serif text-2xl text-gold">
-							Practice Questions
-						</h2>
-						<p className="mt-2 text-sm text-white/60">
-							Try asking these questions to practice different question types
-						</p>
+				{/* Rhetorical Questions */}
+				{rhetoricalQuestions && (
+					<div className="space-y-6">
+						<div>
+							<h2 className="font-bold font-serif text-2xl text-gold">
+								{rhetoricalQuestions.title}
+							</h2>
+							<p className="mt-1 text-white/60">
+								{rhetoricalQuestions.description}
+							</p>
+						</div>
+
+						{rhetoricalQuestions.rhetoricalPhrases && (
+							<WordGrid
+								data={rhetoricalQuestions.rhetoricalPhrases}
+								titleClassName="text-rose-500"
+							/>
+						)}
+
+						{rhetoricalQuestions.examples &&
+							rhetoricalQuestions.examples.length > 0 && (
+								<>
+									<h3>Examples:</h3>
+									<GrammarPracticeGrid
+										examples={rhetoricalQuestions.examples}
+									/>
+								</>
+							)}
 					</div>
-
-					<PracticeGrid<{ meaning: string; type: string; difficulty: string }>
-						data={practiceData}
-						getSubtitle={(item) => item.meaning}
-						getDetails={(vietnamese, item) => ({
-							Vietnamese: <span className="text-warm-cream">{vietnamese}</span>,
-							English: (
-								<span className="font-bold text-gold">{item.meaning}</span>
-							),
-							Type:
-								item.type === "wh-question"
-									? "Wh-Question"
-									: item.type === "yes-no"
-										? "Yes-No Question"
-										: "Rhetorical",
-							Difficulty:
-								item.difficulty.charAt(0).toUpperCase() +
-								item.difficulty.slice(1),
-						})}
-					/>
-				</div>
+				)}
 			</div>
 		</Layout>
 	);
