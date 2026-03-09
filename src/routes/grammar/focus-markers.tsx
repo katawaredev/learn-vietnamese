@@ -3,12 +3,9 @@ import { Card } from "~/components/Card";
 import { Disclosure } from "~/components/Disclosure";
 import { SpeakButton } from "~/components/SpeakButton";
 import focusMarkersData from "~/data/grammar/focus-markers.json";
-import {
-	type Example,
-	GrammarPracticeGrid,
-} from "~/layout/GrammarPracticeGrid";
 import { PracticeGrid } from "~/layout/PracticeGrid";
-import { GRAMMAR_TYPE_COLORS } from "~/lib/grammar-colors";
+import { type Example, GrammarPracticeGrid } from "./-GrammarPracticeGrid";
+import { GRAMMAR_TYPE_COLORS } from "./-grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/focus-markers")({
@@ -98,12 +95,12 @@ const data = focusMarkersData as unknown as FocusMarkersData;
 const stripSubscript = (text: string) => text.replace(/[₀-₉]+$/, "");
 
 // Extended color mapping for focus markers
-const FOCUS_TYPE_COLORS = {
+const FOCUS_TYPE_COLORS: Record<string, string> = {
 	...GRAMMAR_TYPE_COLORS,
-	focus: "text-pink-400 font-bold",
-	"adjective-stressed": "text-lime-300 font-bold",
-	"object-stressed": "text-yellow-300 font-bold",
-	"demonstrative-stressed": "text-purple-300 font-bold",
+	focus: "text-focus font-bold",
+	"adjective-stressed": "text-adjective-stressed font-bold",
+	"object-stressed": "text-object-stressed font-bold",
+	"demonstrative-stressed": "text-demonstrative-stressed font-bold",
 };
 
 // Component for side-by-side comparison of with/without focus marker
@@ -395,10 +392,7 @@ function FocusMarkersComponent() {
 									<div className="flex flex-wrap gap-2">
 										{Object.entries(phrase.breakdown).map(([word, info]) => {
 											const displayWord = stripSubscript(word);
-											const colorClass =
-												FOCUS_TYPE_COLORS[
-													info.type as keyof typeof FOCUS_TYPE_COLORS
-												] || "text-white/70";
+											const colorClass = FOCUS_TYPE_COLORS[info.type];
 
 											return (
 												<div key={word} className="flex flex-col">

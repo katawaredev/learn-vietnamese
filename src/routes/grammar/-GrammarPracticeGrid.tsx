@@ -6,7 +6,7 @@ import { Popover } from "~/components/Popover";
 import { ResultVoiceIndicator } from "~/components/ResultIndicator";
 import { SpeakButton } from "~/components/SpeakButton";
 import { useTranscriptionTracking } from "~/hooks/useTranscriptionTracking";
-import { GRAMMAR_TYPE_COLORS } from "~/lib/grammar-colors";
+import { GRAMMAR_TYPE_COLORS } from "./-grammar-colors";
 
 export interface BreakdownItem {
 	type: string;
@@ -68,12 +68,11 @@ export function GrammarPracticeGrid({ examples }: GrammarPracticeGridProps) {
 								<tr>
 									{words.map((word) => {
 										const item = example.breakdown[word];
-										const colorClass =
-											GRAMMAR_TYPE_COLORS[item.type] || "text-gray-400";
+										const colorClass = GRAMMAR_TYPE_COLORS[item.type];
 										return (
 											<td
 												key={`${word}-type`}
-												className={`border-white/10 border-r px-3 py-2 text-center text-xs ${colorClass} last:border-r-0`}
+												className={`border-white/10 border-r px-3 py-2 text-center text-xs last:border-r-0 ${colorClass}`}
 											>
 												{item.type}
 											</td>
@@ -145,8 +144,7 @@ export function GrammarPracticeGrid({ examples }: GrammarPracticeGridProps) {
 								{words.map((word) => {
 									const item = example.breakdown[word];
 									const displayWord = stripSubscript(word);
-									const colorClass =
-										GRAMMAR_TYPE_COLORS[item.type] || "text-gray-400";
+									const colorClass = GRAMMAR_TYPE_COLORS[item.type];
 
 									// Responsive text size based on total sentence length
 									const totalLength = key.length;

@@ -280,6 +280,114 @@
 			]
 		}
 	],
+	"plurals": {
+		"title": "No Gender, No Plurals, No Articles",
+		"description": "Vietnamese has no grammatical gender, no required plural forms, and no articles (a, an, the). Nouns stay the same regardless of quantity — optional particles mark plurality when needed.",
+		"keyPoints": [
+			"No grammatical gender — nouns are neither masculine nor feminine",
+			"No required plural forms — the noun never changes",
+			"No articles — no equivalent of 'a', 'an', or 'the'",
+			"Context usually makes quantity clear without markers"
+		],
+		"markers": [
+			{
+				"marker": "những",
+				"meaning": "some, several (indefinite plural)",
+				"usage": "General plural — unspecified group",
+				"examples": [
+					{
+						"vietnamese": "những cuốn sách",
+						"breakdown": {
+							"những": { "type": "particle", "meaning": "[plural]" },
+							"cuốn": { "type": "classifier", "meaning": "classifier (books)" },
+							"sách": { "type": "noun", "meaning": "book" }
+						},
+						"english": "some books",
+						"literalEnglish": "[plural] classifier book",
+						"notes": "Indefinite — we don't know exactly which books"
+					},
+					{
+						"vietnamese": "những người bạn",
+						"breakdown": {
+							"những": { "type": "particle", "meaning": "[plural]" },
+							"người": {
+								"type": "classifier",
+								"meaning": "classifier (people)"
+							},
+							"bạn": { "type": "noun", "meaning": "friend" }
+						},
+						"english": "some friends",
+						"literalEnglish": "[plural] classifier friend"
+					}
+				]
+			},
+			{
+				"marker": "các",
+				"meaning": "all, every (definite plural)",
+				"usage": "Definite plural — all of a known group",
+				"examples": [
+					{
+						"vietnamese": "các bạn",
+						"breakdown": {
+							"các": { "type": "particle", "meaning": "[all/every]" },
+							"bạn": { "type": "noun", "meaning": "friend" }
+						},
+						"english": "all friends / you all",
+						"literalEnglish": "[all] friend",
+						"notes": "Definite — refers to all members of a known group"
+					},
+					{
+						"vietnamese": "các nước Đông Nam Á",
+						"breakdown": {
+							"các": { "type": "particle", "meaning": "[all/every]" },
+							"nước": { "type": "noun", "meaning": "country" },
+							"Đông Nam Á": { "type": "modifier", "meaning": "Southeast Asia" }
+						},
+						"english": "the Southeast Asian countries",
+						"literalEnglish": "[all] country Southeast Asia"
+					}
+				]
+			},
+			{
+				"marker": "mấy",
+				"meaning": "a few, several (small quantity)",
+				"usage": "Small indefinite quantity — casual/spoken",
+				"examples": [
+					{
+						"vietnamese": "mấy cái áo",
+						"breakdown": {
+							"mấy": { "type": "particle", "meaning": "a few" },
+							"cái": { "type": "classifier", "meaning": "classifier (things)" },
+							"áo": { "type": "noun", "meaning": "shirt" }
+						},
+						"english": "a few shirts",
+						"literalEnglish": "a-few classifier shirt",
+						"notes": "Implies a small, unspecified number"
+					}
+				]
+			}
+		],
+		"comparison": [
+			{
+				"context": "No marker (singular or context-dependent)",
+				"vietnamese": "Tôi có sách",
+				"english": "I have a book / I have books",
+				"notes": "Context determines singular or plural"
+			},
+			{
+				"context": "những (indefinite plural)",
+				"vietnamese": "Tôi có những cuốn sách hay",
+				"english": "I have some interesting books",
+				"notes": "Unspecified group of books"
+			},
+			{
+				"context": "các (definite plural)",
+				"vietnamese": "Các cuốn sách này rất hay",
+				"english": "All these books are very interesting",
+				"notes": "All books in a specific group"
+			}
+		]
+	},
 	"practiceSentences": [
 		{
 			"vietnamese": "Bạn tôi học tiếng Việt",

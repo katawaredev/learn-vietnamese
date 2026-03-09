@@ -1,11 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Disclosure } from "~/components/Disclosure";
 import modalVerbsData from "~/data/grammar/modal-verbs.json";
-import {
-	type Example,
-	GrammarPracticeGrid,
-} from "~/layout/GrammarPracticeGrid";
 import { PracticeGrid } from "~/layout/PracticeGrid";
+import { type Example, GrammarPracticeGrid } from "./-GrammarPracticeGrid";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/modal-verbs")({

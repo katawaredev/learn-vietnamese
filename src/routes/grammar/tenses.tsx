@@ -1,12 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Disclosure } from "~/components/Disclosure";
 import dataFile from "~/data/grammar/tenses.json";
-import {
-	type Example,
-	GrammarPracticeGrid,
-} from "~/layout/GrammarPracticeGrid";
 import { PracticeGrid } from "~/layout/PracticeGrid";
-import { GRAMMAR_TYPE_COLORS } from "~/lib/grammar-colors";
+import { type Example, GrammarPracticeGrid } from "./-GrammarPracticeGrid";
+import { GRAMMAR_TYPE_COLORS } from "./-grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/tenses")({

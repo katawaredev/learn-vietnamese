@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Disclosure } from "~/components/Disclosure";
 import classifiersData from "~/data/grammar/classifiers.json";
 import { PracticeGrid } from "~/layout/PracticeGrid";
-import { GRAMMAR_TYPE_COLORS } from "~/lib/grammar-colors";
+import { GRAMMAR_TYPE_COLORS } from "./-grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/classifiers")({

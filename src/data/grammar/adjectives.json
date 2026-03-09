@@ -550,5 +550,140 @@
 			"difficulty": "intermediate",
 			"notes": "Negation with intensifier 'lắm' (very)"
 		}
-	]
+	],
+	"adverbs": {
+		"title": "Adverb Placement",
+		"description": "Vietnamese adverbs modify verbs, adjectives, or other adverbs. Their position depends on what they modify — most come after the verb, but some come before.",
+		"rules": [
+			{
+				"rule": "After the Verb",
+				"description": "Most adverbs of manner come after the verb they modify",
+				"structure": "Subject + Verb + ADVERB",
+				"examples": [
+					{
+						"vietnamese": "Anh yêu em nhiều",
+						"breakdown": {
+							"Anh": { "type": "subject", "meaning": "I (male)" },
+							"yêu": { "type": "verb", "meaning": "love" },
+							"em": { "type": "object", "meaning": "you" },
+							"nhiều": { "type": "adverb", "meaning": "much/a lot" }
+						},
+						"english": "I love you a lot",
+						"literalEnglish": "I love you much"
+					},
+					{
+						"vietnamese": "Bạn chạy nhanh",
+						"breakdown": {
+							"Bạn": { "type": "subject", "meaning": "you" },
+							"chạy": { "type": "verb", "meaning": "run" },
+							"nhanh": { "type": "adverb", "meaning": "fast" }
+						},
+						"english": "You run fast",
+						"literalEnglish": "You run fast"
+					},
+					{
+						"vietnamese": "Cô ấy nói chậm",
+						"breakdown": {
+							"Cô ấy": { "type": "subject", "meaning": "she" },
+							"nói": { "type": "verb", "meaning": "speak" },
+							"chậm": { "type": "adverb", "meaning": "slowly" }
+						},
+						"english": "She speaks slowly",
+						"literalEnglish": "She speak slow"
+					}
+				]
+			},
+			{
+				"rule": "Before the Verb",
+				"description": "Adverbs of frequency and degree typically come before the verb",
+				"structure": "Subject + ADVERB + Verb",
+				"examples": [
+					{
+						"vietnamese": "Tôi thường đi bộ",
+						"breakdown": {
+							"Tôi": { "type": "subject", "meaning": "I" },
+							"thường": { "type": "adverb", "meaning": "often" },
+							"đi bộ": { "type": "verb", "meaning": "walk" }
+						},
+						"english": "I often walk",
+						"literalEnglish": "I often walk"
+					},
+					{
+						"vietnamese": "Anh ấy luôn đúng giờ",
+						"breakdown": {
+							"Anh ấy": { "type": "subject", "meaning": "he" },
+							"luôn": { "type": "adverb", "meaning": "always" },
+							"đúng giờ": { "type": "adjective", "meaning": "on time" }
+						},
+						"english": "He is always on time",
+						"literalEnglish": "He always on-time"
+					},
+					{
+						"vietnamese": "Em ít khi ăn sáng",
+						"breakdown": {
+							"Em": { "type": "subject", "meaning": "I (younger)" },
+							"ít khi": { "type": "adverb", "meaning": "rarely" },
+							"ăn sáng": { "type": "verb", "meaning": "eat breakfast" }
+						},
+						"english": "I rarely eat breakfast",
+						"literalEnglish": "I rarely eat breakfast"
+					}
+				]
+			},
+			{
+				"rule": "Before Adjectives",
+				"description": "When modifying adjectives, adverbs come before (same position as intensifiers)",
+				"structure": "Subject + ADVERB + Adjective",
+				"examples": [
+					{
+						"vietnamese": "Cô ấy cực kỳ thông minh",
+						"breakdown": {
+							"Cô ấy": { "type": "subject", "meaning": "she" },
+							"cực kỳ": { "type": "adverb", "meaning": "extremely" },
+							"thông minh": { "type": "adjective", "meaning": "intelligent" }
+						},
+						"english": "She is extremely intelligent",
+						"literalEnglish": "She extremely intelligent"
+					},
+					{
+						"vietnamese": "Món này khá ngon",
+						"breakdown": {
+							"Món": { "type": "noun", "meaning": "dish" },
+							"này": { "type": "demonstrative", "meaning": "this" },
+							"khá": { "type": "adverb", "meaning": "quite" },
+							"ngon": { "type": "adjective", "meaning": "delicious" }
+						},
+						"english": "This dish is quite delicious",
+						"literalEnglish": "Dish this quite delicious"
+					}
+				]
+			}
+		],
+		"commonAdverbs": {
+			"frequency": [
+				{ "adverb": "luôn", "meaning": "always" },
+				{ "adverb": "thường", "meaning": "often, usually" },
+				{ "adverb": "hay", "meaning": "often (colloquial)" },
+				{ "adverb": "thỉnh thoảng", "meaning": "sometimes" },
+				{ "adverb": "ít khi", "meaning": "rarely" },
+				{ "adverb": "không bao giờ", "meaning": "never" }
+			],
+			"manner": [
+				{ "adverb": "nhanh", "meaning": "quickly" },
+				{ "adverb": "chậm", "meaning": "slowly" },
+				{ "adverb": "giỏi", "meaning": "well, skillfully" },
+				{ "adverb": "kém", "meaning": "poorly" },
+				{ "adverb": "cẩn thận", "meaning": "carefully" },
+				{ "adverb": "rõ ràng", "meaning": "clearly" }
+			],
+			"degree": [
+				{ "adverb": "rất", "meaning": "very" },
+				{ "adverb": "quá", "meaning": "too, so" },
+				{ "adverb": "khá", "meaning": "quite, fairly" },
+				{ "adverb": "hơi", "meaning": "a bit, slightly" },
+				{ "adverb": "cực kỳ", "meaning": "extremely" },
+				{ "adverb": "lắm", "meaning": "very (after adj/verb)" }
+			]
+		}
+	}
 }

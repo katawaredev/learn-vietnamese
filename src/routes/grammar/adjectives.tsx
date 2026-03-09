@@ -3,12 +3,9 @@ import { Card } from "~/components/Card";
 import { Disclosure } from "~/components/Disclosure";
 import { SpeakButton } from "~/components/SpeakButton";
 import adjectivesData from "~/data/grammar/adjectives.json";
-import {
-	type Example,
-	GrammarPracticeGrid,
-} from "~/layout/GrammarPracticeGrid";
 import { PracticeGrid } from "~/layout/PracticeGrid";
-import { GRAMMAR_TYPE_COLORS } from "~/lib/grammar-colors";
+import { type Example, GrammarPracticeGrid } from "./-GrammarPracticeGrid";
+import { GRAMMAR_TYPE_COLORS } from "./-grammar-colors";
 import { Layout } from "./-layout";
 
 export const Route = createFileRoute("/grammar/adjectives")({
@@ -64,6 +61,32 @@ interface CategoryAdjective {
 	meaning: string;
 }
 
+interface AdverbExample {
+	vietnamese: string;
+	breakdown: Record<string, Breakdown>;
+	english: string;
+	literalEnglish: string;
+}
+
+interface AdverbRule {
+	rule: string;
+	description: string;
+	structure: string;
+	examples: AdverbExample[];
+}
+
+interface CommonAdverb {
+	adverb: string;
+	meaning: string;
+}
+
+interface AdverbsData {
+	title: string;
+	description: string;
+	rules: AdverbRule[];
+	commonAdverbs: Record<string, CommonAdverb[]>;
+}
+
 interface PracticeSentence {
 	vietnamese: string;
 	breakdown: Record<string, Breakdown>;
@@ -82,6 +105,7 @@ interface AdjectivesData {
 	intensifiers: Intensifier[];
 	reduplication: ReduplicationType[];
 	categories: Record<string, CategoryAdjective[]>;
+	adverbs: AdverbsData;
 	practiceSentences: PracticeSentence[];
 }
 
@@ -469,6 +493,111 @@ function AdjectivesComponent() {
 					</div>
 				</section>
 
+				{/* Adverbs Section */}
+				<section className="space-y-4">
+					<div>
+						<h2 className="font-bold font-serif text-2xl text-gold">
+							{data.adverbs.title}
+						</h2>
+						<p className="mt-1 text-sm text-white/60">
+							{data.adverbs.description}
+						</p>
+					</div>
+
+					{data.adverbs.rules.map((rule) => (
+						<Card key={rule.rule}>
+							<div className="space-y-4">
+								<div>
+									<h3 className="font-semibold text-lg text-warm-cream">
+										{rule.rule}
+									</h3>
+									<p className="mt-1 text-sm text-white/60">
+										{rule.description}
+									</p>
+									<div className="mt-2 rounded border border-gold/30 bg-gold/5 px-3 py-1.5">
+										<span className="font-mono text-gold text-sm">
+											{rule.structure}
+										</span>
+									</div>
+								</div>
+
+								<div className="space-y-3">
+									{rule.examples.map((ex) => (
+										<div
+											key={ex.vietnamese}
+											className="rounded-lg border border-white/10 bg-white/5 p-3"
+										>
+											<div className="flex items-center gap-2">
+												<span className="font-medium text-warm-cream">
+													{ex.vietnamese}
+												</span>
+												<SpeakButton text={ex.vietnamese} size="small" />
+											</div>
+											<div className="mt-1 text-gold text-sm">{ex.english}</div>
+											<div className="mt-1 text-white/40 text-xs italic">
+												{ex.literalEnglish}
+											</div>
+											<div className="mt-2 flex flex-wrap gap-2">
+												{Object.entries(ex.breakdown).map(([word, info]) => {
+													const colorClass =
+														GRAMMAR_TYPE_COLORS[
+															info.type as keyof typeof GRAMMAR_TYPE_COLORS
+														];
+													return (
+														<div key={word} className="flex flex-col">
+															<span
+																className={`font-medium text-xs ${colorClass}`}
+															>
+																{word}
+															</span>
+															<span className="text-white/40 text-xs">
+																{info.meaning}
+															</span>
+														</div>
+													);
+												})}
+											</div>
+										</div>
+									))}
+								</div>
+							</div>
+						</Card>
+					))}
+
+					{/* Common Adverbs */}
+					<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+						{Object.entries(data.adverbs.commonAdverbs).map(
+							([category, adverbs]) => (
+								<Card key={category} className="border-gold/20 bg-gold/5">
+									<div className="space-y-3">
+										<h3 className="font-semibold text-gold capitalize">
+											{category}
+										</h3>
+										<div className="space-y-2">
+											{adverbs.map((adv) => (
+												<div
+													key={adv.adverb}
+													className="flex items-center justify-between text-sm"
+												>
+													<div className="flex items-center gap-2">
+														<span className="font-medium text-warm-cream">
+															{adv.adverb}
+														</span>
+														<SpeakButton text={adv.adverb} size="small" />
+													</div>
+													<span className="text-white/50 text-xs">
+														{adv.meaning}
+													</span>
+												</div>
+											))}
+										</div>
+									</div>
+								</Card>
+							),
+						)}
+					</div>
+				</section>
+
 				{/* Practice Section */}
 				<section className="space-y-4">
 					<div>
@@ -520,7 +649,7 @@ function AdjectivesComponent() {
 											const colorClass =
 												GRAMMAR_TYPE_COLORS[
 													info.type as keyof typeof GRAMMAR_TYPE_COLORS
-												] || "text-white/70";
+												];
 
 											return (
 												<div key={word} className="flex flex-col">
