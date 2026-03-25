@@ -332,6 +332,10 @@
 		"expected": ["Tớ"]
 	},
 	{
+		"scenario": "Saying 'I'm going now' (casual, no addressee)",
+		"expected": ["Mình"]
+	},
+	{
 		"scenario": "Saying 'I'm bored' (very casual, no addressee)",
 		"expected": ["Tao"]
 	},

@@ -55,14 +55,14 @@
 		"ipa": "t͡ɕi"
 	},
 	"mình": {
-		"role": "I/you (intimate)",
+		"role": "I/you (intimate/casual)",
 		"reciprocal": "mình",
-		"usage": "Used reciprocally between romantic partners or very close friends; signals equality and intimacy",
-		"notes": "Don't use with strangers or casual acquaintances; implies closeness",
-		"contexts": ["romantic", "close friends", "intimate"],
+		"usage": "Between romantic partners or very close friends as both 'I' and 'you'; also used as casual 'I' in everyday speech (like thinking aloud or talking to friends)",
+		"notes": "Two uses: (1) reciprocal intimate pronoun between partners/close friends, (2) casual self-reference 'I' — warmer than 'tôi', less regional than 'tớ'",
+		"contexts": ["romantic", "close friends", "intimate", "casual"],
 		"gender": "any",
 		"formality": "intimate",
-		"priority": 1,
+		"priority": 4,
 		"ipa": "mɨɲ"
 	},
 	"ông": {
