@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useSilenceDetector } from "~/hooks/useSilenceDetector";
 import { getModelPath, useSTT } from "~/providers/stt-provider";
 import { isSilent } from "~/utils/audio";
 import { sttPool } from "~/workers/stt-worker-pool";
@@ -38,6 +39,23 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 	const onTranscriptionRef = useRef(onTranscription);
 	const isMountedRef = useRef(true);
 
+	const handleAutoStop = useCallback(() => {
+		if (mediaRecorder.current && mediaRecorder.current.state === "recording") {
+			mediaRecorder.current.stop();
+			setState("processing");
+		}
+	}, []);
+
+	const {
+		startSilenceDetection,
+		stopSilenceDetection,
+		cleanup: cleanupSilenceDetection,
+	} = useSilenceDetector({
+		onSilenceDetected: handleAutoStop,
+		silenceThreshold: 30,
+		silenceDuration: 2000,
+	});
+
 	// Keep onTranscription ref up to date
 	useEffect(() => {
 		onTranscriptionRef.current = onTranscription;
@@ -48,6 +66,7 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 		isMountedRef.current = true;
 		return () => {
 			isMountedRef.current = false;
+			cleanupSilenceDetection();
 			// Stop recording if component unmounts while recording
 			if (
 				mediaRecorder.current &&
@@ -56,7 +75,7 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 				mediaRecorder.current.stop();
 			}
 		};
-	}, []);
+	}, [cleanupSilenceDetection]);
 
 	// Process audio and transcribe using worker pool
 	const processAudio = useCallback(
@@ -89,6 +108,7 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 				// Skip transcription if audio is silent or too short
 				if (isSilent(audioData)) {
 					if (isMountedRef.current) {
+						onTranscriptionRef.current(null);
 						setState("idle");
 						setLoadingProgress(0);
 					}
@@ -174,6 +194,8 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 			};
 
 			mediaRecorder.current.onstop = async () => {
+				stopSilenceDetection();
+
 				const audioBlob = new Blob(audioChunks.current, {
 					type: actualMimeType,
 				});
@@ -185,6 +207,9 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 
 			mediaRecorder.current.start();
 			setState("recording");
+
+			// Start silence detection
+			startSilenceDetection(stream);
 		} catch (error) {
 			// DOMException properties aren't enumerable — Safari logs them as {}.
 			if (error instanceof DOMException) {
@@ -196,7 +221,7 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 			}
 			setState("idle");
 		}
-	}, [state, processAudio]);
+	}, [state, processAudio, startSilenceDetection, stopSilenceDetection]);
 
 	// Stop recording
 	const handleStopRecording = useCallback(() => {

@@ -303,9 +303,13 @@ function TextInputWithResult({
 function VoiceInputWithResult({ expectedText }: { expectedText: string }) {
 	const [userInput, setUserInput] = useState("");
 
+	const handleTranscription = (text: string | null) => {
+		if (text) setUserInput(text);
+	};
+
 	return (
 		<>
-			<ListenButton onTranscription={setUserInput} size="large" />
+			<ListenButton onTranscription={handleTranscription} size="large" />
 			<div className="mt-8 h-8">
 				{userInput && (
 					<ResultVoiceIndicator

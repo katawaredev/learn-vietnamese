@@ -12,7 +12,7 @@ const ListenWebButton = lazy(() =>
 );
 
 export interface ListenButtonProps {
-	onTranscription: (text: string) => void;
+	onTranscription: (text: string | null) => void;
 	lang?: Language;
 	size?: "small" | "medium" | "large";
 	className?: string;

@@ -12,7 +12,7 @@ export function useTranscriptionTracking() {
 		new Set(),
 	);
 
-	const handleTranscription = (key: string, text: string) => {
+	const handleTranscription = (key: string, text: string | null) => {
 		setTranscriptions((prev) => ({ ...prev, [key]: text }));
 		setNewTranscriptions((prev) => new Set(prev).add(key));
 		setTimeout(() => {

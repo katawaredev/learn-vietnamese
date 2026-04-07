@@ -15,6 +15,21 @@ export const calculateRMS = (audioData: Float32Array): number => {
 };
 
 /**
+ * Calculates the Root Mean Square (RMS) from frequency domain data (from AnalyserNode).
+ * Used for real-time silence detection during audio recording.
+ * @param frequencyData Uint8Array from AnalyserNode.getByteFrequencyData()
+ * @returns RMS value (typically 0-255 for byte data)
+ */
+export const calculateRMSFromFrequency = (
+	frequencyData: Uint8Array,
+): number => {
+	if (frequencyData.length === 0) return 0;
+
+	const sumSquares = frequencyData.reduce((sum, val) => sum + val * val, 0);
+	return Math.sqrt(sumSquares / frequencyData.length);
+};
+
+/**
  * Checks if an audio buffer is considered "silent" or too quiet based on a threshold.
  * @param audioData The audio buffer to check
  * @param threshold The RMS threshold below which audio is considered silent (default: 0.05)

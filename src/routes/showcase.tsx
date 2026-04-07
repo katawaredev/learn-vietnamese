@@ -39,6 +39,14 @@ function ShowcasePage() {
 	const [spokenTextVN, setSpokenTextVN] = useState("Xin chào");
 	const [spokenTextEN, setSpokenTextEN] = useState("Hello");
 
+	const handleTranscriptionVN = (text: string | null) => {
+		if (text) setTranscriptionVN(text);
+	};
+
+	const handleTranscriptionEN = (text: string | null) => {
+		if (text) setTranscriptionEN(text);
+	};
+
 	const selectOptions = [
 		{ label: "Option 1", value: "option1" },
 		{ label: "Option 2", value: "option2" },
@@ -436,17 +444,17 @@ function ShowcasePage() {
 							</h3>
 							<div className="flex flex-wrap items-center gap-8">
 								<ListenButton
-									onTranscription={setTranscriptionVN}
+									onTranscription={handleTranscriptionVN}
 									lang="vn"
 									size="small"
 								/>
 								<ListenButton
-									onTranscription={setTranscriptionVN}
+									onTranscription={handleTranscriptionVN}
 									lang="vn"
 									size="medium"
 								/>
 								<ListenButton
-									onTranscription={setTranscriptionVN}
+									onTranscription={handleTranscriptionVN}
 									lang="vn"
 									size="large"
 								/>
@@ -467,17 +475,17 @@ function ShowcasePage() {
 							</h3>
 							<div className="flex flex-wrap items-center gap-8">
 								<ListenButton
-									onTranscription={setTranscriptionEN}
+									onTranscription={handleTranscriptionEN}
 									lang="en"
 									size="small"
 								/>
 								<ListenButton
-									onTranscription={setTranscriptionEN}
+									onTranscription={handleTranscriptionEN}
 									lang="en"
 									size="medium"
 								/>
 								<ListenButton
-									onTranscription={setTranscriptionEN}
+									onTranscription={handleTranscriptionEN}
 									lang="en"
 									size="large"
 								/>

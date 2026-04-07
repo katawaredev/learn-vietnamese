@@ -240,8 +240,8 @@ function ConversationRoute() {
 	};
 
 	const handleTranscription = useCallback(
-		(text: string, speaker: "you" | "them") => {
-			if (!worker.current || isTranslating) {
+		(text: string | null, speaker: "you" | "them") => {
+			if (!text || !worker.current || isTranslating) {
 				return;
 			}
 

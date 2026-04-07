@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { numberToText } from "~/utils/numeric";
 import { ListenBaseButton, type RecordingState } from "./ListenBaseButton";
 import type { ListenButtonProps } from "./ListenButton";
 
@@ -37,31 +38,55 @@ export const ListenWebButton: FC<ListenButtonProps> = ({
 		speechRecognition.interimResults = false;
 		speechRecognition.lang = lang === "vn" ? "vi-VN" : "en-US";
 
+		let resultReceived = false;
+
 		speechRecognition.onstart = () => setState("recording");
 
 		speechRecognition.onresult = (event) => {
+			resultReceived = true;
 			if (event.results.length > 0) {
-				onTranscription(event.results[0][0].transcript.trim());
+				let transcript = event.results[0][0].transcript.trim();
+
+				// If transcription is a number and language is Vietnamese, convert to Vietnamese text
+				if (lang === "vn") {
+					const num = Number(transcript);
+					if (Number.isInteger(num)) {
+						try {
+							transcript = numberToText(num);
+						} catch {
+							// If conversion fails (out of range), use original
+						}
+					}
+				}
+
+				onTranscription(transcript);
 			}
 			setState("idle");
 		};
 
 		speechRecognition.onerror = (event) => {
-			console.error("Speech recognition error:", event.error);
+			resultReceived = true;
+			if (event.error === "no-speech") onTranscription(null);
+			else console.error("Speech recognition error:", event.error);
 			setState("idle");
 		};
 
-		speechRecognition.onend = () => setState("idle");
+		speechRecognition.onend = () => {
+			if (!resultReceived) {
+				onTranscription(null);
+			}
+			setState("idle");
+		};
 
 		recognition.current = speechRecognition;
 		recognition.current.start();
 	}, [state, lang, onTranscription]);
 
-	// Stop recording
+	// Stop recording - switch to processing state and let recognition finish naturally
 	const handleStopRecording = useCallback(() => {
-		if (recognition.current) {
-			recognition.current.stop();
-		}
+		setState("processing");
+		// Don't call stop() - let the Web Speech API finish on its own
+		// This prevents interrupting results processing
 	}, []);
 
 	// Check if Web Speech API is available

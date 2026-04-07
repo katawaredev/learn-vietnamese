@@ -99,11 +99,15 @@ function ListenPractice({
 function SpeakPractice({ itemKey }: { itemKey: string }) {
 	const [userInput, setUserInput] = useState("");
 
+	const handleTranscription = (text: string | null) => {
+		if (text) setUserInput(text);
+	};
+
 	return (
 		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500">
 			<h2 className="font-bold text-5xl">{itemKey}</h2>
 			<div className="flex flex-col items-center space-y-4">
-				<ListenButton onTranscription={setUserInput} size="large" />
+				<ListenButton onTranscription={handleTranscription} size="large" />
 				<div className="mt-8 h-8">
 					{userInput && (
 						<ResultVoiceIndicator

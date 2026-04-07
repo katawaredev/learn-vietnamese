@@ -25,7 +25,8 @@ function VoiceInputWithResult({
 }) {
 	const [userInput, setUserInput] = useState("");
 
-	const handleTranscription = (text: string) => {
+	const handleTranscription = (text: string | null) => {
+		if (!text) return;
 		setUserInput(text);
 		// Simple fuzzy match for voice - exact match too strict
 		const normalized = (s: string) =>

@@ -229,11 +229,16 @@ function SpeakInput({
 	textHint: string;
 }) {
 	const [userTranscription, setUserTranscription] = useState("");
+
+	const handleTranscription = (text: string | null) => {
+		if (text) setUserTranscription(text);
+	};
+
 	return (
 		<span className="relative inline-flex flex-col items-center">
 			<ListenButton
 				className="mx-2 inline-flex"
-				onTranscription={setUserTranscription}
+				onTranscription={handleTranscription}
 				size="small"
 			/>
 			{userTranscription && (

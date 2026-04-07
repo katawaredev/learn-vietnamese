@@ -19,6 +19,22 @@
 
 	--animate-shake: shake 1s ease-out;
 	--animate-stamp: stamp 1s ease-out;
+	--animate-pulse: pulse 1s ease-out;
+
+	@keyframes pulse {
+		0% {
+			transform: scale(0.7);
+		}
+		33% {
+			transform: scale(1);
+		}
+		66% {
+			transform: scale(0.7);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
 
 	@keyframes shake {
 		10%,
