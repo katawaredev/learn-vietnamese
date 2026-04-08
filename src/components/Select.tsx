@@ -21,7 +21,7 @@ const selectTriggerVariants = cva(
 );
 
 const selectItemVariants = cva(
-	"flex w-full items-center gap-2 border-white/10 border-b bg-white/5 text-left font-serif text-warm-cream transition-colors duration-200 last:border-b-0 hover:bg-gold hover:text-burgundy-dark focus:bg-gold focus:text-burgundy-dark focus:outline-none data-[highlighted]:bg-gold data-[highlighted]:text-burgundy-dark",
+	"flex w-full items-center gap-2 border-white/10 border-b bg-white/5 text-left font-serif text-warm-cream transition-colors duration-200 last:border-b-0 hover:bg-gold hover:text-burgundy-dark focus:bg-gold focus:text-burgundy-dark focus:outline-none data-highlighted:bg-gold data-highlighted:text-burgundy-dark",
 	{
 		variants: {
 			size: {
@@ -117,7 +117,7 @@ export function Select({
 				>
 					<BaseSelect.Popup
 						className={twMerge(
-							"max-h-96 w-(--anchor-width) overflow-y-auto rounded-2xl border border-gold bg-burgundy-dark shadow-xl focus:outline-none",
+							"max-h-64 w-(--anchor-width) overflow-y-auto rounded-2xl border border-gold bg-burgundy-dark shadow-xl focus:outline-none sm:max-h-96",
 							menuClassName,
 						)}
 					>
