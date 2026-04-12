@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Disclosure } from "~/components/Disclosure";
+import { ExternalLink } from "~/components/ExternalLink";
 import pronounsData from "~/data/relations/pronouns.json";
 import { PracticeGrid } from "~/layout/PracticeGrid";
 import { Layout } from "./-layout";
@@ -101,14 +102,10 @@ function PronounsComponent() {
 					</ul>
 					<p>
 						<strong>Read more:</strong>{" "}
-						<a
+						<ExternalLink
+							text="Wikipedia: Vietnamese pronouns"
 							href="https://en.wikipedia.org/wiki/Vietnamese_pronouns"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="underline"
-						>
-							Wikipedia: Vietnamese pronouns
-						</a>
+						/>
 					</p>
 				</div>
 			</Disclosure>

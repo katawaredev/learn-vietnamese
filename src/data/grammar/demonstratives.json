@@ -1,377 +1,273 @@
 {
 	"introduction": {
-		"title": "Understanding Vietnamese Demonstratives",
+		"title": "Vietnamese Demonstratives",
 		"content": [
-			"Vietnamese uses a three-term deictic system to indicate distance and position, similar to 'this/that/yonder' in older English.",
-			"The key difference from English: demonstratives come AFTER the noun they modify, not before.",
-			"There are four main categories: nominal (can be a noun), modifier (modifies nouns), proportion (with measure words), and manner (how something is done).",
-			"Regional variations exist, especially between Northern and Southern dialects."
+			"Demonstratives are 'pointing' words like 'this', 'that', 'here', and 'there'. Vietnamese uses a three-way system based on distance: near the speaker, near the listener, and far from both.",
+			"Unlike English (this/that), Vietnamese also distinguishes 'over there' (kia) — a third level of distance for things visible but distant from both speakers.",
+			"Demonstratives that modify a noun come AFTER it: 'con mèo này' = 'this cat' (literally: cat this). The classifier (con) is required because demonstratives count as quantifiers."
 		]
 	},
 	"sections": [
 		{
-			"id": "modifiers",
-			"title": "Demonstrative Modifiers (After Noun)",
-			"description": "These words modify nouns and always come AFTER the noun, unlike English 'this/that'.",
-			"distanceLevels": [
-				{
-					"distance": "proximal",
-					"label": "Close (this)",
-					"forms": ["này", "nầy (Southern)", "ni (Central)"],
-					"primary": "này"
+			"id": "noun-modifiers",
+			"title": "This / That / Over There",
+			"description": "Demonstratives that modify nouns — placed after the noun",
+			"colorKey": "demonstrative",
+			"words": {
+				"này": {
+					"meaning": "This (near speaker)",
+					"notes": [
+						"Refers to something close to the speaker.",
+						"Always placed after the noun and its classifier: 'cái bàn này' (this table).",
+						"Pronounced with a rising tone."
+					]
 				},
-				{
-					"distance": "medial",
-					"label": "Far (that)",
-					"forms": ["đó", "ấy", "nấy"],
-					"primary": "đó"
+				"đó": {
+					"meaning": "That (near listener)",
+					"notes": [
+						"Refers to something close to the listener but away from the speaker.",
+						"Synonym 'ấy' is more common in writing or northern speech: 'cái bàn ấy'.",
+						"Sometimes also means 'there' as a location word."
+					]
 				},
-				{
-					"distance": "distal",
-					"label": "Very far (yonder)",
-					"forms": ["kia", "kìa", "nọ (past only)"],
-					"primary": "kia"
+				"kia": {
+					"meaning": "Over there (far from both)",
+					"notes": [
+						"Refers to something visible but far from both speaker and listener.",
+						"Also works as a standalone place: 'Nhìn kia!' (Look over there!).",
+						"No direct English equivalent — closest is 'yonder' or 'over there'."
+					]
 				},
-				{
-					"distance": "indefinite",
-					"label": "Which/any",
-					"forms": ["nào", "mô (Central)"],
-					"primary": "nào"
+				"nào": {
+					"meaning": "Which / any",
+					"notes": [
+						"Placed after the noun to ask 'which one?'.",
+						"Also means 'any' in certain contexts."
+					]
 				}
-			],
+			},
 			"examples": [
 				{
-					"vietnamese": "bà₁ này₂",
+					"vietnamese": "Con mèo này đẹp",
 					"breakdown": {
-						"bà₁": { "type": "noun", "meaning": "lady/grandmother" },
-						"này₂": { "type": "demonstrative", "meaning": "this" }
+						"Con": { "type": "classifier", "meaning": "(animal)" },
+						"mèo": { "type": "noun", "meaning": "cat" },
+						"này": { "type": "demonstrative", "meaning": "this" },
+						"đẹp": { "type": "adjective", "meaning": "beautiful" }
 					},
-					"english": "this lady",
-					"literalEnglish": "lady this",
-					"notes": "Demonstrative comes AFTER the noun"
+					"english": "This cat is beautiful",
+					"literalEnglish": "(animal) cat this beautiful"
 				},
 				{
-					"vietnamese": "con₁ chó₂ đen₃ này₄",
+					"vietnamese": "Quyển sách đó của tôi",
 					"breakdown": {
-						"con₁": {
-							"type": "classifier",
-							"meaning": "classifier for animals"
-						},
-						"chó₂": { "type": "noun", "meaning": "dog" },
-						"đen₃": { "type": "adjective", "meaning": "black" },
-						"này₄": { "type": "demonstrative", "meaning": "this" }
+						"Quyển": { "type": "classifier", "meaning": "(book)" },
+						"sách": { "type": "noun", "meaning": "book" },
+						"đó": { "type": "demonstrative", "meaning": "that" },
+						"của": { "type": "preposition", "meaning": "of" },
+						"tôi": { "type": "object", "meaning": "me" }
 					},
-					"english": "this black dog",
-					"literalEnglish": "classifier dog black this",
-					"notes": "Demonstrative comes at the very end, after adjectives"
+					"english": "That book is mine",
+					"literalEnglish": "(book) book that of me"
 				},
 				{
-					"vietnamese": "người₁ đó₂",
+					"vietnamese": "Người kia là ai?",
 					"breakdown": {
-						"người₁": { "type": "noun", "meaning": "person" },
-						"đó₂": { "type": "demonstrative", "meaning": "that" }
+						"Người": { "type": "classifier", "meaning": "(person)" },
+						"kia": { "type": "demonstrative", "meaning": "over there" },
+						"là": { "type": "verb", "meaning": "is" },
+						"ai": { "type": "question", "meaning": "who" }
 					},
-					"english": "that person"
+					"english": "Who is that person over there?",
+					"literalEnglish": "Person over-there is who"
 				},
 				{
-					"vietnamese": "ngày₁ kia₂",
+					"vietnamese": "Bạn muốn cái nào?",
 					"breakdown": {
-						"ngày₁": { "type": "noun", "meaning": "day" },
-						"kia₂": { "type": "demonstrative", "meaning": "yonder/some other" }
+						"Bạn": { "type": "subject", "meaning": "you" },
+						"muốn": { "type": "verb", "meaning": "want" },
+						"cái": { "type": "classifier", "meaning": "(thing)" },
+						"nào": { "type": "demonstrative", "meaning": "which" }
 					},
-					"english": "some day (future or past)",
-					"notes": "kia is bidirectional - can refer to past OR future"
-				},
-				{
-					"vietnamese": "ngày₁ nọ₂",
-					"breakdown": {
-						"ngày₁": { "type": "noun", "meaning": "day" },
-						"nọ₂": { "type": "demonstrative", "meaning": "yonder" }
-					},
-					"english": "the other day (past only)",
-					"notes": "nọ only refers to the past, never future"
-				},
-				{
-					"vietnamese": "cái₁ nào₂",
-					"breakdown": {
-						"cái₁": {
-							"type": "classifier",
-							"meaning": "classifier for objects"
-						},
-						"nào₂": { "type": "demonstrative", "meaning": "which" }
-					},
-					"english": "which one"
+					"english": "Which one do you want?",
+					"literalEnglish": "You want thing which"
 				}
 			]
 		},
 		{
-			"id": "nominals",
-			"title": "Nominal Demonstratives (Standalone)",
-			"description": "These can function as nouns themselves or modify nouns. They often translate to 'here/there' or can be subjects/objects.",
+			"id": "locations",
+			"title": "Here / There / Where",
+			"description": "Standalone location words — used as places, not noun modifiers",
+			"colorKey": "location",
+			"words": {
+				"đây": {
+					"meaning": "Here (this place)",
+					"notes": [
+						"Different from 'này' which modifies nouns — 'đây' is a place by itself."
+					]
+				},
+				"đó": {
+					"meaning": "There (that place)",
+					"notes": [
+						"Same word as the noun-modifier 'đó', but used as a place: 'ở đó' (over there).",
+						"Refers to a place near the listener or already mentioned."
+					]
+				},
+				"đâu": {
+					"meaning": "Where",
+					"notes": [
+						"Also means 'nowhere' in negation: 'không đi đâu' (not going anywhere).",
+						"Note: đó and kia also work as standalone places (see above)."
+					]
+				}
+			},
 			"examples": [
 				{
-					"vietnamese": "Đây₁ là₂ anh₃ nó₄",
+					"vietnamese": "Đây là bạn tôi",
 					"breakdown": {
-						"Đây₁": { "type": "demonstrative", "meaning": "this/here" },
-						"là₂": { "type": "verb", "meaning": "is" },
-						"anh₃": { "type": "noun", "meaning": "older brother" },
-						"nó₄": { "type": "pronoun", "meaning": "his/her" }
+						"Đây": { "type": "location", "meaning": "this/here" },
+						"là": { "type": "verb", "meaning": "is" },
+						"bạn": { "type": "noun", "meaning": "friend" },
+						"tôi": { "type": "object", "meaning": "my" }
 					},
-					"english": "This is his brother",
-					"notes": "đây functions as a noun (subject)"
+					"english": "This is my friend",
+					"literalEnglish": "Here is friend my"
 				},
 				{
-					"vietnamese": "Đấy₁ là₂ nhà₃ tôi₄",
+					"vietnamese": "Tôi ở đây",
 					"breakdown": {
-						"Đấy₁": { "type": "demonstrative", "meaning": "that/there" },
-						"là₂": { "type": "verb", "meaning": "is" },
-						"nhà₃": { "type": "noun", "meaning": "house" },
-						"tôi₄": { "type": "pronoun", "meaning": "I/my" }
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"ở": { "type": "verb", "meaning": "be at" },
+						"đây": { "type": "location", "meaning": "here" }
 					},
-					"english": "That is my house"
+					"english": "I'm here",
+					"literalEnglish": "I be-at here"
 				},
 				{
-					"vietnamese": "Đâu₁ là₂ chỗ₃ bạn₄ muốn₅ đi₆",
+					"vietnamese": "Bạn ở đâu?",
 					"breakdown": {
-						"Đâu₁": { "type": "demonstrative", "meaning": "where" },
-						"là₂": { "type": "verb", "meaning": "is" },
-						"chỗ₃": { "type": "noun", "meaning": "place" },
-						"bạn₄": { "type": "pronoun", "meaning": "you" },
-						"muốn₅": { "type": "verb", "meaning": "want" },
-						"đi₆": { "type": "verb", "meaning": "go" }
+						"Bạn": { "type": "subject", "meaning": "you" },
+						"ở": { "type": "verb", "meaning": "be at" },
+						"đâu": { "type": "location", "meaning": "where" }
 					},
-					"english": "Where is the place you want to go?"
-				},
-				{
-					"vietnamese": "Tôi₁ đi₂ đây₃",
-					"breakdown": {
-						"Tôi₁": { "type": "subject", "meaning": "I" },
-						"đi₂": { "type": "verb", "meaning": "go" },
-						"đây₃": { "type": "demonstrative", "meaning": "here" }
-					},
-					"english": "I'm going here",
-					"notes": "đây as destination"
+					"english": "Where are you?",
+					"literalEnglish": "You be-at where"
 				}
 			]
 		},
 		{
-			"id": "proportion",
-			"title": "Proportion Demonstratives (Time & Quantity)",
-			"description": "Used with measure words to express 'this much', 'that long', 'when', etc. These are essential for expressing time and quantity.",
-			"types": [
-				{
-					"form": "bây",
-					"distance": "proximal",
-					"meaning": "this (extent/time)"
+			"id": "time-quantity",
+			"title": "Time & Quantity",
+			"description": "Demonstrative compounds for 'now', 'when', 'how much' — extremely common in daily speech",
+			"colorKey": "demonstrative",
+			"words": {
+				"bây giờ": {
+					"meaning": "Now",
+					"notes": ["Literally 'this time' — the standard word for 'now'."]
 				},
-				{
-					"form": "bấy",
-					"distance": "medial",
-					"meaning": "that (extent/time)"
+				"bao giờ": {
+					"meaning": "When",
+					"notes": ["Literally 'what time' — used to ask 'when?'."]
 				},
-				{
-					"form": "bao",
-					"distance": "indefinite",
-					"meaning": "what (extent/time)"
+				"bao nhiêu": {
+					"meaning": "How much / how many",
+					"notes": [
+						"Literally 'what amount' — essential for shopping and counting."
+					]
+				},
+				"bao lâu": {
+					"meaning": "How long",
+					"notes": ["Literally 'what duration'."]
 				}
-			],
+			},
 			"examples": [
 				{
-					"vietnamese": "bây₁ giờ₂",
+					"vietnamese": "Bây giờ mấy giờ rồi?",
 					"breakdown": {
-						"bây₁": { "type": "demonstrative", "meaning": "this" },
-						"giờ₂": { "type": "noun", "meaning": "time/hour" }
+						"Bây giờ": { "type": "demonstrative", "meaning": "now" },
+						"mấy": { "type": "question", "meaning": "what (number)" },
+						"giờ": { "type": "noun", "meaning": "hour" },
+						"rồi": { "type": "particle", "meaning": "already" }
 					},
-					"english": "now",
-					"literalEnglish": "this time"
+					"english": "What time is it now?",
+					"literalEnglish": "Now what hour already"
 				},
 				{
-					"vietnamese": "bấy₁ giờ₂",
+					"vietnamese": "Bao giờ bạn đi?",
 					"breakdown": {
-						"bấy₁": { "type": "demonstrative", "meaning": "that" },
-						"giờ₂": { "type": "noun", "meaning": "time/hour" }
+						"Bao giờ": { "type": "demonstrative", "meaning": "when" },
+						"bạn": { "type": "subject", "meaning": "you" },
+						"đi": { "type": "verb", "meaning": "go" }
 					},
-					"english": "then, at that time",
-					"literalEnglish": "that time"
+					"english": "When are you going?",
+					"literalEnglish": "When you go"
 				},
 				{
-					"vietnamese": "bao₁ giờ₂",
+					"vietnamese": "Bao nhiêu tiền?",
 					"breakdown": {
-						"bao₁": { "type": "demonstrative", "meaning": "what" },
-						"giờ₂": { "type": "noun", "meaning": "time/hour" }
+						"Bao nhiêu": { "type": "demonstrative", "meaning": "how much" },
+						"tiền": { "type": "noun", "meaning": "money" }
 					},
-					"english": "when",
-					"literalEnglish": "what time"
+					"english": "How much?",
+					"literalEnglish": "How-much money"
 				},
 				{
-					"vietnamese": "bây₁ nhiêu₂",
+					"vietnamese": "Bạn học bao lâu rồi?",
 					"breakdown": {
-						"bây₁": { "type": "demonstrative", "meaning": "this" },
-						"nhiêu₂": { "type": "quantifier", "meaning": "much/many" }
+						"Bạn": { "type": "subject", "meaning": "you" },
+						"học": { "type": "verb", "meaning": "study" },
+						"bao lâu": { "type": "demonstrative", "meaning": "how long" },
+						"rồi": { "type": "particle", "meaning": "already" }
 					},
-					"english": "this much/many"
-				},
-				{
-					"vietnamese": "bấy₁ nhiêu₂",
-					"breakdown": {
-						"bấy₁": { "type": "demonstrative", "meaning": "that" },
-						"nhiêu₂": { "type": "quantifier", "meaning": "much/many" }
-					},
-					"english": "that much/many"
-				},
-				{
-					"vietnamese": "bao₁ nhiêu₂",
-					"breakdown": {
-						"bao₁": { "type": "demonstrative", "meaning": "what" },
-						"nhiêu₂": { "type": "quantifier", "meaning": "much/many" }
-					},
-					"english": "how much/many"
-				},
-				{
-					"vietnamese": "bao₁ lâu₂",
-					"breakdown": {
-						"bao₁": { "type": "demonstrative", "meaning": "what" },
-						"lâu₂": { "type": "adjective", "meaning": "long (time)" }
-					},
-					"english": "how long"
+					"english": "How long have you been studying?",
+					"literalEnglish": "You study how-long already"
 				}
 			]
 		},
 		{
 			"id": "manner",
-			"title": "Manner Demonstratives (How)",
-			"description": "Express 'this way', 'that way', 'how' - describing the manner in which something is done.",
+			"title": "Like This / Like That",
+			"description": "Saying 'so', 'like this', or 'in that way'",
+			"colorKey": "demonstrative",
+			"words": {
+				"thế": {
+					"meaning": "So / like that",
+					"notes": [
+						"Used at the end of a sentence to mean 'so' or 'like that'."
+					]
+				}
+			},
 			"examples": [
 				{
-					"vietnamese": "Làm₁ vầy₂",
+					"vietnamese": "Đừng làm thế",
 					"breakdown": {
-						"Làm₁": { "type": "verb", "meaning": "do/make" },
-						"vầy₂": { "type": "demonstrative", "meaning": "this way/thus" }
+						"Đừng": { "type": "negation", "meaning": "don't" },
+						"làm": { "type": "verb", "meaning": "do" },
+						"thế": { "type": "demonstrative", "meaning": "like that" }
 					},
-					"english": "Do it this way"
+					"english": "Don't do that",
+					"literalEnglish": "Don't do like-that"
 				},
 				{
-					"vietnamese": "Làm₁ vậy₂",
+					"vietnamese": "Như thế nào?",
 					"breakdown": {
-						"Làm₁": { "type": "verb", "meaning": "do/make" },
-						"vậy₂": { "type": "demonstrative", "meaning": "that way/so" }
+						"Như": { "type": "preposition", "meaning": "like" },
+						"thế": { "type": "demonstrative", "meaning": "that" },
+						"nào": { "type": "question", "meaning": "which" }
 					},
-					"english": "Do it that way"
+					"english": "How? / Like what?",
+					"literalEnglish": "Like that which"
 				},
 				{
-					"vietnamese": "Làm₁ sao₂",
+					"vietnamese": "Thế à?",
 					"breakdown": {
-						"Làm₁": { "type": "verb", "meaning": "do/make" },
-						"sao₂": { "type": "demonstrative", "meaning": "how" }
+						"Thế": { "type": "demonstrative", "meaning": "so" },
+						"à": { "type": "particle", "meaning": "really?" }
 					},
-					"english": "How to do it?"
-				},
-				{
-					"vietnamese": "như₁ vậy₂",
-					"breakdown": {
-						"như₁": { "type": "particle", "meaning": "like/as" },
-						"vậy₂": { "type": "demonstrative", "meaning": "that way" }
-					},
-					"english": "like that, in that way",
-					"notes": "Common combination for 'so/thus'"
+					"english": "Really? / Is that so?",
+					"literalEnglish": "So really"
 				}
 			]
-		},
-		{
-			"id": "metaphorical",
-			"title": "Metaphorical Use (Referring to People)",
-			"description": "In colloquial speech, demonstratives can refer to people contextually, especially in informal situations.",
-			"examples": [
-				{
-					"vietnamese": "Đây₁ đi₂ chợ₃ đấy₄ có₅ đi₆ không₇",
-					"breakdown": {
-						"Đây₁": { "type": "demonstrative", "meaning": "this one (I)" },
-						"đi₂": { "type": "verb", "meaning": "go" },
-						"chợ₃": { "type": "noun", "meaning": "market" },
-						"đấy₄": { "type": "demonstrative", "meaning": "that one (you)" },
-						"có₅": { "type": "particle", "meaning": "question particle" },
-						"đi₆": { "type": "verb", "meaning": "go" },
-						"không₇": { "type": "negation", "meaning": "not/no" }
-					},
-					"english": "I'm going to the market, are you going?",
-					"literalEnglish": "This goes market, that go or not?",
-					"notes": "Very colloquial - đây = I, đấy = you"
-				}
-			]
-		}
-	],
-	"practiceSentences": [
-		{
-			"vietnamese": "Cái áo này đẹp",
-			"english": "This shirt is beautiful",
-			"type": "modifiers",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Người đó là ai",
-			"english": "Who is that person?",
-			"type": "modifiers",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Đây là bạn tôi",
-			"english": "This is my friend",
-			"type": "nominals",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Bây giờ mấy giờ rồi",
-			"english": "What time is it now?",
-			"type": "proportion",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Bạn muốn mua cái nào",
-			"english": "Which one do you want to buy?",
-			"type": "modifiers",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Nhà kia rất đẹp",
-			"english": "That house over there is very beautiful",
-			"type": "modifiers",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Làm sao để học tiếng Việt",
-			"english": "How to learn Vietnamese?",
-			"type": "manner",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Bao nhiêu tiền một cái",
-			"english": "How much money for one?",
-			"type": "proportion",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Ngày nọ tôi gặp cô ấy",
-			"english": "The other day I met her",
-			"type": "modifiers",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Đừng làm vậy",
-			"english": "Don't do it that way",
-			"type": "manner",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Bấy giờ tôi chưa biết",
-			"english": "At that time I didn't know yet",
-			"type": "proportion",
-			"difficulty": "advanced"
-		},
-		{
-			"vietnamese": "Người nào cũng thích",
-			"english": "Everyone likes it",
-			"type": "modifiers",
-			"difficulty": "advanced"
 		}
 	]
 }

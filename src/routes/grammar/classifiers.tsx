@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Disclosure } from "~/components/Disclosure";
+import { ExternalLink } from "~/components/ExternalLink";
 import classifiersData from "~/data/grammar/classifiers.json";
 import { PracticeGrid } from "~/layout/PracticeGrid";
 import { GRAMMAR_TYPE_COLORS } from "./-grammar-colors";
@@ -118,14 +119,10 @@ function ClassifiersComponent() {
 
 					<p>
 						<strong>Read more:</strong>{" "}
-						<a
+						<ExternalLink
+							text="Wikipedia: Vietnamese Classifiers"
 							href="https://en.wikipedia.org/wiki/Vietnamese_grammar#Classifier_position"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="underline"
-						>
-							Wikipedia: Vietnamese Classifiers
-						</a>
+						/>
 					</p>
 				</div>
 			</Disclosure>

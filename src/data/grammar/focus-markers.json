@@ -1,283 +1,192 @@
 {
 	"introduction": {
-		"title": "Focus Markers (cái)",
+		"title": "Vietnamese Focus Markers",
 		"content": [
-			"The focus marker 'cái' is a special particle that indicates contrastive focus - emphasizing one element in contrast to others. It requires specific stress/intonation and must always appear before a classifier.",
-			"This is completely different from the classifier 'cái' used for inanimate objects. The focus marker 'cái' can work with any noun regardless of animacy."
+			"Focus markers highlight or emphasize a specific part of a sentence — like English using stress ('It was JOHN who broke it') or 'as for...' constructions.",
+			"Vietnamese has dedicated words for this: 'thì' marks topic-comment boundaries, 'là' acts as a focus copula, and 'chính' means 'exactly/precisely' to pinpoint the focused element.",
+			"These are subtle but important — they let you control which information sounds new, contrasted, or emphasized without changing word order."
 		]
 	},
-	"classifierVsFocus": {
-		"title": "Distinguishing: Classifier 'cái' vs Focus Marker 'cái'",
-		"description": "These are two different grammatical functions with the same form",
-		"comparison": [
-			{
-				"type": "Classifier cái",
-				"function": "Categorizes inanimate objects only",
-				"pattern": "cái + noun",
-				"examples": [
-					{
-						"vietnamese": "cái bàn",
-						"english": "table",
-						"valid": true,
-						"note": "bàn (table) is inanimate - OK"
-					},
-					{
-						"vietnamese": "cái chó",
-						"english": "dog",
-						"valid": false,
-						"note": "chó (dog) is animate - WRONG"
-					}
-				]
-			},
-			{
-				"type": "Focus Marker cái",
-				"function": "Adds contrastive emphasis to any noun phrase",
-				"pattern": "cái + classifier + noun",
-				"examples": [
-					{
-						"vietnamese": "cái con chó",
-						"english": "this very dog (emphasized)",
-						"valid": true,
-						"note": "Works with animate nouns"
-					},
-					{
-						"vietnamese": "cái cuốn sách",
-						"english": "this very book (emphasized)",
-						"valid": true,
-						"note": "Works with inanimate nouns"
-					},
-					{
-						"vietnamese": "cái người lính",
-						"english": "this very soldier (emphasized)",
-						"valid": true,
-						"note": "Works with human nouns"
-					}
-				]
-			}
-		]
-	},
-	"positionRules": {
-		"title": "Position and Requirements",
-		"rules": [
-			{
-				"rule": "Must come BEFORE the classifier",
-				"correct": "cái con chó này",
-				"correctEnglish": "this very dog",
-				"incorrect": "con cái chó này",
-				"explanation": "Focus marker precedes the classifier 'con'"
-			},
-			{
-				"rule": "Always requires a classifier",
-				"correct": "cái cuốn sách",
-				"correctEnglish": "this very book",
-				"incorrect": "cái sách",
-				"explanation": "Cannot stand alone, must have classifier 'cuốn'"
-			},
-			{
-				"rule": "Precedes numerals and other modifiers",
-				"correct": "hai cái con chó đen này",
-				"correctEnglish": "these very two black dogs",
-				"incorrect": "hai con cái chó đen này",
-				"explanation": "Pattern: numeral + cái + classifier + noun"
-			}
-		]
-	},
-	"contrastiveExamples": {
-		"title": "Contrastive Focus in Action",
-		"description": "The focus marker highlights specific elements. Different stress patterns change what's being contrasted.",
-		"examples": [
-			{
-				"id": "horse-color",
-				"scenario": "Emphasizing the color",
-				"withoutFocus": {
-					"vietnamese": "Tôi thích con ngựa đen",
-					"breakdown": {
-						"Tôi": { "type": "subject", "meaning": "I" },
-						"thích": { "type": "verb", "meaning": "like" },
-						"con": { "type": "classifier", "meaning": "[CL]" },
-						"ngựa": { "type": "object", "meaning": "horse" },
-						"đen": { "type": "adjective", "meaning": "black" }
-					},
-					"english": "I like the black horse",
-					"literal": "I like [CL] horse black"
-				},
-				"withFocus": {
-					"vietnamese": "Tôi thích CÁI con ngựa ĐEN",
-					"breakdown": {
-						"Tôi": { "type": "subject", "meaning": "I" },
-						"thích": { "type": "verb", "meaning": "like" },
-						"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
-						"con": { "type": "classifier", "meaning": "[CL]" },
-						"ngựa": { "type": "object", "meaning": "horse" },
-						"ĐEN": { "type": "adjective-stressed", "meaning": "BLACK" }
-					},
-					"english": "I like the BLACK horse (not other colors)",
-					"literal": "[FOCUS] [CL] horse BLACK",
-					"stressPattern": "CÁI receives stress, ĐEN receives stress"
-				},
-				"focusedElement": "color (đen)",
-				"connotation": "neutral",
-				"explanation": "Contrasts this horse's color with other horses"
-			},
-			{
-				"id": "horse-animal",
-				"scenario": "Emphasizing the animal type",
-				"withoutFocus": {
-					"vietnamese": "Tôi thích con ngựa đen",
-					"breakdown": {
-						"Tôi": { "type": "subject", "meaning": "I" },
-						"thích": { "type": "verb", "meaning": "like" },
-						"con": { "type": "classifier", "meaning": "[CL]" },
-						"ngựa": { "type": "object", "meaning": "horse" },
-						"đen": { "type": "adjective", "meaning": "black" }
-					},
-					"english": "I like the black horse",
-					"literal": "I like [CL] horse black"
-				},
-				"withFocus": {
-					"vietnamese": "Tôi thích CÁI con NGỰA đen",
-					"breakdown": {
-						"Tôi": { "type": "subject", "meaning": "I" },
-						"thích": { "type": "verb", "meaning": "like" },
-						"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
-						"con": { "type": "classifier", "meaning": "[CL]" },
-						"NGỰA": { "type": "object-stressed", "meaning": "HORSE" },
-						"đen": { "type": "adjective", "meaning": "black" }
-					},
-					"english": "I like the black HORSE (not other animals)",
-					"literal": "[FOCUS] [CL] HORSE black",
-					"stressPattern": "CÁI receives stress, NGỰA receives stress"
-				},
-				"focusedElement": "animal type (ngựa)",
-				"connotation": "neutral",
-				"explanation": "Contrasts horses with other black animals"
-			},
-			{
-				"id": "husband-dismissive",
-				"scenario": "Dismissive/pejorative usage",
-				"withoutFocus": {
-					"vietnamese": "Thằng chồng em nó đi làm",
-					"breakdown": {
-						"Thằng": { "type": "classifier", "meaning": "[CL-male]" },
-						"chồng": { "type": "object", "meaning": "husband" },
-						"em": { "type": "pronoun", "meaning": "younger sibling" },
-						"nó": { "type": "pronoun", "meaning": "she/he" },
-						"đi": { "type": "verb", "meaning": "go" },
-						"làm": { "type": "verb", "meaning": "work" }
-					},
-					"english": "Her husband went to work",
-					"literal": "[CL-male] husband younger-sibling she go work"
-				},
-				"withFocus": {
-					"vietnamese": "CÁI thằng CHỒNG em nó đi làm",
-					"breakdown": {
-						"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
-						"thằng": { "type": "classifier", "meaning": "[CL-male]" },
-						"CHỒNG": { "type": "object-stressed", "meaning": "HUSBAND" },
-						"em": { "type": "pronoun", "meaning": "younger sibling" },
-						"nó": { "type": "pronoun", "meaning": "she/he" },
-						"đi": { "type": "verb", "meaning": "go" },
-						"làm": { "type": "verb", "meaning": "work" }
-					},
-					"english": "That husband of hers went to work (dismissive)",
-					"literal": "[FOCUS] [CL-male] HUSBAND younger-sibling she go work",
-					"stressPattern": "CÁI receives stress, CHỒNG receives stress"
-				},
-				"focusedElement": "husband (chồng)",
-				"connotation": "dismissive",
-				"explanation": "The focus marker adds a pejorative or dismissive tone"
-			},
-			{
-				"id": "girl-positive",
-				"scenario": "Positive emphasis usage",
-				"withoutFocus": {
-					"vietnamese": "Con nhỏ tử tế lắm",
-					"breakdown": {
-						"Con": { "type": "classifier", "meaning": "[CL]" },
-						"nhỏ": { "type": "adjective", "meaning": "small/young" },
-						"tử tế": { "type": "adjective", "meaning": "kind" },
-						"lắm": { "type": "intensifier", "meaning": "very" }
-					},
-					"english": "The girl is very kind",
-					"literal": "[CL] small kind very"
-				},
-				"withFocus": {
-					"vietnamese": "CÁI con nhỏ TỬ TẾ lắm",
-					"breakdown": {
-						"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
-						"con": { "type": "classifier", "meaning": "[CL]" },
-						"nhỏ": { "type": "adjective", "meaning": "small/young" },
-						"TỬ TẾ": { "type": "adjective-stressed", "meaning": "KIND" },
-						"lắm": { "type": "intensifier", "meaning": "very" }
-					},
-					"english": "The girl is very KIND (positive emphasis)",
-					"literal": "[FOCUS] [CL] small KIND very",
-					"stressPattern": "CÁI receives stress, TỬ TẾ receives stress"
-				},
-				"focusedElement": "kindness (tử tế)",
-				"connotation": "positive",
-				"explanation": "Not always pejorative - can emphasize positive qualities"
-			}
-		]
-	},
-	"commonPhrases": {
-		"title": "Common Phrases with Focus Marker",
-		"phrases": [
-			{
-				"vietnamese": "CÁI con CHÓ này",
-				"breakdown": {
-					"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
-					"con": { "type": "classifier", "meaning": "[CL]" },
-					"CHÓ": { "type": "object-stressed", "meaning": "DOG" },
-					"này": { "type": "demonstrative", "meaning": "this" }
-				},
-				"english": "this very DOG (not cat, not other animals)",
-				"connotation": "neutral"
-			},
-			{
-				"vietnamese": "CÁI thằng NÀY",
-				"breakdown": {
-					"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
-					"thằng": { "type": "classifier", "meaning": "[CL-male]" },
-					"NÀY": { "type": "demonstrative-stressed", "meaning": "THIS" }
-				},
-				"english": "THIS guy (dismissive/pejorative)",
-				"connotation": "dismissive"
-			},
-			{
-				"vietnamese": "mấy CÁI con MÈO này",
-				"breakdown": {
-					"mấy": { "type": "quantifier", "meaning": "several" },
-					"CÁI": { "type": "focus", "meaning": "[FOCUS]" },
-					"con": { "type": "classifier", "meaning": "[CL]" },
-					"MÈO": { "type": "object-stressed", "meaning": "CAT" },
-					"này": { "type": "demonstrative", "meaning": "these" }
-				},
-				"english": "these very CATS (not other animals)",
-				"connotation": "neutral"
-			}
-		]
-	},
-	"practiceSentences": [
+	"sections": [
 		{
-			"vietnamese": "CÁI con MÈO đen này dễ thương lắm",
-			"english": "This very BLACK CAT is very cute (emphasizing the cat)",
-			"difficulty": "easy"
+			"id": "topic-comment",
+			"title": "Topic Marking (thì)",
+			"description": "Marking what the sentence is 'about' before commenting on it",
+			"colorKey": "marker",
+			"words": {
+				"thì": {
+					"meaning": "As for / then (topic marker)",
+					"notes": [
+						"Placed after the topic to introduce a comment about it.",
+						"Often signals contrast with what someone else thinks or does.",
+						"Different from 'thì' in conditionals ('nếu...thì'), though related."
+					]
+				}
+			},
+			"examples": [
+				{
+					"vietnamese": "Tôi thì thích phở",
+					"breakdown": {
+						"Tôi": { "type": "topic", "meaning": "I" },
+						"thì": { "type": "marker", "meaning": "as for" },
+						"thích": { "type": "verb", "meaning": "like" },
+						"phở": { "type": "object", "meaning": "phở" }
+					},
+					"english": "As for me, I like phở",
+					"literalEnglish": "I as-for like phở"
+				},
+				{
+					"vietnamese": "Hôm nay thì trời đẹp",
+					"breakdown": {
+						"Hôm nay": { "type": "topic", "meaning": "today" },
+						"thì": { "type": "marker", "meaning": "as for" },
+						"trời": { "type": "subject", "meaning": "weather" },
+						"đẹp": { "type": "adjective", "meaning": "nice" }
+					},
+					"english": "Today, the weather is nice",
+					"literalEnglish": "Today as-for weather nice"
+				}
+			]
 		},
 		{
-			"vietnamese": "Tôi không thích CÁI cái ÁO đỏ đó",
-			"english": "I don't like that very RED SHIRT (emphasizing the color)",
-			"difficulty": "medium"
+			"id": "focus-copula",
+			"title": "Focus Copula (là)",
+			"description": "Highlighting a specific element with 'là'",
+			"colorKey": "marker",
+			"words": {
+				"là": {
+					"meaning": "Is / it is (focus)",
+					"notes": [
+						"Normally 'là' means 'to be' for identity.",
+						"As a focus marker, it isolates the highlighted element.",
+						"Carries emphasis like English 'it is X that...'.",
+						"Often used in answers to highlight the new information."
+					]
+				}
+			},
+			"examples": [
+				{
+					"vietnamese": "Cái tôi muốn là phở",
+					"breakdown": {
+						"Cái": { "type": "classifier", "meaning": "(thing)" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"muốn": { "type": "verb", "meaning": "want" },
+						"là": { "type": "marker", "meaning": "is (focus)" },
+						"phở": { "type": "object", "meaning": "phở" }
+					},
+					"english": "What I want is phở",
+					"literalEnglish": "Thing I want is phở"
+				},
+				{
+					"vietnamese": "Người gọi điện là anh Nam",
+					"breakdown": {
+						"Người": { "type": "classifier", "meaning": "person" },
+						"gọi điện": { "type": "verb", "meaning": "call" },
+						"là": { "type": "marker", "meaning": "is (focus)" },
+						"anh Nam": { "type": "object", "meaning": "Nam (older brother)" }
+					},
+					"english": "The person who called is Nam",
+					"literalEnglish": "Person call is brother Nam"
+				}
+			]
 		},
 		{
-			"vietnamese": "CÁI thằng BẠN tôi nói chuyện với em",
-			"english": "That FRIEND of mine is talking to you (dismissive tone)",
-			"difficulty": "medium"
-		},
-		{
-			"vietnamese": "Hai CÁI con CHÓ ĐEN này là của tôi",
-			"english": "These two BLACK DOGS are mine (emphasizing the dogs)",
-			"difficulty": "hard"
+			"id": "emphatic",
+			"title": "Emphatic Particles (chính / ngay)",
+			"description": "Pinpointing exactly the right element",
+			"colorKey": "marker",
+			"words": {
+				"chính": {
+					"meaning": "Exactly / precisely",
+					"notes": [
+						"Placed before the noun to pinpoint exactly who or what.",
+						"Adds strong identification — 'this is the one'.",
+						"Common in answers and corrections."
+					]
+				},
+				"mới": {
+					"meaning": "Is the real / actual one",
+					"notes": [
+						"Used with 'là' to assert the true or correct identity.",
+						"Implies contrast — correcting a wrong assumption.",
+						"Different from 'mới' meaning 'new' or 'just (recently)' — context decides."
+					]
+				},
+				"ngay": {
+					"meaning": "Right (here/then) / immediately",
+					"notes": [
+						"Marks immediacy or precise location.",
+						"Often combines with location words."
+					]
+				},
+				"cái": {
+					"meaning": "Emphasis / contrastive focus",
+					"notes": [
+						"Placed before the classifier to add emphasis: 'cái con chó này' (this very dog).",
+						"Different from the classifier 'cái' for objects — here it works with ANY classifier.",
+						"Pattern: cái + classifier + noun. Can sound dismissive or admiring depending on tone."
+					]
+				}
+			},
+			"examples": [
+				{
+					"vietnamese": "Chính tôi đã làm",
+					"breakdown": {
+						"Chính": { "type": "marker", "meaning": "exactly" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"đã": { "type": "tense-marker", "meaning": "did" },
+						"làm": { "type": "verb", "meaning": "do" }
+					},
+					"english": "I myself did it",
+					"literalEnglish": "Exactly I did do"
+				},
+				{
+					"vietnamese": "Nó ở ngay đây",
+					"breakdown": {
+						"Nó": { "type": "subject", "meaning": "it" },
+						"ở": { "type": "verb", "meaning": "be at" },
+						"ngay": { "type": "marker", "meaning": "right" },
+						"đây": { "type": "location", "meaning": "here" }
+					},
+					"english": "It's right here",
+					"literalEnglish": "It be-at right here"
+				},
+				{
+					"vietnamese": "Làm ngay!",
+					"breakdown": {
+						"Làm": { "type": "verb", "meaning": "do" },
+						"ngay": { "type": "marker", "meaning": "immediately" }
+					},
+					"english": "Do it right now!",
+					"literalEnglish": "Do immediately"
+				},
+				{
+					"vietnamese": "Anh ấy mới là sếp",
+					"breakdown": {
+						"Anh ấy": { "type": "subject", "meaning": "he" },
+						"mới": { "type": "marker", "meaning": "is the real" },
+						"là": { "type": "marker", "meaning": "is" },
+						"sếp": { "type": "object", "meaning": "boss" }
+					},
+					"english": "He is the actual boss",
+					"literalEnglish": "He real-is boss",
+					"notes": "Implies: someone else was mistakenly thought to be the boss"
+				},
+				{
+					"vietnamese": "Cái con mèo này dễ thương lắm",
+					"breakdown": {
+						"Cái": { "type": "marker", "meaning": "(emphasis)" },
+						"con": { "type": "classifier", "meaning": "[CL]" },
+						"mèo": { "type": "object", "meaning": "cat" },
+						"này": { "type": "demonstrative", "meaning": "this" },
+						"dễ thương": { "type": "adjective", "meaning": "cute" },
+						"lắm": { "type": "adverb", "meaning": "very" }
+					},
+					"english": "This cat is SO cute",
+					"literalEnglish": "(emphasis) [CL] cat this cute very",
+					"notes": "'cái' before the classifier 'con' adds emphasis — not acting as a classifier itself"
+				}
+			]
 		}
 	]
 }

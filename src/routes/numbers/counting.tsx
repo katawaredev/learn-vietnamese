@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Disclosure } from "~/components/Disclosure";
+import { ExternalLink } from "~/components/ExternalLink";
 import { PracticeGrid } from "~/layout/PracticeGrid";
 import { numberToText } from "~/utils/numeric";
 import { Layout } from "./-layout";
@@ -124,14 +125,10 @@ function CountingComponent() {
 
 					<p>
 						<strong>Read more:</strong>{" "}
-						<a
+						<ExternalLink
+							text="ikipedia: Vietnamese numerals"
 							href="https://en.wikipedia.org/wiki/Vietnamese_numerals"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="underline"
-						>
-							Wikipedia: Vietnamese numerals
-						</a>
+						/>
 					</p>
 				</div>
 			</Disclosure>

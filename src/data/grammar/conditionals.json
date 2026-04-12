@@ -1,400 +1,275 @@
 {
 	"introduction": {
-		"title": "Vietnamese Conditional Sentences",
+		"title": "Vietnamese Conditionals (If-Then)",
 		"content": [
-			"Vietnamese conditionals use the 'Nếu...thì' structure to express if-then relationships. Unlike English, Vietnamese doesn't change verb forms for different conditional types—context and tense markers determine the type.",
-			"The basic pattern is: Nếu + [condition], thì + [result]. Both 'nếu' (if) and 'thì' (then) can be omitted in casual speech when context is clear.",
-			"Vietnamese has three main conditional types: real/possible (things that can happen), unreal/counterfactual (things that didn't happen), and habitual/general (things that always happen)."
+			"Vietnamese conditionals follow a simple 'if X, then Y' structure: 'nếu X, thì Y'. Both 'nếu' (if) and 'thì' (then) are common, though 'thì' is often dropped in casual speech.",
+			"Unlike English, Vietnamese verbs don't change form for hypothetical situations — there's no past subjunctive ('if I were'). The same words handle real, hypothetical, and counterfactual conditionals.",
+			"Other conditional connectors include 'khi' (when), 'trừ khi' (unless), and 'miễn là' (as long as)."
 		]
 	},
-	"basicStructure": {
-		"title": "Basic Structure: Nếu...thì",
-		"description": "The fundamental Vietnamese conditional pattern",
-		"structure": "Nếu + [condition clause], thì + [result clause]",
-		"components": [
-			{
-				"word": "Nếu",
-				"meaning": "if",
-				"usage": "Introduces the condition. Can be replaced with 'nếu như' for emphasis."
-			},
-			{
-				"word": "thì",
-				"meaning": "then",
-				"usage": "Introduces the result. Often omitted in casual speech, but preferred in formal contexts."
-			}
-		],
-		"examples": [
-			{
-				"vietnamese": "Nếu trời mưa thì tôi sẽ không đi làm",
-				"breakdown": {
-					"Nếu": { "type": "conditional", "meaning": "if" },
-					"trời": { "type": "subject", "meaning": "weather/sky" },
-					"mưa": { "type": "verb", "meaning": "rain" },
-					"thì": { "type": "conditional", "meaning": "then" },
-					"tôi": { "type": "subject", "meaning": "I" },
-					"sẽ": { "type": "tense-marker", "meaning": "will" },
-					"không": { "type": "negation", "meaning": "not" },
-					"đi làm": { "type": "verb", "meaning": "go to work" }
-				},
-				"english": "If it rains, I will not go to work",
-				"literalEnglish": "If weather rain then I will not go work",
-				"notes": "Standard conditional with both 'nếu' and 'thì'"
-			},
-			{
-				"vietnamese": "Nếu trời mưa, tôi sẽ không đi làm",
-				"breakdown": {
-					"Nếu": { "type": "conditional", "meaning": "if" },
-					"trời": { "type": "subject", "meaning": "weather/sky" },
-					"mưa": { "type": "verb", "meaning": "rain" },
-					"tôi": { "type": "subject", "meaning": "I" },
-					"sẽ": { "type": "tense-marker", "meaning": "will" },
-					"không": { "type": "negation", "meaning": "not" },
-					"đi làm": { "type": "verb", "meaning": "go to work" }
-				},
-				"english": "If it rains, I will not go to work",
-				"literalEnglish": "If weather rain, I will not go work",
-				"notes": "Casual variant: comma replaces 'thì' (more common in speech)"
-			}
-		]
-	},
-	"conditionalTypes": [
+	"sections": [
 		{
-			"id": "real-possible",
-			"title": "Real/Possible Conditionals",
-			"description": "Describes something that can or might happen. Used for present and future situations that are plausible.",
-			"pattern": "Nếu + present tense, thì + future/present tense",
-			"whenToUse": "Predictions, plans, likely scenarios",
+			"id": "if-then",
+			"title": "If ... Then",
+			"description": "The basic conditional pattern — nếu ... thì",
+			"colorKey": "conditional",
+			"words": {
+				"nếu": {
+					"meaning": "If",
+					"notes": [
+						"Placed at the beginning of the condition clause.",
+						"Works for both real and hypothetical 'if' situations.",
+						"'Nếu như' is more emphatic — adds weight to the condition.",
+						"Can be omitted in casual speech if context is clear."
+					]
+				},
+				"thì": {
+					"meaning": "Then",
+					"notes": [
+						"Placed at the start of the result clause.",
+						"Often omitted in casual speech — more common to drop than 'nếu'.",
+						"Also used as a general topic-marker outside conditionals."
+					]
+				}
+			},
 			"examples": [
 				{
-					"vietnamese": "Nếu bạn học chăm chỉ thì bạn sẽ thành công",
+					"vietnamese": "Nếu trời mưa thì tôi ở nhà",
 					"breakdown": {
 						"Nếu": { "type": "conditional", "meaning": "if" },
-						"bạn₁": { "type": "subject", "meaning": "you" },
-						"học": { "type": "verb", "meaning": "study" },
-						"chăm chỉ": { "type": "adjective", "meaning": "diligently" },
+						"trời": { "type": "subject", "meaning": "sky/weather" },
+						"mưa": { "type": "verb", "meaning": "rain" },
 						"thì": { "type": "conditional", "meaning": "then" },
-						"bạn₂": { "type": "subject", "meaning": "you" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"ở": { "type": "verb", "meaning": "stay" },
+						"nhà": { "type": "object", "meaning": "home" }
+					},
+					"english": "If it rains, then I'll stay home",
+					"literalEnglish": "If sky rain then I stay home"
+				},
+				{
+					"vietnamese": "Nếu bạn muốn, tôi sẽ giúp",
+					"breakdown": {
+						"Nếu": { "type": "conditional", "meaning": "if" },
+						"bạn": { "type": "subject", "meaning": "you" },
+						"muốn": { "type": "verb", "meaning": "want" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"sẽ": { "type": "tense-marker", "meaning": "will" },
+						"giúp": { "type": "verb", "meaning": "help" }
+					},
+					"english": "If you want, I will help",
+					"literalEnglish": "If you want I will help",
+					"notes": "'thì' omitted — very common in spoken Vietnamese"
+				},
+				{
+					"vietnamese": "Nếu như bạn cố gắng thì sẽ thành công",
+					"breakdown": {
+						"Nếu như": { "type": "conditional", "meaning": "if (emphatic)" },
+						"bạn": { "type": "subject", "meaning": "you" },
+						"cố gắng": { "type": "verb", "meaning": "try hard" },
+						"thì": { "type": "conditional", "meaning": "then" },
 						"sẽ": { "type": "tense-marker", "meaning": "will" },
 						"thành công": { "type": "verb", "meaning": "succeed" }
 					},
-					"english": "If you study hard, you will succeed",
-					"literalEnglish": "If you study diligently then you will succeed",
-					"notes": "Future result with 'sẽ'"
+					"english": "If you really try, you will succeed",
+					"literalEnglish": "If-emphatic you try then will succeed",
+					"notes": "'Nếu như' adds more weight than plain 'nếu'"
 				},
 				{
-					"vietnamese": "Nếu anh đói thì anh có thể ăn bánh mì này",
+					"vietnamese": "Trời mưa thì tôi không đi",
 					"breakdown": {
-						"Nếu": { "type": "conditional", "meaning": "if" },
-						"anh₁": { "type": "subject", "meaning": "you (male)" },
-						"đói": { "type": "adjective", "meaning": "hungry" },
+						"Trời": { "type": "subject", "meaning": "weather" },
+						"mưa": { "type": "verb", "meaning": "rain" },
 						"thì": { "type": "conditional", "meaning": "then" },
-						"anh₂": { "type": "subject", "meaning": "you (male)" },
-						"có thể": { "type": "modal", "meaning": "can" },
-						"ăn": { "type": "verb", "meaning": "eat" },
-						"bánh mì": { "type": "object", "meaning": "bread/sandwich" },
-						"này": { "type": "demonstrative", "meaning": "this" }
-					},
-					"english": "If you're hungry, you can eat this sandwich",
-					"literalEnglish": "If you hungry then you can eat bread this",
-					"notes": "Present condition, present possibility"
-				},
-				{
-					"vietnamese": "Nếu có thời gian tôi sẽ đến thăm bạn",
-					"breakdown": {
-						"Nếu": { "type": "conditional", "meaning": "if" },
-						"có": { "type": "verb", "meaning": "have" },
-						"thời gian": { "type": "object", "meaning": "time" },
-						"tôi": { "type": "subject", "meaning": "I" },
-						"sẽ": { "type": "tense-marker", "meaning": "will" },
-						"đến": { "type": "verb", "meaning": "come" },
-						"thăm": { "type": "verb", "meaning": "visit" },
-						"bạn": { "type": "object", "meaning": "you" }
-					},
-					"english": "If I have time, I will visit you",
-					"literalEnglish": "If have time I will come visit you",
-					"notes": "Note: 'thì' is omitted but understood"
-				}
-			]
-		},
-		{
-			"id": "unreal-counterfactual",
-			"title": "Unreal/Counterfactual Conditionals",
-			"description": "Describes something that didn't happen or a hypothetical past situation. The key is using 'đã' in the result clause to indicate the action didn't actually occur.",
-			"pattern": "Nếu + [condition], thì + đã + verb (past counterfactual)",
-			"whenToUse": "Regrets, hypothetical past scenarios, 'what if' situations",
-			"keyPoint": "The 'đã' in the result clause signals this is counterfactual—something that didn't actually happen",
-			"examples": [
-				{
-					"vietnamese": "Nếu tôi không nói thế thì anh đã không đến đây",
-					"breakdown": {
-						"Nếu": { "type": "conditional", "meaning": "if" },
 						"tôi": { "type": "subject", "meaning": "I" },
 						"không": { "type": "negation", "meaning": "not" },
-						"nói": { "type": "verb", "meaning": "say" },
-						"thế": { "type": "demonstrative", "meaning": "like that" },
-						"thì": { "type": "conditional", "meaning": "then" },
-						"anh": { "type": "subject", "meaning": "you (male)" },
-						"đã": { "type": "tense-marker", "meaning": "past/counterfactual" },
-						"không₂": { "type": "negation", "meaning": "not" },
-						"đến": { "type": "verb", "meaning": "come" },
-						"đây": { "type": "location", "meaning": "here" }
+						"đi": { "type": "verb", "meaning": "go" }
 					},
-					"english": "If I hadn't said that, you wouldn't have come here",
-					"literalEnglish": "If I not say like-that then you past not come here",
-					"notes": "'đã' in result clause marks this as counterfactual past"
+					"english": "If it rains, I won't go",
+					"literalEnglish": "Weather rain then I not go",
+					"notes": "'nếu' omitted — context makes the condition clear"
 				},
 				{
 					"vietnamese": "Nếu tôi biết thì tôi đã giúp bạn",
 					"breakdown": {
 						"Nếu": { "type": "conditional", "meaning": "if" },
-						"tôi₁": { "type": "subject", "meaning": "I" },
+						"tôi": { "type": "subject", "meaning": "I" },
 						"biết": { "type": "verb", "meaning": "know" },
 						"thì": { "type": "conditional", "meaning": "then" },
-						"tôi₂": { "type": "subject", "meaning": "I" },
-						"đã": { "type": "tense-marker", "meaning": "past/counterfactual" },
+						"đã": { "type": "tense-marker", "meaning": "would have" },
 						"giúp": { "type": "verb", "meaning": "help" },
 						"bạn": { "type": "object", "meaning": "you" }
 					},
 					"english": "If I had known, I would have helped you",
-					"literalEnglish": "If I know then I past help you",
-					"notes": "Expressing regret about not helping (because I didn't know)"
-				},
-				{
-					"vietnamese": "Nếu anh ấy học nhiều hơn thì đã thi đỗ",
-					"breakdown": {
-						"Nếu": { "type": "conditional", "meaning": "if" },
-						"anh ấy": { "type": "subject", "meaning": "he" },
-						"học": { "type": "verb", "meaning": "study" },
-						"nhiều": { "type": "adjective", "meaning": "much" },
-						"hơn": { "type": "comparative", "meaning": "more" },
-						"thì": { "type": "conditional", "meaning": "then" },
-						"đã": { "type": "tense-marker", "meaning": "past/counterfactual" },
-						"thi đỗ": { "type": "verb", "meaning": "pass exam" }
-					},
-					"english": "If he had studied more, he would have passed the exam",
-					"literalEnglish": "If he study much more then past pass-exam",
-					"notes": "Implies he didn't study enough and didn't pass"
+					"literalEnglish": "If I know then I already help you",
+					"notes": "Counterfactual: 'đã' (already) in the result implies it would have happened — but didn't"
 				}
 			]
 		},
 		{
-			"id": "habitual-general",
-			"title": "Habitual/General Conditionals",
-			"description": "Describes something that generally or always happens. These express universal truths or habitual patterns.",
-			"pattern": "Nếu + present, thì + present (both clauses present tense)",
-			"whenToUse": "General rules, habits, cause-and-effect that always applies",
+			"id": "when",
+			"title": "When (Time-Based)",
+			"description": "Conditional time references — 'when X happens, Y'",
+			"colorKey": "conditional",
+			"words": {
+				"khi": {
+					"meaning": "When (general)",
+					"notes": [
+						"Can refer to past, present, or future — context decides.",
+						"Often paired with 'thì' in the result clause."
+					]
+				},
+				"khi nào": {
+					"meaning": "Whenever / when (future)",
+					"notes": [
+						"Literally 'when' + 'any' — used for unspecified or future 'when' situations.",
+						"Also used as a question word."
+					]
+				}
+			},
 			"examples": [
 				{
-					"vietnamese": "Nếu trời nóng thì tôi uống nhiều nước",
+					"vietnamese": "Khi tôi đến, hãy gọi tôi",
 					"breakdown": {
-						"Nếu": { "type": "conditional", "meaning": "if" },
-						"trời": { "type": "subject", "meaning": "weather" },
-						"nóng": { "type": "adjective", "meaning": "hot" },
-						"thì": { "type": "conditional", "meaning": "then" },
+						"Khi": { "type": "conditional", "meaning": "when" },
 						"tôi": { "type": "subject", "meaning": "I" },
-						"uống": { "type": "verb", "meaning": "drink" },
-						"nhiều": { "type": "adjective", "meaning": "much/many" },
-						"nước": { "type": "object", "meaning": "water" }
+						"đến": { "type": "verb", "meaning": "arrive" },
+						"hãy": { "type": "modal", "meaning": "please" },
+						"gọi": { "type": "verb", "meaning": "call" }
 					},
-					"english": "If it's hot, I drink a lot of water",
-					"literalEnglish": "If weather hot then I drink much water",
-					"notes": "Describes a habitual action"
+					"english": "When I arrive, please call me",
+					"literalEnglish": "When I arrive please call"
 				},
 				{
-					"vietnamese": "Nếu em buồn thì em thường khóc",
+					"vietnamese": "Khi nào rảnh, tôi sẽ gọi",
 					"breakdown": {
-						"Nếu": { "type": "conditional", "meaning": "if" },
-						"em₁": { "type": "subject", "meaning": "I/me (younger)" },
-						"buồn": { "type": "adjective", "meaning": "sad" },
-						"thì": { "type": "conditional", "meaning": "then" },
-						"em₂": { "type": "subject", "meaning": "I/me (younger)" },
-						"thường": { "type": "adverb", "meaning": "usually" },
-						"khóc": { "type": "verb", "meaning": "cry" }
+						"Khi nào": { "type": "conditional", "meaning": "whenever" },
+						"rảnh": { "type": "adjective", "meaning": "free" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"sẽ": { "type": "tense-marker", "meaning": "will" },
+						"gọi": { "type": "verb", "meaning": "call" }
 					},
-					"english": "If I'm sad, I usually cry",
-					"literalEnglish": "If I sad then I usually cry",
-					"notes": "General pattern of behavior"
-				},
-				{
-					"vietnamese": "Nếu bạn ăn nhiều đường thì bạn bị béo",
-					"breakdown": {
-						"Nếu": { "type": "conditional", "meaning": "if" },
-						"bạn₁": { "type": "subject", "meaning": "you" },
-						"ăn": { "type": "verb", "meaning": "eat" },
-						"nhiều": { "type": "adjective", "meaning": "much" },
-						"đường": { "type": "object", "meaning": "sugar" },
-						"thì": { "type": "conditional", "meaning": "then" },
-						"bạn₂": { "type": "subject", "meaning": "you" },
-						"bị": { "type": "particle", "meaning": "[passive/undesirable]" },
-						"béo": { "type": "adjective", "meaning": "fat/overweight" }
-					},
-					"english": "If you eat a lot of sugar, you get fat",
-					"literalEnglish": "If you eat much sugar then you suffer fat",
-					"notes": "General cause-and-effect relationship"
+					"english": "Whenever I'm free, I'll call",
+					"literalEnglish": "Whenever free I will call"
 				}
 			]
-		}
-	],
-	"alternativeWords": {
-		"title": "Alternative Conditional Words",
-		"description": "Vietnamese has several alternatives to 'nếu' that add nuance or formality",
-		"words": [
-			{
-				"vietnamese": "Nếu như",
-				"english": "If (emphatic)",
-				"usage": "More emphatic than 'nếu', adds weight to the condition",
-				"formality": "neutral",
-				"example": "Nếu như bạn cố gắng thì sẽ thành công",
-				"exampleEnglish": "If you really try, you will succeed"
+		},
+		{
+			"id": "other",
+			"title": "Other Conditional Words",
+			"description": "Unless, as long as, suppose, in case, if only",
+			"colorKey": "conditional",
+			"words": {
+				"trừ khi": {
+					"meaning": "Unless",
+					"notes": [
+						"Means 'except when' — introduces the only exception.",
+						"Equivalent to English 'unless'.",
+						"Literally 'except when'."
+					]
+				},
+				"miễn là": {
+					"meaning": "As long as / provided that",
+					"notes": [
+						"Literally 'exempt' + 'is' — sets a condition that must be met.",
+						"Often used to give permission with a constraint."
+					]
+				},
+				"giả sử": {
+					"meaning": "Suppose / supposing",
+					"notes": [
+						"Literally 'pretend' + 'assume' — introduces hypothetical scenarios.",
+						"More formal — often for imagining possibilities."
+					]
+				},
+				"trong trường hợp": {
+					"meaning": "In case / in the event that",
+					"notes": [
+						"Literally 'in' + 'case' — used for contingency planning.",
+						"Common in official or professional contexts."
+					]
+				},
+				"chỉ cần": {
+					"meaning": "If only / you just need to",
+					"notes": [
+						"Emphasizes the condition is simple or minimal.",
+						"Literally 'only need' — reassuring tone."
+					]
+				}
 			},
-			{
-				"vietnamese": "Giả sử",
-				"english": "Suppose / Supposing",
-				"usage": "Introduces hypothetical scenarios, often for imagining possibilities",
-				"formality": "formal",
-				"example": "Giả sử bạn thắng xổ số, bạn sẽ làm gì?",
-				"exampleEnglish": "Suppose you win the lottery, what will you do?"
-			},
-			{
-				"vietnamese": "Trong trường hợp",
-				"english": "In case / In the event that",
-				"usage": "Formal, used for contingency planning",
-				"formality": "formal",
-				"example": "Trong trường hợp khẩn cấp, hãy gọi 115",
-				"exampleEnglish": "In case of emergency, call 115"
-			},
-			{
-				"vietnamese": "Trừ khi",
-				"english": "Unless",
-				"usage": "Negative condition—something will happen unless something else prevents it",
-				"formality": "neutral",
-				"example": "Tôi sẽ đi, trừ khi trời mưa",
-				"exampleEnglish": "I will go, unless it rains"
-			},
-			{
-				"vietnamese": "Miễn là",
-				"english": "As long as / Provided that",
-				"usage": "Sets a condition that must be met",
-				"formality": "neutral",
-				"example": "Bạn có thể đi, miễn là về trước 10 giờ",
-				"exampleEnglish": "You can go, as long as you're back before 10"
-			},
-			{
-				"vietnamese": "Chỉ cần",
-				"english": "You only need to / If only",
-				"usage": "Emphasizes that the condition is simple or minimal",
-				"formality": "neutral",
-				"example": "Chỉ cần bạn cố gắng thì mọi chuyện sẽ ổn",
-				"exampleEnglish": "If you just try hard, everything will be fine"
-			}
-		]
-	},
-	"variations": {
-		"title": "Common Variations",
-		"description": "Ways Vietnamese speakers modify or shorten conditional structures",
-		"examples": [
-			{
-				"pattern": "Omitting 'nếu'",
-				"description": "In casual speech, 'nếu' can be dropped if context is clear",
-				"vietnamese": "Trời mưa thì tôi không đi",
-				"english": "If it rains, I won't go",
-				"notes": "More colloquial, relies on context"
-			},
-			{
-				"pattern": "Omitting 'thì'",
-				"description": "More common than omitting 'nếu', especially in speech",
-				"vietnamese": "Nếu bạn muốn, bạn có thể đi",
-				"english": "If you want, you can go",
-				"notes": "Very common in spoken Vietnamese"
-			},
-			{
-				"pattern": "Omitting both",
-				"description": "When context is very clear, both can be omitted",
-				"vietnamese": "Trời mưa, tôi không đi",
-				"english": "If it rains, I won't go",
-				"notes": "Only works when conditional relationship is obvious from context"
-			},
-			{
-				"pattern": "Result before condition",
-				"description": "Sometimes Vietnamese puts the result first for emphasis",
-				"vietnamese": "Tôi sẽ không đi nếu trời mưa",
-				"english": "I will not go if it rains",
-				"notes": "Emphasizes the result. 'thì' is not used in this word order"
-			}
-		]
-	},
-	"practiceSentences": [
-		{
-			"vietnamese": "Nếu bạn đói thì ăn đi",
-			"english": "If you're hungry, eat",
-			"type": "real/possible",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Nếu trời mưa tôi ở nhà",
-			"english": "If it rains, I'll stay home",
-			"type": "real/possible",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Nếu có tiền tôi sẽ mua nhà",
-			"english": "If I have money, I will buy a house",
-			"type": "real/possible",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Nếu bạn cần giúp thì gọi tôi",
-			"english": "If you need help, call me",
-			"type": "real/possible",
-			"difficulty": "beginner"
-		},
-		{
-			"vietnamese": "Trừ khi bạn bận, chúng ta đi chơi nhé",
-			"english": "Unless you're busy, let's hang out",
-			"type": "unless",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Nếu tôi biết thì tôi đã nói với bạn",
-			"english": "If I had known, I would have told you",
-			"type": "unreal/counterfactual",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Giả sử bạn là tôi, bạn sẽ làm gì?",
-			"english": "Suppose you were me, what would you do?",
-			"type": "hypothetical",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Nếu trời nóng tôi thường đi bơi",
-			"english": "If it's hot, I usually go swimming",
-			"type": "habitual",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Miễn là bạn cố gắng, bạn sẽ thành công",
-			"english": "As long as you try, you will succeed",
-			"type": "provided that",
-			"difficulty": "intermediate"
-		},
-		{
-			"vietnamese": "Nếu anh ấy học chăm chỉ hơn thì đã thi đỗ",
-			"english": "If he had studied harder, he would have passed",
-			"type": "unreal/counterfactual",
-			"difficulty": "advanced"
-		},
-		{
-			"vietnamese": "Trong trường hợp khẩn cấp, hãy liên hệ với tôi",
-			"english": "In case of emergency, contact me",
-			"type": "formal",
-			"difficulty": "advanced"
-		},
-		{
-			"vietnamese": "Chỉ cần bạn tin tưởng thì mọi việc sẽ ổn",
-			"english": "If you just believe, everything will be fine",
-			"type": "minimal condition",
-			"difficulty": "advanced"
+			"examples": [
+				{
+					"vietnamese": "Tôi sẽ đi trừ khi trời mưa",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"sẽ": { "type": "tense-marker", "meaning": "will" },
+						"đi": { "type": "verb", "meaning": "go" },
+						"trừ khi": { "type": "conditional", "meaning": "unless" },
+						"trời": { "type": "subject", "meaning": "weather" },
+						"mưa": { "type": "verb", "meaning": "rain" }
+					},
+					"english": "I will go unless it rains",
+					"literalEnglish": "I will go unless weather rain"
+				},
+				{
+					"vietnamese": "Bạn có thể đi miễn là về sớm",
+					"breakdown": {
+						"Bạn": { "type": "subject", "meaning": "you" },
+						"có thể": { "type": "modal", "meaning": "can" },
+						"đi": { "type": "verb", "meaning": "go" },
+						"miễn là": { "type": "conditional", "meaning": "as long as" },
+						"về": { "type": "verb", "meaning": "return" },
+						"sớm": { "type": "adverb", "meaning": "early" }
+					},
+					"english": "You can go as long as you come back early",
+					"literalEnglish": "You can go as-long-as return early"
+				},
+				{
+					"vietnamese": "Giả sử bạn là tôi, bạn sẽ làm gì?",
+					"breakdown": {
+						"Giả sử": { "type": "conditional", "meaning": "suppose" },
+						"bạn": { "type": "subject", "meaning": "you" },
+						"là": { "type": "verb", "meaning": "are" },
+						"tôi": { "type": "object", "meaning": "me" },
+						"sẽ": { "type": "tense-marker", "meaning": "will" },
+						"làm": { "type": "verb", "meaning": "do" },
+						"gì": { "type": "question", "meaning": "what" }
+					},
+					"english": "Suppose you were me, what would you do?",
+					"literalEnglish": "Suppose you are me, you will do what"
+				},
+				{
+					"vietnamese": "Trong trường hợp khẩn cấp, hãy gọi 115",
+					"breakdown": {
+						"Trong trường hợp": {
+							"type": "conditional",
+							"meaning": "in case of"
+						},
+						"khẩn cấp": { "type": "adjective", "meaning": "emergency" },
+						"hãy": { "type": "modal", "meaning": "please" },
+						"gọi": { "type": "verb", "meaning": "call" },
+						"115": { "type": "object", "meaning": "115" }
+					},
+					"english": "In case of emergency, call 115",
+					"literalEnglish": "In case emergency, please call 115"
+				},
+				{
+					"vietnamese": "Chỉ cần bạn cố gắng thì sẽ ổn",
+					"breakdown": {
+						"Chỉ cần": {
+							"type": "conditional",
+							"meaning": "if only / just need"
+						},
+						"bạn": { "type": "subject", "meaning": "you" },
+						"cố gắng": { "type": "verb", "meaning": "try" },
+						"thì": { "type": "conditional", "meaning": "then" },
+						"sẽ": { "type": "tense-marker", "meaning": "will" },
+						"ổn": { "type": "adjective", "meaning": "fine" }
+					},
+					"english": "If you just try, it'll be fine",
+					"literalEnglish": "Only need you try then will fine"
+				}
+			]
 		}
 	]
 }
