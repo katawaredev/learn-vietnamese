@@ -96,7 +96,7 @@
 						"tôi": { "type": "subject", "meaning": "I" },
 						"biết": { "type": "verb", "meaning": "know" },
 						"thì": { "type": "conditional", "meaning": "then" },
-						"đã": { "type": "tense-marker", "meaning": "would have" },
+						"đã": { "type": "tense-marker", "meaning": "already" },
 						"giúp": { "type": "verb", "meaning": "help" },
 						"bạn": { "type": "object", "meaning": "you" }
 					},

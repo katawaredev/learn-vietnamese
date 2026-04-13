@@ -231,15 +231,6 @@
 				"khỏe": { "meaning": "Healthy / well" }
 			}
 		},
-		"frequency": {
-			"title": "Frequency",
-			"words": {
-				"thường": { "meaning": "Often / usual" },
-				"luôn": { "meaning": "Always" },
-				"hiếm": { "meaning": "Rare / rarely" },
-				"đều": { "meaning": "Regular / even" }
-			}
-		},
 		"manner": {
 			"title": "Manner",
 			"words": {
@@ -247,7 +238,12 @@
 				"chậm": { "meaning": "Slow" },
 				"cẩn thận": { "meaning": "Careful" },
 				"giỏi": { "meaning": "Good at / skilled" },
-				"kém": { "meaning": "Poor at / weak" }
+				"kém": {
+					"meaning": "Poor at / weak",
+					"notes": [
+						"Also used as a comparative marker meaning 'less than' — see Comparatives module."
+					]
+				}
 			}
 		}
 	}

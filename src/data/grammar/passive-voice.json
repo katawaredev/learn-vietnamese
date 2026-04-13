@@ -22,7 +22,8 @@
 						"Also means 'can/may' as a modal — context decides.",
 						"Agent goes between được and verb, or use 'bởi' (by) after.",
 						"Combines with tense: 'đã được' (was), 'sẽ được' (will be).",
-						"I was punished: Tôi ~~được~~ __bị__ phạt (punishment is negative — use bị)."
+						"I was punished: Tôi ~~được~~ __bị__ phạt (punishment is negative — use bị).",
+						"As a modal verb, 'được' also means 'can/may' (see Modal Verbs module)."
 					]
 				}
 			},
@@ -73,6 +74,20 @@
 					"english": "I was chosen as team leader",
 					"literalEnglish": "I already got choose as team-leader",
 					"notes": "Tense marker 'đã' comes before 'được'"
+				},
+				{
+					"vietnamese": "Bạn được phép vào",
+					"breakdown": {
+						"Bạn": { "type": "subject", "meaning": "you" },
+						"được phép": {
+							"type": "passive-positive",
+							"meaning": "be allowed"
+						},
+						"vào": { "type": "verb", "meaning": "enter" }
+					},
+					"english": "You are allowed to enter",
+					"literalEnglish": "You got permission enter",
+					"notes": "'được phép' — state of having permission, no specific agent"
 				}
 			]
 		},

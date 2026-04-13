@@ -9,88 +9,6 @@
 	},
 	"sections": [
 		{
-			"id": "topic-comment",
-			"title": "Topic Marking (thì)",
-			"description": "Marking what the sentence is 'about' before commenting on it",
-			"colorKey": "marker",
-			"words": {
-				"thì": {
-					"meaning": "As for / then (topic marker)",
-					"notes": [
-						"Placed after the topic to introduce a comment about it.",
-						"Often signals contrast with what someone else thinks or does.",
-						"Different from 'thì' in conditionals ('nếu...thì'), though related."
-					]
-				}
-			},
-			"examples": [
-				{
-					"vietnamese": "Tôi thì thích phở",
-					"breakdown": {
-						"Tôi": { "type": "topic", "meaning": "I" },
-						"thì": { "type": "marker", "meaning": "as for" },
-						"thích": { "type": "verb", "meaning": "like" },
-						"phở": { "type": "object", "meaning": "phở" }
-					},
-					"english": "As for me, I like phở",
-					"literalEnglish": "I as-for like phở"
-				},
-				{
-					"vietnamese": "Hôm nay thì trời đẹp",
-					"breakdown": {
-						"Hôm nay": { "type": "topic", "meaning": "today" },
-						"thì": { "type": "marker", "meaning": "as for" },
-						"trời": { "type": "subject", "meaning": "weather" },
-						"đẹp": { "type": "adjective", "meaning": "nice" }
-					},
-					"english": "Today, the weather is nice",
-					"literalEnglish": "Today as-for weather nice"
-				}
-			]
-		},
-		{
-			"id": "focus-copula",
-			"title": "Focus Copula (là)",
-			"description": "Highlighting a specific element with 'là'",
-			"colorKey": "marker",
-			"words": {
-				"là": {
-					"meaning": "Is / it is (focus)",
-					"notes": [
-						"Normally 'là' means 'to be' for identity.",
-						"As a focus marker, it isolates the highlighted element.",
-						"Carries emphasis like English 'it is X that...'.",
-						"Often used in answers to highlight the new information."
-					]
-				}
-			},
-			"examples": [
-				{
-					"vietnamese": "Cái tôi muốn là phở",
-					"breakdown": {
-						"Cái": { "type": "classifier", "meaning": "(thing)" },
-						"tôi": { "type": "subject", "meaning": "I" },
-						"muốn": { "type": "verb", "meaning": "want" },
-						"là": { "type": "marker", "meaning": "is (focus)" },
-						"phở": { "type": "object", "meaning": "phở" }
-					},
-					"english": "What I want is phở",
-					"literalEnglish": "Thing I want is phở"
-				},
-				{
-					"vietnamese": "Người gọi điện là anh Nam",
-					"breakdown": {
-						"Người": { "type": "classifier", "meaning": "person" },
-						"gọi điện": { "type": "verb", "meaning": "call" },
-						"là": { "type": "marker", "meaning": "is (focus)" },
-						"anh Nam": { "type": "object", "meaning": "Nam (older brother)" }
-					},
-					"english": "The person who called is Nam",
-					"literalEnglish": "Person call is brother Nam"
-				}
-			]
-		},
-		{
 			"id": "emphatic",
 			"title": "Emphatic Particles (chính / ngay)",
 			"description": "Pinpointing exactly the right element",
@@ -122,8 +40,7 @@
 				"cái": {
 					"meaning": "Emphasis / contrastive focus",
 					"notes": [
-						"Placed before the classifier to add emphasis: 'cái con chó này' (this very dog).",
-						"Different from the classifier 'cái' for objects — here it works with ANY classifier.",
+						"Don't confuse with the classifier 'cái' for objects — here 'cái' goes BEFORE any classifier to add emphasis or emotion.",
 						"Pattern: cái + classifier + noun. Can sound dismissive or admiring depending on tone."
 					]
 				}
@@ -173,6 +90,18 @@
 					"notes": "Implies: someone else was mistakenly thought to be the boss"
 				},
 				{
+					"vietnamese": "Cái này mới là đúng",
+					"breakdown": {
+						"Cái này": { "type": "subject", "meaning": "this one" },
+						"mới": { "type": "marker", "meaning": "is the real" },
+						"là": { "type": "marker", "meaning": "is" },
+						"đúng": { "type": "adjective", "meaning": "correct" }
+					},
+					"english": "This one is the correct one",
+					"literalEnglish": "This real-is correct",
+					"notes": "Corrective: implies someone pointed to the wrong one"
+				},
+				{
 					"vietnamese": "Cái con mèo này dễ thương lắm",
 					"breakdown": {
 						"Cái": { "type": "marker", "meaning": "(emphasis)" },
@@ -185,6 +114,150 @@
 					"english": "This cat is SO cute",
 					"literalEnglish": "(emphasis) [CL] cat this cute very",
 					"notes": "'cái' before the classifier 'con' adds emphasis — not acting as a classifier itself"
+				}
+			]
+		},
+		{
+			"id": "focus-copula",
+			"title": "Focus Copula (là)",
+			"description": "Highlighting a specific element with 'là'",
+			"colorKey": "marker",
+			"words": {
+				"là": {
+					"meaning": "Is / it is (focus)",
+					"notes": [
+						"Normally 'là' means 'to be' for identity.",
+						"As a focus marker, it isolates the highlighted element.",
+						"Carries emphasis like English 'it is X that...'.",
+						"Often used in answers to highlight the new information."
+					]
+				}
+			},
+			"examples": [
+				{
+					"vietnamese": "Cái tôi muốn là phở",
+					"breakdown": {
+						"Cái": { "type": "classifier", "meaning": "(thing)" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"muốn": { "type": "verb", "meaning": "want" },
+						"là": { "type": "marker", "meaning": "is (focus)" },
+						"phở": { "type": "object", "meaning": "phở" }
+					},
+					"english": "What I want is phở",
+					"literalEnglish": "Thing I want is phở"
+				},
+				{
+					"vietnamese": "Người gọi điện là anh Nam",
+					"breakdown": {
+						"Người": { "type": "classifier", "meaning": "person" },
+						"gọi điện": { "type": "verb", "meaning": "call" },
+						"là": { "type": "marker", "meaning": "is (focus)" },
+						"anh Nam": { "type": "object", "meaning": "Nam (older brother)" }
+					},
+					"english": "The person who called is Nam",
+					"literalEnglish": "Person call is brother Nam"
+				},
+				{
+					"vietnamese": "Điều quan trọng là sức khỏe",
+					"breakdown": {
+						"Điều": { "type": "classifier", "meaning": "(thing/matter)" },
+						"quan trọng": { "type": "adjective", "meaning": "important" },
+						"là": { "type": "marker", "meaning": "is (focus)" },
+						"sức khỏe": { "type": "object", "meaning": "health" }
+					},
+					"english": "What matters is health",
+					"literalEnglish": "Matter important is health"
+				},
+				{
+					"vietnamese": "Nơi tôi thích nhất là Hà Nội",
+					"breakdown": {
+						"Nơi": { "type": "classifier", "meaning": "(place)" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"thích": { "type": "verb", "meaning": "like" },
+						"nhất": { "type": "adverb", "meaning": "most" },
+						"là": { "type": "marker", "meaning": "is (focus)" },
+						"Hà Nội": { "type": "object", "meaning": "Hanoi" }
+					},
+					"english": "The place I like most is Hanoi",
+					"literalEnglish": "Place I like most is Hanoi"
+				}
+			]
+		},
+		{
+			"id": "topic-comment",
+			"title": "Topic Marking (thì)",
+			"description": "Marking what the sentence is 'about' before commenting on it",
+			"colorKey": "marker",
+			"words": {
+				"thì": {
+					"meaning": "As for / then (topic marker)",
+					"notes": [
+						"Placed after the topic to introduce a comment about it.",
+						"Often signals contrast with what someone else thinks or does.",
+						"Same word as 'thì' in conditionals (nếu...thì). Both mark a boundary — in conditionals it divides condition from result; here it divides topic from comment."
+					]
+				}
+			},
+			"examples": [
+				{
+					"vietnamese": "Tôi thì thích phở",
+					"breakdown": {
+						"Tôi": { "type": "topic", "meaning": "I" },
+						"thì": { "type": "marker", "meaning": "as for" },
+						"thích": { "type": "verb", "meaning": "like" },
+						"phở": { "type": "object", "meaning": "phở" }
+					},
+					"english": "As for me, I like phở",
+					"literalEnglish": "I as-for like phở"
+				},
+				{
+					"vietnamese": "Hôm nay thì trời đẹp",
+					"breakdown": {
+						"Hôm nay": { "type": "topic", "meaning": "today" },
+						"thì": { "type": "marker", "meaning": "as for" },
+						"trời": { "type": "subject", "meaning": "weather" },
+						"đẹp": { "type": "adjective", "meaning": "nice" }
+					},
+					"english": "Today, the weather is nice",
+					"literalEnglish": "Today as-for weather nice"
+				},
+				{
+					"vietnamese": "Anh thì cao, em thì thấp",
+					"breakdown": {
+						"Anh": { "type": "topic", "meaning": "older brother" },
+						"thì": { "type": "marker", "meaning": "as for" },
+						"cao": { "type": "adjective", "meaning": "tall" },
+						"em": { "type": "topic", "meaning": "younger sibling" },
+						"thì ": { "type": "marker", "meaning": "as for" },
+						"thấp": { "type": "adjective", "meaning": "short" }
+					},
+					"english": "The older brother is tall, but the younger one is short",
+					"literalEnglish": "Brother as-for tall, sibling as-for short",
+					"notes": "'thì' used twice to contrast two topics"
+				},
+				{
+					"vietnamese": "Việc đó tôi không biết",
+					"breakdown": {
+						"Việc đó": { "type": "topic", "meaning": "that matter" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"không": { "type": "negation", "meaning": "not" },
+						"biết": { "type": "verb", "meaning": "know" }
+					},
+					"english": "That matter, I don't know about",
+					"literalEnglish": "Matter that I not know",
+					"notes": "Topic-comment without 'thì' — the topic is simply fronted. Compare: 'Việc đó thì tôi không biết' (same meaning, 'thì' makes the boundary more explicit)"
+				},
+				{
+					"vietnamese": "Cà phê thì tôi uống mỗi ngày",
+					"breakdown": {
+						"Cà phê": { "type": "topic", "meaning": "coffee" },
+						"thì": { "type": "marker", "meaning": "as for" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"uống": { "type": "verb", "meaning": "drink" },
+						"mỗi ngày": { "type": "adverb", "meaning": "every day" }
+					},
+					"english": "As for coffee, I drink it every day",
+					"literalEnglish": "Coffee as-for I drink every day"
 				}
 			]
 		}

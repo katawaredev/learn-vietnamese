@@ -53,6 +53,14 @@
 						"Softer and more appreciative than 'trời ơi'.",
 						"Often followed by a compliment."
 					]
+				},
+				"ghê": {
+					"meaning": "Wow / intense! (impressed or scared)",
+					"notes": [
+						"Expresses strong impression — can be positive (impressed) or negative (scary).",
+						"Very common in northern speech.",
+						"Often combined: 'ghê thật' (really intense), 'ghê quá' (so intense)."
+					]
 				}
 			},
 			"examples": [
@@ -67,24 +75,26 @@
 					"literalEnglish": "Oh beautiful so"
 				},
 				{
-					"vietnamese": "Trời ơi, nóng quá!",
+					"vietnamese": "Trời ơi, sao lại thế!",
 					"breakdown": {
 						"Trời ơi": { "type": "particle", "meaning": "oh my!" },
-						"nóng": { "type": "adjective", "meaning": "hot" },
-						"quá": { "type": "intensifier", "meaning": "so" }
+						"sao": { "type": "question", "meaning": "why" },
+						"lại": { "type": "adverb", "meaning": "again" },
+						"thế": { "type": "adverb", "meaning": "like that" }
 					},
-					"english": "Oh my, it's so hot!",
-					"literalEnglish": "Heaven hey hot so"
+					"english": "Oh my god, why is it like that!",
+					"literalEnglish": "Heaven hey why again like-that"
 				},
 				{
-					"vietnamese": "Ối, đau quá!",
+					"vietnamese": "Ối, tôi quên mất!",
 					"breakdown": {
-						"Ối": { "type": "particle", "meaning": "ouch!" },
-						"đau": { "type": "adjective", "meaning": "painful" },
-						"quá": { "type": "intensifier", "meaning": "so" }
+						"Ối": { "type": "particle", "meaning": "oops!" },
+						"tôi": { "type": "subject", "meaning": "I" },
+						"quên": { "type": "verb", "meaning": "forget" },
+						"mất": { "type": "complement", "meaning": "(lost/gone)" }
 					},
-					"english": "Ouch, that hurts!",
-					"literalEnglish": "Ouch painful so"
+					"english": "Oops, I forgot!",
+					"literalEnglish": "Oops I forget gone"
 				},
 				{
 					"vietnamese": "Eo ơi, hôi quá!",
@@ -105,79 +115,15 @@
 					},
 					"english": "Wow, really skilled!",
 					"literalEnglish": "Wow skilled really"
-				}
-			]
-		},
-		{
-			"id": "intensity",
-			"title": "Intensity Particles",
-			"description": "Words that turn a statement into an exclamation — the backbone of Vietnamese exclamations",
-			"colorKey": "particle",
-			"words": {
-				"quá": {
-					"meaning": "So / too (intense degree)",
-					"notes": [
-						"THE most common exclamation particle in Vietnamese.",
-						"Placed AFTER the adjective or verb: 'đẹp quá!' (so beautiful!).",
-						"Works for both positive and negative: 'ngon quá!' (so tasty!) vs 'đắt quá!' (too expensive!)."
-					]
-				},
-				"thế": {
-					"meaning": "Like that / such (surprised degree)",
-					"notes": [
-						"Placed AFTER the adjective, like 'quá'.",
-						"Implies surprise or realization — 'I didn't expect it to be this much'.",
-						"Softer than 'quá'."
-					]
-				},
-				"thật là": {
-					"meaning": "Really / truly",
-					"notes": [
-						"Literally 'true' + 'is' — placed BEFORE the adjective.",
-						"More formal and literary than 'quá'.",
-						"Position: ~~tuyệt vời thật là~~ __thật là tuyệt vời__ (goes before, not after)."
-					]
-				}
-			},
-			"examples": [
-				{
-					"vietnamese": "Ngon quá!",
-					"breakdown": {
-						"Ngon": { "type": "adjective", "meaning": "delicious" },
-						"quá": { "type": "intensifier", "meaning": "so" }
-					},
-					"english": "So delicious!",
-					"literalEnglish": "Delicious so"
 				},
 				{
-					"vietnamese": "Đắt quá!",
-					"breakdown": {
-						"Đắt": { "type": "adjective", "meaning": "expensive" },
-						"quá": { "type": "intensifier", "meaning": "too" }
-					},
-					"english": "Too expensive!",
-					"literalEnglish": "Expensive too"
-				},
-				{
-					"vietnamese": "Giỏi thế!",
+					"vietnamese": "Giỏi ghê!",
 					"breakdown": {
 						"Giỏi": { "type": "adjective", "meaning": "skilled" },
-						"thế": { "type": "intensifier", "meaning": "like that" }
+						"ghê": { "type": "particle", "meaning": "wow/intense" }
 					},
-					"english": "So skilled! (surprised)",
-					"literalEnglish": "Skilled like-that",
-					"notes": "Implies: I didn't realize you were this good"
-				},
-				{
-					"vietnamese": "Cảnh này thật là tuyệt vời!",
-					"breakdown": {
-						"Cảnh": { "type": "noun", "meaning": "scenery" },
-						"này": { "type": "demonstrative", "meaning": "this" },
-						"thật là": { "type": "intensifier", "meaning": "truly" },
-						"tuyệt vời": { "type": "adjective", "meaning": "wonderful" }
-					},
-					"english": "This scenery is truly wonderful!",
-					"literalEnglish": "Scenery this truly wonderful"
+					"english": "So impressive!",
+					"literalEnglish": "Skilled intense"
 				}
 			]
 		},
@@ -214,6 +160,14 @@
 					"notes": [
 						"Adds a sense of 'just' or 'enough already'.",
 						"Can also mean 'stop it' as a standalone."
+					]
+				},
+				"mà": {
+					"meaning": "But / you know (mild protest)",
+					"notes": [
+						"Adds mild protest, insistence, or emphasis at the end of a sentence.",
+						"Like English 'but...' or 'you know!' — conveys 'I already told you' or 'it's obvious'.",
+						"Very common in everyday speech."
 					]
 				}
 			},
@@ -257,6 +211,17 @@
 					},
 					"english": "Let's just go!",
 					"literalEnglish": "Go just"
+				},
+				{
+					"vietnamese": "Tôi nói rồi mà!",
+					"breakdown": {
+						"Tôi": { "type": "subject", "meaning": "I" },
+						"nói": { "type": "verb", "meaning": "say" },
+						"rồi": { "type": "tense-marker", "meaning": "already" },
+						"mà": { "type": "particle", "meaning": "but / you know" }
+					},
+					"english": "I already said it! / But I told you!",
+					"literalEnglish": "I say already but"
 				}
 			]
 		}

@@ -11,7 +11,7 @@
 		{
 			"id": "comparative",
 			"title": "More Than / Less Than",
-			"description": "Comparing two things — who or what has more or less of a quality",
+			"description": "Comparing two things — A + adjective + 'hơn' + B",
 			"colorKey": "comparative",
 			"words": {
 				"hơn": {
@@ -62,15 +62,16 @@
 					"literalEnglish": "He tall more me"
 				},
 				{
-					"vietnamese": "Anh ấy giàu hơn nhiều tôi",
+					"vietnamese": "Anh ấy giàu hơn tôi nhiều",
 					"breakdown": {
 						"Anh ấy": { "type": "subject", "meaning": "he" },
 						"giàu": { "type": "adjective", "meaning": "rich" },
-						"hơn nhiều": { "type": "comparative", "meaning": "much more than" },
-						"tôi": { "type": "object", "meaning": "me" }
+						"hơn": { "type": "comparative", "meaning": "more than" },
+						"tôi": { "type": "object", "meaning": "me" },
+						"nhiều": { "type": "intensifier", "meaning": "much" }
 					},
 					"english": "He is much richer than me",
-					"literalEnglish": "He rich more much me"
+					"literalEnglish": "He rich more me much"
 				},
 				{
 					"vietnamese": "Cái này tốt hơn hẳn cái kia",
@@ -111,7 +112,7 @@
 		{
 			"id": "equality",
 			"title": "Equal / As ... As",
-			"description": "Saying two things are the same — 'bằng' for measurable, 'như' for similarity",
+			"description": "Saying two things are equal — A + adjective + 'bằng' + B",
 			"colorKey": "comparative",
 			"words": {
 				"bằng": {
@@ -215,7 +216,7 @@
 		{
 			"id": "special-patterns",
 			"title": "Special Patterns",
-			"description": "Common comparison idioms — progressive change, preference, and 'as...as possible'",
+			"description": "Common comparison idioms — 'càng' A + 'càng' B",
 			"colorKey": "comparative",
 			"words": {
 				"càng ... càng": {

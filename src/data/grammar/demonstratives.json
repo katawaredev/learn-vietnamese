@@ -4,7 +4,7 @@
 		"content": [
 			"Demonstratives are 'pointing' words like 'this', 'that', 'here', and 'there'. Vietnamese uses a three-way system based on distance: near the speaker, near the listener, and far from both.",
 			"Unlike English (this/that), Vietnamese also distinguishes 'over there' (kia) — a third level of distance for things visible but distant from both speakers.",
-			"Demonstratives that modify a noun come AFTER it: 'con mèo này' = 'this cat' (literally: cat this). The classifier (con) is required because demonstratives count as quantifiers."
+			"Demonstratives that modify a noun come AFTER it: 'con mèo này' = 'this cat' (literally: classifier cat this). A classifier is needed between the noun and the demonstrative."
 		]
 	},
 	"sections": [
@@ -18,8 +18,7 @@
 					"meaning": "This (near speaker)",
 					"notes": [
 						"Refers to something close to the speaker.",
-						"Always placed after the noun and its classifier: 'cái bàn này' (this table).",
-						"Pronounced with a rising tone."
+						"Always placed after the noun and its classifier: 'cái bàn này' (this table)."
 					]
 				},
 				"đó": {
@@ -28,6 +27,13 @@
 						"Refers to something close to the listener but away from the speaker.",
 						"Synonym 'ấy' is more common in writing or northern speech: 'cái bàn ấy'.",
 						"Sometimes also means 'there' as a location word."
+					]
+				},
+				"ấy": {
+					"meaning": "That (near listener, formal)",
+					"notes": [
+						"Interchangeable with 'đó' — more common in writing and northern speech.",
+						"Often used in compound pronouns: 'anh ấy' (he), 'cô ấy' (she)."
 					]
 				},
 				"kia": {
@@ -69,6 +75,17 @@
 					},
 					"english": "That book is mine",
 					"literalEnglish": "(book) book that of me"
+				},
+				{
+					"vietnamese": "Cái áo ấy đẹp",
+					"breakdown": {
+						"Cái": { "type": "classifier", "meaning": "(thing)" },
+						"áo": { "type": "noun", "meaning": "shirt" },
+						"ấy": { "type": "demonstrative", "meaning": "that" },
+						"đẹp": { "type": "adjective", "meaning": "beautiful" }
+					},
+					"english": "That shirt is beautiful",
+					"literalEnglish": "(thing) shirt that beautiful"
 				},
 				{
 					"vietnamese": "Người kia là ai?",
