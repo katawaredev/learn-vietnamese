@@ -1,0 +1,1004 @@
+{
+	"sentence-structure": [
+		{
+			"vietnamese": "Chị ấy uống trà",
+			"breakdown": {
+				"Chị ấy": { "type": "subject", "meaning": "she (older)" },
+				"uống": { "type": "verb", "meaning": "drink" },
+				"trà": { "type": "object", "meaning": "tea" }
+			},
+			"english": "She drinks tea"
+		},
+		{
+			"vietnamese": "Chúng tôi xem phim",
+			"breakdown": {
+				"Chúng tôi": { "type": "subject", "meaning": "we" },
+				"xem": { "type": "verb", "meaning": "watch" },
+				"phim": { "type": "object", "meaning": "movie" }
+			},
+			"english": "We watch a movie"
+		},
+		{
+			"vietnamese": "Bánh mì này thì ngon",
+			"breakdown": {
+				"Bánh mì này": { "type": "topic", "meaning": "this bread" },
+				"thì": { "type": "marker", "meaning": "(topic marker)" },
+				"ngon": { "type": "adjective", "meaning": "delicious" }
+			},
+			"english": "This bread is delicious"
+		},
+		{
+			"vietnamese": "Buổi tối thì tôi học bài",
+			"breakdown": {
+				"Buổi tối": { "type": "topic", "meaning": "in the evening" },
+				"thì": { "type": "marker", "meaning": "(topic marker)" },
+				"tôi": { "type": "subject", "meaning": "I" },
+				"học": { "type": "verb", "meaning": "study" },
+				"bài": { "type": "object", "meaning": "lessons" }
+			},
+			"english": "In the evening I study"
+		},
+		{
+			"vietnamese": "Con chó này thì hiền",
+			"breakdown": {
+				"Con chó này": { "type": "topic", "meaning": "this dog" },
+				"thì": { "type": "marker", "meaning": "(topic marker)" },
+				"hiền": { "type": "adjective", "meaning": "gentle" }
+			},
+			"english": "This dog is gentle"
+		},
+		{
+			"vietnamese": "Hôm nay thì tôi bận",
+			"breakdown": {
+				"Hôm nay": { "type": "topic", "meaning": "today" },
+				"thì": { "type": "marker", "meaning": "(topic marker)" },
+				"tôi": { "type": "subject", "meaning": "I" },
+				"bận": { "type": "adjective", "meaning": "busy" }
+			},
+			"english": "Today I'm busy"
+		},
+		{
+			"vietnamese": "Anh ấy đọc báo",
+			"breakdown": {
+				"Anh ấy": { "type": "subject", "meaning": "he" },
+				"đọc": { "type": "verb", "meaning": "read" },
+				"báo": { "type": "object", "meaning": "newspaper" }
+			},
+			"english": "He reads the newspaper"
+		},
+		{
+			"vietnamese": "Mẹ nấu cơm",
+			"breakdown": {
+				"Mẹ": { "type": "subject", "meaning": "mom" },
+				"nấu": { "type": "verb", "meaning": "cook" },
+				"cơm": { "type": "object", "meaning": "rice" }
+			},
+			"english": "Mom cooks rice"
+		}
+	],
+	"tenses": [
+		{
+			"vietnamese": "Tôi sẽ đến muộn",
+			"breakdown": {
+				"Tôi": { "type": "subject", "meaning": "I" },
+				"sẽ": { "type": "tense-marker", "meaning": "will" },
+				"đến": { "type": "verb", "meaning": "come" },
+				"muộn": { "type": "adverb", "meaning": "late" }
+			},
+			"english": "I will come late"
+		},
+		{
+			"vietnamese": "Họ đang ăn cơm",
+			"breakdown": {
+				"Họ": { "type": "subject", "meaning": "they" },
+				"đang": { "type": "tense-marker", "meaning": "(progressive)" },
+				"ăn": { "type": "verb", "meaning": "eat" },
+				"cơm": { "type": "object", "meaning": "rice" }
+			},
+			"english": "They are eating"
+		},
+		{
+			"vietnamese": "Cô ấy đã đến",
+			"breakdown": {
+				"Cô ấy": { "type": "subject", "meaning": "she" },
+				"đã": { "type": "tense-marker", "meaning": "already (past)" },
+				"đến": { "type": "verb", "meaning": "arrive" }
+			},
+			"english": "She has arrived"
+		},
+		{
+			"vietnamese": "Chúng tôi sắp đi",
+			"breakdown": {
+				"Chúng tôi": { "type": "subject", "meaning": "we" },
+				"sắp": { "type": "tense-marker", "meaning": "about to" },
+				"đi": { "type": "verb", "meaning": "go" }
+			},
+			"english": "We are about to go"
+		},
+		{
+			"vietnamese": "Em mới thức dậy",
+			"breakdown": {
+				"Em": { "type": "subject", "meaning": "I (younger)" },
+				"mới": { "type": "tense-marker", "meaning": "just" },
+				"thức dậy": { "type": "verb", "meaning": "wake up" }
+			},
+			"english": "I just woke up"
+		},
+		{
+			"vietnamese": "Bố đang ngủ",
+			"breakdown": {
+				"Bố": { "type": "subject", "meaning": "dad" },
+				"đang": { "type": "tense-marker", "meaning": "(progressive)" },
+				"ngủ": { "type": "verb", "meaning": "sleep" }
+			},
+			"english": "Dad is sleeping"
+		},
+		{
+			"vietnamese": "Tôi đã gặp anh ấy",
+			"breakdown": {
+				"Tôi": { "type": "subject", "meaning": "I" },
+				"đã": { "type": "tense-marker", "meaning": "already (past)" },
+				"gặp": { "type": "verb", "meaning": "meet" },
+				"anh ấy": { "type": "object", "meaning": "him" }
+			},
+			"english": "I met him"
+		},
+		{
+			"vietnamese": "Chị ấy vừa về",
+			"breakdown": {
+				"Chị ấy": { "type": "subject", "meaning": "she" },
+				"vừa": { "type": "tense-marker", "meaning": "just" },
+				"về": { "type": "verb", "meaning": "return" }
+			},
+			"english": "She just came back"
+		}
+	],
+	"questions": [
+		{
+			"vietnamese": "Bạn tên là gì?",
+			"breakdown": {
+				"Bạn": { "type": "subject", "meaning": "you" },
+				"tên": { "type": "noun", "meaning": "name" },
+				"là": { "type": "verb", "meaning": "is" },
+				"gì": { "type": "question", "meaning": "what" }
+			},
+			"english": "What's your name?"
+		},
+		{
+			"vietnamese": "Ai gọi điện?",
+			"breakdown": {
+				"Ai": { "type": "question", "meaning": "who" },
+				"gọi điện": { "type": "verb", "meaning": "call" }
+			},
+			"english": "Who called?"
+		},
+		{
+			"vietnamese": "Bạn đi đâu?",
+			"breakdown": {
+				"Bạn": { "type": "subject", "meaning": "you" },
+				"đi": { "type": "verb", "meaning": "go" },
+				"đâu": { "type": "question", "meaning": "where" }
+			},
+			"english": "Where are you going?"
+		},
+		{
+			"vietnamese": "Cái này bao nhiêu tiền?",
+			"breakdown": {
+				"Cái này": { "type": "subject", "meaning": "this" },
+				"bao nhiêu": { "type": "question", "meaning": "how much" },
+				"tiền": { "type": "noun", "meaning": "money" }
+			},
+			"english": "How much is this?"
+		},
+		{
+			"vietnamese": "Bạn có đói không?",
+			"breakdown": {
+				"Bạn": { "type": "subject", "meaning": "you" },
+				"có": { "type": "particle", "meaning": "(yes-no)" },
+				"đói": { "type": "adjective", "meaning": "hungry" },
+				"không": { "type": "particle", "meaning": "(question)" }
+			},
+			"english": "Are you hungry?"
+		},
+		{
+			"vietnamese": "Sao bạn buồn?",
+			"breakdown": {
+				"Sao": { "type": "question", "meaning": "why" },
+				"bạn": { "type": "subject", "meaning": "you" },
+				"buồn": { "type": "adjective", "meaning": "sad" }
+			},
+			"english": "Why are you sad?"
+		},
+		{
+			"vietnamese": "Bạn muốn uống gì?",
+			"breakdown": {
+				"Bạn": { "type": "subject", "meaning": "you" },
+				"muốn": { "type": "modal", "meaning": "want" },
+				"uống": { "type": "verb", "meaning": "drink" },
+				"gì": { "type": "question", "meaning": "what" }
+			},
+			"english": "What do you want to drink?"
+		},
+		{
+			"vietnamese": "Khi nào bạn về?",
+			"breakdown": {
+				"Khi nào": { "type": "question", "meaning": "when" },
+				"bạn": { "type": "subject", "meaning": "you" },
+				"về": { "type": "verb", "meaning": "return" }
+			},
+			"english": "When will you come back?"
+		}
+	],
+	"negatives": [
+		{
+			"vietnamese": "Em không thích cà phê",
+			"breakdown": {
+				"Em": { "type": "subject", "meaning": "I (younger)" },
+				"không": { "type": "negation", "meaning": "not" },
+				"thích": { "type": "verb", "meaning": "like" },
+				"cà phê": { "type": "object", "meaning": "coffee" }
+			},
+			"english": "I don't like coffee"
+		},
+		{
+			"vietnamese": "Tôi chưa đi Việt Nam",
+			"breakdown": {
+				"Tôi": { "type": "subject", "meaning": "I" },
+				"chưa": { "type": "negation", "meaning": "not yet" },
+				"đi": { "type": "verb", "meaning": "go to" },
+				"Việt Nam": { "type": "object", "meaning": "Vietnam" }
+			},
+			"english": "I haven't been to Vietnam"
+		},
+		{
+			"vietnamese": "Anh ấy không đến",
+			"breakdown": {
+				"Anh ấy": { "type": "subject", "meaning": "he" },
+				"không": { "type": "negation", "meaning": "not" },
+				"đến": { "type": "verb", "meaning": "come" }
+			},
+			"english": "He's not coming"
+		},
+		{
+			"vietnamese": "Đừng nói",
+			"breakdown": {
+				"Đừng": { "type": "negation", "meaning": "don't" },
+				"nói": { "type": "verb", "meaning": "speak" }
+			},
+			"english": "Don't speak"
+		},
+		{
+			"vietnamese": "Cô ấy chưa về nhà",
+			"breakdown": {
+				"Cô ấy": { "type": "subject", "meaning": "she" },
+				"chưa": { "type": "negation", "meaning": "not yet" },
+				"về": { "type": "verb", "meaning": "return" },
+				"nhà": { "type": "location", "meaning": "home" }
+			},
+			"english": "She hasn't come home"
+		},
+		{
+			"vietnamese": "Tôi chẳng muốn đi",
+			"breakdown": {
+				"Tôi": { "type": "subject", "meaning": "I" },
+				"chẳng": { "type": "negation", "meaning": "not (emphatic)" },
+				"muốn": { "type": "modal", "meaning": "want" },
+				"đi": { "type": "verb", "meaning": "go" }
+			},
+			"english": "I don't want to go"
+		},
+		{
+			"vietnamese": "Họ không hiểu tôi",
+			"breakdown": {
+				"Họ": { "type": "subject", "meaning": "they" },
+				"không": { "type": "negation", "meaning": "not" },
+				"hiểu": { "type": "verb", "meaning": "understand" },
+				"tôi": { "type": "object", "meaning": "me" }
+			},
+			"english": "They don't understand me"
+		},
+		{
+			"vietnamese": "Chúng tôi chưa ăn sáng",
+			"breakdown": {
+				"Chúng tôi": { "type": "subject", "meaning": "we" },
+				"chưa": { "type": "negation", "meaning": "not yet" },
+				"ăn": { "type": "verb", "meaning": "eat" },
+				"sáng": { "type": "object", "meaning": "breakfast" }
+			},
+			"english": "We haven't eaten breakfast"
+		}
+	],
+	"commands": [
+		{
+			"vietnamese": "Hãy ngồi",
+			"breakdown": {
+				"Hãy": { "type": "particle", "meaning": "please/(imperative)" },
+				"ngồi": { "type": "verb", "meaning": "sit" }
+			},
+			"english": "Please sit"
+		},
+		{
+			"vietnamese": "Đọc đi",
+			"breakdown": {
+				"Đọc": { "type": "verb", "meaning": "read" },
+				"đi": { "type": "particle", "meaning": "(imperative)" }
+			},
+			"english": "Go ahead and read"
+		},
+		{
+			"vietnamese": "Xin lỗi nhé",
+			"breakdown": {
+				"Xin lỗi": { "type": "verb", "meaning": "sorry" },
+				"nhé": { "type": "particle", "meaning": "(softener)" }
+			},
+			"english": "Sorry"
+		},
+		{
+			"vietnamese": "Làm ơn đóng cửa",
+			"breakdown": {
+				"Làm ơn": { "type": "particle", "meaning": "please" },
+				"đóng": { "type": "verb", "meaning": "close" },
+				"cửa": { "type": "object", "meaning": "door" }
+			},
+			"english": "Please close the door"
+		},
+		{
+			"vietnamese": "Vui lòng im lặng",
+			"breakdown": {
+				"Vui lòng": { "type": "particle", "meaning": "please (polite)" },
+				"im lặng": { "type": "verb", "meaning": "be quiet" }
+			},
+			"english": "Please be quiet"
+		},
+		{
+			"vietnamese": "Uống nước đi",
+			"breakdown": {
+				"Uống": { "type": "verb", "meaning": "drink" },
+				"nước": { "type": "object", "meaning": "water" },
+				"đi": { "type": "particle", "meaning": "(imperative)" }
+			},
+			"english": "Drink some water"
+		},
+		{
+			"vietnamese": "Nhớ gọi nhé",
+			"breakdown": {
+				"Nhớ": { "type": "verb", "meaning": "remember" },
+				"gọi": { "type": "verb", "meaning": "call" },
+				"nhé": { "type": "particle", "meaning": "(softener)" }
+			},
+			"english": "Remember to call"
+		},
+		{
+			"vietnamese": "Ăn nào",
+			"breakdown": {
+				"Ăn": { "type": "verb", "meaning": "eat" },
+				"nào": { "type": "particle", "meaning": "(come on)" }
+			},
+			"english": "Let's eat"
+		}
+	],
+	"demonstratives": [
+		{
+			"vietnamese": "Cái này là của tôi",
+			"breakdown": {
+				"Cái": { "type": "noun", "meaning": "thing" },
+				"này": { "type": "demonstrative", "meaning": "this" },
+				"là": { "type": "verb", "meaning": "is" },
+				"của tôi": { "type": "object", "meaning": "mine" }
+			},
+			"english": "This is mine"
+		},
+		{
+			"vietnamese": "Quyển sách đó hay",
+			"breakdown": {
+				"Quyển sách": { "type": "noun", "meaning": "book" },
+				"đó": { "type": "demonstrative", "meaning": "that" },
+				"hay": { "type": "adjective", "meaning": "interesting" }
+			},
+			"english": "That book is interesting"
+		},
+		{
+			"vietnamese": "Người ấy là bác sĩ",
+			"breakdown": {
+				"Người": { "type": "noun", "meaning": "person" },
+				"ấy": { "type": "demonstrative", "meaning": "that" },
+				"là": { "type": "verb", "meaning": "is" },
+				"bác sĩ": { "type": "noun", "meaning": "doctor" }
+			},
+			"english": "That person is a doctor"
+		},
+		{
+			"vietnamese": "Bên kia là công viên",
+			"breakdown": {
+				"Bên": { "type": "noun", "meaning": "side" },
+				"kia": { "type": "demonstrative", "meaning": "over there" },
+				"là": { "type": "verb", "meaning": "is" },
+				"công viên": { "type": "location", "meaning": "park" }
+			},
+			"english": "Over there is a park"
+		},
+		{
+			"vietnamese": "Đây là mẹ tôi",
+			"breakdown": {
+				"Đây": { "type": "demonstrative", "meaning": "this" },
+				"là": { "type": "verb", "meaning": "is" },
+				"mẹ tôi": { "type": "noun", "meaning": "my mother" }
+			},
+			"english": "This is my mother"
+		},
+		{
+			"vietnamese": "Cái đó không đúng",
+			"breakdown": {
+				"Cái": { "type": "noun", "meaning": "thing" },
+				"đó": { "type": "demonstrative", "meaning": "that" },
+				"không": { "type": "negation", "meaning": "not" },
+				"đúng": { "type": "adjective", "meaning": "correct" }
+			},
+			"english": "That's not right"
+		},
+		{
+			"vietnamese": "Ngôi nhà này lớn",
+			"breakdown": {
+				"Ngôi nhà": { "type": "noun", "meaning": "house" },
+				"này": { "type": "demonstrative", "meaning": "this" },
+				"lớn": { "type": "adjective", "meaning": "big" }
+			},
+			"english": "This house is big"
+		},
+		{
+			"vietnamese": "Con mèo kia đen",
+			"breakdown": {
+				"Con mèo": { "type": "noun", "meaning": "cat" },
+				"kia": { "type": "demonstrative", "meaning": "over there" },
+				"đen": { "type": "adjective", "meaning": "black" }
+			},
+			"english": "That cat is black"
+		}
+	],
+	"adjectives": [
+		{
+			"vietnamese": "Món phở rất ngon",
+			"breakdown": {
+				"Món phở": { "type": "subject", "meaning": "the pho" },
+				"rất": { "type": "modifier", "meaning": "very" },
+				"ngon": { "type": "adjective", "meaning": "delicious" }
+			},
+			"english": "The pho is very delicious"
+		},
+		{
+			"vietnamese": "Trời hơi lạnh",
+			"breakdown": {
+				"Trời": { "type": "subject", "meaning": "weather" },
+				"hơi": { "type": "modifier", "meaning": "slightly" },
+				"lạnh": { "type": "adjective", "meaning": "cold" }
+			},
+			"english": "It's a bit cold"
+		},
+		{
+			"vietnamese": "Cô ấy khá thông minh",
+			"breakdown": {
+				"Cô ấy": { "type": "subject", "meaning": "she" },
+				"khá": { "type": "modifier", "meaning": "quite" },
+				"thông minh": { "type": "adjective", "meaning": "smart" }
+			},
+			"english": "She's quite smart"
+		},
+		{
+			"vietnamese": "Bài tập cực kỳ khó",
+			"breakdown": {
+				"Bài tập": { "type": "subject", "meaning": "the exercise" },
+				"cực kỳ": { "type": "intensifier", "meaning": "extremely" },
+				"khó": { "type": "adjective", "meaning": "hard" }
+			},
+			"english": "The exercise is extremely hard"
+		},
+		{
+			"vietnamese": "Cà phê đắng quá",
+			"breakdown": {
+				"Cà phê": { "type": "subject", "meaning": "the coffee" },
+				"đắng": { "type": "adjective", "meaning": "bitter" },
+				"quá": { "type": "intensifier", "meaning": "too" }
+			},
+			"english": "The coffee is too bitter"
+		},
+		{
+			"vietnamese": "Em bé dễ thương lắm",
+			"breakdown": {
+				"Em bé": { "type": "subject", "meaning": "the baby" },
+				"dễ thương": { "type": "adjective", "meaning": "cute" },
+				"lắm": { "type": "intensifier", "meaning": "very" }
+			},
+			"english": "The baby is very cute"
+		},
+		{
+			"vietnamese": "Nhà tôi nhỏ",
+			"breakdown": {
+				"Nhà tôi": { "type": "subject", "meaning": "my house" },
+				"nhỏ": { "type": "adjective", "meaning": "small" }
+			},
+			"english": "My house is small"
+		},
+		{
+			"vietnamese": "Anh ấy rất tốt bụng",
+			"breakdown": {
+				"Anh ấy": { "type": "subject", "meaning": "he" },
+				"rất": { "type": "modifier", "meaning": "very" },
+				"tốt bụng": { "type": "adjective", "meaning": "kind" }
+			},
+			"english": "He is very kind"
+		}
+	],
+	"comparatives": [
+		{
+			"vietnamese": "Anh trai cao hơn em",
+			"breakdown": {
+				"Anh trai": { "type": "subject", "meaning": "older brother" },
+				"cao": { "type": "adjective", "meaning": "tall" },
+				"hơn": { "type": "comparative", "meaning": "more than" },
+				"em": { "type": "object", "meaning": "younger sibling" }
+			},
+			"english": "Older brother is taller than me"
+		},
+		{
+			"vietnamese": "Phở ngon hơn bún",
+			"breakdown": {
+				"Phở": { "type": "subject", "meaning": "pho" },
+				"ngon": { "type": "adjective", "meaning": "delicious" },
+				"hơn": { "type": "comparative", "meaning": "more than" },
+				"bún": { "type": "object", "meaning": "bun (noodle)" }
+			},
+			"english": "Pho is better than bun"
+		},
+		{
+			"vietnamese": "Cô ấy đẹp nhất lớp",
+			"breakdown": {
+				"Cô ấy": { "type": "subject", "meaning": "she" },
+				"đẹp": { "type": "adjective", "meaning": "beautiful" },
+				"nhất": { "type": "superlative", "meaning": "most" },
+				"lớp": { "type": "location", "meaning": "class" }
+			},
+			"english": "She is the most beautiful in class"
+		},
+		{
+			"vietnamese": "Tiếng Việt khó hơn tiếng Anh",
+			"breakdown": {
+				"Tiếng Việt": { "type": "subject", "meaning": "Vietnamese" },
+				"khó": { "type": "adjective", "meaning": "hard" },
+				"hơn": { "type": "comparative", "meaning": "more than" },
+				"tiếng Anh": { "type": "object", "meaning": "English" }
+			},
+			"english": "Vietnamese is harder than English"
+		},
+		{
+			"vietnamese": "Em nhỏ hơn chị",
+			"breakdown": {
+				"Em": { "type": "subject", "meaning": "I (younger)" },
+				"nhỏ": { "type": "adjective", "meaning": "small/young" },
+				"hơn": { "type": "comparative", "meaning": "more than" },
+				"chị": { "type": "object", "meaning": "older sister" }
+			},
+			"english": "I'm younger than older sister"
+		},
+		{
+			"vietnamese": "Ngày càng lạnh",
+			"breakdown": {
+				"Ngày càng": { "type": "comparative", "meaning": "increasingly" },
+				"lạnh": { "type": "adjective", "meaning": "cold" }
+			},
+			"english": "It's getting colder"
+		},
+		{
+			"vietnamese": "Anh ấy giỏi nhất",
+			"breakdown": {
+				"Anh ấy": { "type": "subject", "meaning": "he" },
+				"giỏi": { "type": "adjective", "meaning": "skilled" },
+				"nhất": { "type": "superlative", "meaning": "most" }
+			},
+			"english": "He is the best"
+		},
+		{
+			"vietnamese": "Nhà này lớn bằng nhà kia",
+			"breakdown": {
+				"Nhà này": { "type": "subject", "meaning": "this house" },
+				"lớn": { "type": "adjective", "meaning": "big" },
+				"bằng": { "type": "comparative", "meaning": "equal to" },
+				"nhà kia": { "type": "object", "meaning": "that house" }
+			},
+			"english": "This house is as big as that one"
+		}
+	],
+	"conditionals": [
+		{
+			"vietnamese": "Nếu bạn đến, tôi sẽ vui",
+			"breakdown": {
+				"Nếu": { "type": "conditional", "meaning": "if" },
+				"bạn": { "type": "subject", "meaning": "you" },
+				"đến": { "type": "verb", "meaning": "come" },
+				"tôi": { "type": "subject", "meaning": "I" },
+				"sẽ": { "type": "tense-marker", "meaning": "will" },
+				"vui": { "type": "adjective", "meaning": "happy" }
+			},
+			"english": "If you come, I'll be happy"
+		},
+		{
+			"vietnamese": "Khi rảnh, gọi tôi nhé",
+			"breakdown": {
+				"Khi": { "type": "conditional", "meaning": "when" },
+				"rảnh": { "type": "adjective", "meaning": "free" },
+				"gọi": { "type": "verb", "meaning": "call" },
+				"tôi": { "type": "object", "meaning": "me" },
+				"nhé": { "type": "particle", "meaning": "(softener)" }
+			},
+			"english": "When you're free, call me"
+		},
+		{
+			"vietnamese": "Nếu trời đẹp thì đi dạo",
+			"breakdown": {
+				"Nếu": { "type": "conditional", "meaning": "if" },
+				"trời": { "type": "subject", "meaning": "weather" },
+				"đẹp": { "type": "adjective", "meaning": "nice" },
+				"thì": { "type": "conditional", "meaning": "then" },
+				"đi dạo": { "type": "verb", "meaning": "go for a walk" }
+			},
+			"english": "If the weather is nice, let's go for a walk"
+		},
+		{
+			"vietnamese": "Miễn là bạn cố gắng",
+			"breakdown": {
+				"Miễn là": { "type": "conditional", "meaning": "as long as" },
+				"bạn": { "type": "subject", "meaning": "you" },
+				"cố gắng": { "type": "verb", "meaning": "try hard" }
+			},
+			"english": "As long as you try"
+		},
+		{
+			"vietnamese": "Trừ khi trời mưa, tôi sẽ đi",
+			"breakdown": {
+				"Trừ khi": { "type": "conditional", "meaning": "unless" },
+				"trời": { "type": "subject", "meaning": "weather" },
+				"mưa": { "type": "verb", "meaning": "rain" },
+				"tôi": { "type": "subject", "meaning": "I" },
+				"sẽ": { "type": "tense-marker", "meaning": "will" },
+				"đi": { "type": "verb", "meaning": "go" }
+			},
+			"english": "Unless it rains, I'll go"
+		},
+		{
+			"vietnamese": "Nếu em không hiểu, hỏi thầy",
+			"breakdown": {
+				"Nếu": { "type": "conditional", "meaning": "if" },
+				"em": { "type": "subject", "meaning": "you (younger)" },
+				"không": { "type": "negation", "meaning": "not" },
+				"hiểu": { "type": "verb", "meaning": "understand" },
+				"hỏi": { "type": "verb", "meaning": "ask" },
+				"thầy": { "type": "object", "meaning": "teacher" }
+			},
+			"english": "If you don't understand, ask the teacher"
+		},
+		{
+			"vietnamese": "Khi tôi lớn lên, sẽ đi Mỹ",
+			"breakdown": {
+				"Khi": { "type": "conditional", "meaning": "when" },
+				"tôi": { "type": "subject", "meaning": "I" },
+				"lớn lên": { "type": "verb", "meaning": "grow up" },
+				"sẽ": { "type": "tense-marker", "meaning": "will" },
+				"đi": { "type": "verb", "meaning": "go to" },
+				"Mỹ": { "type": "object", "meaning": "America" }
+			},
+			"english": "When I grow up, I'll go to America"
+		},
+		{
+			"vietnamese": "Nếu được, tôi sẽ giúp",
+			"breakdown": {
+				"Nếu": { "type": "conditional", "meaning": "if" },
+				"được": { "type": "modal", "meaning": "possible" },
+				"tôi": { "type": "subject", "meaning": "I" },
+				"sẽ": { "type": "tense-marker", "meaning": "will" },
+				"giúp": { "type": "verb", "meaning": "help" }
+			},
+			"english": "If possible, I'll help"
+		}
+	],
+	"passive-voice": [
+		{
+			"vietnamese": "Tôi được tặng quà",
+			"breakdown": {
+				"Tôi": { "type": "subject", "meaning": "I" },
+				"được": { "type": "passive-positive", "meaning": "was (fortunate)" },
+				"tặng": { "type": "verb", "meaning": "give" },
+				"quà": { "type": "object", "meaning": "gift" }
+			},
+			"english": "I was given a gift"
+		},
+		{
+			"vietnamese": "Anh ấy bị ngã",
+			"breakdown": {
+				"Anh ấy": { "type": "subject", "meaning": "he" },
+				"bị": { "type": "passive-negative", "meaning": "suffered" },
+				"ngã": { "type": "verb", "meaning": "fall" }
+			},
+			"english": "He fell"
+		},
+		{
+			"vietnamese": "Em được cô giáo khen",
+			"breakdown": {
+				"Em": { "type": "subject", "meaning": "I (younger)" },
+				"được": { "type": "passive-positive", "meaning": "was (fortunate)" },
+				"cô giáo": { "type": "noun", "meaning": "teacher" },
+				"khen": { "type": "verb", "meaning": "praise" }
+			},
+			"english": "I was praised by the teacher"
+		},
+		{
+			"vietnamese": "Họ bị mất việc",
+			"breakdown": {
+				"Họ": { "type": "subject", "meaning": "they" },
+				"bị": { "type": "passive-negative", "meaning": "suffered" },
+				"mất": { "type": "verb", "meaning": "lose" },
+				"việc": { "type": "object", "meaning": "job" }
+			},
+			"english": "They lost their jobs"
+		},
+		{
+			"vietnamese": "Cô ấy được mời",
+			"breakdown": {
+				"Cô ấy": { "type": "subject", "meaning": "she" },
+				"được": { "type": "passive-positive", "meaning": "was (fortunate)" },
+				"mời": { "type": "verb", "meaning": "invite" }
+			},
+			"english": "She was invited"
+		},
+		{
+			"vietnamese": "Tôi bị đau đầu",
+			"breakdown": {
+				"Tôi": { "type": "subject", "meaning": "I" },
+				"bị": { "type": "passive-negative", "meaning": "suffered" },
+				"đau đầu": { "type": "verb", "meaning": "have a headache" }
+			},
+			"english": "I have a headache"
+		},
+		{
+			"vietnamese": "Chúng tôi được nghỉ",
+			"breakdown": {
+				"Chúng tôi": { "type": "subject", "meaning": "we" },
+				"được": { "type": "passive-positive", "meaning": "was (fortunate)" },
+				"nghỉ": { "type": "verb", "meaning": "rest" }
+			},
+			"english": "We got a break"
+		},
+		{
+			"vietnamese": "Xe bị hỏng",
+			"breakdown": {
+				"Xe": { "type": "subject", "meaning": "the car" },
+				"bị": { "type": "passive-negative", "meaning": "suffered" },
+				"hỏng": { "type": "verb", "meaning": "break down" }
+			},
+			"english": "The car is broken"
+		}
+	],
+	"modal-verbs": [
+		{
+			"vietnamese": "Tôi có thể giúp bạn",
+			"breakdown": {
+				"Tôi": { "type": "subject", "meaning": "I" },
+				"có thể": { "type": "modal", "meaning": "can" },
+				"giúp": { "type": "verb", "meaning": "help" },
+				"bạn": { "type": "object", "meaning": "you" }
+			},
+			"english": "I can help you"
+		},
+		{
+			"vietnamese": "Bạn nên ngủ sớm",
+			"breakdown": {
+				"Bạn": { "type": "subject", "meaning": "you" },
+				"nên": { "type": "modal", "meaning": "should" },
+				"ngủ": { "type": "verb", "meaning": "sleep" },
+				"sớm": { "type": "adverb", "meaning": "early" }
+			},
+			"english": "You should sleep early"
+		},
+		{
+			"vietnamese": "Em phải học",
+			"breakdown": {
+				"Em": { "type": "subject", "meaning": "I (younger)" },
+				"phải": { "type": "modal", "meaning": "must" },
+				"học": { "type": "verb", "meaning": "study" }
+			},
+			"english": "I have to study"
+		},
+		{
+			"vietnamese": "Tôi muốn nước",
+			"breakdown": {
+				"Tôi": { "type": "subject", "meaning": "I" },
+				"muốn": { "type": "modal", "meaning": "want" },
+				"nước": { "type": "object", "meaning": "water" }
+			},
+			"english": "I want water"
+		},
+		{
+			"vietnamese": "Anh biết nấu ăn",
+			"breakdown": {
+				"Anh": { "type": "subject", "meaning": "he" },
+				"biết": { "type": "modal", "meaning": "know how" },
+				"nấu ăn": { "type": "verb", "meaning": "cook" }
+			},
+			"english": "He knows how to cook"
+		},
+		{
+			"vietnamese": "Bạn cần nghỉ",
+			"breakdown": {
+				"Bạn": { "type": "subject", "meaning": "you" },
+				"cần": { "type": "modal", "meaning": "need" },
+				"nghỉ": { "type": "verb", "meaning": "rest" }
+			},
+			"english": "You need to rest"
+		},
+		{
+			"vietnamese": "Chúng tôi định đi",
+			"breakdown": {
+				"Chúng tôi": { "type": "subject", "meaning": "we" },
+				"định": { "type": "modal", "meaning": "plan to" },
+				"đi": { "type": "verb", "meaning": "go" }
+			},
+			"english": "We plan to go"
+		},
+		{
+			"vietnamese": "Tôi thích đọc",
+			"breakdown": {
+				"Tôi": { "type": "subject", "meaning": "I" },
+				"thích": { "type": "modal", "meaning": "like" },
+				"đọc": { "type": "verb", "meaning": "read" }
+			},
+			"english": "I like reading"
+		}
+	],
+	"focus-markers": [
+		{
+			"vietnamese": "Chính anh ấy nói",
+			"breakdown": {
+				"Chính": { "type": "marker", "meaning": "(he himself)" },
+				"anh ấy": { "type": "subject", "meaning": "he" },
+				"nói": { "type": "verb", "meaning": "say" }
+			},
+			"english": "He himself said it"
+		},
+		{
+			"vietnamese": "Tôi thì thích trà",
+			"breakdown": {
+				"Tôi": { "type": "subject", "meaning": "I" },
+				"thì": { "type": "marker", "meaning": "(as for)" },
+				"thích": { "type": "verb", "meaning": "like" },
+				"trà": { "type": "object", "meaning": "tea" }
+			},
+			"english": "As for me, I like tea"
+		},
+		{
+			"vietnamese": "Ngay hôm nay tôi đi",
+			"breakdown": {
+				"Ngay": { "type": "marker", "meaning": "right" },
+				"hôm nay": { "type": "adverb", "meaning": "today" },
+				"tôi": { "type": "subject", "meaning": "I" },
+				"đi": { "type": "verb", "meaning": "go" }
+			},
+			"english": "Right today I'm going"
+		},
+		{
+			"vietnamese": "Cái bánh này ngon",
+			"breakdown": {
+				"Cái": { "type": "marker", "meaning": "(focus)" },
+				"bánh": { "type": "noun", "meaning": "cake" },
+				"này": { "type": "demonstrative", "meaning": "this" },
+				"ngon": { "type": "adjective", "meaning": "delicious" }
+			},
+			"english": "This cake is delicious"
+		},
+		{
+			"vietnamese": "Việc đó thì tôi biết",
+			"breakdown": {
+				"Việc đó": { "type": "topic", "meaning": "that matter" },
+				"thì": { "type": "marker", "meaning": "(as for)" },
+				"tôi": { "type": "subject", "meaning": "I" },
+				"biết": { "type": "verb", "meaning": "know" }
+			},
+			"english": "That matter, I know"
+		},
+		{
+			"vietnamese": "Chính tôi làm",
+			"breakdown": {
+				"Chính": { "type": "marker", "meaning": "(myself)" },
+				"tôi": { "type": "subject", "meaning": "I" },
+				"làm": { "type": "verb", "meaning": "do" }
+			},
+			"english": "I myself did it"
+		},
+		{
+			"vietnamese": "Nó ngay đây",
+			"breakdown": {
+				"Nó": { "type": "subject", "meaning": "it" },
+				"ngay": { "type": "marker", "meaning": "right" },
+				"đây": { "type": "demonstrative", "meaning": "here" }
+			},
+			"english": "It's right here"
+		},
+		{
+			"vietnamese": "Anh mới là người đúng",
+			"breakdown": {
+				"Anh": { "type": "subject", "meaning": "you (older)" },
+				"mới": { "type": "marker", "meaning": "(only/truly)" },
+				"là": { "type": "verb", "meaning": "is" },
+				"người đúng": { "type": "object", "meaning": "the right one" }
+			},
+			"english": "You are the one who's right"
+		}
+	],
+	"exclamations": [
+		{
+			"vietnamese": "Ôi đẹp quá!",
+			"breakdown": {
+				"Ôi": { "type": "particle", "meaning": "(oh)" },
+				"đẹp": { "type": "adjective", "meaning": "beautiful" },
+				"quá": { "type": "intensifier", "meaning": "so" }
+			},
+			"english": "Oh, so beautiful!"
+		},
+		{
+			"vietnamese": "Trời ơi mệt quá!",
+			"breakdown": {
+				"Trời ơi": { "type": "particle", "meaning": "(oh god)" },
+				"mệt": { "type": "adjective", "meaning": "tired" },
+				"quá": { "type": "intensifier", "meaning": "so" }
+			},
+			"english": "Oh god, so tired!"
+		},
+		{
+			"vietnamese": "Chà thơm thế!",
+			"breakdown": {
+				"Chà": { "type": "particle", "meaning": "(wow)" },
+				"thơm": { "type": "adjective", "meaning": "fragrant" },
+				"thế": { "type": "intensifier", "meaning": "(so)" }
+			},
+			"english": "Wow, so fragrant!"
+		},
+		{
+			"vietnamese": "Ngon thật!",
+			"breakdown": {
+				"Ngon": { "type": "adjective", "meaning": "delicious" },
+				"thật": { "type": "intensifier", "meaning": "really" }
+			},
+			"english": "Really delicious!"
+		},
+		{
+			"vietnamese": "Em giỏi ghê!",
+			"breakdown": {
+				"Em": { "type": "subject", "meaning": "you (younger)" },
+				"giỏi": { "type": "adjective", "meaning": "smart" },
+				"ghê": { "type": "intensifier", "meaning": "(so)" }
+			},
+			"english": "You're so smart!"
+		},
+		{
+			"vietnamese": "Thôi nào!",
+			"breakdown": {
+				"Thôi": { "type": "verb", "meaning": "stop" },
+				"nào": { "type": "particle", "meaning": "(come on)" }
+			},
+			"english": "Come on!"
+		},
+		{
+			"vietnamese": "Buồn quá!",
+			"breakdown": {
+				"Buồn": { "type": "adjective", "meaning": "sad" },
+				"quá": { "type": "intensifier", "meaning": "so" }
+			},
+			"english": "So sad!"
+		},
+		{
+			"vietnamese": "Vui lắm!",
+			"breakdown": {
+				"Vui": { "type": "adjective", "meaning": "fun" },
+				"lắm": { "type": "intensifier", "meaning": "very" }
+			},
+			"english": "So fun!"
+		}
+	]
+}

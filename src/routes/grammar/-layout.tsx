@@ -29,6 +29,9 @@ export const grammarRoutes: ModuleRoute[] = [
 
 	// Expression
 	{ label: "Exclamations", path: "/grammar/exclamations" },
+
+	// Practice
+	{ label: "Practice", path: "/grammar/practice" },
 ];
 
 interface LayoutProps {

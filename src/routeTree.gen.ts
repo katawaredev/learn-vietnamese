@@ -45,6 +45,7 @@ import { Route as GrammarComparativesRouteImport } from './routes/grammar/compar
 import { Route as GrammarCommandsRouteImport } from './routes/grammar/commands'
 import { Route as GrammarClassifiersRouteImport } from './routes/grammar/classifiers'
 import { Route as GrammarAdjectivesRouteImport } from './routes/grammar/adjectives'
+import { Route as GrammarPracticeIndexRouteImport } from './routes/grammar/practice/index'
 import { Route as DictationSpeakSlugRouteImport } from './routes/dictation/speak.$slug'
 import { Route as DictationListenSlugRouteImport } from './routes/dictation/listen.$slug'
 
@@ -230,6 +231,11 @@ const GrammarAdjectivesRoute = GrammarAdjectivesRouteImport.update({
   path: '/grammar/adjectives',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GrammarPracticeIndexRoute = GrammarPracticeIndexRouteImport.update({
+  id: '/grammar/practice/',
+  path: '/grammar/practice/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DictationSpeakSlugRoute = DictationSpeakSlugRouteImport.update({
   id: '/dictation/speak/$slug',
   path: '/dictation/speak/$slug',
@@ -280,6 +286,7 @@ export interface FileRoutesByFullPath {
   '/relations/': typeof RelationsIndexRoute
   '/dictation/listen/$slug': typeof DictationListenSlugRoute
   '/dictation/speak/$slug': typeof DictationSpeakSlugRoute
+  '/grammar/practice/': typeof GrammarPracticeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -320,6 +327,7 @@ export interface FileRoutesByTo {
   '/relations': typeof RelationsIndexRoute
   '/dictation/listen/$slug': typeof DictationListenSlugRoute
   '/dictation/speak/$slug': typeof DictationSpeakSlugRoute
+  '/grammar/practice': typeof GrammarPracticeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -361,6 +369,7 @@ export interface FileRoutesById {
   '/relations/': typeof RelationsIndexRoute
   '/dictation/listen/$slug': typeof DictationListenSlugRoute
   '/dictation/speak/$slug': typeof DictationSpeakSlugRoute
+  '/grammar/practice/': typeof GrammarPracticeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -403,6 +412,7 @@ export interface FileRouteTypes {
     | '/relations/'
     | '/dictation/listen/$slug'
     | '/dictation/speak/$slug'
+    | '/grammar/practice/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -443,6 +453,7 @@ export interface FileRouteTypes {
     | '/relations'
     | '/dictation/listen/$slug'
     | '/dictation/speak/$slug'
+    | '/grammar/practice'
   id:
     | '__root__'
     | '/'
@@ -483,6 +494,7 @@ export interface FileRouteTypes {
     | '/relations/'
     | '/dictation/listen/$slug'
     | '/dictation/speak/$slug'
+    | '/grammar/practice/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -524,6 +536,7 @@ export interface RootRouteChildren {
   RelationsIndexRoute: typeof RelationsIndexRoute
   DictationListenSlugRoute: typeof DictationListenSlugRoute
   DictationSpeakSlugRoute: typeof DictationSpeakSlugRoute
+  GrammarPracticeIndexRoute: typeof GrammarPracticeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -780,6 +793,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GrammarAdjectivesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/grammar/practice/': {
+      id: '/grammar/practice/'
+      path: '/grammar/practice'
+      fullPath: '/grammar/practice/'
+      preLoaderRoute: typeof GrammarPracticeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dictation/speak/$slug': {
       id: '/dictation/speak/$slug'
       path: '/dictation/speak/$slug'
@@ -836,6 +856,7 @@ const rootRouteChildren: RootRouteChildren = {
   RelationsIndexRoute: RelationsIndexRoute,
   DictationListenSlugRoute: DictationListenSlugRoute,
   DictationSpeakSlugRoute: DictationSpeakSlugRoute,
+  GrammarPracticeIndexRoute: GrammarPracticeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
