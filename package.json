@@ -36,6 +36,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.11",
+		"@rolldown/plugin-babel": "^0.2.3",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.2.2",
 		"@tanstack/devtools-vite": "^0.6.0",
@@ -48,6 +49,7 @@
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
 		"@vitejs/plugin-react": "^6.0.1",
+		"@vitejs/plugin-rsc": "^0.5.24",
 		"@webgpu/types": "^0.1.69",
 		"babel-plugin-react-compiler": "^1.0.0",
 		"baseline-browser-mapping": "^2.10.18",

@@ -123,12 +123,16 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 				}
 
 				// Transcribe using worker pool — device/dtype come from the model definition
+				// TODO: revert to "q8" once onnxruntime-web fixes MatMulNBits scale
+				// tensor handling (fails with "Missing required scale" on quantised
+				// Whisper/PhoWhisper models as of ort 1.25.0-dev).
+				// Related: https://github.com/huggingface/transformers.js/issues/1317
 				const text = await sttPool.transcribe(
 					audioData,
 					modelPath,
 					lang,
 					selectedModel.device ?? "wasm",
-					selectedModel.dtype ?? "q8",
+					selectedModel.dtype ?? "fp32",
 					(progress) => {
 						if (isMountedRef.current) {
 							setLoadingProgress(Math.round(progress));
