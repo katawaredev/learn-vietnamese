@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ShowcaseRouteImport } from './routes/showcase'
 import { Route as FlagRouteImport } from './routes/flag'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as IndexRouteImport } from './routes/index'
@@ -49,11 +48,6 @@ import { Route as GrammarPracticeIndexRouteImport } from './routes/grammar/pract
 import { Route as DictationSpeakSlugRouteImport } from './routes/dictation/speak.$slug'
 import { Route as DictationListenSlugRouteImport } from './routes/dictation/listen.$slug'
 
-const ShowcaseRoute = ShowcaseRouteImport.update({
-  id: '/showcase',
-  path: '/showcase',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const FlagRoute = FlagRouteImport.update({
   id: '/flag',
   path: '/flag',
@@ -251,7 +245,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
-  '/showcase': typeof ShowcaseRoute
   '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
@@ -292,7 +285,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
-  '/showcase': typeof ShowcaseRoute
   '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
@@ -334,7 +326,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
-  '/showcase': typeof ShowcaseRoute
   '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
@@ -377,7 +368,6 @@ export interface FileRouteTypes {
     | '/'
     | '/chat'
     | '/flag'
-    | '/showcase'
     | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
@@ -418,7 +408,6 @@ export interface FileRouteTypes {
     | '/'
     | '/chat'
     | '/flag'
-    | '/showcase'
     | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
@@ -459,7 +448,6 @@ export interface FileRouteTypes {
     | '/'
     | '/chat'
     | '/flag'
-    | '/showcase'
     | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
@@ -501,7 +489,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChatRoute: typeof ChatRoute
   FlagRoute: typeof FlagRoute
-  ShowcaseRoute: typeof ShowcaseRoute
   GrammarAdjectivesRoute: typeof GrammarAdjectivesRoute
   GrammarClassifiersRoute: typeof GrammarClassifiersRoute
   GrammarCommandsRoute: typeof GrammarCommandsRoute
@@ -541,13 +528,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/showcase': {
-      id: '/showcase'
-      path: '/showcase'
-      fullPath: '/showcase'
-      preLoaderRoute: typeof ShowcaseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/flag': {
       id: '/flag'
       path: '/flag'
@@ -821,7 +801,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChatRoute: ChatRoute,
   FlagRoute: FlagRoute,
-  ShowcaseRoute: ShowcaseRoute,
   GrammarAdjectivesRoute: GrammarAdjectivesRoute,
   GrammarClassifiersRoute: GrammarClassifiersRoute,
   GrammarCommandsRoute: GrammarCommandsRoute,
