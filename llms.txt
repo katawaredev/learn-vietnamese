@@ -1,0 +1,8 @@
+# LLMs
+
+- [React](https://react.dev/llms.txt)
+- [TanStack](https://tanstack.com/llms.txt)
+  - [React Server Components](https://tanstack.com/start/latest/docs/framework/react/guide/server-components)
+- [Base UI](https://base-ui.com/llms.txt)
+- [Storybook](https://storybook.js.org/llms.txt)
+- [Vite](https://vite.dev/llms.txt)
