@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Markdown } from "~/components/Markdown";
 import { Telex } from "~/components/Telex";
 import vowelsData from "~/data/pronunciation/vowels.json";
 import { PracticeGrid } from "~/layout/PracticeGrid";
@@ -30,7 +31,7 @@ function VowelsComponent() {
 						),
 					};
 					if (item.pronunciation) {
-						details.Pronunciation = item.pronunciation;
+						details.Pronunciation = <Markdown text={item.pronunciation} />;
 					}
 					if (item.telex) {
 						details.Telex = <Telex text={item.telex} />;

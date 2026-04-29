@@ -1,128 +1,149 @@
 {
 	"ai": {
-		"pronunciation": "Like 'ai' in **Thai** or 'eye'. (Open-fronted vowel gliding to 'y' sound).",
+		"pronunciation": "Long open vowel gliding to 'y'. Like 'ai' in *Thai* or 'eye'.",
 		"ipa": "/aːj/",
 		"telex": "ai",
+		"examples": ["hai", "ai"],
 		"url": "/sounds/double-vowels/ai.mp3"
 	},
 	"ao": {
-		"pronunciation": "Like 'ow' in **cow** or 'ao' in **Mao**. (Open vowel gliding to 'w' sound).",
+		"pronunciation": "Long open vowel gliding to 'w'. Like 'ow' in *cow* or 'ao' in *Mao*.",
 		"ipa": "/aːw/",
 		"telex": "ao",
+		"examples": ["chào", "cao"],
 		"url": "/sounds/double-vowels/ao.mp3"
 	},
 	"au": {
-		"pronunciation": "Similar to 'ow' in **owl** or 'ao', but shorter and less open. (Often interchangeable with 'ao').",
+		"pronunciation": "Short version of `ao` — the starting vowel is `ă` (short), not `a` (long). Minimal pair: *cau* (betel palm) ≠ *cao* (tall).",
 		"ipa": "/aw/",
 		"telex": "au",
+		"examples": ["cau", "đau"],
 		"url": "/sounds/double-vowels/au.mp3"
 	},
 	"âu": {
-		"pronunciation": "Like 'oh' in **go** or **boat**, but **without the final glide** (same sound as the base vowel **ô**).",
+		"pronunciation": "Central vowel `â` gliding to 'w'. Distinct from `ô` /o/ — minimal pair: *lâu* (long time) ≠ *lô* (lot/batch).",
 		"ipa": "/əw/",
 		"telex": "aau",
+		"examples": ["lâu", "đầu"],
 		"url": "/sounds/double-vowels/aau.mp3"
 	},
 	"ay": {
-		"pronunciation": "Like 'ay' in **say** or 'ai' in **bay**. (Mid-front vowel gliding to 'y' sound).",
+		"pronunciation": "Mid-front vowel gliding to 'y'. Like 'ay' in *say*.",
 		"ipa": "/aj/",
 		"telex": "ay",
+		"examples": ["bay", "ngày"],
 		"url": "/sounds/double-vowels/ay.mp3"
 	},
 	"ây": {
-		"pronunciation": "Similar to **ay**, but starting slightly more central (like 'uh-yee').",
+		"pronunciation": "Similar to *ay*, but starting from the central vowel `â` (like 'uh-yee').",
 		"ipa": "/əj/",
 		"telex": "aay",
+		"examples": ["cây", "đây"],
 		"url": "/sounds/double-vowels/aay.mp3"
 	},
 	"eo": {
-		"pronunciation": "Like 'eh-oh' (similar to 'e' in **bed** followed by 'oh').",
+		"pronunciation": "Like 'eh-oh' — `e` /ɛ/ followed by 'w' glide.",
 		"ipa": "/ɛw/",
 		"telex": "eo",
+		"examples": ["kéo", "mèo"],
 		"url": "/sounds/double-vowels/eo.mp3"
 	},
 	"êu": {
-		"pronunciation": "Like 'ay-oo', similar to 'ê' in **say** followed by 'oo' in **food**.",
+		"pronunciation": "`ê` /e/ gliding away to 'w' — like 'ay-oo'. The glide is real; don't hold the `ê` flat.",
 		"ipa": "/ew/",
 		"telex": "eu",
+		"examples": ["kêu", "nêu"],
 		"url": "/sounds/double-vowels/eu.mp3"
 	},
 	"iu": {
-		"pronunciation": "Like 'ee-oo' or 'ew' in **few**.",
+		"pronunciation": "Like 'ee-oo' or 'ew' in *few*.",
 		"ipa": "/iw/",
 		"telex": "iu",
+		"examples": ["xíu", "níu"],
 		"url": "/sounds/double-vowels/iu.mp3"
 	},
 	"iêu": {
-		"pronunciation": "Centering diphthong: Like 'ee-uh' or 'i-a' in rapid speech (starts high, drops slightly).",
-		"ipa": "/iə/",
+		"pronunciation": "Triphthong: starts high front /i/, drops to schwa /ə/, ends with 'w' glide.",
+		"ipa": "/iəw/",
 		"telex": "ie",
+		"examples": ["nhiều", "hiểu"],
 		"url": "/sounds/double-vowels/ieu.mp3"
 	},
 	"oa": {
-		"pronunciation": "Like 'wa' in **water** or **wacky**.",
+		"pronunciation": "Like 'wa' in *water* or *wacky*.",
 		"ipa": "/waː/",
 		"telex": "oa",
+		"examples": ["hoa", "khoa"],
 		"url": "/sounds/double-vowels/oa.mp3"
 	},
 	"oe": {
-		"pronunciation": "Like 'weh' in **wet**.",
+		"pronunciation": "Like 'weh' in *wet*.",
 		"ipa": "/wɛ/",
 		"telex": "oe",
+		"examples": ["khoe", "loe"],
 		"url": "/sounds/double-vowels/oe.mp3"
 	},
 	"ôi": {
-		"pronunciation": "Like 'oy' in **toy** or **boy**, but with less glide than English.",
+		"pronunciation": "Like 'oy' in *toy* or *boy*, but with less glide than English.",
 		"ipa": "/oj/",
 		"telex": "oi",
+		"examples": ["tôi", "thôi"],
 		"url": "/sounds/double-vowels/oi.mp3"
 	},
 	"ơi": {
-		"pronunciation": "Like 'uh-yee' (starts central **ơ**, glides to 'y').",
+		"pronunciation": "Starts at central `ơ` /ɤ/, glides to 'y'. Like 'uh-yee'.",
 		"ipa": "/ɤj/",
 		"telex": "owi",
+		"examples": ["trời", "ơi"],
 		"url": "/sounds/double-vowels/owi.mp3"
 	},
 	"ua": {
-		"pronunciation": "Centering diphthong: Like 'oo-uh' (starts high, drops central).",
+		"pronunciation": "Centering diphthong: starts high back /u/, drops to schwa /ə/. Like 'oo-uh'.",
 		"ipa": "/uə/",
 		"telex": "ua",
+		"examples": ["mua", "của"],
 		"url": "/sounds/double-vowels/ua.mp3"
 	},
 	"uê": {
-		"pronunciation": "Like 'oo-ay', similar to 'w' in **way** followed by 'ay' in **say**.",
+		"pronunciation": "Like 'oo-ay' — 'w' glide followed by `ê` /e/.",
 		"ipa": "/we/",
 		"telex": "ue",
+		"examples": ["thuê", "tuệ"],
 		"url": "/sounds/double-vowels/ue.mp3"
 	},
 	"uô": {
-		"pronunciation": "Centering diphthong: Like 'oo-oh' (starts high, drops to mid-back vowel).",
-		"ipa": "/uo/",
+		"pronunciation": "Centering diphthong: starts high back /u/, drops to schwa /ə/. Same nucleus as `ua`; spelled `uô` when followed by a final consonant.",
+		"ipa": "/uə̯/",
 		"telex": "uo",
+		"examples": ["muốn", "buổi"],
 		"url": "/sounds/double-vowels/uo.mp3"
 	},
 	"uy": {
-		"pronunciation": "Like 'wee' in **we**.",
+		"pronunciation": "Like 'wee' in *we*.",
 		"ipa": "/wi/",
 		"telex": "uy",
+		"examples": ["tuy", "thúy"],
 		"url": "/sounds/double-vowels/uy.mp3"
 	},
 	"ưa": {
-		"pronunciation": "Centering diphthong: Like 'ew-uh' (starts high back unrounded **ư**, drops central).",
+		"pronunciation": "Centering diphthong: starts at high back unrounded `ư` /ɯ/, drops to schwa /ə/.",
 		"ipa": "/ɯə/",
 		"telex": "uwa",
+		"examples": ["mưa", "chưa"],
 		"url": "/sounds/double-vowels/uwa_.mp3"
 	},
 	"ưu": {
-		"pronunciation": "Like 'ew-oo' (starts high back unrounded **ư**, glides to 'oo' **u**).",
+		"pronunciation": "Starts at `ư` /ɯ/, glides to 'w'.",
 		"ipa": "/ɯw/",
 		"telex": "uwu",
+		"examples": ["ưu", "lưu"],
 		"url": "/sounds/double-vowels/uwu.mp3"
 	},
 	"ươi": {
-		"pronunciation": "Centering diphthong: Similar to **ưa**, but with the horn mark on the letter **ơ** instead of the inherent diacritic on **ư**.",
-		"ipa": "/ɨə/",
+		"pronunciation": "Triphthong: `ư` /ɯ/ to schwa /ə/, ending in 'y' glide.",
+		"ipa": "/ɯəj/",
 		"telex": "uow",
+		"examples": ["người", "tươi"],
 		"url": "/sounds/double-vowels/uow.mp3"
 	}
 }

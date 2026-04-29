@@ -1,150 +1,156 @@
 {
 	"b": {
-		"pronunciation": "Like 'b' in **boy** or **bat** (a simple voiced stop).",
-		"ipa": "/b/",
+		"pronunciation": "Voiced bilabial *implosive*. Like English 'b', but you swallow the air inward rather than pushing it out — a 'soft, imploded' b.",
+		"ipa": "/ɓ/",
 		"telex": "b",
 		"url": null
 	},
 	"c": {
-		"pronunciation": "Like 'k' in **ski** or **kit** (unvoiced, **un-aspirated**). Only used before a, o, u, ơ, ư.",
-		"ipa": "/k/",
+		"pronunciation": "*Initial*: like 'k' in *ski* or *kit* (unvoiced, un-aspirated). Only used before a, o, u, ơ, ư. *Final*: unreleased — your tongue closes the velum but you don't let the air out. After `-o/-ô/-u` the lips round simultaneously, producing a faint `-kp` coarticulation (e.g. *học*).",
+		"ipa": "/k/ · /k̚/",
 		"telex": "c",
 		"url": "/sounds/consonants/c.mp3"
 	},
 	"ch": {
-		"pronunciation": "Like 'ch' in **church** or **chip** (an un-aspirated postalveolar affricate).",
-		"ipa": "/tɕ/",
+		"pronunciation": "*Initial*: an un-aspirated postalveolar affricate, like 'ch' in *church*. *Final*: unreleased palatal stop after front vowels (ich, êch, ach) — tongue blocks airflow without any release puff. The two realisations sound quite different.",
+		"ipa": "/tɕ/ · /k̟̚/",
 		"telex": "ch",
 		"url": "/sounds/consonants/ch.mp3"
 	},
 	"d": {
-		"pronunciation": "Like 'z' in **zebra** or **zoo**. (Phonetically identical to gi and r in the North).",
+		"pronunciation": "Like 'z' in *zebra* or *zoo*. (Phonetically identical to gi and r in the North).",
 		"ipa": "/z/",
 		"telex": "d",
 		"url": "/sounds/consonants/d.mp3"
 	},
 	"đ": {
-		"pronunciation": "Like 'd' in **dog** or **don't** (a simple voiced alveolar stop).",
-		"ipa": "/d/",
+		"pronunciation": "Voiced alveolar *implosive*. Like English 'd', but with airflow drawn inward rather than pushed out.",
+		"ipa": "/ɗ/",
 		"telex": "dd",
 		"url": "/sounds/consonants/dd.mp3"
 	},
 	"g": {
-		"pronunciation": "Like 'g' in **go** or **gate** (a simple voiced velar stop).",
+		"pronunciation": "Like 'g' in *go* or *gate* (a simple voiced velar stop).",
 		"ipa": "/g/",
 		"telex": "g",
 		"url": "/sounds/consonants/g.mp3"
 	},
 	"gh": {
-		"pronunciation": "Like 'g' in **go** or **gate** (same as 'g', but only used before i, e, ê).",
+		"pronunciation": "Like 'g' in *go* or *gate* (same as 'g', but only used before i, e, ê).",
 		"ipa": "/g/",
 		"telex": "gh",
 		"url": "/sounds/consonants/g.mp3"
 	},
 	"gi": {
-		"pronunciation": "Like 'z' in **zebra** or **zoo**. (Phonetically identical to d and r in the North).",
+		"pronunciation": "Like 'z' in *zebra* or *zoo*. (Phonetically identical to d and r in the North).",
 		"ipa": "/z/",
 		"telex": "gi",
 		"url": "/sounds/consonants/gi.mp3"
 	},
 	"k": {
-		"pronunciation": "Like 'k' in **ski** or **kit** (unvoiced, **un-aspirated**). Only used before i, e, ê.",
+		"pronunciation": "Like 'k' in *ski* or *kit* (unvoiced, *un-aspirated*). Only used before i, e, ê.",
 		"ipa": "/k/",
 		"telex": "k",
 		"url": "/sounds/consonants/k.mp3"
 	},
 	"kh": {
-		"pronunciation": "Like 'ch' in Scottish **loch** or German **Bach** (a voiceless velar fricative).",
+		"pronunciation": "Like 'ch' in Scottish *loch* or German *Bach* (a voiceless velar fricative).",
 		"ipa": "/x/",
 		"telex": "kh",
 		"url": "/sounds/consonants/kh.mp3"
 	},
 	"l": {
-		"pronunciation": "Like 'l' in **light** or **love**.",
+		"pronunciation": "Like 'l' in *light* or *love*.",
 		"ipa": "/l/",
 		"telex": "l",
 		"url": null
 	},
 	"m": {
-		"pronunciation": "Like 'm' in **man** or **mother**.",
+		"pronunciation": "Like 'm' in *man* or *mother*. Pronounced the same as an initial or as a final.",
 		"ipa": "/m/",
 		"telex": "m",
 		"url": null
 	},
 	"n": {
-		"pronunciation": "Like 'n' in **no** or **nice**.",
+		"pronunciation": "Like 'n' in *no* or *nice*. Pronounced the same as an initial or as a final.",
 		"ipa": "/n/",
 		"telex": "n",
 		"url": null
 	},
 	"ng": {
-		"pronunciation": "Like 'ng' in **sing** or **thing** (the velar nasal).",
+		"pronunciation": "Velar nasal, like 'ng' in *sing* or *thing*. Same realisation as initial and final, except: as a final after `-o/-ô/-u` the lips round simultaneously (a faint `-ŋm` coarticulation in words like *trong*, *vâng*).",
 		"ipa": "/ŋ/",
 		"telex": "ng",
 		"url": "/sounds/consonants/ng.mp3"
 	},
 	"ngh": {
-		"pronunciation": "Like 'ng' in **sing** (same as 'ng', but only used before i, e, ê).",
+		"pronunciation": "Like 'ng' in *sing* (same as 'ng', but only used before i, e, ê).",
 		"ipa": "/ŋ/",
 		"telex": "ngh",
 		"url": "/sounds/consonants/ng.mp3"
 	},
 	"nh": {
-		"pronunciation": "Like 'ny' in Spanish **cañón** or 'n' in **canyon** (the palatal nasal).",
+		"pronunciation": "Palatal nasal, like 'ny' in Spanish *cañón* or 'n' in *canyon*. Same realisation as initial and final; as a final it appears only after front vowels (inh, ênh, anh).",
 		"ipa": "/ɲ/",
 		"telex": "nh",
 		"url": "/sounds/consonants/nh.mp3"
 	},
+	"p": {
+		"pronunciation": "Bilabial stop. Only occurs as a *final* in native vocabulary (Vietnamese has no initial /p/ — the letter `ph` is used for `/f/` instead). Lips close, no audible release.",
+		"ipa": "/p̚/",
+		"telex": "p",
+		"url": null
+	},
 	"ph": {
-		"pronunciation": "Like 'f' in **fun** or **fish**.",
+		"pronunciation": "Like 'f' in *fun* or *fish*.",
 		"ipa": "/f/",
 		"telex": "ph",
 		"url": "/sounds/consonants/ph.mp3"
 	},
 	"qu": {
-		"pronunciation": "Like 'kw' in **quick** or **queen** (a voiceless labialized velar stop).",
+		"pronunciation": "Like 'kw' in *quick* or *queen* (a voiceless labialized velar stop).",
 		"ipa": "/kw/",
-		"telex": "q",
+		"telex": "qu",
 		"url": "/sounds/consonants/qu.mp3"
 	},
 	"r": {
-		"pronunciation": "Like 'z' in **zebra** or **zoo**. (Phonetically identical to d and gi in the North).",
+		"pronunciation": "Like 'z' in *zebra* or *zoo*. (Phonetically identical to d and gi in the North).",
 		"ipa": "/z/",
 		"telex": "r",
 		"url": "/sounds/consonants/r.mp3"
 	},
 	"s": {
-		"pronunciation": "Like 's' in **see** or **sun** (the same sound as x).",
+		"pronunciation": "Like 's' in *see* or *sun* (the same sound as x).",
 		"ipa": "/s/",
 		"telex": "s",
 		"url": null
 	},
 	"t": {
-		"pronunciation": "Like 't' in **stop** or **ski** (unvoiced, **un-aspirated**).",
-		"ipa": "/t/",
+		"pronunciation": "*Initial*: like 't' in *stop* or *ski* (unvoiced, un-aspirated). *Final*: unreleased — tongue touches the alveolar ridge but you don't let the air out.",
+		"ipa": "/t/ · /t̚/",
 		"telex": "t",
 		"url": "/sounds/consonants/t.mp3"
 	},
 	"th": {
-		"pronunciation": "Like 't' in **tea** or **top** (unvoiced, **aspirated** with a puff of air).",
+		"pronunciation": "Like 't' in *tea* or *top* (unvoiced, *aspirated* with a puff of air).",
 		"ipa": "/tʰ/",
 		"telex": "th",
 		"url": "/sounds/consonants/th.mp3"
 	},
 	"tr": {
-		"pronunciation": "Like 'ch' in **church** or **chip** (phonetically identical to ch in the North).",
+		"pronunciation": "Like 'ch' in *church* or *chip* (phonetically identical to ch in the North).",
 		"ipa": "/tɕ/",
 		"telex": "tr",
 		"url": "/sounds/consonants/tr.mp3"
 	},
 	"v": {
-		"pronunciation": "Like 'v' in **van** or **vote** (highly variable, but often maintained as 'v').",
+		"pronunciation": "Voiced labiodental fricative, like English 'v'. In standard Northern speech this is clean and consistent; do not follow Southern speakers who realise it as `/j/`.",
 		"ipa": "/v/",
 		"telex": "v",
 		"url": null
 	},
 	"x": {
-		"pronunciation": "Like 's' in **see** or **sun** (a simple voiceless alveolar fricative).",
+		"pronunciation": "Like 's' in *see* or *sun* (a simple voiceless alveolar fricative).",
 		"ipa": "/s/",
 		"telex": "x",
 		"url": "/sounds/consonants/x.mp3"

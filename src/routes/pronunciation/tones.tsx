@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Callout } from "~/components/Callout";
 import { Disclosure } from "~/components/Disclosure";
+import { Markdown } from "~/components/Markdown";
 import tones from "~/data/pronunciation/tones.json";
 import { PracticeGrid } from "~/layout/PracticeGrid";
 import { Layout } from "./-layout";
@@ -42,25 +44,25 @@ function ToneDisclosure({
 				{description && (
 					<div>
 						<strong className="text-gold">Description:</strong>
-						<span className="ml-2">{description}</span>
+						<Markdown className="ml-2" text={description} />
 					</div>
 				)}
 				{pronunciation && (
 					<div>
 						<strong className="text-gold">Pronunciation:</strong>
-						<span className="ml-2">{pronunciation}</span>
+						<Markdown className="ml-2" text={pronunciation} />
 					</div>
 				)}
 				{analogy && (
 					<div>
 						<strong className="text-gold">Analogy:</strong>
-						<span className="ml-2">{analogy}</span>
+						<Markdown className="ml-2" text={analogy} />
 					</div>
 				)}
 				{notes && (
 					<div>
 						<strong className="text-gold">Notes:</strong>
-						<span className="ml-2">{notes}</span>
+						<Markdown className="ml-2" text={notes} />
 					</div>
 				)}
 				{ipa && (
@@ -87,6 +89,13 @@ interface ToneExampleData {
 function TonesComponent() {
 	return (
 		<Layout>
+			<Callout variant="note" dismissible className="mb-6">
+				The example syllables below are for{" "}
+				<em>tonal pronunciation practice</em>, not vocabulary. The point is to
+				hear and produce the same syllable across all six tones — so some
+				entries are rare, archaic, or dialectal. That's intentional. Focus on
+				the pitch contour, not the gloss.
+			</Callout>
 			<div className="space-y-6">
 				{Object.entries(tones).map(([key, item]) => (
 					<div key={key} className="space-y-4">

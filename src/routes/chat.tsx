@@ -53,7 +53,6 @@ type ModelStatus = "idle" | "loading" | "ready" | "error";
 // 2. Lost message handlers (second mount would create new worker without seeing first worker's messages)
 // We use a mount counter to only terminate the worker when all instances unmount.
 let sharedWorker: Worker | null = null;
-// eslint-disable-next-line prefer-const
 let workerMountCount = 0;
 
 function ChatRoute() {
@@ -83,7 +82,6 @@ function ChatRoute() {
 	// Auto-scroll to bottom when new messages arrive (not during streaming updates)
 	useEffect(() => {
 		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	// Auto-resize textarea
@@ -92,7 +90,6 @@ function ChatRoute() {
 			textareaRef.current.style.height = "auto";
 			textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	// Initialize worker - survive Strict Mode but cleanup properly
