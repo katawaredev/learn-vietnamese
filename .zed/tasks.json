@@ -1,12 +1,12 @@
 [
 	{
 		"label": "check",
-		"command": "npm",
+		"command": "pnpm",
 		"args": ["run", "check"]
 	},
 	{
 		"label": "typecheck",
-		"command": "npm",
+		"command": "pnpm",
 		"args": ["run", "typecheck"]
 	}
 ]

@@ -5,7 +5,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "Dev",
-			"runtimeExecutable": "npm",
+			"runtimeExecutable": "pnpm",
 			"runtimeArgs": ["run", "dev", "--", "--open"],
 			"cwd": "${workspaceFolder}",
 			"stopOnEntry": false

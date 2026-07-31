@@ -1,10 +1,10 @@
 # https://lefthook.dev/configuration/
-# npx lefthook run pre-commit
+# pnpm exec lefthook run pre-commit
 pre-commit:
   parallel: true
   commands:
     check:
-      run: npm run check
+      run: pnpm run check
       stage_fixed: true
     typecheck:
-      run: npm run typecheck
+      run: pnpm run typecheck

@@ -1,10 +1,10 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
-import { playwright } from "@vitest/browser-playwright";
-import { defineConfig } from "vitest/config";
+import { playwright } from "vite-plus/test/browser-playwright";
+import { defineConfig } from "vite-plus";
 
-const dirname = path.dirname(fileURLToPath(import.meta.url));
+const { dirname } = import.meta;
 
 export default defineConfig({
 	test: {
@@ -12,9 +12,9 @@ export default defineConfig({
 			{
 				extends: true,
 				test: {
-					name: "unit",
 					environment: "jsdom",
 					include: ["src/**/*.test.{ts,tsx}"],
+					name: "unit",
 				},
 			},
 			{
@@ -30,13 +30,13 @@ export default defineConfig({
 					},
 				},
 				test: {
-					name: "storybook",
 					browser: {
 						enabled: true,
-						provider: playwright(),
 						headless: true,
 						instances: [{ browser: "chromium" }],
+						provider: playwright(),
 					},
+					name: "storybook",
 				},
 			},
 		],

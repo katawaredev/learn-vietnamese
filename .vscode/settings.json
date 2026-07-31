@@ -15,14 +15,29 @@
 	"files.readonlyInclude": {
 		"**/routeTree.gen.ts": true
 	},
-	"tailwindCSS.classFunctions": ["cva", "cx", "twMerge", "clsx", "cn"],
-	"editor.formatOnSave": true,
-	"editor.defaultFormatter": "biomejs.biome",
-	"[markdown]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"npm.scriptRunner": "vp",
+	"editor.defaultFormatter": "oxc.oxc-vscode",
+	"[javascript]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"oxc.fmt.configPath": "./vite.config.ts",
+	"editor.formatOnSave": true,
+	"editor.formatOnSaveMode": "file",
 	"editor.codeActionsOnSave": {
-		"source.fixAll.biome": "explicit",
-		"source.organizeImports.biome": "explicit"
-	}
+		"source.fixAll.oxc": "explicit",
+		"source.organizeImports.oxc": "explicit"
+	},
+	"tailwindCSS.classFunctions": ["cva", "cx", "twMerge", "clsx", "cn"]
 }

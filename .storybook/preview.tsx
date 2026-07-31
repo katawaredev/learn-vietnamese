@@ -3,10 +3,10 @@ import addonA11y from "@storybook/addon-a11y";
 import type { Decorator } from "@storybook/react-vite";
 import { definePreview } from "@storybook/react-vite";
 import {
+	RouterProvider,
 	createMemoryHistory,
 	createRootRoute,
 	createRouter,
-	RouterProvider,
 } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { STTProvider } from "../src/providers/stt-provider";
@@ -17,8 +17,8 @@ const withRouter: Decorator = (Story) => {
 	const router = useMemo(() => {
 		const rootRoute = createRootRoute({ component: () => <Story /> });
 		return createRouter({
-			routeTree: rootRoute,
 			history: createMemoryHistory({ initialEntries: ["/"] }),
+			routeTree: rootRoute,
 		});
 	}, [Story]);
 	return <RouterProvider router={router} />;
@@ -40,13 +40,13 @@ const withTheme: Decorator = (Story) => (
 
 export default definePreview({
 	addons: [addonPerformancePanel(), addonA11y()],
+	decorators: [withTheme, withProviders, withRouter],
 	parameters: {
-		backgrounds: { disable: true },
-		layout: "padded",
-		docs: { toc: true },
 		a11y: {
 			options: { xpath: true },
 		},
+		backgrounds: { disable: true },
+		docs: { toc: true },
+		layout: "padded",
 	},
-	decorators: [withTheme, withProviders, withRouter],
 });

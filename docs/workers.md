@@ -105,8 +105,8 @@ Components use the appropriate pool based on provider:
 
 ```tsx
 // Lazy-loaded components use their specific pool
-const audio = await ttsMMSPool.generateAudio(text, modelId);     // MMS
-const audio = await ttsVitsPool.generateAudio(text, voiceId);    // VITS
+const audio = await ttsMMSPool.generateAudio(text, modelId); // MMS
+const audio = await ttsVitsPool.generateAudio(text, voiceId); // VITS
 ```
 
 One worker per provider for entire app, not per component. Providers only load when selected.
