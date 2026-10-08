@@ -1,3 +1,4 @@
+import { useHydrated } from "@tanstack/react-router";
 import { ArrowLeft, Menu } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
@@ -12,6 +13,7 @@ interface HeaderProps {
 }
 
 export default function Header({ hideBackButton = false, children }: HeaderProps) {
+	const hydrated = useHydrated();
 	const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 	const { isTelexInputActive } = useUI();
 
@@ -33,7 +35,13 @@ export default function Header({ hideBackButton = false, children }: HeaderProps
 				{/* Right side - Settings */}
 				<div className="flex flex-1 items-center justify-end gap-2">
 					{isTelexInputActive && <TelexCheatsheet />}
-					<Button variant="ghost" className="p-2" onClick={() => setIsSettingsOpen(true)}>
+					<Button
+						variant="ghost"
+						className="p-2"
+						aria-label="Speech settings"
+						disabled={!hydrated}
+						onClick={() => setIsSettingsOpen(true)}
+					>
 						<Menu className="h-6 w-6" />
 					</Button>
 				</div>

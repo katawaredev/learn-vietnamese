@@ -1,0 +1,14 @@
+sea-g2p WebAssembly phonemizer
+Upstream: https://github.com/pnnbao97/sea-g2p
+Author: Phạm Nguyễn Ngọc Bảo
+Revision: e825173f235d08ea19315b2b279fb11153b44cea (0.10.0)
+License: Apache-2.0; see sea-g2p-LICENSE.txt.
+Local changes: the dictionary is loaded from memory instead of a memory-mapped
+file; batch scheduling is sequential; a small allocation/initialization ABI is
+added. The pronunciation and normalization rules are unchanged.
+Rebuild: python scripts/speech/build-phonemizer.py
+
+The application downloads Kokoro Vietnamese, VieNeu v3-Turbo and MOSS codec
+weights and voice presets from their pinned upstream Hugging Face repositories.
+Their model cards license those artifacts under Apache-2.0. Model weights are
+not bundled in this directory. Sources and revisions: docs/ai-models.md.

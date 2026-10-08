@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as FlagRouteImport } from './routes/flag'
+import { Route as ApiChatRouteImport } from './routes/api.chat'
 import { Route as ConversationIndexRouteImport } from './routes/conversation/index'
 import { Route as DictationIndexRouteImport } from './routes/dictation/index'
 import { Route as GrammarIndexRouteImport } from './routes/grammar/index'
@@ -44,6 +45,10 @@ import { Route as PronunciationVowelsRouteImport } from './routes/pronunciation/
 import { Route as RelationsIndexRouteImport } from './routes/relations/index'
 import { Route as RelationsPracticeRouteImport } from './routes/relations/practice'
 import { Route as RelationsPronounsRouteImport } from './routes/relations/pronouns'
+import { Route as ApiChatModelsRouteImport } from './routes/api.chat.models'
+import { Route as ApiSpeechCapabilitiesRouteImport } from './routes/api.speech.capabilities'
+import { Route as ApiSpeechSynthesizeRouteImport } from './routes/api.speech.synthesize'
+import { Route as ApiSpeechTranscribeRouteImport } from './routes/api.speech.transcribe'
 import { Route as DictationListenSlugRouteImport } from './routes/dictation/listen.$slug'
 import { Route as DictationSpeakSlugRouteImport } from './routes/dictation/speak.$slug'
 import { Route as GrammarPracticeIndexRouteImport } from './routes/grammar/practice/index'
@@ -61,6 +66,11 @@ const ChatRoute = ChatRouteImport.update({
 const FlagRoute = FlagRouteImport.update({
   id: '/flag',
   path: '/flag',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConversationIndexRoute = ConversationIndexRouteImport.update({
@@ -225,6 +235,26 @@ const RelationsPronounsRoute = RelationsPronounsRouteImport.update({
   path: '/relations/pronouns',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatModelsRoute = ApiChatModelsRouteImport.update({
+  id: '/models',
+  path: '/models',
+  getParentRoute: () => ApiChatRoute,
+} as any)
+const ApiSpeechCapabilitiesRoute = ApiSpeechCapabilitiesRouteImport.update({
+  id: '/api/speech/capabilities',
+  path: '/api/speech/capabilities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSpeechSynthesizeRoute = ApiSpeechSynthesizeRouteImport.update({
+  id: '/api/speech/synthesize',
+  path: '/api/speech/synthesize',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSpeechTranscribeRoute = ApiSpeechTranscribeRouteImport.update({
+  id: '/api/speech/transcribe',
+  path: '/api/speech/transcribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DictationListenSlugRoute = DictationListenSlugRouteImport.update({
   id: '/dictation/listen/$slug',
   path: '/dictation/listen/$slug',
@@ -245,6 +275,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
+  '/api/chat': typeof ApiChatRouteWithChildren
   '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
@@ -277,6 +308,10 @@ export interface FileRoutesByFullPath {
   '/numbers/': typeof NumbersIndexRoute
   '/pronunciation/': typeof PronunciationIndexRoute
   '/relations/': typeof RelationsIndexRoute
+  '/api/chat/models': typeof ApiChatModelsRoute
+  '/api/speech/capabilities': typeof ApiSpeechCapabilitiesRoute
+  '/api/speech/synthesize': typeof ApiSpeechSynthesizeRoute
+  '/api/speech/transcribe': typeof ApiSpeechTranscribeRoute
   '/dictation/listen/$slug': typeof DictationListenSlugRoute
   '/dictation/speak/$slug': typeof DictationSpeakSlugRoute
   '/grammar/practice/': typeof GrammarPracticeIndexRoute
@@ -285,6 +320,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
+  '/api/chat': typeof ApiChatRouteWithChildren
   '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
@@ -317,6 +353,10 @@ export interface FileRoutesByTo {
   '/numbers': typeof NumbersIndexRoute
   '/pronunciation': typeof PronunciationIndexRoute
   '/relations': typeof RelationsIndexRoute
+  '/api/chat/models': typeof ApiChatModelsRoute
+  '/api/speech/capabilities': typeof ApiSpeechCapabilitiesRoute
+  '/api/speech/synthesize': typeof ApiSpeechSynthesizeRoute
+  '/api/speech/transcribe': typeof ApiSpeechTranscribeRoute
   '/dictation/listen/$slug': typeof DictationListenSlugRoute
   '/dictation/speak/$slug': typeof DictationSpeakSlugRoute
   '/grammar/practice': typeof GrammarPracticeIndexRoute
@@ -326,6 +366,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/chat': typeof ChatRoute
   '/flag': typeof FlagRoute
+  '/api/chat': typeof ApiChatRouteWithChildren
   '/grammar/adjectives': typeof GrammarAdjectivesRoute
   '/grammar/classifiers': typeof GrammarClassifiersRoute
   '/grammar/commands': typeof GrammarCommandsRoute
@@ -358,6 +399,10 @@ export interface FileRoutesById {
   '/numbers/': typeof NumbersIndexRoute
   '/pronunciation/': typeof PronunciationIndexRoute
   '/relations/': typeof RelationsIndexRoute
+  '/api/chat/models': typeof ApiChatModelsRoute
+  '/api/speech/capabilities': typeof ApiSpeechCapabilitiesRoute
+  '/api/speech/synthesize': typeof ApiSpeechSynthesizeRoute
+  '/api/speech/transcribe': typeof ApiSpeechTranscribeRoute
   '/dictation/listen/$slug': typeof DictationListenSlugRoute
   '/dictation/speak/$slug': typeof DictationSpeakSlugRoute
   '/grammar/practice/': typeof GrammarPracticeIndexRoute
@@ -368,6 +413,7 @@ export interface FileRouteTypes {
     | '/'
     | '/chat'
     | '/flag'
+    | '/api/chat'
     | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
@@ -400,6 +446,10 @@ export interface FileRouteTypes {
     | '/numbers/'
     | '/pronunciation/'
     | '/relations/'
+    | '/api/chat/models'
+    | '/api/speech/capabilities'
+    | '/api/speech/synthesize'
+    | '/api/speech/transcribe'
     | '/dictation/listen/$slug'
     | '/dictation/speak/$slug'
     | '/grammar/practice/'
@@ -408,6 +458,7 @@ export interface FileRouteTypes {
     | '/'
     | '/chat'
     | '/flag'
+    | '/api/chat'
     | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
@@ -440,6 +491,10 @@ export interface FileRouteTypes {
     | '/numbers'
     | '/pronunciation'
     | '/relations'
+    | '/api/chat/models'
+    | '/api/speech/capabilities'
+    | '/api/speech/synthesize'
+    | '/api/speech/transcribe'
     | '/dictation/listen/$slug'
     | '/dictation/speak/$slug'
     | '/grammar/practice'
@@ -448,6 +503,7 @@ export interface FileRouteTypes {
     | '/'
     | '/chat'
     | '/flag'
+    | '/api/chat'
     | '/grammar/adjectives'
     | '/grammar/classifiers'
     | '/grammar/commands'
@@ -480,6 +536,10 @@ export interface FileRouteTypes {
     | '/numbers/'
     | '/pronunciation/'
     | '/relations/'
+    | '/api/chat/models'
+    | '/api/speech/capabilities'
+    | '/api/speech/synthesize'
+    | '/api/speech/transcribe'
     | '/dictation/listen/$slug'
     | '/dictation/speak/$slug'
     | '/grammar/practice/'
@@ -489,6 +549,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChatRoute: typeof ChatRoute
   FlagRoute: typeof FlagRoute
+  ApiChatRoute: typeof ApiChatRouteWithChildren
   GrammarAdjectivesRoute: typeof GrammarAdjectivesRoute
   GrammarClassifiersRoute: typeof GrammarClassifiersRoute
   GrammarCommandsRoute: typeof GrammarCommandsRoute
@@ -521,6 +582,9 @@ export interface RootRouteChildren {
   NumbersIndexRoute: typeof NumbersIndexRoute
   PronunciationIndexRoute: typeof PronunciationIndexRoute
   RelationsIndexRoute: typeof RelationsIndexRoute
+  ApiSpeechCapabilitiesRoute: typeof ApiSpeechCapabilitiesRoute
+  ApiSpeechSynthesizeRoute: typeof ApiSpeechSynthesizeRoute
+  ApiSpeechTranscribeRoute: typeof ApiSpeechTranscribeRoute
   DictationListenSlugRoute: typeof DictationListenSlugRoute
   DictationSpeakSlugRoute: typeof DictationSpeakSlugRoute
   GrammarPracticeIndexRoute: typeof GrammarPracticeIndexRoute
@@ -547,6 +611,13 @@ declare module '@tanstack/react-router' {
       path: '/flag'
       fullPath: '/flag'
       preLoaderRoute: typeof FlagRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/conversation/': {
@@ -773,6 +844,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RelationsPronounsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat/models': {
+      id: '/api/chat/models'
+      path: '/models'
+      fullPath: '/api/chat/models'
+      preLoaderRoute: typeof ApiChatModelsRouteImport
+      parentRoute: typeof ApiChatRoute
+    }
+    '/api/speech/capabilities': {
+      id: '/api/speech/capabilities'
+      path: '/api/speech/capabilities'
+      fullPath: '/api/speech/capabilities'
+      preLoaderRoute: typeof ApiSpeechCapabilitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/speech/synthesize': {
+      id: '/api/speech/synthesize'
+      path: '/api/speech/synthesize'
+      fullPath: '/api/speech/synthesize'
+      preLoaderRoute: typeof ApiSpeechSynthesizeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/speech/transcribe': {
+      id: '/api/speech/transcribe'
+      path: '/api/speech/transcribe'
+      fullPath: '/api/speech/transcribe'
+      preLoaderRoute: typeof ApiSpeechTranscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dictation/listen/$slug': {
       id: '/dictation/listen/$slug'
       path: '/dictation/listen/$slug'
@@ -797,10 +896,22 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ApiChatRouteChildren {
+  ApiChatModelsRoute: typeof ApiChatModelsRoute
+}
+
+const ApiChatRouteChildren: ApiChatRouteChildren = {
+  ApiChatModelsRoute: ApiChatModelsRoute,
+}
+
+const ApiChatRouteWithChildren =
+  ApiChatRoute._addFileChildren(ApiChatRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChatRoute: ChatRoute,
   FlagRoute: FlagRoute,
+  ApiChatRoute: ApiChatRouteWithChildren,
   GrammarAdjectivesRoute: GrammarAdjectivesRoute,
   GrammarClassifiersRoute: GrammarClassifiersRoute,
   GrammarCommandsRoute: GrammarCommandsRoute,
@@ -833,6 +944,9 @@ const rootRouteChildren: RootRouteChildren = {
   NumbersIndexRoute: NumbersIndexRoute,
   PronunciationIndexRoute: PronunciationIndexRoute,
   RelationsIndexRoute: RelationsIndexRoute,
+  ApiSpeechCapabilitiesRoute: ApiSpeechCapabilitiesRoute,
+  ApiSpeechSynthesizeRoute: ApiSpeechSynthesizeRoute,
+  ApiSpeechTranscribeRoute: ApiSpeechTranscribeRoute,
   DictationListenSlugRoute: DictationListenSlugRoute,
   DictationSpeakSlugRoute: DictationSpeakSlugRoute,
   GrammarPracticeIndexRoute: GrammarPracticeIndexRoute,

@@ -188,7 +188,7 @@ function CountingComponent() {
 					<PracticeGrid<NumberData>
 						data={thousands}
 						size="medium"
-						getSubtitle={(item) => item.value.toLocaleString()}
+						getSubtitle={(item) => item.value.toLocaleString("en-US")}
 						getDetails={getDetails}
 					/>
 				</div>
@@ -202,7 +202,7 @@ function CountingComponent() {
 					<PracticeGrid<NumberData>
 						data={large}
 						size="medium"
-						getSubtitle={(item) => item.value.toLocaleString()}
+						getSubtitle={(item) => item.value.toLocaleString("en-US")}
 						getDetails={getDetails}
 					/>
 				</div>

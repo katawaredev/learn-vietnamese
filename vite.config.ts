@@ -5,7 +5,6 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import pluginRouter from "@tanstack/eslint-plugin-router";
 import betterTailwindcss from "eslint-plugin-better-tailwindcss";
-import rsc from "@vitejs/plugin-rsc";
 import { nitro } from "nitro/vite";
 import { defineConfig, lazyPlugins } from "vite-plus";
 
@@ -158,33 +157,21 @@ const config = defineConfig({
 	plugins: lazyPlugins(() => [
 		devtools(),
 		tailwindcss(),
-		tanstackStart({ rsc: { enabled: true } }),
-		rsc(),
+		tanstackStart(),
 		nitro(),
 		react(),
 		babel({ presets: [reactCompilerPreset()] }),
 	]),
-	worker: {
-		format: "es",
-	},
-	optimizeDeps: {
-		exclude: ["onnxruntime-web", "@huggingface/transformers", "@mlc-ai/web-llm"],
-	},
 	resolve: { tsconfigPaths: true },
-	// Cross-Origin Isolation headers are required for SharedArrayBuffer, which ONNX Runtime
-	// Uses for multi-threaded WASM inference. Applied in both dev and production so that
-	// NumThreads > 1 actually takes effect during development as well.
-	server: {
-		headers: {
-			"Cross-Origin-Embedder-Policy": "require-corp",
-			"Cross-Origin-Opener-Policy": "same-origin",
-		},
-	},
-	preview: {
-		headers: {
-			"Cross-Origin-Embedder-Policy": "require-corp",
-			"Cross-Origin-Opener-Policy": "same-origin",
-		},
+	// Workers are discovered on first use; pre-bundle their runtimes to avoid a dev reload during inference.
+	optimizeDeps: {
+		include: [
+			"@tanstack/react-router-devtools > @tanstack/router-devtools-core",
+			"@huggingface/transformers",
+			"onnxruntime-web/wasm",
+			"@mlc-ai/web-llm",
+			"@diffusionstudio/piper-wasm",
+		],
 	},
 });
 

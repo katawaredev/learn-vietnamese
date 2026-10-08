@@ -1,7 +1,9 @@
 import { cva } from "class-variance-authority";
 import { AudioLines, Check, ChevronDown, X } from "lucide-react";
 import type { FC } from "react";
-import { useSTT } from "~/providers/stt-provider";
+import { useSpeech } from "~/features/speech/provider";
+import { localModels as availableLocalModels } from "~/features/speech/local/catalog";
+import { selectionValue } from "~/features/speech/preferences";
 import { normalizeText } from "~/utils/text";
 import { Popover } from "./Popover";
 
@@ -22,20 +24,14 @@ const AUDIO_SUGGESTIONS = [
 	"Check that your microphone is working",
 	"Reduce background noise",
 	"Get closer to your microphone",
-	"Switch speech recognition model",
+	"Try another recognition service in speech settings",
 ];
 
 const SuggestionsPanel = () => {
-	const { getSelectedModel, setSelectedModel, getAvailableModels } = useSTT();
-	const selectedModel = getSelectedModel("vn");
-	const availableModels = getAvailableModels("vn");
+	const { preferences, localModels, capabilities, setSelection } = useSpeech();
 
 	const handleModelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-		const modelId = event.target.value;
-		const model = availableModels.find((m) => m.id === modelId);
-		if (model) {
-			setSelectedModel("vn", model);
-		}
+		setSelection("stt", "vn", event.target.value);
 	};
 
 	return (
@@ -51,14 +47,23 @@ const SuggestionsPanel = () => {
 			<div className="relative">
 				<select
 					className="block w-full appearance-none rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm text-white focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-burgundy-dark focus:outline-none"
-					value={selectedModel.id}
+					aria-label="Vietnamese recognition service"
+					value={selectionValue(preferences, localModels, "stt", "vn")}
 					onChange={handleModelChange}
 				>
-					{availableModels.map((model) => (
+					{availableLocalModels("stt", "vn").map((model) => (
 						<option key={model.id} value={model.id} className="text-black">
 							{model.name}
 						</option>
 					))}
+					<option value="browser" className="text-black">
+						Browser recognition
+					</option>
+					{capabilities.stt && (
+						<option value="server" className="text-black">
+							Server recognition
+						</option>
+					)}
 				</select>
 				<ChevronDown
 					className="pointer-events-none absolute top-2.5 right-2.5 h-4 w-4 text-white/60"

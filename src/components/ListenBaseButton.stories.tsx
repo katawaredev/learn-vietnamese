@@ -20,7 +20,7 @@ const meta: Meta<typeof ListenBaseButton> = {
 		docs: {
 			description: {
 				component:
-					"Presentational base button for listen/record interactions. Used by ListenAIMMSButton and ListenWebButton.",
+					"Presentational base button for listen/record interactions, shared by server and browser speech.",
 			},
 		},
 	},

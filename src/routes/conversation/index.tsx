@@ -1,298 +1,95 @@
-import type { LLMResponse } from "~/workers/llm-worker";
 import { createFileRoute } from "@tanstack/react-router";
 import { RefreshCw } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Button } from "~/components/Button";
 import { ListenButton } from "~/components/ListenButton";
 import { SpeakButton } from "~/components/SpeakButton";
 import { TypeInputButton } from "~/components/TypeInputButton";
-import { AISettingsDrawer } from "~/layout/AISettingsDrawer";
+import { AISettings, ConversationStatus } from "~/features/chat/settings";
+import { useConversation } from "~/features/chat/use-conversation";
 import Header from "~/layout/Header";
-import { useLLM } from "~/providers/llm-provider";
-import type { Language } from "~/providers/tts-provider";
 import {
 	type Gender,
-	generateTranslationPrompt,
 	getAllGenders,
 	getAllPersonTypes,
 	getGenderLabel,
 	getPersonTypeLabel,
 	type PersonType,
-	type TranslationDirection,
-} from "./-prompts";
+} from "~/features/chat/prompts";
 
-export const Route = createFileRoute("/conversation/")({
-	component: ConversationRoute,
-	// Disable SSR for this route since it uses Web Workers
-	ssr: false,
-});
-
-interface TranslationMessage {
-	id: string;
-	speaker: "you" | "them";
-	originalText: string;
-	originalLang: Language;
-	translatedText: string;
-	translatedLang: Language;
-	timestamp: Date;
-	isTranslating?: boolean;
-}
-
-type ModelStatus = "idle" | "loading" | "ready" | "error";
-
-// Module-level worker instance to survive Strict Mode
-// We use a mount counter to only terminate the worker when all instances unmount.
-let sharedWorker: Worker | null = null;
-let workerMountCount = 0;
-
-const GENDER_STORAGE_KEY = "conversation-user-gender";
+export const Route = createFileRoute("/conversation/")({ component: ConversationRoute });
 
 function ConversationRoute() {
-	const { selectedModel, thinkingEnabled } = useLLM();
+	const conversation = useConversation("translate");
 	const [personType, setPersonType] = useState<PersonType>("friend");
-	const [userGender, setUserGender] = useState<Gender>(() => {
-		// Load saved gender from localStorage
-		const saved = localStorage.getItem(GENDER_STORAGE_KEY);
-		return (saved as Gender) || "male";
-	});
-	const [messages, setMessages] = useState<TranslationMessage[]>([]);
-	const [modelStatus, setModelStatus] = useState<ModelStatus>("idle");
-	const [loadingProgress, setLoadingProgress] = useState(0);
-	const [progressText, setProgressText] = useState("Initializing...");
-	const [isTranslating, setIsTranslating] = useState(false);
-
-	const worker = useRef<Worker | null>(null);
-	const currentConfigRef = useRef<{
-		modelId: string;
-		thinkingEnabled: boolean;
-	} | null>(null);
-	const conversationHistory = useRef<
-		Array<{ role: "user" | "assistant" | "system"; content: string }>
-	>([]);
-	const currentTranslationRef = useRef<{
-		direction: TranslationDirection;
-		originalText: string;
-		originalLang: Language;
-	} | null>(null);
-
-	// Initialize worker - survive Strict Mode double-mount
-	useEffect(() => {
-		if (sharedWorker) {
-			worker.current = sharedWorker;
-		} else {
-			worker.current = new Worker(new URL("../../workers/llm-worker.ts", import.meta.url), {
-				type: "module",
-			});
-			sharedWorker = worker.current;
-		}
-
-		workerMountCount++;
-
-		worker.current.onerror = (error) => {
-			console.error("[Conversation] Worker error:", error);
-			setModelStatus("error");
-			setProgressText("Worker initialization failed");
-		};
-
-		worker.current.onmessage = (event: MessageEvent<LLMResponse>) => {
-			const message = event.data;
-
-			switch (message.status) {
-				case "progress":
-					setModelStatus("loading");
-					setLoadingProgress(Math.round((message.progress || 0) * 100));
-					setProgressText(message.text || "Loading model...");
-					break;
-
-				case "ready":
-					setModelStatus("ready");
-					setLoadingProgress(0);
-					setProgressText("");
-					break;
-
-				case "stream":
-					// Update the last message with streaming translation
-					setMessages((prev) => {
-						if (prev.length === 0) return prev;
-
-						const lastMsg = prev[0]; // Newest is at top
-						if (lastMsg?.isTranslating) {
-							return [
-								{
-									...lastMsg,
-									translatedText: message.text,
-									isTranslating: !message.isComplete,
-								},
-								...prev.slice(1),
-							];
-						}
-						return prev;
-					});
-
-					if (message.isComplete) {
-						setIsTranslating(false);
-						// Add assistant's translation to conversation history
-						conversationHistory.current.push({
-							role: "assistant",
-							content: message.text,
-						});
-						currentTranslationRef.current = null;
-					}
-					break;
-
-				case "error":
-					console.error("Translation error:", message.error);
-					setModelStatus("error");
-					setProgressText(message.error);
-					setIsTranslating(false);
-					currentTranslationRef.current = null;
-					break;
-			}
-		};
-
-		return () => {
-			workerMountCount--;
-
-			// In production: cleanup immediately (no Strict Mode)
-			// In development: use setTimeout to handle Strict Mode double-mount
-			const cleanupDelay = import.meta.env.DEV ? 100 : 0;
-
-			setTimeout(() => {
-				if (workerMountCount === 0 && sharedWorker) {
-					sharedWorker.terminate();
-					sharedWorker = null;
-					worker.current = null;
-				}
-			}, cleanupDelay);
-		};
-	}, []);
-
-	// Initialize model when selectedModel or thinkingEnabled changes
-	useEffect(() => {
-		if (!worker.current || !selectedModel) return;
-
-		const newConfig = {
-			modelId: selectedModel.modelId,
-			thinkingEnabled,
-		};
-
-		const configChanged =
-			!currentConfigRef.current ||
-			currentConfigRef.current.modelId !== newConfig.modelId ||
-			currentConfigRef.current.thinkingEnabled !== newConfig.thinkingEnabled;
-
-		if (configChanged) {
-			// Always abort before model reload to prevent WebGPU conflicts
-			// Worker handles this safely even if nothing is running
-			worker.current.postMessage({ type: "abort" });
-
-			currentConfigRef.current = newConfig;
-			setModelStatus("loading");
-			setIsTranslating(false);
-			currentTranslationRef.current = null;
-			worker.current.postMessage({
-				type: "init",
-				config: newConfig,
-			});
-		}
-	}, [selectedModel, thinkingEnabled]);
-
-	// Handle gender change
-	const handleGenderChange = (newGender: Gender) => {
-		setUserGender(newGender);
-		localStorage.setItem(GENDER_STORAGE_KEY, newGender);
-		// Note: Don't clear messages on gender change - it's just a pronoun adjustment
-	};
-
-	// Clear messages when person type changes (different context)
-	const handlePersonTypeChange = (newType: PersonType) => {
-		// Abort any ongoing translation first to prevent race conditions
-		if (isTranslating && worker.current) {
-			worker.current.postMessage({ type: "abort" });
-		}
-
-		setPersonType(newType);
-		setMessages([]);
-		setIsTranslating(false);
-		conversationHistory.current = [];
-		currentTranslationRef.current = null;
-
-		if (worker.current) {
-			worker.current.postMessage({ type: "reset" });
-		}
-	};
-
-	// Reset conversation
-	const resetConversation = () => {
-		// Abort any ongoing translation first to prevent race conditions
-		if (isTranslating && worker.current) {
-			worker.current.postMessage({ type: "abort" });
-		}
-
-		setMessages([]);
-		setIsTranslating(false);
-		conversationHistory.current = [];
-		currentTranslationRef.current = null;
-
-		if (worker.current) {
-			worker.current.postMessage({ type: "reset" });
-		}
-	};
-
-	const handleTranscription = useCallback(
-		(text: string | null, speaker: "you" | "them") => {
-			if (!text || !worker.current || isTranslating) {
-				return;
-			}
-
-			const direction: TranslationDirection = speaker === "you" ? "en-to-vi" : "vi-to-en";
-			const originalLang: Language = speaker === "you" ? "en" : "vn";
-			const translatedLang: Language = speaker === "you" ? "vn" : "en";
-
-			// Create message with empty translation (will be filled by streaming)
-			const newMessage: TranslationMessage = {
-				id: crypto.randomUUID(),
+	const [userGender, setUserGender] = useState<Gender>("male");
+	const [directions, setDirections] = useState<Array<"you" | "them">>([]);
+	const {
+		messages: chatMessages,
+		sendMessage,
+		isLoading: isTranslating,
+		error,
+		stop,
+		clear,
+	} = conversation;
+	const exchanges = chatMessages
+		.filter((message) => message.role === "user")
+		.map((message, index) => {
+			const position = chatMessages.indexOf(message);
+			const reply = chatMessages[position + 1];
+			const speaker = directions[index] ?? "you";
+			return {
+				id: message.id,
 				speaker,
-				originalText: text,
-				originalLang,
-				translatedText: "",
-				translatedLang,
-				timestamp: new Date(),
-				isTranslating: true,
+				originalText: message.parts
+					.filter((part) => part.type === "text")
+					.map((part) => part.content)
+					.join("\n"),
+				translatedText:
+					reply?.role === "assistant"
+						? reply.parts
+								.filter((part) => part.type === "text")
+								.map((part) => part.content)
+								.join("\n")
+						: "",
+				translatedLang: speaker === "you" ? ("vn" as const) : ("en" as const),
+				isTranslating: isTranslating && index === directions.length - 1,
 			};
-
-			// Add to top (newest first)
-			setMessages((prev) => [newMessage, ...prev]);
-			setIsTranslating(true);
-			currentTranslationRef.current = {
-				direction,
-				originalText: text,
-				originalLang,
-			};
-
-			// Build conversation with system prompt for this translation
-			const systemPrompt = generateTranslationPrompt(personType, direction, userGender);
-
-			// Add user's original text to conversation history
-			conversationHistory.current.push({
-				role: "user",
-				content: text,
-			});
-
-			// Send to LLM for translation
-			worker.current.postMessage({
-				type: "generate",
-				messages: [{ role: "system", content: systemPrompt }, ...conversationHistory.current],
-			});
-		},
-		[personType, isTranslating, userGender],
-	);
+		});
+	const messages = [...exchanges].toReversed();
+	const resetConversation = () => {
+		stop();
+		clear();
+		setDirections([]);
+	};
+	const handleGenderChange = (gender: Gender) => {
+		resetConversation();
+		setUserGender(gender);
+	};
+	const handlePersonTypeChange = (type: PersonType) => {
+		resetConversation();
+		setPersonType(type);
+	};
+	const handleTranscription = (text: string | null, speaker: "you" | "them") => {
+		if (!text?.trim() || isTranslating || !conversation.available) return;
+		setDirections((previous) => [...(chatMessages.length ? previous : []), speaker]);
+		void sendMessage(text.trim(), {
+			body: {
+				mode: "translate",
+				personType,
+				gender: userGender,
+				direction: speaker === "you" ? "en-to-vi" : "vi-to-en",
+			},
+		}).catch(() => {
+			/* TanStack AI exposes failures through error. */
+		});
+	};
 
 	return (
 		<div className="flex min-h-screen flex-col bg-linear-to-br from-burgundy-dark to-burgundy">
 			<Header>
 				<div className="flex items-center gap-3">
-					<AISettingsDrawer />
+					<AISettings conversation={conversation} />
 					{messages.length !== 0 && (
 						<Button
 							variant="outline"
@@ -315,6 +112,7 @@ function ConversationRoute() {
 					<div className="flex flex-col items-center gap-3">
 						<div className="flex flex-col items-center text-center">
 							<select
+								aria-label="Your pronoun preference"
 								value={userGender}
 								onChange={(e) => handleGenderChange(e.target.value as Gender)}
 								className="h-10 rounded-xl border-2 border-gold/30 bg-burgundy-dark px-4 py-0 font-serif text-lg font-semibold text-warm-cream transition-colors focus:border-gold focus:outline-none"
@@ -333,12 +131,12 @@ function ConversationRoute() {
 								onTranscription={(text) => handleTranscription(text, "you")}
 								lang="en"
 								size="large"
-								disabled={modelStatus !== "ready"}
+								disabled={!conversation.available || isTranslating}
 							/>
 							<TypeInputButton
 								onSubmit={(text) => handleTranscription(text, "you")}
 								size="large"
-								disabled={modelStatus !== "ready"}
+								disabled={!conversation.available || isTranslating}
 								placeholder="Type in English..."
 							/>
 						</div>
@@ -348,6 +146,7 @@ function ConversationRoute() {
 					<div className="flex flex-col items-center gap-3">
 						<div className="flex flex-col items-center text-center">
 							<select
+								aria-label="Conversation relationship"
 								value={personType}
 								onChange={(e) => handlePersonTypeChange(e.target.value as PersonType)}
 								className="h-10 rounded-xl border-2 border-gold/30 bg-burgundy-dark px-4 py-0 font-serif text-lg font-semibold text-warm-cream transition-colors focus:border-gold focus:outline-none"
@@ -365,30 +164,22 @@ function ConversationRoute() {
 							onTranscription={(text) => handleTranscription(text, "them")}
 							lang="vn"
 							size="large"
-							disabled={modelStatus !== "ready"}
+							disabled={!conversation.available || isTranslating}
 						/>
 					</div>
 				</div>
 			</div>
 
-			{/* Status Message */}
-			{modelStatus !== "ready" && (
-				<div className="mx-auto w-full max-w-4xl px-6 pt-6">
-					<div className="text-center">
-						{modelStatus === "error" ? (
-							<>
-								<p className="mb-2 font-serif text-red-400">Error loading model</p>
-								<p className="font-serif text-sm text-warm-cream/70">{progressText}</p>
-							</>
-						) : (
-							<p className="font-serif text-warm-cream/50">
-								{modelStatus === "loading"
-									? `Loading ${selectedModel?.name ?? "model"}... ${loadingProgress}%`
-									: "Initializing..."}
-							</p>
-						)}
-					</div>
-				</div>
+			<ConversationStatus conversation={conversation} />
+			{!conversation.available && (
+				<output className="block px-6 text-center text-warm-cream/70">
+					{conversation.unavailableMessage}
+				</output>
+			)}
+			{error && (
+				<p role="alert" className="px-6 text-center text-red-300">
+					{error.message}
+				</p>
 			)}
 
 			{/* Messages - newest on top */}
@@ -408,7 +199,7 @@ function ConversationRoute() {
 								</p>
 
 								{/* Translation or loading state */}
-								{msg.isTranslating ? (
+								{msg.isTranslating && !msg.translatedText ? (
 									<p className="font-serif text-sm text-warm-cream/50 italic">
 										{msg.translatedLang === "vn" ? "Translating..." : "Đang dịch..."}
 									</p>
@@ -420,7 +211,7 @@ function ConversationRoute() {
 										</p>
 
 										{/* Speak button */}
-										{msg.translatedText && (
+										{msg.translatedText && !msg.isTranslating && (
 											<SpeakButton
 												text={msg.translatedText}
 												lang={msg.translatedLang}

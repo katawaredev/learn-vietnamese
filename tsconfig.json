@@ -4,8 +4,8 @@
 		"target": "ES2022",
 		"jsx": "react-jsx",
 		"module": "ESNext",
-		"lib": ["ES2022", "DOM", "DOM.Iterable"],
-		"types": ["vite/client", "node", "@webgpu/types", "dom-speech-recognition"],
+		"lib": ["ES2023", "DOM", "DOM.Iterable"],
+		"types": ["vite/client", "node", "dom-speech-recognition"],
 
 		/* Bundler mode */
 		"moduleResolution": "bundler",

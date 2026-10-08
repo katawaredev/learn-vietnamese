@@ -7,6 +7,7 @@ import { defineConfig } from "vite-plus";
 const dirname = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig({
+	resolve: { alias: { "~": path.join(dirname, "src") } },
 	test: {
 		projects: [
 			{

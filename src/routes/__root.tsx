@@ -1,9 +1,7 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { LLMProvider } from "~/providers/llm-provider";
-import { STTProvider } from "~/providers/stt-provider";
-import { TTSProvider } from "~/providers/tts-provider";
+import { SpeechProvider } from "~/features/speech/provider";
 import { UIProvider } from "~/providers/ui-provider";
 
 import appCss from "~/styles.css?url";
@@ -62,24 +60,20 @@ export const Route = createRootRoute({
 function RootComponent() {
 	return (
 		<UIProvider>
-			<TTSProvider>
-				<STTProvider>
-					<LLMProvider>
-						<Outlet />
-					</LLMProvider>
-				</STTProvider>
-			</TTSProvider>
+			<SpeechProvider>
+				<Outlet />
+			</SpeechProvider>
 		</UIProvider>
 	);
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="en" translate="no">
 			<head>
 				<HeadContent />
 			</head>
-			<body>
+			<body translate="no">
 				{children}
 				<TanStackDevtools
 					config={{

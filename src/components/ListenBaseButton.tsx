@@ -59,6 +59,7 @@ export interface ListenBaseButtonProps extends Pick<ListenButtonProps, "classNam
 	state: RecordingState;
 	onStartRecording: () => void;
 	onStopRecording: () => void;
+	onCancel?: () => void;
 	disabled?: boolean;
 	loadingProgress?: number; // 0-100
 }
@@ -69,6 +70,7 @@ export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 	className,
 	onStartRecording,
 	onStopRecording,
+	onCancel,
 	disabled = false,
 	loadingProgress = 0,
 }) => {
@@ -80,10 +82,12 @@ export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 			onStopRecording();
 		} else if (state === "idle") {
 			onStartRecording();
+		} else {
+			onCancel?.();
 		}
-	}, [state, onStartRecording, onStopRecording]);
+	}, [state, onStartRecording, onStopRecording, onCancel]);
 
-	const isDisabled = disabled || state === "processing";
+	const isDisabled = disabled || (state === "processing" && !onCancel);
 
 	return (
 		<button
@@ -91,7 +95,13 @@ export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 			className={twMerge(buttonVariants({ size, state, disabled: isDisabled }), className)}
 			onClick={handleClick}
 			disabled={isDisabled}
-			aria-label={state === "recording" ? "Stop recording" : "Start recording"}
+			aria-label={
+				state === "recording"
+					? "Stop recording"
+					: state === "processing"
+						? "Cancel recognition"
+						: "Start recording"
+			}
 		>
 			{/* Microphone Icon */}
 			<Mic

@@ -85,7 +85,9 @@ export function PracticeGrid<T>({
 						{/* Main display */}
 						<div className="flex flex-1 flex-col justify-center pt-8 text-center">
 							<div className="mb-2">
-								<div className={titleClassName}>{key}</div>
+								<div className={titleClassName} lang="vi" translate="no">
+									{key}
+								</div>
 							</div>
 							<div className="mb-4 px-2 font-mono text-sm text-white/70">
 								{getSubtitle?.(item) || ""}

@@ -6,7 +6,7 @@ import { StateIndicator } from "./StateIndicator";
 
 export type SpeechState = "idle" | "processing" | "speaking" | "ended";
 
-const buttonVariants = cva(
+export const speechButtonVariants = cva(
 	"relative flex shrink-0 items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out select-none",
 	{
 		variants: {
@@ -209,7 +209,7 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 	return (
 		<button
 			type="button"
-			className={twMerge(buttonVariants({ size, state, disabled: isDisabled }), className)}
+			className={twMerge(speechButtonVariants({ size, state, disabled: isDisabled }), className)}
 			onPointerDown={(event) => {
 				if (event.button === 0) handlePressStart();
 			}}
@@ -256,7 +256,7 @@ export const SpeakButtonLoading = ({
 	return (
 		<button
 			type="button"
-			className={twMerge(buttonVariants({ size, state: "idle", disabled: true }), className)}
+			className={twMerge(speechButtonVariants({ size, state: "idle", disabled: true }), className)}
 			disabled
 			aria-label="Loading"
 		>

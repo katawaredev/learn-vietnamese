@@ -9,7 +9,7 @@ import {
 	createRouter,
 } from "@tanstack/react-router";
 import { useMemo } from "react";
-import { STTProvider } from "../src/providers/stt-provider";
+import { SpeechProvider } from "../src/features/speech/provider";
 import { UIProvider } from "../src/providers/ui-provider";
 import "../src/styles.css";
 
@@ -26,9 +26,9 @@ const withRouter: Decorator = function RouterDecorator(Story) {
 
 const withProviders: Decorator = (Story) => (
 	<UIProvider>
-		<STTProvider>
+		<SpeechProvider>
 			<Story />
-		</STTProvider>
+		</SpeechProvider>
 	</UIProvider>
 );
 

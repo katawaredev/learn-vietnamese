@@ -48,6 +48,8 @@ export interface SelectOption {
 }
 
 export interface SelectProps extends VariantProps<typeof selectTriggerVariants> {
+	id?: string;
+	"aria-label"?: string;
 	options: SelectOption[];
 	value?: string;
 	onChange?: (value: string) => void;
@@ -64,6 +66,8 @@ export interface SelectProps extends VariantProps<typeof selectTriggerVariants> 
 }
 
 export function Select({
+	id,
+	"aria-label": ariaLabel,
 	options,
 	value,
 	onChange,
@@ -92,7 +96,11 @@ export function Select({
 
 	return (
 		<BaseSelect.Root value={value} onValueChange={handleValueChange}>
-			<BaseSelect.Trigger className={twMerge(selectTriggerVariants({ size }), className)}>
+			<BaseSelect.Trigger
+				id={id}
+				aria-label={ariaLabel}
+				className={twMerge(selectTriggerVariants({ size }), className)}
+			>
 				<div className="flex items-center gap-2">
 					<div className="h-4 w-4 shrink-0" />
 					<BaseSelect.Value className="cursor-default">
