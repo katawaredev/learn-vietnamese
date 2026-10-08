@@ -4,6 +4,7 @@ import {
 	useCallback,
 	useContext,
 	useEffect,
+	useMemo,
 	useState,
 } from "react";
 
@@ -21,13 +22,12 @@ export function UIProvider({ children }: { children: ReactNode }) {
 		setTelexInputsCount((prev) => Math.max(0, prev + (active ? 1 : -1)));
 	}, []);
 
-	return (
-		<UIContext.Provider
-			value={{ isTelexInputActive: telexInputsCount > 0, setTelexInputActive }}
-		>
-			{children}
-		</UIContext.Provider>
+	const value = useMemo(
+		() => ({ isTelexInputActive: telexInputsCount > 0, setTelexInputActive }),
+		[telexInputsCount, setTelexInputActive],
 	);
+
+	return <UIContext.Provider value={value}>{children}</UIContext.Provider>;
 }
 
 export function useUI() {
@@ -40,9 +40,8 @@ export function useUI() {
 
 export function useNotifyTelexActive() {
 	const { setTelexInputActive } = useUI();
-	// biome-ignore lint/correctness/useExhaustiveDependencies: Only run on mount/unmount
 	useEffect(() => {
 		setTelexInputActive(true);
 		return () => setTelexInputActive(false);
-	}, []);
+	}, [setTelexInputActive]);
 }

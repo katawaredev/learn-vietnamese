@@ -68,10 +68,7 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 			isMountedRef.current = false;
 			cleanupSilenceDetection();
 			// Stop recording if component unmounts while recording
-			if (
-				mediaRecorder.current &&
-				mediaRecorder.current.state === "recording"
-			) {
+			if (mediaRecorder.current && mediaRecorder.current.state === "recording") {
 				mediaRecorder.current.stop();
 			}
 		};
@@ -96,10 +93,7 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 				const audioContext = await getAudioContext();
 				let audioData: Float32Array;
 				try {
-					const audioBuffer = await new Promise<AudioBuffer>(
-						(resolve, reject) =>
-							audioContext.decodeAudioData(arrayBuffer, resolve, reject),
-					);
+					const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
 					audioData = audioBuffer.getChannelData(0);
 				} finally {
 					await audioContext.suspend().catch(() => {});
@@ -167,7 +161,7 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 			// Mobile Safari enforces this strictly — it's undefined over plain HTTP.
 			if (!navigator.mediaDevices?.getUserMedia) {
 				throw new Error(
-					window.isSecureContext === false
+					!window.isSecureContext
 						? "Microphone access requires HTTPS. Please use a secure connection."
 						: "Microphone access is not supported in this browser.",
 				);
@@ -182,13 +176,9 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 					MediaRecorder.isTypeSupported(type),
 				) ?? "";
 
-			mediaRecorder.current = new MediaRecorder(
-				stream,
-				mimeType ? { mimeType } : undefined,
-			);
+			mediaRecorder.current = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
 			// Capture the type the recorder actually chose (may differ from mimeType hint)
-			const actualMimeType =
-				mediaRecorder.current.mimeType || mimeType || "audio/mp4";
+			const actualMimeType = mediaRecorder.current.mimeType || mimeType || "audio/mp4";
 			audioChunks.current = [];
 
 			mediaRecorder.current.ondataavailable = (event) => {
@@ -217,9 +207,7 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 		} catch (error) {
 			// DOMException properties aren't enumerable — Safari logs them as {}.
 			if (error instanceof DOMException) {
-				console.error(
-					`Failed to start recording: ${error.name}: ${error.message}`,
-				);
+				console.error(`Failed to start recording: ${error.name}: ${error.message}`);
 			} else {
 				console.error("Failed to start recording:", error);
 			}
@@ -240,7 +228,7 @@ export const ListenAIMMSButton: FC<ListenButtonProps> = ({
 			state={state}
 			size={size}
 			className={className}
-			onStartRecording={handleStartRecording}
+			onStartRecording={() => void handleStartRecording()}
 			onStopRecording={handleStopRecording}
 			loadingProgress={loadingProgress}
 			disabled={disabled}

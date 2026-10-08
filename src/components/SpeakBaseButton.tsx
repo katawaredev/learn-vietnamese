@@ -7,7 +7,7 @@ import { StateIndicator } from "./StateIndicator";
 export type SpeechState = "idle" | "processing" | "speaking" | "ended";
 
 const buttonVariants = cva(
-	"relative flex shrink-0 select-none items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out",
+	"relative flex shrink-0 items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out select-none",
 	{
 		variants: {
 			size: {
@@ -79,10 +79,10 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 	loadingProgress = 0,
 }) => {
 	const [state, setState] = useState<SpeechState>("idle");
-	const [isHolding, setIsHolding] = useState(false);
-	const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(
-		null,
-	);
+	const isHolding = useRef(false);
+	const suppressClick = useRef(false);
+	const playbackRequest = useRef(0);
+	const currentAudio = useRef<HTMLAudioElement | null>(null);
 	const holdTimeout = useRef<NodeJS.Timeout | null>(null);
 	// Stable refs for the currently attached audio event listeners so we can
 	// remove them when the audio element is replaced or the component unmounts.
@@ -102,32 +102,29 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 		}
 	}, []);
 
-	// Cleanup effect - stop audio and remove listeners when the element changes or on unmount
+	// Invalidate pending audio generation and stop playback on unmount.
 	// URLs are managed by the worker pool cache — do not revoke here
 	useEffect(() => {
 		return () => {
-			if (currentAudio) {
-				detachAudioListeners(currentAudio);
-				currentAudio.pause();
+			playbackRequest.current += 1;
+			if (currentAudio.current) {
+				detachAudioListeners(currentAudio.current);
+				currentAudio.current.pause();
+			}
+			if (holdTimeout.current) {
+				clearTimeout(holdTimeout.current);
 			}
 		};
-	}, [currentAudio, detachAudioListeners]);
-
-	// Update playback rate when holding state changes
-	useEffect(() => {
-		if (currentAudio) {
-			currentAudio.playbackRate = isHolding ? 0.5 : 0.8;
-		}
-	}, [currentAudio, isHolding]);
+	}, [detachAudioListeners]);
 
 	// Stop current audio
 	const stop = useCallback(() => {
-		if (currentAudio) {
-			currentAudio.pause();
-			currentAudio.currentTime = 0;
+		if (currentAudio.current) {
+			currentAudio.current.pause();
+			currentAudio.current.currentTime = 0;
 		}
 		setState("idle");
-	}, [currentAudio]);
+	}, []);
 
 	// Generate and play audio
 	const play = useCallback(async () => {
@@ -141,17 +138,20 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 
 		if (state !== "idle" && state !== "ended") return;
 
+		const request = ++playbackRequest.current;
 		try {
 			setState("processing");
 
 			// Get audio from the worker pool (may be cached at pool level)
 			const audio = await getAudio();
+			if (request !== playbackRequest.current) return;
 
 			// Remove listeners from the previous audio element before replacing it
-			if (currentAudio) {
-				detachAudioListeners(currentAudio);
+			if (currentAudio.current) {
+				detachAudioListeners(currentAudio.current);
+				currentAudio.current.pause();
 			}
-			setCurrentAudio(audio);
+			currentAudio.current = audio;
 
 			const onPlay = () => setState("speaking");
 			const onEnded = () => setState("ended");
@@ -166,9 +166,10 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 			audio.addEventListener("error", onError);
 
 			// Set initial speed based on current hold state
-			audio.playbackRate = isHolding ? 0.5 : 0.8;
+			audio.playbackRate = isHolding.current ? 0.5 : 0.8;
 			await audio.play();
 		} catch (error) {
+			if (request !== playbackRequest.current) return;
 			// Ignore AbortError - happens when playback is interrupted (expected behavior)
 			if (error instanceof DOMException && error.name === "AbortError") {
 				setState("idle");
@@ -177,84 +178,58 @@ export const SpeakBaseButton: FC<SpeakBaseButtonProps> = ({
 			console.error("Audio playback failed:", error);
 			setState("idle");
 		}
-	}, [
-		state,
-		stop,
-		getAudio,
-		canPlay,
-		isHolding,
-		currentAudio,
-		detachAudioListeners,
-	]);
+	}, [state, stop, getAudio, canPlay, detachAudioListeners]);
 
-	// Handle press start (mouse/touch down)
-	const handlePressStart = useCallback(() => {
-		if (state === "speaking") {
-			// Audio is already playing - set up hold detection to slow it down
-			holdTimeout.current = setTimeout(() => {
-				setIsHolding(true);
-			}, 200);
-			return;
-		}
-
-		if (state !== "idle" && state !== "ended") return;
-
-		// Reset state to idle if it was ended
-		if (state === "ended") {
-			setState("idle");
-		}
-
-		// Set up timer to detect hold vs quick press
-		holdTimeout.current = setTimeout(() => {
-			setIsHolding(true);
-			play();
-		}, 200);
-	}, [state, play]);
-
-	// Handle press end (mouse/touch up)
 	const handlePressEnd = useCallback(() => {
-		// Clear timeout if still active (quick press scenario)
 		if (holdTimeout.current) {
 			clearTimeout(holdTimeout.current);
 			holdTimeout.current = null;
+		}
+		isHolding.current = false;
+		if (currentAudio.current) currentAudio.current.playbackRate = 0.8;
+	}, []);
 
-			// Quick press - start playing at normal speed if idle
-			if (state === "idle") {
-				play();
+	const handlePressStart = useCallback(() => {
+		handlePressEnd();
+		suppressClick.current = false;
+		holdTimeout.current = setTimeout(() => {
+			holdTimeout.current = null;
+			isHolding.current = true;
+			suppressClick.current = true;
+			if (state === "speaking" && currentAudio.current) {
+				currentAudio.current.playbackRate = 0.5;
+			} else {
+				void play();
 			}
-		}
-
-		// Reset hold state and prevent replay if audio ended during hold
-		if (isHolding) {
-			setIsHolding(false);
-		}
-	}, [state, play, isHolding]);
+		}, 200);
+	}, [handlePressEnd, state, play]);
 
 	const isDisabled = disabled || state === "processing" || !canPlay();
 
 	return (
 		<button
 			type="button"
-			className={twMerge(
-				buttonVariants({ size, state, disabled: isDisabled }),
-				className,
-			)}
-			onMouseDown={handlePressStart}
-			onMouseUp={handlePressEnd}
-			onMouseLeave={handlePressEnd}
-			onTouchStart={handlePressStart}
-			onTouchEnd={handlePressEnd}
+			className={twMerge(buttonVariants({ size, state, disabled: isDisabled }), className)}
+			onPointerDown={(event) => {
+				if (event.button === 0) handlePressStart();
+			}}
+			onPointerUp={handlePressEnd}
+			onPointerLeave={handlePressEnd}
+			onPointerCancel={handlePressEnd}
+			onClick={(event) => {
+				if (suppressClick.current && event.detail > 0) {
+					suppressClick.current = false;
+					return;
+				}
+				void play();
+			}}
 			disabled={isDisabled}
 			aria-label={state === "speaking" ? "Stop audio" : "Play audio"}
 		>
 			{/* Speaker Icon */}
 			<Volume2
 				className={`${
-					size === "small"
-						? "h-5 w-5"
-						: size === "medium"
-							? "h-7 w-7"
-							: "h-9 w-9"
+					size === "small" ? "h-5 w-5" : size === "medium" ? "h-7 w-7" : "h-9 w-9"
 				} text-sky-200`}
 			/>
 
@@ -281,20 +256,13 @@ export const SpeakButtonLoading = ({
 	return (
 		<button
 			type="button"
-			className={twMerge(
-				buttonVariants({ size, state: "idle", disabled: true }),
-				className,
-			)}
+			className={twMerge(buttonVariants({ size, state: "idle", disabled: true }), className)}
 			disabled
 			aria-label="Loading"
 		>
 			<Volume2
 				className={`${
-					size === "small"
-						? "h-5 w-5"
-						: size === "medium"
-							? "h-7 w-7"
-							: "h-9 w-9"
+					size === "small" ? "h-5 w-5" : size === "medium" ? "h-7 w-7" : "h-9 w-9"
 				} text-sky-200`}
 			/>
 

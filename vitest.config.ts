@@ -4,7 +4,7 @@ import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import { playwright } from "vite-plus/test/browser-playwright";
 import { defineConfig } from "vite-plus";
 
-const { dirname } = import.meta;
+const dirname = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig({
 	test: {

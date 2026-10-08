@@ -27,11 +27,7 @@ const themeColors = {
 	},
 };
 
-export const StateIndicator: FC<StateIndicatorProps> = ({
-	state,
-	loadingProgress = 0,
-	theme,
-}) => {
+export const StateIndicator: FC<StateIndicatorProps> = ({ state, loadingProgress = 0, theme }) => {
 	const colors = themeColors[theme];
 	const strokeDashoffset = 100 - loadingProgress;
 

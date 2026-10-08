@@ -4,14 +4,12 @@ import type { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
 export const buttonVariants = cva(
-	"rounded-2xl font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold",
+	"rounded-2xl font-serif transition-all duration-200 focus:ring-2 focus:ring-gold focus:outline-none",
 	{
 		variants: {
 			variant: {
-				default:
-					"border-2 border-transparent bg-gold text-burgundy-dark hover:bg-gold",
-				outline:
-					"border-2 border-gold bg-transparent text-gold hover:bg-gold hover:text-burgundy",
+				default: "border-2 border-transparent bg-gold text-burgundy-dark hover:bg-gold",
+				outline: "border-2 border-gold bg-transparent text-gold hover:bg-gold hover:text-burgundy",
 				ghost:
 					"border-2 border-transparent bg-transparent text-gold hover:bg-gold/10 hover:text-warm-cream",
 			},
@@ -29,36 +27,20 @@ export const buttonVariants = cva(
 );
 
 export interface ButtonProps
-	extends VariantProps<typeof buttonVariants>,
-		ComponentProps<"button"> {}
+	extends VariantProps<typeof buttonVariants>, ComponentProps<"button"> {}
 
 export function Button({ variant, size, className, ...props }: ButtonProps) {
-	return (
-		<button
-			{...props}
-			className={twMerge(buttonVariants({ variant, size }), className)}
-		/>
-	);
+	return <button {...props} className={twMerge(buttonVariants({ variant, size }), className)} />;
 }
 
 export interface LinkButtonProps
-	extends VariantProps<typeof buttonVariants>,
-		Omit<ComponentProps<LinkComponent<"a">>, "href"> {}
+	extends VariantProps<typeof buttonVariants>, Omit<ComponentProps<LinkComponent<"a">>, "href"> {}
 
-export function LinkButton({
-	variant,
-	size,
-	className,
-	...props
-}: LinkButtonProps) {
+export function LinkButton({ variant, size, className, ...props }: LinkButtonProps) {
 	return (
 		<Link
 			{...props}
-			className={twMerge(
-				buttonVariants({ variant, size }),
-				"block text-center",
-				className,
-			)}
+			className={twMerge(buttonVariants({ variant, size }), "block text-center", className)}
 		/>
 	);
 }

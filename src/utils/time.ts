@@ -89,11 +89,7 @@ export function to12Hour(hour: number): number {
  * @param use24Hour - Use 24-hour format (default: false)
  * @returns Vietnamese time string (e.g., "2 giờ 30 phút sáng")
  */
-export function formatTime(
-	hour: number,
-	minute: number,
-	use24Hour = false,
-): string {
+export function formatTime(hour: number, minute: number, use24Hour = false): string {
 	if (!Number.isInteger(hour) || hour < 0 || hour > 23) {
 		throw new RangeError("Hour must be between 0 and 23");
 	}

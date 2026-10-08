@@ -1,14 +1,6 @@
-import {
-	type AutomaticSpeechRecognitionOutput,
-	type AutomaticSpeechRecognitionPipeline,
-	pipeline,
-} from "@huggingface/transformers";
+import { type AutomaticSpeechRecognitionPipeline, pipeline } from "@huggingface/transformers";
 import "./transformers-config";
-import type {
-	ErrorResponse,
-	ModelDType,
-	STTProgressResponse,
-} from "./worker-types";
+import type { ErrorResponse, ModelDType, STTProgressResponse } from "./worker-types";
 
 // Message types
 interface InitMessage {
@@ -42,14 +34,10 @@ let transcriber: AutomaticSpeechRecognitionPipeline | null = null;
 let currentModelPath: string | null = null;
 
 // Initialize the model
-async function initModel(
-	modelPath: string,
-	device: "webgpu" | "wasm",
-	dtype: ModelDType,
-) {
+async function initModel(modelPath: string, device: "webgpu" | "wasm", dtype: ModelDType) {
 	// If model is already loaded with the same path, skip
 	if (transcriber && currentModelPath === modelPath) {
-		self.postMessage({ status: "ready" } as ReadyResponse);
+		self.postMessage({ status: "ready" } satisfies ReadyResponse);
 		return;
 	}
 
@@ -81,14 +69,14 @@ async function initModel(
 		},
 	});
 
-	transcriber = model as AutomaticSpeechRecognitionPipeline;
+	transcriber = model;
 
 	// NOTE: chunk_length_s / stride_length_s (chunked inference) were evaluated and ruled out.
 	// Chunking splits audio into overlapping 30s windows processed sequentially — it only reduces
 	// latency when the recording itself exceeds 30s (multiple encoder passes). For recordings
 	// under ~10s there is always exactly one chunk, so chunking adds overhead with no benefit.
 	// Ref: https://gattanasio.cc/post/whisper-encoder/
-	self.postMessage({ status: "ready" } as ReadyResponse);
+	self.postMessage({ status: "ready" } satisfies ReadyResponse);
 }
 
 // Transcribe audio
@@ -97,16 +85,16 @@ async function transcribe(audio: Float32Array, language: "vn" | "en") {
 		throw new Error("Model not initialized");
 	}
 
-	const result = (await transcriber(audio, {
+	const result = await transcriber(audio, {
 		language: language === "vn" ? "vietnamese" : "english",
 		task: "transcribe",
-	})) as AutomaticSpeechRecognitionOutput;
+	});
 
 	return result.text || "";
 }
 
 // Message handler
-self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
+async function handleMessage(event: MessageEvent<WorkerMessage>) {
 	const message = event.data;
 
 	try {
@@ -120,7 +108,7 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 				self.postMessage({
 					status: "complete",
 					text,
-				} as TranscribeResponse);
+				} satisfies TranscribeResponse);
 				break;
 			}
 		}
@@ -131,4 +119,8 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 			error: error instanceof Error ? error.message : "Unknown error",
 		} satisfies ErrorResponse);
 	}
+}
+
+self.addEventListener("message", (event: MessageEvent<WorkerMessage>) => {
+	void handleMessage(event);
 });

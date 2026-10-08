@@ -1,10 +1,6 @@
-import { pipeline } from "@huggingface/transformers";
+import { pipeline, type TextToAudioPipeline } from "@huggingface/transformers";
 import "./transformers-config";
-import type {
-	ErrorResponse,
-	ModelDType,
-	TTSProgressResponse,
-} from "./worker-types";
+import type { ErrorResponse, ModelDType, TTSProgressResponse } from "./worker-types";
 
 // Message types
 interface PredictMessage {
@@ -26,8 +22,7 @@ interface CompleteResponse {
 }
 
 // Cache pipelines per model to avoid re-initialization
-// biome-ignore lint/suspicious/noExplicitAny: Pipeline return type is too complex
-const pipelineCache = new Map<string, any>();
+const pipelineCache = new Map<string, TextToAudioPipeline>();
 
 /**
  * Convert Float32Array audio to WAV Blob
@@ -72,7 +67,7 @@ function writeString(view: DataView, offset: number, string: string) {
 }
 
 // Message handler
-self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
+async function handleMessage(event: MessageEvent<WorkerMessage>) {
 	const message = event.data;
 
 	try {
@@ -93,9 +88,7 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 						progress_callback: (progress) => {
 							if (progress.status === "progress") {
 								const progressPercent =
-									progress.total > 0
-										? (progress.loaded / progress.total) * 100
-										: 0;
+									progress.total > 0 ? (progress.loaded / progress.total) * 100 : 0;
 								self.postMessage({
 									requestId: message.requestId,
 									status: "progress",
@@ -111,19 +104,18 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 				}
 
 				// Generate speech
-				const output = (await synthesizer(message.text)) as {
-					audio: Float32Array;
-					sampling_rate: number;
-				};
+				const output = await synthesizer(message.text);
 
 				// Convert to WAV Blob
-				const wav = audioToWav(output.audio, output.sampling_rate);
+				const audio = Array.isArray(output.audio) ? output.audio[0] : output.audio;
+				if (!audio) throw new Error("Speech synthesis returned no audio");
+				const wav = audioToWav(audio, output.sampling_rate);
 
 				self.postMessage({
 					requestId: message.requestId,
 					status: "complete",
 					audio: wav,
-				} as CompleteResponse);
+				} satisfies CompleteResponse);
 				break;
 			}
 		}
@@ -134,4 +126,8 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 			error: error instanceof Error ? error.message : "Unknown error",
 		} satisfies ErrorResponse);
 	}
+}
+
+self.addEventListener("message", (event: MessageEvent<WorkerMessage>) => {
+	void handleMessage(event);
 });

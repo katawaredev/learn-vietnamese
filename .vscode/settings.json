@@ -36,8 +36,37 @@
 	"editor.formatOnSave": true,
 	"editor.formatOnSaveMode": "file",
 	"editor.codeActionsOnSave": {
-		"source.fixAll.oxc": "explicit",
-		"source.organizeImports.oxc": "explicit"
+		"source.fixAll.oxc": "never",
+		"source.organizeImports": "never",
+		"source.fixAll.eslint": "never"
 	},
-	"tailwindCSS.classFunctions": ["cva", "cx", "twMerge", "clsx", "cn"]
+	"tailwindCSS.classFunctions": ["cva", "cx", "twMerge", "clsx", "cn"],
+	"eslint.enable": false,
+	"prettier.enable": false,
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"oxc.typeAware": true,
+	"oxc.unusedDisableDirectives": "deny",
+	"tailwindCSS.validate": false,
+	"[json]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[yaml]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[graphql]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[mdx]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	}
 }

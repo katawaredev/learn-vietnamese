@@ -28,24 +28,20 @@ interface AbortMessage {
 	type: "abort";
 }
 
-type WorkerMessage =
-	| InitMessage
-	| GenerateMessage
-	| ResetMessage
-	| AbortMessage;
+type WorkerMessage = InitMessage | GenerateMessage | ResetMessage | AbortMessage;
 
 // Response types
-interface ProgressResponse {
+export interface ProgressResponse {
 	status: "progress";
 	progress: number;
 	text: string;
 }
 
-interface ReadyResponse {
+export interface ReadyResponse {
 	status: "ready";
 }
 
-interface StreamResponse {
+export interface StreamResponse {
 	status: "stream";
 	text: string;
 	thinking?: string;
@@ -53,7 +49,7 @@ interface StreamResponse {
 	isComplete: boolean;
 }
 
-interface ErrorResponse {
+export interface ErrorResponse {
 	status: "error";
 	error: string;
 }
@@ -74,7 +70,7 @@ async function initModel(config: LLMConfig) {
 			currentConfig.modelId === config.modelId &&
 			currentConfig.thinkingEnabled === config.thinkingEnabled
 		) {
-			self.postMessage({ status: "ready" } as ReadyResponse);
+			self.postMessage({ status: "ready" } satisfies ReadyResponse);
 			return;
 		}
 
@@ -86,7 +82,7 @@ async function initModel(config: LLMConfig) {
 			currentConfig.thinkingEnabled !== config.thinkingEnabled
 		) {
 			currentConfig = config;
-			self.postMessage({ status: "ready" } as ReadyResponse);
+			self.postMessage({ status: "ready" } satisfies ReadyResponse);
 			return;
 		}
 
@@ -120,12 +116,12 @@ async function initModel(config: LLMConfig) {
 					status: "progress",
 					progress: report.progress || 0,
 					text: report.text || "Loading model...",
-				} as ProgressResponse);
+				} satisfies ProgressResponse);
 			},
 			logLevel: "ERROR",
 		});
 
-		self.postMessage({ status: "ready" } as ReadyResponse);
+		self.postMessage({ status: "ready" } satisfies ReadyResponse);
 	} catch (error) {
 		console.error("[LLM Worker] Init error:", error);
 		currentConfig = null;
@@ -209,19 +205,16 @@ async function generateResponse(
 				fullText += delta;
 
 				// Always parse to strip thinking tags (defense in depth)
-				const { thinking, message, isThinking } =
-					parseThinkingContent(fullText);
+				const { thinking, message, isThinking } = parseThinkingContent(fullText);
 
 				// Only expose thinking content if thinking mode is enabled
 				self.postMessage({
 					status: "stream",
 					text: message,
-					thinking: currentConfig.thinkingEnabled
-						? thinking || undefined
-						: undefined,
+					thinking: currentConfig.thinkingEnabled ? thinking || undefined : undefined,
 					isThinking: currentConfig.thinkingEnabled ? isThinking : false,
 					isComplete: false,
-				} as StreamResponse);
+				} satisfies StreamResponse);
 			}
 		}
 
@@ -234,20 +227,15 @@ async function generateResponse(
 		const { thinking, message, isThinking } = parseThinkingContent(fullText);
 
 		// If thinking tag never closed, treat entire response as normal message
-		const finalMessage = isThinking
-			? fullText.replace(/^<think(?:ing)?>/i, "").trim()
-			: message;
+		const finalMessage = isThinking ? fullText.replace(/^<think(?:ing)?>/i, "").trim() : message;
 
 		self.postMessage({
 			status: "stream",
 			text: finalMessage,
-			thinking:
-				currentConfig.thinkingEnabled && !isThinking
-					? thinking || undefined
-					: undefined,
+			thinking: currentConfig.thinkingEnabled && !isThinking ? thinking || undefined : undefined,
 			isThinking: false, // Always false on completion
 			isComplete: true,
-		} as StreamResponse);
+		} satisfies StreamResponse);
 	} finally {
 		isGenerating = false;
 		abortController = null;
@@ -269,12 +257,14 @@ async function resetConversation() {
 	abortGeneration();
 	if (engine) {
 		await engine.resetChat();
-		self.postMessage({ status: "ready" } as ReadyResponse);
+		self.postMessage({ status: "ready" } satisfies ReadyResponse);
 	}
 }
 
+export type LLMResponse = ProgressResponse | ReadyResponse | StreamResponse | ErrorResponse;
+
 // Message handler
-self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
+async function handleMessage(event: MessageEvent<WorkerMessage>) {
 	const message = event.data;
 
 	try {
@@ -293,7 +283,7 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 
 			case "abort":
 				abortGeneration();
-				self.postMessage({ status: "ready" } as ReadyResponse);
+				self.postMessage({ status: "ready" } satisfies ReadyResponse);
 				break;
 		}
 	} catch (error) {
@@ -301,6 +291,10 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 		self.postMessage({
 			status: "error",
 			error: error instanceof Error ? error.message : "Unknown error",
-		} as ErrorResponse);
+		} satisfies ErrorResponse);
 	}
+}
+
+self.addEventListener("message", (event: MessageEvent<WorkerMessage>) => {
+	void handleMessage(event);
 });

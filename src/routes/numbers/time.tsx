@@ -41,9 +41,7 @@ function generateTimePeriodData(): Record<string, TimeData> {
  * Generates duration unit vocabulary (just the unit words).
  */
 function generateDurationUnits(): Record<string, TimeData> {
-	return (
-		Object.entries(DURATION_UNITS) as Array<[DurationUnit, string]>
-	).reduce(
+	return (Object.entries(DURATION_UNITS) as Array<[DurationUnit, string]>).reduce(
 		(acc, [unit]) => {
 			acc[unit] = {
 				value: unit,
@@ -221,45 +219,37 @@ function TimeComponent() {
 				<div>
 					<Disclosure
 						className="mb-4 w-full"
-						title={
-							<span className="font-bold text-2xl">
-								Time Periods (Buổi trong ngày)
-							</span>
-						}
+						title={<span className="text-2xl font-bold">Time Periods (Buổi trong ngày)</span>}
 					>
 						<div className="space-y-3">
 							<p>
-								<strong className="text-gold">Time periods</strong> indicate
-								what part of the day: sáng (morning), trưa (noon), chiều
-								(afternoon), tối (evening), đêm (night).
+								<strong className="text-gold">Time periods</strong> indicate what part of the day:
+								sáng (morning), trưa (noon), chiều (afternoon), tối (evening), đêm (night).
 							</p>
 
 							<p>
-								<strong className="text-gold">Clock time format:</strong> [hour]
-								giờ [minutes] phút [period]
+								<strong className="text-gold">Clock time format:</strong> [hour] giờ [minutes] phút
+								[period]
 							</p>
 
 							<ul className="ml-6 list-disc space-y-2">
 								<li>
-									<strong>"rưỡi" for half past:</strong> Use "rưỡi" instead of
-									"ba mươi phút" (e.g., "hai giờ rưỡi" = 2:30)
+									<strong>"rưỡi" for half past:</strong> Use "rưỡi" instead of "ba mươi phút" (e.g.,
+									"hai giờ rưỡi" = 2:30)
 								</li>
 								<li>
-									<strong>On the hour:</strong> Omit minutes (e.g., "bảy giờ
-									sáng" = 7:00 AM)
+									<strong>On the hour:</strong> Omit minutes (e.g., "bảy giờ sáng" = 7:00 AM)
 								</li>
 								<li>
-									<strong>12-hour format:</strong> Vietnamese typically uses
-									12-hour format with period markers, not AM/PM
+									<strong>12-hour format:</strong> Vietnamese typically uses 12-hour format with
+									period markers, not AM/PM
 								</li>
 							</ul>
 						</div>
 					</Disclosure>
 					<PracticeGrid<TimeData>
 						data={periods}
-						getSubtitle={(item) =>
-							TIME_PERIODS[item.value as keyof typeof TIME_PERIODS]
-						}
+						getSubtitle={(item) => TIME_PERIODS[item.value as keyof typeof TIME_PERIODS]}
 						getDetails={getDetails}
 					/>
 				</div>
@@ -268,26 +258,21 @@ function TimeComponent() {
 				<div>
 					<Disclosure
 						className="mb-4 w-full"
-						title={
-							<span className="font-bold text-2xl">
-								Duration Units (Đơn vị thời gian)
-							</span>
-						}
+						title={<span className="text-2xl font-bold">Duration Units (Đơn vị thời gian)</span>}
 					>
 						<div className="space-y-3">
 							<p>
-								<strong className="text-gold">Duration</strong> (how long
-								something takes) uses a simple pattern: number + unit word
+								<strong className="text-gold">Duration</strong> (how long something takes) uses a
+								simple pattern: number + unit word
 							</p>
 
 							<p>
-								<strong>Units:</strong> giây (second), phút (minute), giờ
-								(hour), ngày (day), tuần (week), tháng (month), năm (year)
+								<strong>Units:</strong> giây (second), phút (minute), giờ (hour), ngày (day), tuần
+								(week), tháng (month), năm (year)
 							</p>
 
 							<p>
-								Same vocabulary works for both clock time and duration. Context
-								determines meaning.
+								Same vocabulary works for both clock time and duration. Context determines meaning.
 							</p>
 						</div>
 					</Disclosure>
@@ -306,12 +291,9 @@ function TimeComponent() {
 				{/* Examples */}
 				<div>
 					<div className="mb-4">
-						<h2 className="font-bold text-2xl text-gold">
-							Usage Examples (Ví dụ)
-						</h2>
+						<h2 className="text-2xl font-bold text-gold">Usage Examples (Ví dụ)</h2>
 						<p className="text-sm text-white/60">
-							Clock time (telling time) and duration (how long) - both using the
-							same vocabulary
+							Clock time (telling time) and duration (how long) - both using the same vocabulary
 						</p>
 					</div>
 					<PracticeGrid<TimeData>
@@ -328,10 +310,7 @@ function TimeComponent() {
 								return `${h12}:${minute.toString().padStart(2, "0")} ${ampm}`;
 							}
 							if (item.type === "duration" && item.unit) {
-								if (
-									item.unit === "rưỡi" &&
-									typeof item.numericValue === "number"
-								) {
+								if (item.unit === "rưỡi" && typeof item.numericValue === "number") {
 									return `${item.numericValue} hours`;
 								}
 								if (typeof item.numericValue === "number") {

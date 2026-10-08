@@ -21,26 +21,19 @@ interface ModuleLayoutProps {
 	customNavigation?: ReactNode | ((helpers: NavigationHelpers) => ReactNode);
 }
 
-export const ModuleLayout: FC<ModuleLayoutProps> = ({
-	routes,
-	children,
-	customNavigation,
-}) => {
+export const ModuleLayout: FC<ModuleLayoutProps> = ({ routes, children, customNavigation }) => {
 	const navigate = useNavigate();
 	const routerState = useRouterState();
 	const currentPath = routerState.location.pathname;
 
 	const currentIndex = routes.findIndex((route) => route.path === currentPath);
 	const prevRoute = currentIndex > 0 ? routes[currentIndex - 1] : null;
-	const nextRoute =
-		currentIndex < routes.length - 1 ? routes[currentIndex + 1] : null;
+	const nextRoute = currentIndex < routes.length - 1 ? routes[currentIndex + 1] : null;
 
 	const helpers: NavigationHelpers = { prevRoute, nextRoute, routes };
 
 	const renderedNavigation =
-		typeof customNavigation === "function"
-			? customNavigation(helpers)
-			: customNavigation;
+		typeof customNavigation === "function" ? customNavigation(helpers) : customNavigation;
 
 	return (
 		<div className="flex min-h-screen flex-col bg-linear-to-br from-burgundy-dark to-burgundy">
@@ -55,7 +48,7 @@ export const ModuleLayout: FC<ModuleLayoutProps> = ({
 					}))}
 					value={currentPath}
 					onChange={(path) => {
-						navigate({ to: path });
+						void navigate({ to: path });
 					}}
 				/>
 			</Header>

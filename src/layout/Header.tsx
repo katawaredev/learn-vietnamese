@@ -11,10 +11,7 @@ interface HeaderProps {
 	children?: ReactNode;
 }
 
-export default function Header({
-	hideBackButton = false,
-	children,
-}: HeaderProps) {
+export default function Header({ hideBackButton = false, children }: HeaderProps) {
 	const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 	const { isTelexInputActive } = useUI();
 
@@ -36,21 +33,14 @@ export default function Header({
 				{/* Right side - Settings */}
 				<div className="flex flex-1 items-center justify-end gap-2">
 					{isTelexInputActive && <TelexCheatsheet />}
-					<Button
-						variant="ghost"
-						className="p-2"
-						onClick={() => setIsSettingsOpen(true)}
-					>
+					<Button variant="ghost" className="p-2" onClick={() => setIsSettingsOpen(true)}>
 						<Menu className="h-6 w-6" />
 					</Button>
 				</div>
 			</header>
 
 			{/* Settings Drawer */}
-			<SettingsDrawer
-				isOpen={isSettingsOpen}
-				onClose={() => setIsSettingsOpen(false)}
-			/>
+			<SettingsDrawer isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
 		</>
 	);
 }

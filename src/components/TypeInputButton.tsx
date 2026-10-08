@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { Popover } from "./Popover";
 
 const buttonVariants = cva(
-	"relative flex select-none items-center justify-center rounded-full border-0 bg-stone-800 shadow-lg shadow-stone-800/25 transition-all duration-200 ease-in-out",
+	"relative flex items-center justify-center rounded-full border-0 bg-stone-800 shadow-lg shadow-stone-800/25 transition-all duration-200 ease-in-out select-none",
 	{
 		variants: {
 			size: {
@@ -43,7 +43,7 @@ export const TypeInputButton: FC<TypeInputButtonProps> = ({
 }) => {
 	const [inputValue, setInputValue] = useState("");
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const trimmed = inputValue.trim();
 		if (trimmed) {
@@ -52,8 +52,7 @@ export const TypeInputButton: FC<TypeInputButtonProps> = ({
 		}
 	};
 
-	const iconSize =
-		size === "small" ? "h-5 w-5" : size === "medium" ? "h-7 w-7" : "h-9 w-9";
+	const iconSize = size === "small" ? "h-5 w-5" : size === "medium" ? "h-7 w-7" : "h-9 w-9";
 
 	return (
 		<Popover
@@ -72,7 +71,7 @@ export const TypeInputButton: FC<TypeInputButtonProps> = ({
 					onChange={(e) => setInputValue(e.target.value)}
 					placeholder={placeholder}
 					className="w-64 rounded-lg border-2 border-gold/30 bg-burgundy px-3 py-2 font-serif text-warm-cream placeholder-warm-cream/40 transition-colors focus:border-gold focus:outline-none"
-					// biome-ignore lint/a11y/noAutofocus: Focus is needed
+					// oxlint-disable-next-line jsx-a11y/no-autofocus -- Focus the input after opening the popover.
 					autoFocus
 				/>
 				<button

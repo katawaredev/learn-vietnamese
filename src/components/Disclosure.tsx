@@ -22,11 +22,7 @@ export function Disclosure({
 	const [open, setOpen] = useState(defaultOpen);
 
 	return (
-		<Collapsible.Root
-			open={open}
-			onOpenChange={setOpen}
-			className={twMerge("mb-6", className)}
-		>
+		<Collapsible.Root open={open} onOpenChange={setOpen} className={twMerge("mb-6", className)}>
 			<div
 				className={
 					plain
@@ -48,8 +44,8 @@ export function Disclosure({
 
 				<Collapsible.Panel
 					className={twMerge(
-						"data-closed:fade-out-0 data-open:fade-in-0 data-closed:slide-out-to-top-2 data-open:slide-in-from-top-2 data-closed:animate-out data-open:animate-in",
-						plain ? "pt-2" : "border-white/10 border-t px-6 py-4",
+						"data-closed:animate-out data-closed:fade-out-0 data-closed:slide-out-to-top-2 data-open:animate-in data-open:fade-in-0 data-open:slide-in-from-top-2",
+						plain ? "pt-2" : "border-t border-white/10 px-6 py-4",
 					)}
 				>
 					{children}

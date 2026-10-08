@@ -9,14 +9,9 @@ export type ExternalLinkProps = {
 
 export function ExternalLink({ text, href, className }: ExternalLinkProps) {
 	return (
-		<a
-			href={href}
-			target="_blank"
-			rel="noopener noreferrer"
-			className={cn("underline", className)}
-		>
+		<a href={href} target="_blank" rel="noopener noreferrer" className={cn("underline", className)}>
 			{text}
-			<ExternalLinkIcon className="ms-1 inline h-4 w-4 rtl:rotate-270deg" />
+			<ExternalLinkIcon className="ms-1 inline h-4 w-4 rtl:rotate-270" />
 		</a>
 	);
 }

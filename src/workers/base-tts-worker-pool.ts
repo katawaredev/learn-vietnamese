@@ -64,19 +64,13 @@ export abstract class BaseTTSWorkerPool<TRequest extends BaseTTSRequest> {
 	 * Subclasses can override to persist the audio blob to a durable store.
 	 * The base implementation is a no-op.
 	 */
-	protected onAudioGenerated(
-		_cacheKey: string,
-		_blob: Blob,
-		_request: TRequest,
-	): void {}
+	protected onAudioGenerated(_cacheKey: string, _blob: Blob, _request: TRequest): void {}
 
 	/** Build the cache lookup key from the request. */
 	protected abstract buildCacheKey(request: TRequest): string;
 
 	/** Construct the message payload to post to the worker. */
-	protected abstract buildWorkerMessage(
-		request: TRequest,
-	): Record<string, unknown>;
+	protected abstract buildWorkerMessage(request: TRequest): Record<string, unknown>;
 
 	// --- Shared implementation ---
 
@@ -104,9 +98,7 @@ export abstract class BaseTTSWorkerPool<TRequest extends BaseTTSRequest> {
 	private evictOldCache(): void {
 		if (this.cache.size <= this.MAX_CACHE_SIZE) return;
 
-		const entries = Array.from(this.cache.entries()).sort(
-			(a, b) => a[1].lastUsed - b[1].lastUsed,
-		);
+		const entries = Array.from(this.cache.entries()).sort((a, b) => a[1].lastUsed - b[1].lastUsed);
 
 		const toRemove = this.cache.size - this.MAX_CACHE_SIZE;
 		for (let i = 0; i < toRemove; i++) {

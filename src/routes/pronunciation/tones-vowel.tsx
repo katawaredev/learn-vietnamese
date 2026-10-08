@@ -16,9 +16,7 @@ function TonesVowelsComponent() {
 	const toneKeys = Object.keys(tones) as Array<keyof typeof tones>;
 
 	// Convert each tone's examples to an array
-	const examplesArrays = toneKeys.map((key) =>
-		Object.entries(tones[key].examples),
-	);
+	const examplesArrays = toneKeys.map((key) => Object.entries(tones[key].examples));
 
 	// Get the max number of examples
 	const maxExamples = Math.max(...examplesArrays.map((arr) => arr.length));
@@ -39,7 +37,7 @@ function TonesVowelsComponent() {
 		<Layout>
 			<div className="space-y-6">
 				{groupedByPosition.map((group, index) => (
-					// biome-ignore lint/suspicious/noArrayIndexKey: No key
+					// oxlint-disable-next-line react/no-array-index-key -- No key
 					<Fragment key={index}>
 						{index !== 0 && <hr className="my-8" />}
 						<PracticeGrid<ToneExampleData>

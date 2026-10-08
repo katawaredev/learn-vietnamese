@@ -29,8 +29,7 @@ export const ListenWebButton: FC<ListenButtonProps> = ({
 		if (state !== "idle") return;
 		if (typeof window === "undefined") return;
 
-		const SpeechRecognition =
-			window.SpeechRecognition || window.webkitSpeechRecognition;
+		const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 		if (!SpeechRecognition) return;
 
 		const speechRecognition = new SpeechRecognition();
@@ -91,8 +90,7 @@ export const ListenWebButton: FC<ListenButtonProps> = ({
 
 	// Check if Web Speech API is available
 	const isAvailable =
-		typeof window !== "undefined" &&
-		(window.SpeechRecognition || window.webkitSpeechRecognition);
+		typeof window !== "undefined" && (window.SpeechRecognition || window.webkitSpeechRecognition);
 
 	return (
 		<ListenBaseButton

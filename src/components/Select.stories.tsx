@@ -19,7 +19,7 @@ const meta: Meta<typeof Select> = {
 	argTypes: {
 		size: { control: "radio", options: ["small", "medium", "large"] },
 	},
-	render: (args) => {
+	render: function Render(args) {
 		const [value, setValue] = useState<string | undefined>(args.value);
 		return (
 			<div className="w-72">

@@ -19,19 +19,12 @@ export interface ListenButtonProps {
 	disabled?: boolean;
 }
 
-export const ListenButton: FC<ListenButtonProps> = ({
-	lang = "vn",
-	...props
-}) => {
+export const ListenButton: FC<ListenButtonProps> = ({ lang = "vn", ...props }) => {
 	const { getSelectedModel } = useSTT();
 	const selectedModel = getSelectedModel(lang);
 
 	return (
-		<Suspense
-			fallback={
-				<ListenButtonLoading size={props.size} className={props.className} />
-			}
-		>
+		<Suspense fallback={<ListenButtonLoading size={props.size} className={props.className} />}>
 			{selectedModel.provider === "web-speech" ? (
 				<ListenWebButton {...props} lang={lang} />
 			) : (

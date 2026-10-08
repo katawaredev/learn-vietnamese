@@ -32,7 +32,7 @@ function openDB(): Promise<IDBDatabase> {
 			req.onsuccess = () => resolve(req.result);
 			req.onerror = () => {
 				dbPromise = null; // allow retry on next call
-				reject(req.error);
+				reject(req.error ?? new Error("IndexedDB operation failed"));
 			};
 		});
 	}
@@ -42,19 +42,14 @@ function openDB(): Promise<IDBDatabase> {
 /**
  * Returns the cached Blob for a (text, voiceId) pair, or null on miss / error.
  */
-export async function getVoiceAudio(
-	text: string,
-	voiceId: string,
-): Promise<Blob | null> {
+export async function getVoiceAudio(text: string, voiceId: string): Promise<Blob | null> {
 	try {
 		const db = await openDB();
 		return new Promise((resolve, reject) => {
 			const req = db.transaction(STORE_NAME).objectStore(STORE_NAME).get(text);
 			req.onsuccess = () =>
-				resolve(
-					(req.result as Record<string, Blob> | undefined)?.[voiceId] ?? null,
-				);
-			req.onerror = () => reject(req.error);
+				resolve((req.result as Record<string, Blob> | undefined)?.[voiceId] ?? null);
+			req.onerror = () => reject(req.error ?? new Error("IndexedDB operation failed"));
 		});
 	} catch {
 		return null;
@@ -65,11 +60,7 @@ export async function getVoiceAudio(
  * Persists a generated audio Blob under (text, voiceId).
  * Merges into any existing entry for the same text so other voices are kept.
  */
-export async function saveVoiceAudio(
-	text: string,
-	voiceId: string,
-	blob: Blob,
-): Promise<void> {
+export async function saveVoiceAudio(text: string, voiceId: string, blob: Blob): Promise<void> {
 	try {
 		const db = await openDB();
 		await new Promise<void>((resolve, reject) => {
@@ -80,9 +71,9 @@ export async function saveVoiceAudio(
 				const existing = (getReq.result ?? {}) as Record<string, Blob>;
 				const putReq = store.put({ ...existing, [voiceId]: blob }, text);
 				putReq.onsuccess = () => resolve();
-				putReq.onerror = () => reject(putReq.error);
+				putReq.onerror = () => reject(putReq.error ?? new Error("IndexedDB write failed"));
 			};
-			getReq.onerror = () => reject(getReq.error);
+			getReq.onerror = () => reject(getReq.error ?? new Error("IndexedDB read failed"));
 		});
 	} catch {
 		// IDB unavailable — fail silently, in-memory cache still works

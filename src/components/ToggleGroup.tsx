@@ -4,23 +4,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
-const toggleGroupVariants = cva(
-	"inline-flex overflow-hidden border-2 border-gold",
-	{
-		variants: {
-			orientation: {
-				horizontal: "flex-row rounded-2xl",
-				vertical: "flex-col rounded-2xl",
-			},
-		},
-		defaultVariants: {
-			orientation: "horizontal",
+const toggleGroupVariants = cva("inline-flex overflow-hidden border-2 border-gold", {
+	variants: {
+		orientation: {
+			horizontal: "flex-row rounded-2xl",
+			vertical: "flex-col rounded-2xl",
 		},
 	},
-);
+	defaultVariants: {
+		orientation: "horizontal",
+	},
+});
 
 const toggleVariants = cva(
-	"flex cursor-pointer items-center justify-center gap-2 border-gold font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-inset",
+	"flex cursor-pointer items-center justify-center gap-2 border-gold font-serif transition-all duration-200 focus:ring-2 focus:ring-gold focus:outline-none focus:ring-inset",
 	{
 		variants: {
 			size: {
@@ -41,14 +38,14 @@ const toggleVariants = cva(
 );
 
 export interface ToggleGroupProps
-	extends Omit<ComponentProps<typeof BaseToggleGroup>, "orientation">,
+	extends
+		Omit<ComponentProps<typeof BaseToggleGroup>, "orientation">,
 		VariantProps<typeof toggleGroupVariants> {
 	className?: string;
 }
 
 export interface ToggleProps
-	extends ComponentProps<typeof BaseToggle>,
-		VariantProps<typeof toggleVariants> {
+	extends ComponentProps<typeof BaseToggle>, VariantProps<typeof toggleVariants> {
 	className?: string;
 }
 
@@ -68,12 +65,7 @@ export function ToggleGroup({
 	);
 }
 
-export function Toggle({
-	size,
-	orientation,
-	className,
-	...props
-}: ToggleProps) {
+export function Toggle({ size, orientation, className, ...props }: ToggleProps) {
 	return (
 		<BaseToggle
 			{...props}

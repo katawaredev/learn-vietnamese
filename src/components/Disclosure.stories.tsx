@@ -8,8 +8,8 @@ const meta: Meta<typeof Disclosure> = {
 		title: "Bài học 1: Chào hỏi",
 		children: (
 			<p className="text-warm-cream/80">
-				Học cách chào hỏi cơ bản trong tiếng Việt. Bao gồm các cụm từ phổ biến
-				như "Xin chào", "Cảm ơn", và "Tạm biệt".
+				Học cách chào hỏi cơ bản trong tiếng Việt. Bao gồm các cụm từ phổ biến như "Xin chào", "Cảm
+				ơn", và "Tạm biệt".
 			</p>
 		),
 	},

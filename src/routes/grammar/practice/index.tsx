@@ -10,12 +10,12 @@ import { GapFillTypeExercise } from "./-GapFillTypeExercise";
 
 export const Route = createFileRoute("/grammar/practice/")({
 	component: PracticeComponent,
-	loader: () => getRandomGrammarExercise({ data: {} }),
 	ssr: false,
+	loader: () => getRandomGrammarExercise({ data: {} }),
 });
 
 function PracticeComponent() {
-	const initialExercise = Route.useLoaderData() as Exercise;
+	const initialExercise = Route.useLoaderData();
 	const [exercise, setExercise] = useState(initialExercise);
 	const [mode, setMode] = useState<string[]>(["random"]);
 	const [exerciseKey, setExerciseKey] = useState(0);
@@ -50,7 +50,11 @@ function PracticeComponent() {
 					<Button
 						variant="outline"
 						size="medium"
-						onClick={handleNext}
+						onClick={() => {
+							void handleNext().catch((error: unknown) =>
+								console.error("Exercise action failed:", error),
+							);
+						}}
 						className="justify-self-end"
 					>
 						Next
@@ -65,11 +69,7 @@ function PracticeComponent() {
 
 			{/* Exercise area */}
 			<div className="flex flex-1 items-center">
-				<ExerciseRenderer
-					key={exerciseKey}
-					exercise={exercise}
-					hintRef={hintRef}
-				/>
+				<ExerciseRenderer key={exerciseKey} exercise={exercise} hintRef={hintRef} />
 			</div>
 		</Layout>
 	);
@@ -90,4 +90,5 @@ function ExerciseRenderer({
 		case "gap-fill-speak":
 			return <GapFillSpeakExercise exercise={exercise} onHintRef={hintRef} />;
 	}
+	return null;
 }

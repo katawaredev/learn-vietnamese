@@ -48,12 +48,8 @@ function QuestionsComponent() {
 	const data = questionsData as unknown as QuestionsData;
 
 	const whQuestions = data.questionTypes.find((t) => t.id === "wh-questions");
-	const yesNoQuestions = data.questionTypes.find(
-		(t) => t.id === "yes-no-questions",
-	);
-	const rhetoricalQuestions = data.questionTypes.find(
-		(t) => t.id === "rhetorical-questions",
-	);
+	const yesNoQuestions = data.questionTypes.find((t) => t.id === "yes-no-questions");
+	const rhetoricalQuestions = data.questionTypes.find((t) => t.id === "rhetorical-questions");
 
 	return (
 		<Layout>
@@ -61,16 +57,11 @@ function QuestionsComponent() {
 				{/* Introduction */}
 				<Disclosure
 					defaultOpen
-					title={
-						<span className="font-bold text-lg">{data.introduction.title}</span>
-					}
+					title={<span className="text-lg font-bold">{data.introduction.title}</span>}
 				>
 					<div className="space-y-4">
 						{data.introduction.content.map((paragraph) => (
-							<p
-								key={paragraph.slice(0, 50)}
-								className="text-white/80 leading-relaxed"
-							>
+							<p key={paragraph.slice(0, 50)} className="leading-relaxed text-white/80">
 								{paragraph}
 							</p>
 						))}
@@ -81,9 +72,7 @@ function QuestionsComponent() {
 				{whQuestions && (
 					<div className="space-y-6">
 						<div>
-							<h2 className="font-bold font-serif text-2xl text-gold">
-								{whQuestions.title}
-							</h2>
+							<h2 className="font-serif text-2xl font-bold text-gold">{whQuestions.title}</h2>
 							<p className="mt-1 text-white/60">{whQuestions.description}</p>
 						</div>
 
@@ -98,12 +87,8 @@ function QuestionsComponent() {
 						{whQuestions.patterns?.map((pattern) => (
 							<div key={pattern.id} className="space-y-4">
 								<div className="rounded-lg border border-gold/30 bg-gold/5 p-5">
-									<div className="mb-2 font-semibold text-gold">
-										{pattern.title}
-									</div>
-									<div className="text-sm text-white/70">
-										{pattern.description}
-									</div>
+									<div className="mb-2 font-semibold text-gold">{pattern.title}</div>
+									<div className="text-sm text-white/70">{pattern.description}</div>
 									<div className="mt-2 font-mono text-sm text-white/60">
 										Pattern: {pattern.structure}
 									</div>
@@ -120,9 +105,7 @@ function QuestionsComponent() {
 				{yesNoQuestions && (
 					<div className="space-y-6">
 						<div>
-							<h2 className="font-bold font-serif text-2xl text-gold">
-								{yesNoQuestions.title}
-							</h2>
+							<h2 className="font-serif text-2xl font-bold text-gold">{yesNoQuestions.title}</h2>
 							<p className="mt-1 text-white/60">{yesNoQuestions.description}</p>
 						</div>
 
@@ -134,10 +117,7 @@ function QuestionsComponent() {
 									<p className="text-sm text-white/50">{group.description}</p>
 								</div>
 
-								<WordGrid
-									data={group.particles}
-									titleClassName={GRAMMAR_TYPE_COLORS.particle}
-								/>
+								<WordGrid data={group.particles} titleClassName={GRAMMAR_TYPE_COLORS.particle} />
 							</div>
 						))}
 
@@ -154,12 +134,10 @@ function QuestionsComponent() {
 				{rhetoricalQuestions && (
 					<div className="space-y-6">
 						<div>
-							<h2 className="font-bold font-serif text-2xl text-gold">
+							<h2 className="font-serif text-2xl font-bold text-gold">
 								{rhetoricalQuestions.title}
 							</h2>
-							<p className="mt-1 text-white/60">
-								{rhetoricalQuestions.description}
-							</p>
+							<p className="mt-1 text-white/60">{rhetoricalQuestions.description}</p>
 						</div>
 
 						{rhetoricalQuestions.rhetoricalPhrases && (
@@ -169,14 +147,11 @@ function QuestionsComponent() {
 							/>
 						)}
 
-						{rhetoricalQuestions.examples &&
-							rhetoricalQuestions.examples.length > 0 && (
-								<Disclosure plain title="Examples" defaultOpen>
-									<GrammarPracticeGrid
-										examples={rhetoricalQuestions.examples}
-									/>
-								</Disclosure>
-							)}
+						{rhetoricalQuestions.examples && rhetoricalQuestions.examples.length > 0 && (
+							<Disclosure plain title="Examples" defaultOpen>
+								<GrammarPracticeGrid examples={rhetoricalQuestions.examples} />
+							</Disclosure>
+						)}
 					</div>
 				)}
 			</div>

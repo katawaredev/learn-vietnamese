@@ -78,16 +78,11 @@ function SpeakPracticeComponent() {
 			currentIndex={currentIndex}
 			onIndexChange={setCurrentIndex}
 			practiceContent={
-				<h2 className="text-center font-bold text-5xl text-warm-cream">
-					{currentSentence.vn}
-				</h2>
+				<h2 className="text-center text-5xl font-bold text-warm-cream">{currentSentence.vn}</h2>
 			}
 			translationContent={<code>{currentSentence.en}</code>}
 			inputContent={
-				<VoiceInputWithResult
-					expectedText={currentSentence.vn}
-					onCorrect={handleCorrect}
-				/>
+				<VoiceInputWithResult expectedText={currentSentence.vn} onCorrect={handleCorrect} />
 			}
 		/>
 	);

@@ -19,8 +19,8 @@ export const Information: Story = {
 		trigger: <Info className="h-6 w-6" />,
 		children: (
 			<p className="max-w-xs text-warm-cream">
-				Vietnamese is a tonal language with six distinct tones. Mastering tones
-				is essential for being understood.
+				Vietnamese is a tonal language with six distinct tones. Mastering tones is essential for
+				being understood.
 			</p>
 		),
 	},
@@ -32,10 +32,10 @@ export const Settings_: Story = {
 		trigger: <Settings className="h-6 w-6" />,
 		children: (
 			<div className="max-w-xs space-y-3 text-warm-cream">
-				<h4 className="font-serif text-gold text-lg">Practice settings</h4>
+				<h4 className="font-serif text-lg text-gold">Practice settings</h4>
 				<p className="text-sm">
-					Configure how the practice mode behaves. Changes apply immediately and
-					persist across sessions.
+					Configure how the practice mode behaves. Changes apply immediately and persist across
+					sessions.
 				</p>
 			</div>
 		),

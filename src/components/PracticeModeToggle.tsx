@@ -16,9 +16,7 @@ export function PracticeModeToggle({
 		<ToggleGroup value={value} onValueChange={onValueChange}>
 			<Toggle value="random" size="medium" orientation="horizontal">
 				<Dices className="h-5 w-5" />
-				<span className={showArrange ? "hidden sm:inline" : undefined}>
-					Random
-				</span>
+				<span className={showArrange ? "hidden sm:inline" : undefined}>Random</span>
 			</Toggle>
 			{showArrange && (
 				<Toggle value="arrange" size="medium" orientation="horizontal">
@@ -28,15 +26,11 @@ export function PracticeModeToggle({
 			)}
 			<Toggle value="speak" size="medium" orientation="horizontal">
 				<Mic className="h-5 w-5" />
-				<span className={showArrange ? "hidden sm:inline" : undefined}>
-					Speak
-				</span>
+				<span className={showArrange ? "hidden sm:inline" : undefined}>Speak</span>
 			</Toggle>
 			<Toggle value="type" size="medium" orientation="horizontal">
 				<Keyboard className="h-5 w-5" />
-				<span className={showArrange ? "hidden sm:inline" : undefined}>
-					Type
-				</span>
+				<span className={showArrange ? "hidden sm:inline" : undefined}>Type</span>
 			</Toggle>
 		</ToggleGroup>
 	);

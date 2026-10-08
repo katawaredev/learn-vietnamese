@@ -30,9 +30,7 @@ export const SpeakButton: FC<SpeakButtonProps> = ({
 	const selectedVoice = getSelectedVoice(lang);
 
 	return (
-		<Suspense
-			fallback={<SpeakButtonLoading size={size} className={className} />}
-		>
+		<Suspense fallback={<SpeakButtonLoading size={size} className={className} />}>
 			{selectedVoice.provider === "web-speech" ? (
 				<SpeakWebButton
 					text={text}
@@ -42,19 +40,9 @@ export const SpeakButton: FC<SpeakButtonProps> = ({
 					className={className}
 				/>
 			) : selectedVoice.provider === "vits" ? (
-				<SpeakAIVitsButton
-					text={text}
-					lang={lang}
-					size={size}
-					className={className}
-				/>
+				<SpeakAIVitsButton text={text} lang={lang} size={size} className={className} />
 			) : (
-				<SpeakAIMMSButton
-					text={text}
-					lang={lang}
-					size={size}
-					className={className}
-				/>
+				<SpeakAIMMSButton text={text} lang={lang} size={size} className={className} />
 			)}
 		</Suspense>
 	);

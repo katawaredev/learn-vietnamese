@@ -3,7 +3,7 @@ import { Card } from "~/components/Card";
 import { Disclosure } from "~/components/Disclosure";
 import dataFile from "~/data/grammar/comparatives.json";
 import type { GrammarModuleData } from "./-GrammarModule";
-import { type Example, GrammarPracticeGrid } from "./-GrammarPracticeGrid";
+import { GrammarPracticeGrid } from "./-GrammarPracticeGrid";
 import { GRAMMAR_TYPE_COLORS } from "./-grammar-colors";
 import { Layout } from "./-layout";
 import { WordGrid } from "./-WordGrid";
@@ -20,13 +20,11 @@ function ComparativesComponent() {
 			<div className="space-y-8">
 				<Disclosure
 					defaultOpen
-					title={
-						<span className="font-bold text-lg">{data.introduction.title}</span>
-					}
+					title={<span className="text-lg font-bold">{data.introduction.title}</span>}
 				>
 					<div className="space-y-3">
 						{data.introduction.content.map((paragraph) => (
-							<p key={paragraph} className="text-white/80 leading-relaxed">
+							<p key={paragraph} className="leading-relaxed text-white/80">
 								{paragraph}
 							</p>
 						))}
@@ -34,30 +32,22 @@ function ComparativesComponent() {
 						<div className="mt-4 grid gap-4 md:grid-cols-2">
 							<Card>
 								<div className="space-y-2">
-									<div className="font-semibold text-white/90">
-										English (Changes Form)
-									</div>
+									<div className="font-semibold text-white/90">English (Changes Form)</div>
 									<div className="space-y-1 text-sm">
 										<div>tall → taller → tallest</div>
 										<div>good → better → best</div>
-										<div className="text-white/50 text-xs">
-											Adjective changes form
-										</div>
+										<div className="text-xs text-white/50">Adjective changes form</div>
 									</div>
 								</div>
 							</Card>
 
 							<Card>
 								<div className="space-y-2">
-									<div className="font-semibold text-white/90">
-										Vietnamese (Same Form)
-									</div>
+									<div className="font-semibold text-white/90">Vietnamese (Same Form)</div>
 									<div className="space-y-1 text-sm">
 										<div>cao → cao hơn → cao nhất (tall)</div>
 										<div>tốt → tốt hơn → tốt nhất (good)</div>
-										<div className="text-white/50 text-xs">
-											Only the particle changes
-										</div>
+										<div className="text-xs text-white/50">Only the particle changes</div>
 									</div>
 								</div>
 							</Card>
@@ -68,9 +58,7 @@ function ComparativesComponent() {
 				{data.sections.map((section) => (
 					<div key={section.id} className="space-y-6">
 						<div>
-							<h2 className="font-bold font-serif text-2xl text-gold">
-								{section.title}
-							</h2>
+							<h2 className="font-serif text-2xl font-bold text-gold">{section.title}</h2>
 							<p className="mt-1 text-white/60">{section.description}</p>
 						</div>
 
@@ -83,7 +71,7 @@ function ComparativesComponent() {
 
 						{section.examples.length > 0 && (
 							<Disclosure plain title="Examples" defaultOpen>
-								<GrammarPracticeGrid examples={section.examples as Example[]} />
+								<GrammarPracticeGrid examples={section.examples} />
 							</Disclosure>
 						)}
 					</div>

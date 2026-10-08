@@ -13,15 +13,11 @@ const meta: Meta<typeof LabeledSwitch> = {
 		size: { control: "radio", options: ["small", "medium", "large"] },
 		disabled: { control: "boolean" },
 	},
-	render: (args) => {
+	render: function Render(args) {
 		const [checked, setChecked] = useState(args.checked ?? false);
 		return (
 			<div className="max-w-md">
-				<LabeledSwitch
-					{...args}
-					checked={checked}
-					onCheckedChange={setChecked}
-				/>
+				<LabeledSwitch {...args} checked={checked} onCheckedChange={setChecked} />
 			</div>
 		);
 	},

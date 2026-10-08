@@ -1,9 +1,5 @@
 import type { ReactNode } from "react";
-import {
-	ModuleLayout,
-	type ModuleRoute,
-	type NavigationHelpers,
-} from "~/layout/ModuleLayout";
+import { ModuleLayout, type ModuleRoute, type NavigationHelpers } from "~/layout/ModuleLayout";
 
 export const grammarRoutes: ModuleRoute[] = [
 	// Foundation

@@ -26,11 +26,7 @@ export const Vertical: Story = {
 	render: (args) => (
 		<div className="flex h-20 items-center gap-4">
 			<span className="text-warm-cream">Left</span>
-			<Separator
-				{...args}
-				orientation="vertical"
-				className="h-full border-t-0 border-l"
-			/>
+			<Separator {...args} orientation="vertical" className="h-full border-t-0 border-l" />
 			<span className="text-warm-cream">Right</span>
 		</div>
 	),

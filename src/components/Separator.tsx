@@ -8,15 +8,11 @@ export interface SeparatorProps extends BaseSeparatorProps {
 	className?: string;
 }
 
-export function Separator({
-	className,
-	orientation = "horizontal",
-	...props
-}: SeparatorProps) {
+export function Separator({ className, orientation = "horizontal", ...props }: SeparatorProps) {
 	return (
 		<BaseSeparator
 			orientation={orientation}
-			className={twMerge("border-white/10 border-t", className)}
+			className={twMerge("border-t border-white/10", className)}
 			{...props}
 		/>
 	);

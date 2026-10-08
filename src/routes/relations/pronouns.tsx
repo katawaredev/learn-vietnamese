@@ -56,48 +56,45 @@ function PronounsComponent() {
 		<Layout>
 			<Disclosure
 				className="w-full"
-				title={<span className="font-bold text-lg">Core Principles</span>}
+				title={<span className="text-lg font-bold">Core Principles</span>}
 			>
 				<div className="space-y-4">
 					<p>
 						Vietnamese pronouns encode{" "}
-						<strong className="text-gold">
-							hierarchy, respect, and relationship
-						</strong>
-						. You cannot say "you" or "I" neutrally—each pronoun signals
-						relative age, status, and social distance.
+						<strong className="text-gold">hierarchy, respect, and relationship</strong>. You cannot
+						say "you" or "I" neutrally—each pronoun signals relative age, status, and social
+						distance.
 					</p>
 
 					<ul className="mt-2 ml-6 list-disc space-y-2">
 						<li>
-							<strong>Reciprocal pairs:</strong> Pronouns work in pairs. If
-							someone calls you "em," you call them "anh/chị."
+							<strong>Reciprocal pairs:</strong> Pronouns work in pairs. If someone calls you "em,"
+							you call them "anh/chị."
 						</li>
 						<li>
-							<strong>Age hierarchy:</strong> Older people receive terms of
-							respect; younger people get terms positioning you above.
+							<strong>Age hierarchy:</strong> Older people receive terms of respect; younger people
+							get terms positioning you above.
 						</li>
 						<li>
-							<strong>Hierarchy overrides age:</strong> Family position matters
-							more than actual age. Your older sibling's younger spouse is still
-							"anh/chị" to you.
+							<strong>Hierarchy overrides age:</strong> Family position matters more than actual
+							age. Your older sibling's younger spouse is still "anh/chị" to you.
 						</li>
 						<li>
-							<strong>Family logic:</strong> Even strangers are addressed using
-							kinship terms (uncle, aunt, sibling).
+							<strong>Family logic:</strong> Even strangers are addressed using kinship terms
+							(uncle, aunt, sibling).
 						</li>
 						<li>
-							<strong>When unsure, go lower:</strong> Safer to call yourself
-							"em" than risk positioning yourself too high.
+							<strong>When unsure, go lower:</strong> Safer to call yourself "em" than risk
+							positioning yourself too high.
 						</li>
 						<li>
-							<strong>Misjudging rank = rude:</strong> Using too high a term for
-							yourself or too low for others sounds disrespectful.
+							<strong>Misjudging rank = rude:</strong> Using too high a term for yourself or too low
+							for others sounds disrespectful.
 						</li>
 						<li>
-							<strong>Add "ạ" for politeness:</strong> The particle "ạ" after
-							pronouns or at sentence end shows respect (e.g., "Dạ, em hiểu ạ" =
-							"Yes, I understand"). Essential for formal situations.
+							<strong>Add "ạ" for politeness:</strong> The particle "ạ" after pronouns or at
+							sentence end shows respect (e.g., "Dạ, em hiểu ạ" = "Yes, I understand"). Essential
+							for formal situations.
 						</li>
 					</ul>
 					<p>
@@ -116,23 +113,17 @@ function PronounsComponent() {
 					.map(([priority, data]) => (
 						<div key={priority}>
 							<div className="mb-4">
-								<h2 className="font-bold text-2xl text-gold">
+								<h2 className="text-2xl font-bold text-gold">
 									{priorityLabels[Number(priority)].title}
 								</h2>
-								<p className="text-sm text-white/60">
-									{priorityLabels[Number(priority)].desc}
-								</p>
+								<p className="text-sm text-white/60">{priorityLabels[Number(priority)].desc}</p>
 							</div>
 							<PracticeGrid<PronounsData>
 								data={data}
 								getSubtitle={(item) => item.role}
 								getDetails={(name, item) => ({
 									Pronoun: name,
-									"Pair with": (
-										<span className="font-bold text-gold">
-											{item.reciprocal}
-										</span>
-									),
+									"Pair with": <span className="font-bold text-gold">{item.reciprocal}</span>,
 									"When to use": item.usage,
 									Formality: item.formality,
 									Gender: item.gender,

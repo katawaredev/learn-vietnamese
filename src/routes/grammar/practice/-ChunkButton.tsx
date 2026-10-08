@@ -9,13 +9,7 @@ interface ChunkButtonProps {
 	onClick: () => void;
 }
 
-export function ChunkButton({
-	text,
-	grammarType,
-	meaning,
-	state,
-	onClick,
-}: ChunkButtonProps) {
+export function ChunkButton({ text, grammarType, meaning, state, onClick }: ChunkButtonProps) {
 	const typeColor = GRAMMAR_TYPE_COLORS[grammarType] ?? "text-white/70";
 
 	return (
@@ -31,11 +25,9 @@ export function ChunkButton({
 					"border-red-400/50 bg-red-400/10 line-through opacity-60",
 			)}
 		>
-			<div className="font-semibold text-lg leading-tight">{text}</div>
-			<div className={twMerge("text-[0.65rem] leading-tight", typeColor)}>
-				{grammarType}
-			</div>
-			<div className="text-[0.6rem] text-white/50 leading-tight">{meaning}</div>
+			<div className="text-lg leading-tight font-semibold">{text}</div>
+			<div className={twMerge("text-[0.65rem] leading-tight", typeColor)}>{grammarType}</div>
+			<div className="text-[0.6rem] leading-tight text-white/50">{meaning}</div>
 		</button>
 	);
 }

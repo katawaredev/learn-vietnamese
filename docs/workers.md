@@ -81,18 +81,18 @@ Each TTS provider has its own singleton worker pool to enable code splitting:
 ```tsx
 // src/workers/tts-mms-worker-pool.ts (for MMS)
 class TTSMMSWorkerPool {
-  private worker: Worker | null = null;
-  private cache = new Map();
-  private requestQueue = [];
+	private worker: Worker | null = null;
+	private cache = new Map();
+	private requestQueue = [];
 
-  async generateAudio(text, modelId) {
-    if (this.cache.has(key)) return cached;
+	async generateAudio(text, modelId) {
+		if (this.cache.has(key)) return cached;
 
-    return new Promise((resolve) => {
-      this.requestQueue.push({ text, modelId, resolve });
-      this.processQueue();
-    });
-  }
+		return new Promise((resolve) => {
+			this.requestQueue.push({ text, modelId, resolve });
+			this.processQueue();
+		});
+	}
 }
 
 export const ttsMMSPool = new TTSMMSWorkerPool();
@@ -184,9 +184,9 @@ self.postMessage({ status: "progress", progress: 0.5 });
 
 // Component
 worker.onmessage = (event) => {
-  if (event.data.status === "progress") {
-    setLoadingProgress(event.data.progress);
-  }
+	if (event.data.status === "progress") {
+		setLoadingProgress(event.data.progress);
+	}
 };
 ```
 
@@ -195,10 +195,10 @@ worker.onmessage = (event) => {
 ```ts
 // Worker
 try {
-  const result = await operation();
-  self.postMessage({ status: "complete", result });
+	const result = await operation();
+	self.postMessage({ status: "complete", result });
 } catch (error) {
-  self.postMessage({ status: "error", error: error.message });
+	self.postMessage({ status: "error", error: error.message });
 }
 ```
 

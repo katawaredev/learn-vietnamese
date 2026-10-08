@@ -22,9 +22,7 @@ class TTSVitsWorkerPool extends BaseTTSWorkerPool<TTSVitsRequest> {
 		return `${request.voiceId}:${request.text}`;
 	}
 
-	protected buildWorkerMessage(
-		request: TTSVitsRequest,
-	): Record<string, unknown> {
+	protected buildWorkerMessage(request: TTSVitsRequest): Record<string, unknown> {
 		return {
 			type: "predict",
 			text: request.text,
@@ -41,15 +39,9 @@ class TTSVitsWorkerPool extends BaseTTSWorkerPool<TTSVitsRequest> {
 		return !TTSVitsWorkerPool.isVietnamese(request.voiceId);
 	}
 
-	protected onAudioGenerated(
-		_cacheKey: string,
-		blob: Blob,
-		request: TTSVitsRequest,
-	): void {
+	protected onAudioGenerated(_cacheKey: string, blob: Blob, request: TTSVitsRequest): void {
 		if (!TTSVitsWorkerPool.isVietnamese(request.voiceId)) return;
-		saveVoiceAudio(request.text, request.voiceId as string, blob).catch(
-			() => {},
-		);
+		saveVoiceAudio(request.text, request.voiceId as string, blob).catch(() => {});
 	}
 
 	/**
@@ -68,7 +60,7 @@ class TTSVitsWorkerPool extends BaseTTSWorkerPool<TTSVitsRequest> {
 		if (cached) return cached;
 
 		if (TTSVitsWorkerPool.isVietnamese(voiceId)) {
-			const blob = await getVoiceAudio(text, voiceId as string);
+			const blob = await getVoiceAudio(text, voiceId);
 			if (blob) return new Audio(URL.createObjectURL(blob));
 		}
 
@@ -90,7 +82,7 @@ class TTSVitsWorkerPool extends BaseTTSWorkerPool<TTSVitsRequest> {
 	 */
 	public async isCached(text: string, voiceId: VoiceId): Promise<boolean> {
 		if (TTSVitsWorkerPool.isVietnamese(voiceId)) {
-			return (await getVoiceAudio(text, voiceId as string)) !== null;
+			return (await getVoiceAudio(text, voiceId)) !== null;
 		}
 		return this.hasCached(`${voiceId}:${text}`);
 	}

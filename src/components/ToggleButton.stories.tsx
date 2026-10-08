@@ -12,11 +12,9 @@ const meta: Meta<typeof ToggleButton> = {
 	argTypes: {
 		size: { control: "radio", options: ["small", "medium", "large"] },
 	},
-	render: (args) => {
+	render: function Render(args) {
 		const [checked, setChecked] = useState(args.checked ?? false);
-		return (
-			<ToggleButton {...args} checked={checked} onCheckedChange={setChecked} />
-		);
+		return <ToggleButton {...args} checked={checked} onCheckedChange={setChecked} />;
 	},
 };
 

@@ -70,23 +70,17 @@ function PatternSection({ pattern }: { pattern: Pattern }) {
 	return (
 		<div className="space-y-6">
 			<div>
-				<h2 className="font-bold font-serif text-2xl text-gold">
-					{pattern.title}
-				</h2>
+				<h2 className="font-serif text-2xl font-bold text-gold">{pattern.title}</h2>
 				<p className="mt-2 text-white/70">{pattern.description}</p>
 			</div>
 
 			{/* Pattern structure display */}
 			<div className="rounded-lg border border-gold/30 bg-gold/5 p-5">
 				<div className="mb-2 font-semibold text-gold">Pattern Structure:</div>
-				<div className="font-mono text-lg text-white">
-					{pattern.pattern.structure}
-				</div>
-				<div className="mt-2 font-mono text-sm text-white/60">
-					{pattern.pattern.template}
-				</div>
+				<div className="font-mono text-lg text-white">{pattern.pattern.structure}</div>
+				<div className="mt-2 font-mono text-sm text-white/60">{pattern.pattern.template}</div>
 				{pattern.pattern.fullPattern && (
-					<div className="mt-3 border-white/10 border-t pt-3 text-white/50 text-xs">
+					<div className="mt-3 border-t border-white/10 pt-3 text-xs text-white/50">
 						Full pattern: {pattern.pattern.fullPattern}
 					</div>
 				)}
@@ -122,10 +116,7 @@ function SentenceStructureComponent() {
 			};
 			return acc;
 		},
-		{} as Record<
-			string,
-			{ meaning: string; pattern: string; difficulty: string }
-		>,
+		{} as Record<string, { meaning: string; pattern: string; difficulty: string }>,
 	);
 
 	return (
@@ -134,9 +125,7 @@ function SentenceStructureComponent() {
 				<Disclosure
 					defaultOpen
 					title={
-						<span className="font-bold text-lg">
-							Understanding Vietnamese Sentence Structure
-						</span>
+						<span className="text-lg font-bold">Understanding Vietnamese Sentence Structure</span>
 					}
 				>
 					<div className="space-y-4">
@@ -145,25 +134,20 @@ function SentenceStructureComponent() {
 						))}
 
 						<div className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
-							<p className="font-semibold text-gold">
-								Key Differences from English:
-							</p>
+							<p className="font-semibold text-gold">Key Differences from English:</p>
 							<ul className="mt-2 ml-6 list-disc space-y-2">
 								<li>
-									<strong>Modifiers follow nouns:</strong> "con mèo đen" (cat
-									black) not "black cat"
+									<strong>Modifiers follow nouns:</strong> "con mèo đen" (cat black) not "black cat"
 								</li>
 								<li>
-									<strong>Topic-prominent:</strong> Important information can be
-									fronted for emphasis
+									<strong>Topic-prominent:</strong> Important information can be fronted for
+									emphasis
 								</li>
 								<li>
-									<strong>Serial verbs:</strong> Multiple verbs without
-									conjunctions
+									<strong>Serial verbs:</strong> Multiple verbs without conjunctions
 								</li>
 								<li>
-									<strong>No conjugation:</strong> Verbs don't change form based
-									on tense or subject
+									<strong>No conjugation:</strong> Verbs don't change form based on tense or subject
 								</li>
 							</ul>
 						</div>
@@ -178,17 +162,13 @@ function SentenceStructureComponent() {
 				{/* Plurals Section */}
 				<section className="space-y-6">
 					<div>
-						<h2 className="font-bold font-serif text-2xl text-gold">
-							{data.plurals.title}
-						</h2>
+						<h2 className="font-serif text-2xl font-bold text-gold">{data.plurals.title}</h2>
 						<p className="mt-2 text-white/70">{data.plurals.description}</p>
 					</div>
 
 					{/* Key Points */}
 					<div className="rounded-lg border border-green-500/30 bg-green-500/5 p-4">
-						<p className="mb-2 font-semibold text-green-400">
-							What Vietnamese doesn't have:
-						</p>
+						<p className="mb-2 font-semibold text-green-400">What Vietnamese doesn't have:</p>
 						<ul className="ml-6 list-disc space-y-1">
 							{data.plurals.keyPoints.map((point) => (
 								<li key={point.slice(0, 30)} className="text-sm text-white/80">
@@ -200,20 +180,14 @@ function SentenceStructureComponent() {
 
 					{/* Plural Markers */}
 					<div className="space-y-4">
-						<h3 className="font-semibold text-lg text-warm-cream">
-							Plural Markers
-						</h3>
+						<h3 className="text-lg font-semibold text-warm-cream">Plural Markers</h3>
 						{data.plurals.markers.map((marker) => (
 							<Card key={marker.marker}>
 								<div className="space-y-4">
 									<div className="flex items-center gap-3">
-										<span className="font-semibold text-gold text-lg">
-											{marker.marker}
-										</span>
+										<span className="text-lg font-semibold text-gold">{marker.marker}</span>
 										<SpeakButton text={marker.marker} size="small" />
-										<span className="text-sm text-white/60">
-											— {marker.meaning}
-										</span>
+										<span className="text-sm text-white/60">— {marker.meaning}</span>
 									</div>
 									<p className="text-sm text-white/70">{marker.usage}</p>
 
@@ -223,37 +197,24 @@ function SentenceStructureComponent() {
 											className="rounded-lg border border-white/10 bg-white/5 p-3"
 										>
 											<div className="flex items-center gap-2">
-												<span className="font-medium text-warm-cream">
-													{ex.vietnamese}
-												</span>
+												<span className="font-medium text-warm-cream">{ex.vietnamese}</span>
 												<SpeakButton text={ex.vietnamese} size="small" />
 											</div>
-											<div className="mt-1 text-gold text-sm">{ex.english}</div>
+											<div className="mt-1 text-sm text-gold">{ex.english}</div>
 											{/* Breakdown */}
 											<div className="mt-2 flex flex-wrap gap-2">
 												{Object.entries(ex.breakdown).map(([word, info]) => {
-													const colorClass =
-														GRAMMAR_TYPE_COLORS[
-															info.type as keyof typeof GRAMMAR_TYPE_COLORS
-														];
+													const colorClass = GRAMMAR_TYPE_COLORS[info.type];
 													return (
 														<div key={word} className="flex flex-col">
-															<span
-																className={`font-medium text-xs ${colorClass}`}
-															>
-																{word}
-															</span>
-															<span className="text-white/40 text-xs">
-																{info.meaning}
-															</span>
+															<span className={`text-xs font-medium ${colorClass}`}>{word}</span>
+															<span className="text-xs text-white/40">{info.meaning}</span>
 														</div>
 													);
 												})}
 											</div>
 											{ex.notes && (
-												<div className="mt-1 text-blue-300 text-xs italic">
-													{ex.notes}
-												</div>
+												<div className="mt-1 text-xs text-blue-300 italic">{ex.notes}</div>
 											)}
 										</div>
 									))}
@@ -264,24 +225,18 @@ function SentenceStructureComponent() {
 
 					{/* Comparison */}
 					<div className="space-y-3">
-						<h3 className="font-semibold text-lg text-warm-cream">
-							Quick Comparison
-						</h3>
+						<h3 className="text-lg font-semibold text-warm-cream">Quick Comparison</h3>
 						<div className="grid gap-3">
 							{data.plurals.comparison.map((item) => (
 								<Card key={item.context} className="border-gold/20 bg-gold/5">
 									<div className="space-y-1">
-										<div className="font-medium text-gold text-sm">
-											{item.context}
-										</div>
+										<div className="text-sm font-medium text-gold">{item.context}</div>
 										<div className="flex items-center gap-2">
 											<span className="text-warm-cream">{item.vietnamese}</span>
 											<SpeakButton text={item.vietnamese} size="small" />
 										</div>
 										<div className="text-sm text-white/60">{item.english}</div>
-										<div className="text-blue-300 text-xs italic">
-											{item.notes}
-										</div>
+										<div className="text-xs text-blue-300 italic">{item.notes}</div>
 									</div>
 								</Card>
 							))}
@@ -290,14 +245,11 @@ function SentenceStructureComponent() {
 				</section>
 
 				{/* Practice section */}
-				<div className="space-y-6 border-white/10 border-t pt-8">
+				<div className="space-y-6 border-t border-white/10 pt-8">
 					<div>
-						<h2 className="font-bold font-serif text-2xl text-gold">
-							Practice Sentences
-						</h2>
+						<h2 className="font-serif text-2xl font-bold text-gold">Practice Sentences</h2>
 						<p className="mt-2 text-sm text-white/60">
-							Try pronouncing these sentences that demonstrate the patterns
-							above
+							Try pronouncing these sentences that demonstrate the patterns above
 						</p>
 					</div>
 
@@ -310,15 +262,9 @@ function SentenceStructureComponent() {
 						getSubtitle={(item) => item.meaning}
 						getDetails={(vietnamese, item) => ({
 							Vietnamese: <span className="text-warm-cream">{vietnamese}</span>,
-							English: (
-								<span className="font-bold text-gold">{item.meaning}</span>
-							),
-							Pattern: item.pattern
-								.replace("-", " ")
-								.replace(/\b\w/g, (l) => l.toUpperCase()),
-							Difficulty:
-								item.difficulty.charAt(0).toUpperCase() +
-								item.difficulty.slice(1),
+							English: <span className="font-bold text-gold">{item.meaning}</span>,
+							Pattern: item.pattern.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase()),
+							Difficulty: item.difficulty.charAt(0).toUpperCase() + item.difficulty.slice(1),
 						})}
 					/>
 				</div>

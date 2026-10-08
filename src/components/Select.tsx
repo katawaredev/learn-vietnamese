@@ -5,7 +5,7 @@ import { Fragment } from "react";
 import { twMerge } from "tailwind-merge";
 
 const selectTriggerVariants = cva(
-	"flex w-full items-center justify-between rounded-2xl border-2 border-transparent bg-gold font-serif text-burgundy-dark transition-all duration-200 hover:bg-gold focus:outline-none focus:ring-2 focus:ring-gold",
+	"flex w-full items-center justify-between rounded-2xl border-2 border-transparent bg-gold font-serif text-burgundy-dark transition-all duration-200 hover:bg-gold focus:ring-2 focus:ring-gold focus:outline-none",
 	{
 		variants: {
 			size: {
@@ -21,7 +21,7 @@ const selectTriggerVariants = cva(
 );
 
 const selectItemVariants = cva(
-	"flex w-full items-center gap-2 border-white/10 border-b bg-white/5 text-left font-serif text-warm-cream transition-colors duration-200 last:border-b-0 hover:bg-gold hover:text-burgundy-dark focus:bg-gold focus:text-burgundy-dark focus:outline-none data-highlighted:bg-gold data-highlighted:text-burgundy-dark",
+	"flex w-full items-center gap-2 border-b border-white/10 bg-white/5 text-left font-serif text-warm-cream transition-colors duration-200 last:border-b-0 hover:bg-gold hover:text-burgundy-dark focus:bg-gold focus:text-burgundy-dark focus:outline-none data-highlighted:bg-gold data-highlighted:text-burgundy-dark",
 	{
 		variants: {
 			size: {
@@ -47,8 +47,7 @@ export interface SelectOption {
 	disabled?: boolean;
 }
 
-export interface SelectProps
-	extends VariantProps<typeof selectTriggerVariants> {
+export interface SelectProps extends VariantProps<typeof selectTriggerVariants> {
 	options: SelectOption[];
 	value?: string;
 	onChange?: (value: string) => void;
@@ -93,9 +92,7 @@ export function Select({
 
 	return (
 		<BaseSelect.Root value={value} onValueChange={handleValueChange}>
-			<BaseSelect.Trigger
-				className={twMerge(selectTriggerVariants({ size }), className)}
-			>
+			<BaseSelect.Trigger className={twMerge(selectTriggerVariants({ size }), className)}>
 				<div className="flex items-center gap-2">
 					<div className="h-4 w-4 shrink-0" />
 					<BaseSelect.Value className="cursor-default">

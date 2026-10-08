@@ -1,3 +1,4 @@
+import type { LLMResponse } from "~/workers/llm-worker";
 import { createFileRoute } from "@tanstack/react-router";
 import { RefreshCw } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -79,10 +80,9 @@ function ConversationRoute() {
 		if (sharedWorker) {
 			worker.current = sharedWorker;
 		} else {
-			worker.current = new Worker(
-				new URL("../../workers/llm-worker.ts", import.meta.url),
-				{ type: "module" },
-			);
+			worker.current = new Worker(new URL("../../workers/llm-worker.ts", import.meta.url), {
+				type: "module",
+			});
 			sharedWorker = worker.current;
 		}
 
@@ -94,7 +94,7 @@ function ConversationRoute() {
 			setProgressText("Worker initialization failed");
 		};
 
-		worker.current.onmessage = (event) => {
+		worker.current.onmessage = (event: MessageEvent<LLMResponse>) => {
 			const message = event.data;
 
 			switch (message.status) {
@@ -245,8 +245,7 @@ function ConversationRoute() {
 				return;
 			}
 
-			const direction: TranslationDirection =
-				speaker === "you" ? "en-to-vi" : "vi-to-en";
+			const direction: TranslationDirection = speaker === "you" ? "en-to-vi" : "vi-to-en";
 			const originalLang: Language = speaker === "you" ? "en" : "vn";
 			const translatedLang: Language = speaker === "you" ? "vn" : "en";
 
@@ -272,11 +271,7 @@ function ConversationRoute() {
 			};
 
 			// Build conversation with system prompt for this translation
-			const systemPrompt = generateTranslationPrompt(
-				personType,
-				direction,
-				userGender,
-			);
+			const systemPrompt = generateTranslationPrompt(personType, direction, userGender);
 
 			// Add user's original text to conversation history
 			conversationHistory.current.push({
@@ -287,10 +282,7 @@ function ConversationRoute() {
 			// Send to LLM for translation
 			worker.current.postMessage({
 				type: "generate",
-				messages: [
-					{ role: "system", content: systemPrompt },
-					...conversationHistory.current,
-				],
+				messages: [{ role: "system", content: systemPrompt }, ...conversationHistory.current],
 			});
 		},
 		[personType, isTranslating, userGender],
@@ -325,7 +317,7 @@ function ConversationRoute() {
 							<select
 								value={userGender}
 								onChange={(e) => handleGenderChange(e.target.value as Gender)}
-								className="h-10 rounded-xl border-2 border-gold/30 bg-burgundy-dark px-4 py-0 font-semibold font-serif text-lg text-warm-cream transition-colors focus:border-gold focus:outline-none"
+								className="h-10 rounded-xl border-2 border-gold/30 bg-burgundy-dark px-4 py-0 font-serif text-lg font-semibold text-warm-cream transition-colors focus:border-gold focus:outline-none"
 								disabled={isTranslating}
 							>
 								{getAllGenders().map((gender) => (
@@ -334,9 +326,7 @@ function ConversationRoute() {
 									</option>
 								))}
 							</select>
-							<p className="mt-1 font-serif text-sm text-warm-cream/70">
-								English
-							</p>
+							<p className="mt-1 font-serif text-sm text-warm-cream/70">English</p>
 						</div>
 						<div className="flex items-center gap-3">
 							<ListenButton
@@ -359,10 +349,8 @@ function ConversationRoute() {
 						<div className="flex flex-col items-center text-center">
 							<select
 								value={personType}
-								onChange={(e) =>
-									handlePersonTypeChange(e.target.value as PersonType)
-								}
-								className="h-10 rounded-xl border-2 border-gold/30 bg-burgundy-dark px-4 py-0 font-semibold font-serif text-lg text-warm-cream transition-colors focus:border-gold focus:outline-none"
+								onChange={(e) => handlePersonTypeChange(e.target.value as PersonType)}
+								className="h-10 rounded-xl border-2 border-gold/30 bg-burgundy-dark px-4 py-0 font-serif text-lg font-semibold text-warm-cream transition-colors focus:border-gold focus:outline-none"
 								disabled={isTranslating}
 							>
 								{getAllPersonTypes().map((type) => (
@@ -371,9 +359,7 @@ function ConversationRoute() {
 									</option>
 								))}
 							</select>
-							<p className="mt-1 font-serif text-sm text-warm-cream/70">
-								Vietnamese
-							</p>
+							<p className="mt-1 font-serif text-sm text-warm-cream/70">Vietnamese</p>
 						</div>
 						<ListenButton
 							onTranscription={(text) => handleTranscription(text, "them")}
@@ -391,12 +377,8 @@ function ConversationRoute() {
 					<div className="text-center">
 						{modelStatus === "error" ? (
 							<>
-								<p className="mb-2 font-serif text-red-400">
-									Error loading model
-								</p>
-								<p className="font-serif text-sm text-warm-cream/70">
-									{progressText}
-								</p>
+								<p className="mb-2 font-serif text-red-400">Error loading model</p>
+								<p className="font-serif text-sm text-warm-cream/70">{progressText}</p>
 							</>
 						) : (
 							<p className="font-serif text-warm-cream/50">
@@ -421,21 +403,19 @@ function ConversationRoute() {
 								className={`max-w-[85%] rounded-xl border-2 border-gold/30 bg-burgundy-dark/80 px-4 py-2.5`}
 							>
 								{/* Original text (always shown, smaller) */}
-								<p className="mb-1.5 font-serif text-warm-cream/60 text-xs leading-relaxed">
+								<p className="mb-1.5 font-serif text-xs leading-relaxed text-warm-cream/60">
 									{msg.originalText}
 								</p>
 
 								{/* Translation or loading state */}
 								{msg.isTranslating ? (
 									<p className="font-serif text-sm text-warm-cream/50 italic">
-										{msg.translatedLang === "vn"
-											? "Translating..."
-											: "Đang dịch..."}
+										{msg.translatedLang === "vn" ? "Translating..." : "Đang dịch..."}
 									</p>
 								) : (
 									<div className="flex items-center gap-2">
 										{/* Translation (main display) */}
-										<p className="flex-1 font-serif text-base text-warm-cream leading-relaxed">
+										<p className="flex-1 font-serif text-base leading-relaxed text-warm-cream">
 											{msg.translatedText}
 										</p>
 

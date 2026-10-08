@@ -18,18 +18,7 @@ export function numberToText(num: number): string {
 		throw new RangeError("Only integers from 0 to 999,999,999,999 supported");
 
 	// Base digits 0-9
-	const digits = [
-		"không",
-		"một",
-		"hai",
-		"ba",
-		"bốn",
-		"năm",
-		"sáu",
-		"bảy",
-		"tám",
-		"chín",
-	];
+	const digits = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
 	// Scale words for thousand/million/billion groups
 	const units = ["", "nghìn", "triệu", "tỷ"];
 

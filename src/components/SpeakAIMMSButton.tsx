@@ -28,8 +28,7 @@ export const SpeakAIMMSButton: FC<SpeakButtonProps> = ({
 	const getAudio = useCallback(async (): Promise<HTMLAudioElement> => {
 		const trimmedText = text.trim();
 		const modelId =
-			selectedVoice.modelId ||
-			(lang === "vn" ? "Xenova/mms-tts-vie" : "Xenova/mms-tts-eng");
+			selectedVoice.modelId || (lang === "vn" ? "Xenova/mms-tts-vie" : "Xenova/mms-tts-eng");
 
 		const device = selectedVoice.device ?? "wasm";
 		const dtype = selectedVoice.dtype ?? "q8";
@@ -70,13 +69,7 @@ export const SpeakAIMMSButton: FC<SpeakButtonProps> = ({
 			}
 			throw error;
 		}
-	}, [
-		text,
-		selectedVoice.modelId,
-		lang,
-		selectedVoice.device,
-		selectedVoice.dtype,
-	]);
+	}, [text, selectedVoice.modelId, lang, selectedVoice.device, selectedVoice.dtype]);
 
 	const canPlay = useCallback(() => !!text.trim(), [text]);
 

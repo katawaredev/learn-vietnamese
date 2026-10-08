@@ -1,12 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-	AlignCenter,
-	AlignLeft,
-	AlignRight,
-	Bold,
-	Italic,
-	Underline,
-} from "lucide-react";
+import { AlignCenter, AlignLeft, AlignRight, Bold, Italic, Underline } from "lucide-react";
 import { useState } from "react";
 import { Toggle, ToggleGroup } from "./ToggleGroup";
 
@@ -19,7 +12,7 @@ export default meta;
 type Story = StoryObj<typeof ToggleGroup>;
 
 export const SingleSelectionAlignment: Story = {
-	render: () => {
+	render: function Render() {
 		const [value, setValue] = useState<string[]>(["left"]);
 		return (
 			<ToggleGroup value={value} onValueChange={setValue}>
@@ -38,7 +31,7 @@ export const SingleSelectionAlignment: Story = {
 };
 
 export const MultipleSelectionFormatting: Story = {
-	render: () => {
+	render: function Render() {
 		const [value, setValue] = useState<string[]>(["bold"]);
 		return (
 			<ToggleGroup value={value} onValueChange={setValue} multiple>
@@ -57,7 +50,7 @@ export const MultipleSelectionFormatting: Story = {
 };
 
 export const SmallText: Story = {
-	render: () => {
+	render: function Render() {
 		const [value, setValue] = useState<string[]>(["one"]);
 		return (
 			<ToggleGroup value={value} onValueChange={setValue}>
@@ -76,7 +69,7 @@ export const SmallText: Story = {
 };
 
 export const MediumText: Story = {
-	render: () => {
+	render: function Render() {
 		const [value, setValue] = useState<string[]>(["one"]);
 		return (
 			<ToggleGroup value={value} onValueChange={setValue}>
@@ -95,7 +88,7 @@ export const MediumText: Story = {
 };
 
 export const LargeText: Story = {
-	render: () => {
+	render: function Render() {
 		const [value, setValue] = useState<string[]>(["one"]);
 		return (
 			<ToggleGroup value={value} onValueChange={setValue}>
@@ -114,14 +107,10 @@ export const LargeText: Story = {
 };
 
 export const VerticalOrientation: Story = {
-	render: () => {
+	render: function Render() {
 		const [value, setValue] = useState<string[]>(["top"]);
 		return (
-			<ToggleGroup
-				value={value}
-				onValueChange={setValue}
-				orientation="vertical"
-			>
+			<ToggleGroup value={value} onValueChange={setValue} orientation="vertical">
 				<Toggle value="top" orientation="vertical">
 					Top
 				</Toggle>

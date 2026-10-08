@@ -6,14 +6,10 @@ interface SpeakUrlButtonProps extends Omit<SpeakButtonProps, "text"> {
 	url: string;
 }
 
-export const SpeakUrlButton: FC<SpeakUrlButtonProps> = ({
-	url,
-	size = "medium",
-	className,
-}) => {
-	const getAudio = useCallback(async (): Promise<HTMLAudioElement> => {
+export const SpeakUrlButton: FC<SpeakUrlButtonProps> = ({ url, size = "medium", className }) => {
+	const getAudio = useCallback((): Promise<HTMLAudioElement> => {
 		const audio = new Audio(url);
-		return audio;
+		return Promise.resolve(audio);
 	}, [url]);
 
 	const canPlay = useCallback(() => {

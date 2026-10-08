@@ -35,7 +35,7 @@ function ToneDisclosure({
 		<Disclosure
 			title={
 				<>
-					<span className="font-bold text-lg">{name}</span>
+					<span className="text-lg font-bold">{name}</span>
 					<span className="font-mono">{direction}</span>
 				</>
 			}
@@ -90,11 +90,10 @@ function TonesComponent() {
 	return (
 		<Layout>
 			<Callout variant="note" dismissible className="mb-6">
-				The example syllables below are for{" "}
-				<em>tonal pronunciation practice</em>, not vocabulary. The point is to
-				hear and produce the same syllable across all six tones — so some
-				entries are rare, archaic, or dialectal. That's intentional. Focus on
-				the pitch contour, not the gloss.
+				The example syllables below are for <em>tonal pronunciation practice</em>, not vocabulary.
+				The point is to hear and produce the same syllable across all six tones — so some entries
+				are rare, archaic, or dialectal. That's intentional. Focus on the pitch contour, not the
+				gloss.
 			</Callout>
 			<div className="space-y-6">
 				{Object.entries(tones).map(([key, item]) => (
@@ -107,11 +106,11 @@ function TonesComponent() {
 							pronunciation={item.pronunciation}
 							telex={item.telex}
 							analogy={item.analogy}
-							notes={"notes" in item ? (item.notes as string) : undefined}
+							notes={"notes" in item ? item.notes : undefined}
 						/>
 						<PracticeGrid<ToneExampleData>
 							data={item.examples}
-							getSubtitle={(item) => item.translation || ""}
+							getSubtitle={(example) => example.translation || ""}
 						/>
 					</div>
 				))}

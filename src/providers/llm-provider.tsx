@@ -1,10 +1,4 @@
-import {
-	createContext,
-	type ReactNode,
-	useContext,
-	useEffect,
-	useState,
-} from "react";
+import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from "react";
 
 export interface LLMModelOption {
 	id: string;
@@ -31,68 +25,65 @@ const THINKING_STORAGE_KEY = "llm-thinking-enabled";
 
 export function LLMProvider({ children }: { children: ReactNode }) {
 	const [availableModels, setAvailableModels] = useState<LLMModelOption[]>([]);
-	const [selectedModel, setSelectedModelState] =
-		useState<LLMModelOption | null>(null);
+	const [selectedModel, setSelectedModelState] = useState<LLMModelOption | null>(null);
 	const [thinkingEnabled, setThinkingEnabledState] = useState<boolean>(true);
 
 	useEffect(() => {
 		// Dynamically import @mlc-ai/web-llm only in the browser - it's WebGPU-only
 		// and its bundled CJS dependencies cannot be loaded in Node.js/SSR context
-		import("@mlc-ai/web-llm").then(({ prebuiltAppConfig }) => {
-			const models = prebuiltAppConfig.model_list
-				.filter(
-					(model) =>
-						model.vram_required_MB &&
-						model.vram_required_MB <= MAX_VRAM_MB &&
-						model.low_resource_required,
-				)
-				.map((model) => ({
-					id: model.model_id,
-					name: model.model_id.replace(/-MLC$/, "").replace(/-/g, " "),
-					modelId: model.model_id,
-				}))
-				.sort((a, b) => {
-					return a.modelId.localeCompare(b.modelId);
-				});
+		void import("@mlc-ai/web-llm")
+			.then(({ prebuiltAppConfig }) => {
+				const models = prebuiltAppConfig.model_list
+					.filter(
+						(model) =>
+							model.vram_required_MB &&
+							model.vram_required_MB <= MAX_VRAM_MB &&
+							model.low_resource_required,
+					)
+					.map((model) => ({
+						id: model.model_id,
+						name: model.model_id.replace(/-MLC$/, "").replace(/-/g, " "),
+						modelId: model.model_id,
+					}))
+					.sort((a, b) => {
+						return a.modelId.localeCompare(b.modelId);
+					});
 
-			setAvailableModels(models);
+				setAvailableModels(models);
 
-			const savedModelId = localStorage.getItem(STORAGE_KEY);
-			const savedModel = savedModelId
-				? models.find((m) => m.id === savedModelId)
-				: null;
-			setSelectedModelState(savedModel ?? models[0] ?? null);
-		});
+				const savedModelId = localStorage.getItem(STORAGE_KEY);
+				const savedModel = savedModelId ? models.find((m) => m.id === savedModelId) : null;
+				setSelectedModelState(savedModel ?? models[0] ?? null);
+			})
+			.catch((error: unknown) => console.error("Failed to load available LLM models:", error));
 
 		const savedThinking = localStorage.getItem(THINKING_STORAGE_KEY);
 		if (savedThinking !== null) {
+			// oxlint-disable-next-line react/react-compiler -- Read persisted browser preferences after SSR hydration.
 			setThinkingEnabledState(savedThinking === "true");
 		}
 	}, []);
 
-	const setSelectedModel = (model: LLMModelOption) => {
-		setSelectedModelState(model);
-		localStorage.setItem(STORAGE_KEY, model.id);
-	};
+	const value = useMemo(() => {
+		const setSelectedModel = (model: LLMModelOption) => {
+			setSelectedModelState(model);
+			localStorage.setItem(STORAGE_KEY, model.id);
+		};
 
-	const setThinkingEnabled = (enabled: boolean) => {
-		setThinkingEnabledState(enabled);
-		localStorage.setItem(THINKING_STORAGE_KEY, String(enabled));
-	};
+		const setThinkingEnabled = (enabled: boolean) => {
+			setThinkingEnabledState(enabled);
+			localStorage.setItem(THINKING_STORAGE_KEY, String(enabled));
+		};
+		return {
+			selectedModel,
+			setSelectedModel,
+			availableModels,
+			thinkingEnabled,
+			setThinkingEnabled,
+		};
+	}, [selectedModel, availableModels, thinkingEnabled]);
 
-	return (
-		<LLMContext.Provider
-			value={{
-				selectedModel,
-				setSelectedModel,
-				availableModels,
-				thinkingEnabled,
-				setThinkingEnabled,
-			}}
-		>
-			{children}
-		</LLMContext.Provider>
-	);
+	return <LLMContext.Provider value={value}>{children}</LLMContext.Provider>;
 }
 
 export function useLLM() {

@@ -19,7 +19,7 @@ interface CompleteResponse {
 }
 
 // Message handler
-self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
+async function handleMessage(event: MessageEvent<WorkerMessage>) {
 	const message = event.data;
 
 	try {
@@ -60,4 +60,8 @@ self.addEventListener("message", async (event: MessageEvent<WorkerMessage>) => {
 			error: error instanceof Error ? error.message : "Unknown error",
 		} satisfies ErrorResponse);
 	}
+}
+
+self.addEventListener("message", (event: MessageEvent<WorkerMessage>) => {
+	void handleMessage(event);
 });

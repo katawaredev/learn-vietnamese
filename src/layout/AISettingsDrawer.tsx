@@ -60,21 +60,17 @@ export function AISettingsDrawer() {
 				Settings
 			</Button>
 
-			<Dialog.Root
-				open={isOpen}
-				onOpenChange={(open) => !open && setIsOpen(false)}
-				modal={false}
-			>
+			<Dialog.Root open={isOpen} onOpenChange={(open) => !open && setIsOpen(false)} modal={false}>
 				<Dialog.Portal>
 					{/* Backdrop */}
-					<Dialog.Backdrop className="data-closed:fade-out-0 data-open:fade-in-0 fixed inset-0 z-50 bg-black/25 transition-opacity duration-300 data-closed:animate-out data-open:animate-in" />
+					<Dialog.Backdrop className="fixed inset-0 z-50 bg-black/25 transition-opacity duration-300 data-closed:animate-out data-closed:fade-out-0 data-open:animate-in data-open:fade-in-0" />
 
 					{/* Drawer */}
-					<Dialog.Popup className="data-closed:slide-out-to-left data-open:slide-in-from-left fixed top-0 left-0 z-50 h-full w-screen max-w-md bg-burgundy-dark shadow-xl transition-transform duration-300 data-closed:animate-out data-open:animate-in">
+					<Dialog.Popup className="fixed top-0 left-0 z-50 h-full w-screen max-w-md bg-burgundy-dark shadow-xl transition-transform duration-300 data-closed:animate-out data-closed:slide-out-to-left data-open:animate-in data-open:slide-in-from-left">
 						<div className="flex h-full flex-col">
 							{/* Header */}
 							<div className="flex items-center justify-between px-6 py-4">
-								<Dialog.Title className="font-semibold font-serif text-gold text-xl">
+								<Dialog.Title className="font-serif text-xl font-semibold text-gold">
 									AI Settings
 								</Dialog.Title>
 								<Dialog.Close className="rounded-md p-2 text-gold transition-colors hover:bg-gold/10">
@@ -89,7 +85,7 @@ export function AISettingsDrawer() {
 								<div className="space-y-8">
 									{/* English TTS Section */}
 									<div>
-										<div className="mb-3 font-medium font-serif text-gold text-sm">
+										<div className="mb-3 font-serif text-sm font-medium text-gold">
 											Speech synthesis model (EN):
 										</div>
 										<Select
@@ -106,7 +102,7 @@ export function AISettingsDrawer() {
 
 									{/* English STT Section */}
 									<div>
-										<div className="mb-3 font-medium font-serif text-gold text-sm">
+										<div className="mb-3 font-serif text-sm font-medium text-gold">
 											Speech recognition model (EN):
 										</div>
 										<Select
@@ -123,7 +119,7 @@ export function AISettingsDrawer() {
 
 									{/* LLM Model Section */}
 									<div>
-										<div className="mb-3 font-medium font-serif text-gold text-sm">
+										<div className="mb-3 font-serif text-sm font-medium text-gold">
 											Conversational model:
 										</div>
 										<Select
@@ -152,8 +148,7 @@ export function AISettingsDrawer() {
 							<Separator />
 							<div className="px-6 py-4">
 								<p className="font-serif text-sm text-warm-cream/70">
-									Settings are automatically saved and will persist across
-									sessions.
+									Settings are automatically saved and will persist across sessions.
 								</p>
 							</div>
 						</div>

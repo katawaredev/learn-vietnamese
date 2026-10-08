@@ -1,33 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
-import tailwindcss from "@tailwindcss/vite";
-
-// Plugins from the app's vite.config.ts that don't belong in Storybook.
-// RSC, TanStack Start, Nitro, the devtools panel, and the duplicate React
-// Plugin (Storybook's @storybook/react-vite already provides React) all break
-// The browser-only Storybook preview iframe with either "react-server condition"
-// Errors or RefreshRuntime redeclarations.
-const EXCLUDED_PLUGIN_TOKENS = [
-	"rsc",
-	"nitro",
-	"tanstack-start",
-	"@tanstack/start",
-	"tanstack-devtools",
-	"@tanstack/devtools",
-	"vite:react", // Duplicate of Storybook's React plugin
-	"vite:react-babel",
-	"vite:react-refresh",
-];
-
-function shouldExclude(plugin: unknown): boolean {
-	if (!plugin || typeof plugin !== "object") {
-		return false;
-	}
-	const { name } = plugin as { name?: string };
-	if (typeof name !== "string") {
-		return false;
-	}
-	return EXCLUDED_PLUGIN_TOKENS.some((token) => name.includes(token));
-}
+import { fileURLToPath } from "node:url";
 
 const config: StorybookConfig = {
 	addons: [
@@ -38,25 +10,15 @@ const config: StorybookConfig = {
 	],
 	framework: {
 		name: "@storybook/react-vite",
-		options: {},
+		options: {
+			builder: {
+				viteConfigPath: fileURLToPath(new URL("./vite.config.ts", import.meta.url)),
+			},
+		},
 	},
 	stories: ["../src/components/**/*.stories.@(ts|tsx)"],
 	typescript: {
 		reactDocgen: "react-docgen-typescript",
-	},
-	async viteFinal(viteConfig) {
-		const filteredPlugins = (viteConfig.plugins ?? []).filter((plugin) => {
-			if (Array.isArray(plugin)) {
-				return !plugin.some(shouldExclude);
-			}
-			return !shouldExclude(plugin);
-		});
-
-		// Tailwind v4 uses a Vite plugin; keep it so component styles render.
-		return {
-			...viteConfig,
-			plugins: [...filteredPlugins, tailwindcss()],
-		};
 	},
 };
 

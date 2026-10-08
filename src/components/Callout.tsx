@@ -1,11 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { AlertCircle, AlertTriangle, Info, X } from "lucide-react";
-import {
-	type ComponentProps,
-	type ReactNode,
-	useEffect,
-	useState,
-} from "react";
+import { type ComponentProps, type ReactNode, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 const calloutVariants = cva(
@@ -40,8 +35,7 @@ const VARIANT_ICON = {
 } as const;
 
 export interface CalloutProps
-	extends VariantProps<typeof calloutVariants>,
-		Omit<ComponentProps<"div">, "children"> {
+	extends VariantProps<typeof calloutVariants>, Omit<ComponentProps<"div">, "children"> {
 	children: ReactNode;
 	dismissible?: boolean;
 	defaultDismissed?: boolean;
@@ -57,11 +51,15 @@ export function Callout({
 	children,
 	...props
 }: CalloutProps) {
-	const [dismissed, setDismissed] = useState(defaultDismissed);
-
-	useEffect(() => {
-		setDismissed(defaultDismissed);
-	}, [defaultDismissed]);
+	const [dismissal, setDismissal] = useState({
+		defaultDismissed,
+		dismissed: defaultDismissed,
+	});
+	const defaultChanged = dismissal.defaultDismissed !== defaultDismissed;
+	if (defaultChanged) {
+		setDismissal({ defaultDismissed, dismissed: defaultDismissed });
+	}
+	const dismissed = defaultChanged ? defaultDismissed : dismissal.dismissed;
 
 	if (dismissed) return null;
 
@@ -80,10 +78,10 @@ export function Callout({
 				<button
 					type="button"
 					onClick={() => {
-						setDismissed(true);
+						setDismissal({ defaultDismissed, dismissed: true });
 						onDismiss?.();
 					}}
-					className="-m-1 shrink-0 rounded p-1 opacity-60 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gold"
+					className="-m-1 shrink-0 rounded-sm p-1 opacity-60 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-gold focus:outline-none"
 					aria-label="Dismiss"
 				>
 					<X className="h-4 w-4" />

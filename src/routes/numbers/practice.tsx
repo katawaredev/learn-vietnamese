@@ -4,21 +4,13 @@ import { type ReactNode, useState } from "react";
 import { Button, LinkButton } from "~/components/Button";
 import { ListenButton } from "~/components/ListenButton";
 import { PracticeModeToggle } from "~/components/PracticeModeToggle";
-import {
-	ResultTextIndicator,
-	ResultVoiceIndicator,
-} from "~/components/ResultIndicator";
+import { ResultTextIndicator, ResultVoiceIndicator } from "~/components/ResultIndicator";
 import { SpeakButton } from "~/components/SpeakButton";
 import { WordInput } from "~/components/WordInput";
 import { dayOfWeekToText, formatDate, monthToText } from "~/utils/dates";
 import { numberToText } from "~/utils/numeric";
 import { pickOne } from "~/utils/random";
-import {
-	DURATION_UNITS,
-	type DurationUnit,
-	formatDuration,
-	formatTime,
-} from "~/utils/time";
+import { DURATION_UNITS, type DurationUnit, formatDuration, formatTime } from "~/utils/time";
 import { Layout } from "./-layout";
 
 type DisplayMode = "number" | "text" | "audio";
@@ -62,11 +54,7 @@ function getWeightedRandomNumber(): number {
 }
 
 function getRandomDateItem(): PracticeItem["date"] {
-	const dateType = pickOne<"month" | "dayOfWeek" | "fullDate">(
-		"month",
-		"dayOfWeek",
-		"fullDate",
-	);
+	const dateType = pickOne<"month" | "dayOfWeek" | "fullDate">("month", "dayOfWeek", "fullDate");
 
 	if (dateType === "month") {
 		return {
@@ -86,8 +74,7 @@ function getRandomDateItem(): PracticeItem["date"] {
 	return {
 		day: Math.floor(Math.random() * 28) + 1, // 1-28 (safe for all months)
 		month: Math.floor(Math.random() * 12) + 1, // 1-12
-		year:
-			Math.random() < 0.5 ? undefined : 2020 + Math.floor(Math.random() * 10), // 50% chance of year
+		year: Math.random() < 0.5 ? undefined : 2020 + Math.floor(Math.random() * 10), // 50% chance of year
 		type: "fullDate",
 	};
 }
@@ -123,8 +110,7 @@ function getRandomTimeItem(): PracticeItem["time"] {
 	// fullTime
 	const hour = Math.floor(Math.random() * 24); // 0-23
 	const minuteOptions = [0, 15, 30, 45]; // Common times
-	const minute =
-		minuteOptions[Math.floor(Math.random() * minuteOptions.length)];
+	const minute = minuteOptions[Math.floor(Math.random() * minuteOptions.length)];
 
 	return {
 		hour,
@@ -134,15 +120,7 @@ function getRandomTimeItem(): PracticeItem["time"] {
 }
 
 function getRandomDurationItem(): PracticeItem["duration"] {
-	const units: DurationUnit[] = [
-		"giây",
-		"phút",
-		"giờ",
-		"ngày",
-		"tuần",
-		"tháng",
-		"năm",
-	];
+	const units: DurationUnit[] = ["giây", "phút", "giờ", "ngày", "tuần", "tháng", "năm"];
 	const unit = units[Math.floor(Math.random() * units.length)];
 
 	// Generate appropriate values based on unit
@@ -176,76 +154,65 @@ function getRandomDurationItem(): PracticeItem["duration"] {
 	return { value, unit };
 }
 
-const getRandomPracticeItem = createServerFn({ method: "GET" }).handler(
-	async (): Promise<PracticeItem> => {
-		const practiceType = pickOne<PracticeType>(
-			"number",
-			"date",
-			"time",
-			"duration",
-		);
+const getRandomPracticeItem = createServerFn({ method: "GET" }).handler((): PracticeItem => {
+	const practiceType = pickOne<PracticeType>("number", "date", "time", "duration");
 
-		if (practiceType === "number") {
-			const number = getWeightedRandomNumber();
-			const display = pickOne<DisplayMode>("number", "text", "audio");
-			const inputMethod =
-				display === "text" ? "type" : pickOne<InputMode>("type", "voice");
-
-			return {
-				type: "number",
-				number,
-				display,
-				inputMethod,
-			};
-		}
-
-		if (practiceType === "date") {
-			const date = getRandomDateItem();
-			const display = pickOne<DisplayMode>("number", "text", "audio");
-			const inputMethod =
-				display === "text" ? "type" : pickOne<InputMode>("type", "voice");
-
-			return {
-				type: "date",
-				date,
-				display,
-				inputMethod,
-			};
-		}
-
-		if (practiceType === "time") {
-			const time = getRandomTimeItem();
-			const display = pickOne<DisplayMode>("number", "text", "audio");
-			const inputMethod =
-				display === "text" ? "type" : pickOne<InputMode>("type", "voice");
-
-			return {
-				type: "time",
-				time,
-				display,
-				inputMethod,
-			};
-		}
-
-		// duration
-		const duration = getRandomDurationItem();
+	if (practiceType === "number") {
+		const number = getWeightedRandomNumber();
 		const display = pickOne<DisplayMode>("number", "text", "audio");
-		const inputMethod =
-			display === "text" ? "type" : pickOne<InputMode>("type", "voice");
+		const inputMethod = display === "text" ? "type" : pickOne<InputMode>("type", "voice");
 
 		return {
-			type: "duration",
-			duration,
+			type: "number",
+			number,
 			display,
 			inputMethod,
 		};
-	},
-);
+	}
+
+	if (practiceType === "date") {
+		const date = getRandomDateItem();
+		const display = pickOne<DisplayMode>("number", "text", "audio");
+		const inputMethod = display === "text" ? "type" : pickOne<InputMode>("type", "voice");
+
+		return {
+			type: "date",
+			date,
+			display,
+			inputMethod,
+		};
+	}
+
+	if (practiceType === "time") {
+		const time = getRandomTimeItem();
+		const display = pickOne<DisplayMode>("number", "text", "audio");
+		const inputMethod = display === "text" ? "type" : pickOne<InputMode>("type", "voice");
+
+		return {
+			type: "time",
+			time,
+			display,
+			inputMethod,
+		};
+	}
+
+	// duration
+	const duration = getRandomDurationItem();
+	const display = pickOne<DisplayMode>("number", "text", "audio");
+	const inputMethod = display === "text" ? "type" : pickOne<InputMode>("type", "voice");
+
+	return {
+		type: "duration",
+		duration,
+		display,
+		inputMethod,
+	};
+});
 
 export const Route = createFileRoute("/numbers/practice")({
 	component: PracticeComponent,
-	loader: async () => await getRandomPracticeItem(),
 	ssr: false,
+	loader: async () => await getRandomPracticeItem(),
 });
 
 function PracticeContainer({
@@ -256,7 +223,7 @@ function PracticeContainer({
 	inputElement: ReactNode;
 }) {
 	return (
-		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500">
+		<div className="flex animate-in flex-col items-center space-y-20 duration-500 fade-in slide-in-from-right-96">
 			{displayElement}
 			<div className="flex flex-col items-center space-y-4">{inputElement}</div>
 		</div>
@@ -285,6 +252,7 @@ function TextInputWithResult({
 				text={expectedText}
 				onChange={handleChange}
 				className="justify-center"
+				// oxlint-disable-next-line jsx-a11y/no-autofocus -- Focus the active exercise input.
 				autoFocus
 			/>
 			<div className="mt-8 h-8">
@@ -352,11 +320,7 @@ function getDisplayText(item: PracticeItem): string {
 			if (time.minute === 30) return "rưỡi";
 			return `${numberToText(time.minute)} phút`;
 		}
-		if (
-			time.type === "fullTime" &&
-			time.hour !== undefined &&
-			time.minute !== undefined
-		) {
+		if (time.type === "fullTime" && time.hour !== undefined && time.minute !== undefined) {
 			return formatTime(time.hour, time.minute, false);
 		}
 	}
@@ -433,11 +397,7 @@ function getDisplayNumber(item: PracticeItem): string | number {
 		if (time.type === "minute" && time.minute !== undefined) {
 			return `${time.minute} min`;
 		}
-		if (
-			time.type === "fullTime" &&
-			time.hour !== undefined &&
-			time.minute !== undefined
-		) {
+		if (time.type === "fullTime" && time.hour !== undefined && time.minute !== undefined) {
 			const h12 = time.hour % 12 || 12;
 			const ampm = time.hour < 12 ? "AM" : "PM";
 			return `${h12}:${time.minute.toString().padStart(2, "0")} ${ampm}`;
@@ -468,11 +428,9 @@ function UnifiedPractice({
 	// Determine what to display
 	let displayElement: ReactNode;
 	if (displayMode === "text") {
-		displayElement = (
-			<h2 className="text-center font-bold text-5xl">{vietnameseText}</h2>
-		);
+		displayElement = <h2 className="text-center text-5xl font-bold">{vietnameseText}</h2>;
 	} else if (displayMode === "number") {
-		displayElement = <h2 className="font-bold text-5xl">{displayNumber}</h2>;
+		displayElement = <h2 className="text-5xl font-bold">{displayNumber}</h2>;
 	} else {
 		// audio
 		displayElement = <SpeakButton text={vietnameseText} size="large" />;
@@ -500,12 +458,7 @@ function UnifiedPractice({
 		inputElement = <VoiceInputWithResult expectedText={expectedText} />;
 	}
 
-	return (
-		<PracticeContainer
-			displayElement={displayElement}
-			inputElement={inputElement}
-		/>
-	);
+	return <PracticeContainer displayElement={displayElement} inputElement={inputElement} />;
 }
 
 function PracticeComponent() {
@@ -555,14 +508,29 @@ function PracticeComponent() {
 						<div />
 					)}
 					<div />
-					<Button variant="outline" size="medium" onClick={handleNext}>
+					<Button
+						variant="outline"
+						size="medium"
+						onClick={() => {
+							void handleNext().catch((error: unknown) =>
+								console.error("Exercise action failed:", error),
+							);
+						}}
+					>
 						Next
 					</Button>
 				</div>
 			)}
 		>
 			<div className="flex w-full flex-row justify-center pt-8 pb-4">
-				<PracticeModeToggle value={mode} onValueChange={handleModeChange} />
+				<PracticeModeToggle
+					value={mode}
+					onValueChange={(value) => {
+						void handleModeChange(value).catch((error: unknown) =>
+							console.error("Failed to change practice mode:", error),
+						);
+					}}
+				/>
 			</div>
 			<div className="flex flex-1 items-center">
 				<UnifiedPractice

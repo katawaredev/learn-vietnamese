@@ -49,15 +49,12 @@ function AdjectivesComponent() {
 			<div className="space-y-8">
 				<Disclosure
 					defaultOpen
-					title={
-						<span className="font-bold text-lg">{data.introduction.title}</span>
-					}
+					title={<span className="text-lg font-bold">{data.introduction.title}</span>}
 				>
 					<div className="space-y-5">
 						{/* Rule 1: Word order */}
 						<p className="text-white/80">
-							In Vietnamese, adjectives come{" "}
-							<strong className="text-gold">after</strong> the noun:
+							In Vietnamese, adjectives come <strong className="text-gold">after</strong> the noun:
 						</p>
 
 						<div className="rounded-lg border border-gold/30 bg-gold/5 p-5">
@@ -67,18 +64,14 @@ function AdjectivesComponent() {
 									<div className="font-mono text-lg text-white/80">
 										<span className="text-gold">beautiful</span> house
 									</div>
-									<div className="mt-1 text-white/40 text-xs">
-										adjective + noun
-									</div>
+									<div className="mt-1 text-xs text-white/40">adjective + noun</div>
 								</div>
 								<div>
 									<div className="mb-1 text-sm text-white/50">Vietnamese</div>
 									<div className="font-mono text-lg text-white/80">
 										nhà <span className="text-gold">đẹp</span>
 									</div>
-									<div className="mt-1 text-white/40 text-xs">
-										noun + adjective
-									</div>
+									<div className="mt-1 text-xs text-white/40">noun + adjective</div>
 								</div>
 							</div>
 						</div>
@@ -86,14 +79,13 @@ function AdjectivesComponent() {
 						{/* Rule 2: No "to be" */}
 						<p className="text-white/80">
 							Adjectives act as verbs — no "to be" needed.{" "}
-							<span className="text-warm-cream">Tôi mệt</span> (literally "I
-							tired") is a complete sentence meaning "I am tired".
+							<span className="text-warm-cream">Tôi mệt</span> (literally "I tired") is a complete
+							sentence meaning "I am tired".
 						</p>
 
 						{/* Rule 3: Degree — visual, not a paragraph */}
 						<p className="text-white/80">
-							To say "very", you can put a word{" "}
-							<strong className="text-gold">before</strong> or{" "}
+							To say "very", you can put a word <strong className="text-gold">before</strong> or{" "}
 							<strong className="text-gold">after</strong> the adjective:
 						</p>
 						<div className="space-y-1 font-mono text-sm">
@@ -119,14 +111,12 @@ function AdjectivesComponent() {
 							/>
 						</p>
 						<p className="text-white/80">
-							Repeating an adjective softens it — like adding "-ish" or "kinda"
-							in English:
+							Repeating an adjective softens it — like adding "-ish" or "kinda" in English:
 						</p>
 						<div className="space-y-1 font-mono text-sm">
 							{data.reduplication.full.map((ex) => (
 								<div key={ex.base} className="text-white/70">
-									{ex.base} →{" "}
-									<span className="text-warm-cream">{ex.result}</span>{" "}
+									{ex.base} → <span className="text-warm-cream">{ex.result}</span>{" "}
 									<span className="text-white/40">({ex.meaning})</span>
 								</div>
 							))}
@@ -134,14 +124,13 @@ function AdjectivesComponent() {
 
 						<p className="text-white/80">
 							Sometimes the repeated part changes sound slightly — this is{" "}
-							<em>partial reduplication</em>. The second word isn't a real word
-							on its own, it's a sound echo that refines the meaning:
+							<em>partial reduplication</em>. The second word isn't a real word on its own, it's a
+							sound echo that refines the meaning:
 						</p>
 						<div className="space-y-1 font-mono text-sm">
 							{data.reduplication.partial.map((ex) => (
 								<div key={ex.base} className="text-white/70">
-									{ex.base} →{" "}
-									<span className="text-warm-cream">{ex.result}</span>{" "}
+									{ex.base} → <span className="text-warm-cream">{ex.result}</span>{" "}
 									<span className="text-white/40">({ex.meaning})</span>
 								</div>
 							))}
@@ -153,16 +142,11 @@ function AdjectivesComponent() {
 				{data.sections.map((section) => (
 					<div key={section.id} className="space-y-6">
 						<div>
-							<h2 className="font-bold font-serif text-2xl text-gold">
-								{section.title}
-							</h2>
+							<h2 className="font-serif text-2xl font-bold text-gold">{section.title}</h2>
 							<p className="mt-1 text-white/60">{section.description}</p>
 						</div>
 
-						<WordGrid
-							data={section.words}
-							titleClassName={GRAMMAR_TYPE_COLORS[section.colorKey]}
-						/>
+						<WordGrid data={section.words} titleClassName={GRAMMAR_TYPE_COLORS[section.colorKey]} />
 
 						{section.examples.length > 0 && (
 							<Disclosure plain title="Examples" defaultOpen>
@@ -175,22 +159,15 @@ function AdjectivesComponent() {
 				{/* Common Adjectives by Category */}
 				<div className="space-y-6">
 					<div>
-						<h2 className="font-bold font-serif text-2xl text-gold">
-							Common Adjectives
-						</h2>
-						<p className="mt-1 text-white/60">
-							Essential adjectives grouped by category
-						</p>
+						<h2 className="font-serif text-2xl font-bold text-gold">Common Adjectives</h2>
+						<p className="mt-1 text-white/60">Essential adjectives grouped by category</p>
 					</div>
 
 					<div className="space-y-6">
 						{Object.entries(data.categories).map(([key, category]) => (
 							<div key={key} className="space-y-3">
-								<h3 className="font-semibold text-lg">{category.title}</h3>
-								<WordGrid
-									data={category.words}
-									titleClassName={GRAMMAR_TYPE_COLORS.adjective}
-								/>
+								<h3 className="text-lg font-semibold">{category.title}</h3>
+								<WordGrid data={category.words} titleClassName={GRAMMAR_TYPE_COLORS.adjective} />
 							</div>
 						))}
 					</div>

@@ -9,48 +9,48 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as FlagRouteImport } from './routes/flag'
-import { Route as ChatRouteImport } from './routes/chat'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as RelationsIndexRouteImport } from './routes/relations/index'
-import { Route as PronunciationIndexRouteImport } from './routes/pronunciation/index'
-import { Route as NumbersIndexRouteImport } from './routes/numbers/index'
-import { Route as GrammarIndexRouteImport } from './routes/grammar/index'
-import { Route as DictationIndexRouteImport } from './routes/dictation/index'
+import { Route as ChatRouteImport } from './routes/chat'
+import { Route as FlagRouteImport } from './routes/flag'
 import { Route as ConversationIndexRouteImport } from './routes/conversation/index'
-import { Route as RelationsPronounsRouteImport } from './routes/relations/pronouns'
-import { Route as RelationsPracticeRouteImport } from './routes/relations/practice'
-import { Route as PronunciationVowelsRouteImport } from './routes/pronunciation/vowels'
-import { Route as PronunciationTonesVowelRouteImport } from './routes/pronunciation/tones-vowel'
-import { Route as PronunciationTonesRouteImport } from './routes/pronunciation/tones'
-import { Route as PronunciationPracticeRouteImport } from './routes/pronunciation/practice'
-import { Route as PronunciationDoubleVowelsRouteImport } from './routes/pronunciation/double-vowels'
-import { Route as PronunciationConsonantsRouteImport } from './routes/pronunciation/consonants'
-import { Route as NumbersTimeRouteImport } from './routes/numbers/time'
-import { Route as NumbersPracticeRouteImport } from './routes/numbers/practice'
-import { Route as NumbersDatesRouteImport } from './routes/numbers/dates'
-import { Route as NumbersCountingRouteImport } from './routes/numbers/counting'
-import { Route as GrammarTensesRouteImport } from './routes/grammar/tenses'
-import { Route as GrammarSentenceStructureRouteImport } from './routes/grammar/sentence-structure'
-import { Route as GrammarQuestionsRouteImport } from './routes/grammar/questions'
-import { Route as GrammarPassiveVoiceRouteImport } from './routes/grammar/passive-voice'
-import { Route as GrammarNegativesRouteImport } from './routes/grammar/negatives'
-import { Route as GrammarModalVerbsRouteImport } from './routes/grammar/modal-verbs'
-import { Route as GrammarFocusMarkersRouteImport } from './routes/grammar/focus-markers'
-import { Route as GrammarExclamationsRouteImport } from './routes/grammar/exclamations'
-import { Route as GrammarDemonstrativesRouteImport } from './routes/grammar/demonstratives'
-import { Route as GrammarConditionalsRouteImport } from './routes/grammar/conditionals'
-import { Route as GrammarComparativesRouteImport } from './routes/grammar/comparatives'
-import { Route as GrammarCommandsRouteImport } from './routes/grammar/commands'
-import { Route as GrammarClassifiersRouteImport } from './routes/grammar/classifiers'
+import { Route as DictationIndexRouteImport } from './routes/dictation/index'
+import { Route as GrammarIndexRouteImport } from './routes/grammar/index'
 import { Route as GrammarAdjectivesRouteImport } from './routes/grammar/adjectives'
-import { Route as GrammarPracticeIndexRouteImport } from './routes/grammar/practice/index'
-import { Route as DictationSpeakSlugRouteImport } from './routes/dictation/speak.$slug'
+import { Route as GrammarClassifiersRouteImport } from './routes/grammar/classifiers'
+import { Route as GrammarCommandsRouteImport } from './routes/grammar/commands'
+import { Route as GrammarComparativesRouteImport } from './routes/grammar/comparatives'
+import { Route as GrammarConditionalsRouteImport } from './routes/grammar/conditionals'
+import { Route as GrammarDemonstrativesRouteImport } from './routes/grammar/demonstratives'
+import { Route as GrammarExclamationsRouteImport } from './routes/grammar/exclamations'
+import { Route as GrammarFocusMarkersRouteImport } from './routes/grammar/focus-markers'
+import { Route as GrammarModalVerbsRouteImport } from './routes/grammar/modal-verbs'
+import { Route as GrammarNegativesRouteImport } from './routes/grammar/negatives'
+import { Route as GrammarPassiveVoiceRouteImport } from './routes/grammar/passive-voice'
+import { Route as GrammarQuestionsRouteImport } from './routes/grammar/questions'
+import { Route as GrammarSentenceStructureRouteImport } from './routes/grammar/sentence-structure'
+import { Route as GrammarTensesRouteImport } from './routes/grammar/tenses'
+import { Route as NumbersIndexRouteImport } from './routes/numbers/index'
+import { Route as NumbersCountingRouteImport } from './routes/numbers/counting'
+import { Route as NumbersDatesRouteImport } from './routes/numbers/dates'
+import { Route as NumbersPracticeRouteImport } from './routes/numbers/practice'
+import { Route as NumbersTimeRouteImport } from './routes/numbers/time'
+import { Route as PronunciationIndexRouteImport } from './routes/pronunciation/index'
+import { Route as PronunciationConsonantsRouteImport } from './routes/pronunciation/consonants'
+import { Route as PronunciationDoubleVowelsRouteImport } from './routes/pronunciation/double-vowels'
+import { Route as PronunciationPracticeRouteImport } from './routes/pronunciation/practice'
+import { Route as PronunciationTonesRouteImport } from './routes/pronunciation/tones'
+import { Route as PronunciationTonesVowelRouteImport } from './routes/pronunciation/tones-vowel'
+import { Route as PronunciationVowelsRouteImport } from './routes/pronunciation/vowels'
+import { Route as RelationsIndexRouteImport } from './routes/relations/index'
+import { Route as RelationsPracticeRouteImport } from './routes/relations/practice'
+import { Route as RelationsPronounsRouteImport } from './routes/relations/pronouns'
 import { Route as DictationListenSlugRouteImport } from './routes/dictation/listen.$slug'
+import { Route as DictationSpeakSlugRouteImport } from './routes/dictation/speak.$slug'
+import { Route as GrammarPracticeIndexRouteImport } from './routes/grammar/practice/index'
 
-const FlagRoute = FlagRouteImport.update({
-  id: '/flag',
-  path: '/flag',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChatRoute = ChatRouteImport.update({
@@ -58,34 +58,9 @@ const ChatRoute = ChatRouteImport.update({
   path: '/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RelationsIndexRoute = RelationsIndexRouteImport.update({
-  id: '/relations/',
-  path: '/relations/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PronunciationIndexRoute = PronunciationIndexRouteImport.update({
-  id: '/pronunciation/',
-  path: '/pronunciation/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NumbersIndexRoute = NumbersIndexRouteImport.update({
-  id: '/numbers/',
-  path: '/numbers/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GrammarIndexRoute = GrammarIndexRouteImport.update({
-  id: '/grammar/',
-  path: '/grammar/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DictationIndexRoute = DictationIndexRouteImport.update({
-  id: '/dictation/',
-  path: '/dictation/',
+const FlagRoute = FlagRouteImport.update({
+  id: '/flag',
+  path: '/flag',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConversationIndexRoute = ConversationIndexRouteImport.update({
@@ -93,70 +68,74 @@ const ConversationIndexRoute = ConversationIndexRouteImport.update({
   path: '/conversation/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RelationsPronounsRoute = RelationsPronounsRouteImport.update({
-  id: '/relations/pronouns',
-  path: '/relations/pronouns',
+const DictationIndexRoute = DictationIndexRouteImport.update({
+  id: '/dictation/',
+  path: '/dictation/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RelationsPracticeRoute = RelationsPracticeRouteImport.update({
-  id: '/relations/practice',
-  path: '/relations/practice',
+const GrammarIndexRoute = GrammarIndexRouteImport.update({
+  id: '/grammar/',
+  path: '/grammar/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PronunciationVowelsRoute = PronunciationVowelsRouteImport.update({
-  id: '/pronunciation/vowels',
-  path: '/pronunciation/vowels',
+const GrammarAdjectivesRoute = GrammarAdjectivesRouteImport.update({
+  id: '/grammar/adjectives',
+  path: '/grammar/adjectives',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PronunciationTonesVowelRoute = PronunciationTonesVowelRouteImport.update({
-  id: '/pronunciation/tones-vowel',
-  path: '/pronunciation/tones-vowel',
+const GrammarClassifiersRoute = GrammarClassifiersRouteImport.update({
+  id: '/grammar/classifiers',
+  path: '/grammar/classifiers',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PronunciationTonesRoute = PronunciationTonesRouteImport.update({
-  id: '/pronunciation/tones',
-  path: '/pronunciation/tones',
+const GrammarCommandsRoute = GrammarCommandsRouteImport.update({
+  id: '/grammar/commands',
+  path: '/grammar/commands',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PronunciationPracticeRoute = PronunciationPracticeRouteImport.update({
-  id: '/pronunciation/practice',
-  path: '/pronunciation/practice',
+const GrammarComparativesRoute = GrammarComparativesRouteImport.update({
+  id: '/grammar/comparatives',
+  path: '/grammar/comparatives',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PronunciationDoubleVowelsRoute =
-  PronunciationDoubleVowelsRouteImport.update({
-    id: '/pronunciation/double-vowels',
-    path: '/pronunciation/double-vowels',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const PronunciationConsonantsRoute = PronunciationConsonantsRouteImport.update({
-  id: '/pronunciation/consonants',
-  path: '/pronunciation/consonants',
+const GrammarConditionalsRoute = GrammarConditionalsRouteImport.update({
+  id: '/grammar/conditionals',
+  path: '/grammar/conditionals',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NumbersTimeRoute = NumbersTimeRouteImport.update({
-  id: '/numbers/time',
-  path: '/numbers/time',
+const GrammarDemonstrativesRoute = GrammarDemonstrativesRouteImport.update({
+  id: '/grammar/demonstratives',
+  path: '/grammar/demonstratives',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NumbersPracticeRoute = NumbersPracticeRouteImport.update({
-  id: '/numbers/practice',
-  path: '/numbers/practice',
+const GrammarExclamationsRoute = GrammarExclamationsRouteImport.update({
+  id: '/grammar/exclamations',
+  path: '/grammar/exclamations',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NumbersDatesRoute = NumbersDatesRouteImport.update({
-  id: '/numbers/dates',
-  path: '/numbers/dates',
+const GrammarFocusMarkersRoute = GrammarFocusMarkersRouteImport.update({
+  id: '/grammar/focus-markers',
+  path: '/grammar/focus-markers',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NumbersCountingRoute = NumbersCountingRouteImport.update({
-  id: '/numbers/counting',
-  path: '/numbers/counting',
+const GrammarModalVerbsRoute = GrammarModalVerbsRouteImport.update({
+  id: '/grammar/modal-verbs',
+  path: '/grammar/modal-verbs',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarTensesRoute = GrammarTensesRouteImport.update({
-  id: '/grammar/tenses',
-  path: '/grammar/tenses',
+const GrammarNegativesRoute = GrammarNegativesRouteImport.update({
+  id: '/grammar/negatives',
+  path: '/grammar/negatives',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GrammarPassiveVoiceRoute = GrammarPassiveVoiceRouteImport.update({
+  id: '/grammar/passive-voice',
+  path: '/grammar/passive-voice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GrammarQuestionsRoute = GrammarQuestionsRouteImport.update({
+  id: '/grammar/questions',
+  path: '/grammar/questions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GrammarSentenceStructureRoute =
@@ -165,69 +144,90 @@ const GrammarSentenceStructureRoute =
     path: '/grammar/sentence-structure',
     getParentRoute: () => rootRouteImport,
   } as any)
-const GrammarQuestionsRoute = GrammarQuestionsRouteImport.update({
-  id: '/grammar/questions',
-  path: '/grammar/questions',
+const GrammarTensesRoute = GrammarTensesRouteImport.update({
+  id: '/grammar/tenses',
+  path: '/grammar/tenses',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarPassiveVoiceRoute = GrammarPassiveVoiceRouteImport.update({
-  id: '/grammar/passive-voice',
-  path: '/grammar/passive-voice',
+const NumbersIndexRoute = NumbersIndexRouteImport.update({
+  id: '/numbers/',
+  path: '/numbers/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarNegativesRoute = GrammarNegativesRouteImport.update({
-  id: '/grammar/negatives',
-  path: '/grammar/negatives',
+const NumbersCountingRoute = NumbersCountingRouteImport.update({
+  id: '/numbers/counting',
+  path: '/numbers/counting',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarModalVerbsRoute = GrammarModalVerbsRouteImport.update({
-  id: '/grammar/modal-verbs',
-  path: '/grammar/modal-verbs',
+const NumbersDatesRoute = NumbersDatesRouteImport.update({
+  id: '/numbers/dates',
+  path: '/numbers/dates',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarFocusMarkersRoute = GrammarFocusMarkersRouteImport.update({
-  id: '/grammar/focus-markers',
-  path: '/grammar/focus-markers',
+const NumbersPracticeRoute = NumbersPracticeRouteImport.update({
+  id: '/numbers/practice',
+  path: '/numbers/practice',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarExclamationsRoute = GrammarExclamationsRouteImport.update({
-  id: '/grammar/exclamations',
-  path: '/grammar/exclamations',
+const NumbersTimeRoute = NumbersTimeRouteImport.update({
+  id: '/numbers/time',
+  path: '/numbers/time',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarDemonstrativesRoute = GrammarDemonstrativesRouteImport.update({
-  id: '/grammar/demonstratives',
-  path: '/grammar/demonstratives',
+const PronunciationIndexRoute = PronunciationIndexRouteImport.update({
+  id: '/pronunciation/',
+  path: '/pronunciation/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarConditionalsRoute = GrammarConditionalsRouteImport.update({
-  id: '/grammar/conditionals',
-  path: '/grammar/conditionals',
+const PronunciationConsonantsRoute = PronunciationConsonantsRouteImport.update({
+  id: '/pronunciation/consonants',
+  path: '/pronunciation/consonants',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarComparativesRoute = GrammarComparativesRouteImport.update({
-  id: '/grammar/comparatives',
-  path: '/grammar/comparatives',
+const PronunciationDoubleVowelsRoute =
+  PronunciationDoubleVowelsRouteImport.update({
+    id: '/pronunciation/double-vowels',
+    path: '/pronunciation/double-vowels',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PronunciationPracticeRoute = PronunciationPracticeRouteImport.update({
+  id: '/pronunciation/practice',
+  path: '/pronunciation/practice',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarCommandsRoute = GrammarCommandsRouteImport.update({
-  id: '/grammar/commands',
-  path: '/grammar/commands',
+const PronunciationTonesRoute = PronunciationTonesRouteImport.update({
+  id: '/pronunciation/tones',
+  path: '/pronunciation/tones',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarClassifiersRoute = GrammarClassifiersRouteImport.update({
-  id: '/grammar/classifiers',
-  path: '/grammar/classifiers',
+const PronunciationTonesVowelRoute = PronunciationTonesVowelRouteImport.update({
+  id: '/pronunciation/tones-vowel',
+  path: '/pronunciation/tones-vowel',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarAdjectivesRoute = GrammarAdjectivesRouteImport.update({
-  id: '/grammar/adjectives',
-  path: '/grammar/adjectives',
+const PronunciationVowelsRoute = PronunciationVowelsRouteImport.update({
+  id: '/pronunciation/vowels',
+  path: '/pronunciation/vowels',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrammarPracticeIndexRoute = GrammarPracticeIndexRouteImport.update({
-  id: '/grammar/practice/',
-  path: '/grammar/practice/',
+const RelationsIndexRoute = RelationsIndexRouteImport.update({
+  id: '/relations/',
+  path: '/relations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelationsPracticeRoute = RelationsPracticeRouteImport.update({
+  id: '/relations/practice',
+  path: '/relations/practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelationsPronounsRoute = RelationsPronounsRouteImport.update({
+  id: '/relations/pronouns',
+  path: '/relations/pronouns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DictationListenSlugRoute = DictationListenSlugRouteImport.update({
+  id: '/dictation/listen/$slug',
+  path: '/dictation/listen/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DictationSpeakSlugRoute = DictationSpeakSlugRouteImport.update({
@@ -235,9 +235,9 @@ const DictationSpeakSlugRoute = DictationSpeakSlugRouteImport.update({
   path: '/dictation/speak/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DictationListenSlugRoute = DictationListenSlugRouteImport.update({
-  id: '/dictation/listen/$slug',
-  path: '/dictation/listen/$slug',
+const GrammarPracticeIndexRoute = GrammarPracticeIndexRouteImport.update({
+  id: '/grammar/practice/',
+  path: '/grammar/practice/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -528,11 +528,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/flag': {
-      id: '/flag'
-      path: '/flag'
-      fullPath: '/flag'
-      preLoaderRoute: typeof FlagRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chat': {
@@ -542,46 +542,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/relations/': {
-      id: '/relations/'
-      path: '/relations'
-      fullPath: '/relations/'
-      preLoaderRoute: typeof RelationsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pronunciation/': {
-      id: '/pronunciation/'
-      path: '/pronunciation'
-      fullPath: '/pronunciation/'
-      preLoaderRoute: typeof PronunciationIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/numbers/': {
-      id: '/numbers/'
-      path: '/numbers'
-      fullPath: '/numbers/'
-      preLoaderRoute: typeof NumbersIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/': {
-      id: '/grammar/'
-      path: '/grammar'
-      fullPath: '/grammar/'
-      preLoaderRoute: typeof GrammarIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dictation/': {
-      id: '/dictation/'
-      path: '/dictation'
-      fullPath: '/dictation/'
-      preLoaderRoute: typeof DictationIndexRouteImport
+    '/flag': {
+      id: '/flag'
+      path: '/flag'
+      fullPath: '/flag'
+      preLoaderRoute: typeof FlagRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/conversation/': {
@@ -591,179 +556,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConversationIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/relations/pronouns': {
-      id: '/relations/pronouns'
-      path: '/relations/pronouns'
-      fullPath: '/relations/pronouns'
-      preLoaderRoute: typeof RelationsPronounsRouteImport
+    '/dictation/': {
+      id: '/dictation/'
+      path: '/dictation'
+      fullPath: '/dictation/'
+      preLoaderRoute: typeof DictationIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/relations/practice': {
-      id: '/relations/practice'
-      path: '/relations/practice'
-      fullPath: '/relations/practice'
-      preLoaderRoute: typeof RelationsPracticeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pronunciation/vowels': {
-      id: '/pronunciation/vowels'
-      path: '/pronunciation/vowels'
-      fullPath: '/pronunciation/vowels'
-      preLoaderRoute: typeof PronunciationVowelsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pronunciation/tones-vowel': {
-      id: '/pronunciation/tones-vowel'
-      path: '/pronunciation/tones-vowel'
-      fullPath: '/pronunciation/tones-vowel'
-      preLoaderRoute: typeof PronunciationTonesVowelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pronunciation/tones': {
-      id: '/pronunciation/tones'
-      path: '/pronunciation/tones'
-      fullPath: '/pronunciation/tones'
-      preLoaderRoute: typeof PronunciationTonesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pronunciation/practice': {
-      id: '/pronunciation/practice'
-      path: '/pronunciation/practice'
-      fullPath: '/pronunciation/practice'
-      preLoaderRoute: typeof PronunciationPracticeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pronunciation/double-vowels': {
-      id: '/pronunciation/double-vowels'
-      path: '/pronunciation/double-vowels'
-      fullPath: '/pronunciation/double-vowels'
-      preLoaderRoute: typeof PronunciationDoubleVowelsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pronunciation/consonants': {
-      id: '/pronunciation/consonants'
-      path: '/pronunciation/consonants'
-      fullPath: '/pronunciation/consonants'
-      preLoaderRoute: typeof PronunciationConsonantsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/numbers/time': {
-      id: '/numbers/time'
-      path: '/numbers/time'
-      fullPath: '/numbers/time'
-      preLoaderRoute: typeof NumbersTimeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/numbers/practice': {
-      id: '/numbers/practice'
-      path: '/numbers/practice'
-      fullPath: '/numbers/practice'
-      preLoaderRoute: typeof NumbersPracticeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/numbers/dates': {
-      id: '/numbers/dates'
-      path: '/numbers/dates'
-      fullPath: '/numbers/dates'
-      preLoaderRoute: typeof NumbersDatesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/numbers/counting': {
-      id: '/numbers/counting'
-      path: '/numbers/counting'
-      fullPath: '/numbers/counting'
-      preLoaderRoute: typeof NumbersCountingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/tenses': {
-      id: '/grammar/tenses'
-      path: '/grammar/tenses'
-      fullPath: '/grammar/tenses'
-      preLoaderRoute: typeof GrammarTensesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/sentence-structure': {
-      id: '/grammar/sentence-structure'
-      path: '/grammar/sentence-structure'
-      fullPath: '/grammar/sentence-structure'
-      preLoaderRoute: typeof GrammarSentenceStructureRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/questions': {
-      id: '/grammar/questions'
-      path: '/grammar/questions'
-      fullPath: '/grammar/questions'
-      preLoaderRoute: typeof GrammarQuestionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/passive-voice': {
-      id: '/grammar/passive-voice'
-      path: '/grammar/passive-voice'
-      fullPath: '/grammar/passive-voice'
-      preLoaderRoute: typeof GrammarPassiveVoiceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/negatives': {
-      id: '/grammar/negatives'
-      path: '/grammar/negatives'
-      fullPath: '/grammar/negatives'
-      preLoaderRoute: typeof GrammarNegativesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/modal-verbs': {
-      id: '/grammar/modal-verbs'
-      path: '/grammar/modal-verbs'
-      fullPath: '/grammar/modal-verbs'
-      preLoaderRoute: typeof GrammarModalVerbsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/focus-markers': {
-      id: '/grammar/focus-markers'
-      path: '/grammar/focus-markers'
-      fullPath: '/grammar/focus-markers'
-      preLoaderRoute: typeof GrammarFocusMarkersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/exclamations': {
-      id: '/grammar/exclamations'
-      path: '/grammar/exclamations'
-      fullPath: '/grammar/exclamations'
-      preLoaderRoute: typeof GrammarExclamationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/demonstratives': {
-      id: '/grammar/demonstratives'
-      path: '/grammar/demonstratives'
-      fullPath: '/grammar/demonstratives'
-      preLoaderRoute: typeof GrammarDemonstrativesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/conditionals': {
-      id: '/grammar/conditionals'
-      path: '/grammar/conditionals'
-      fullPath: '/grammar/conditionals'
-      preLoaderRoute: typeof GrammarConditionalsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/comparatives': {
-      id: '/grammar/comparatives'
-      path: '/grammar/comparatives'
-      fullPath: '/grammar/comparatives'
-      preLoaderRoute: typeof GrammarComparativesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/commands': {
-      id: '/grammar/commands'
-      path: '/grammar/commands'
-      fullPath: '/grammar/commands'
-      preLoaderRoute: typeof GrammarCommandsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/grammar/classifiers': {
-      id: '/grammar/classifiers'
-      path: '/grammar/classifiers'
-      fullPath: '/grammar/classifiers'
-      preLoaderRoute: typeof GrammarClassifiersRouteImport
+    '/grammar/': {
+      id: '/grammar/'
+      path: '/grammar'
+      fullPath: '/grammar/'
+      preLoaderRoute: typeof GrammarIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/grammar/adjectives': {
@@ -773,11 +577,207 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GrammarAdjectivesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/grammar/practice/': {
-      id: '/grammar/practice/'
-      path: '/grammar/practice'
-      fullPath: '/grammar/practice/'
-      preLoaderRoute: typeof GrammarPracticeIndexRouteImport
+    '/grammar/classifiers': {
+      id: '/grammar/classifiers'
+      path: '/grammar/classifiers'
+      fullPath: '/grammar/classifiers'
+      preLoaderRoute: typeof GrammarClassifiersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/commands': {
+      id: '/grammar/commands'
+      path: '/grammar/commands'
+      fullPath: '/grammar/commands'
+      preLoaderRoute: typeof GrammarCommandsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/comparatives': {
+      id: '/grammar/comparatives'
+      path: '/grammar/comparatives'
+      fullPath: '/grammar/comparatives'
+      preLoaderRoute: typeof GrammarComparativesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/conditionals': {
+      id: '/grammar/conditionals'
+      path: '/grammar/conditionals'
+      fullPath: '/grammar/conditionals'
+      preLoaderRoute: typeof GrammarConditionalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/demonstratives': {
+      id: '/grammar/demonstratives'
+      path: '/grammar/demonstratives'
+      fullPath: '/grammar/demonstratives'
+      preLoaderRoute: typeof GrammarDemonstrativesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/exclamations': {
+      id: '/grammar/exclamations'
+      path: '/grammar/exclamations'
+      fullPath: '/grammar/exclamations'
+      preLoaderRoute: typeof GrammarExclamationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/focus-markers': {
+      id: '/grammar/focus-markers'
+      path: '/grammar/focus-markers'
+      fullPath: '/grammar/focus-markers'
+      preLoaderRoute: typeof GrammarFocusMarkersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/modal-verbs': {
+      id: '/grammar/modal-verbs'
+      path: '/grammar/modal-verbs'
+      fullPath: '/grammar/modal-verbs'
+      preLoaderRoute: typeof GrammarModalVerbsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/negatives': {
+      id: '/grammar/negatives'
+      path: '/grammar/negatives'
+      fullPath: '/grammar/negatives'
+      preLoaderRoute: typeof GrammarNegativesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/passive-voice': {
+      id: '/grammar/passive-voice'
+      path: '/grammar/passive-voice'
+      fullPath: '/grammar/passive-voice'
+      preLoaderRoute: typeof GrammarPassiveVoiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/questions': {
+      id: '/grammar/questions'
+      path: '/grammar/questions'
+      fullPath: '/grammar/questions'
+      preLoaderRoute: typeof GrammarQuestionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/sentence-structure': {
+      id: '/grammar/sentence-structure'
+      path: '/grammar/sentence-structure'
+      fullPath: '/grammar/sentence-structure'
+      preLoaderRoute: typeof GrammarSentenceStructureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammar/tenses': {
+      id: '/grammar/tenses'
+      path: '/grammar/tenses'
+      fullPath: '/grammar/tenses'
+      preLoaderRoute: typeof GrammarTensesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/numbers/': {
+      id: '/numbers/'
+      path: '/numbers'
+      fullPath: '/numbers/'
+      preLoaderRoute: typeof NumbersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/numbers/counting': {
+      id: '/numbers/counting'
+      path: '/numbers/counting'
+      fullPath: '/numbers/counting'
+      preLoaderRoute: typeof NumbersCountingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/numbers/dates': {
+      id: '/numbers/dates'
+      path: '/numbers/dates'
+      fullPath: '/numbers/dates'
+      preLoaderRoute: typeof NumbersDatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/numbers/practice': {
+      id: '/numbers/practice'
+      path: '/numbers/practice'
+      fullPath: '/numbers/practice'
+      preLoaderRoute: typeof NumbersPracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/numbers/time': {
+      id: '/numbers/time'
+      path: '/numbers/time'
+      fullPath: '/numbers/time'
+      preLoaderRoute: typeof NumbersTimeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pronunciation/': {
+      id: '/pronunciation/'
+      path: '/pronunciation'
+      fullPath: '/pronunciation/'
+      preLoaderRoute: typeof PronunciationIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pronunciation/consonants': {
+      id: '/pronunciation/consonants'
+      path: '/pronunciation/consonants'
+      fullPath: '/pronunciation/consonants'
+      preLoaderRoute: typeof PronunciationConsonantsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pronunciation/double-vowels': {
+      id: '/pronunciation/double-vowels'
+      path: '/pronunciation/double-vowels'
+      fullPath: '/pronunciation/double-vowels'
+      preLoaderRoute: typeof PronunciationDoubleVowelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pronunciation/practice': {
+      id: '/pronunciation/practice'
+      path: '/pronunciation/practice'
+      fullPath: '/pronunciation/practice'
+      preLoaderRoute: typeof PronunciationPracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pronunciation/tones': {
+      id: '/pronunciation/tones'
+      path: '/pronunciation/tones'
+      fullPath: '/pronunciation/tones'
+      preLoaderRoute: typeof PronunciationTonesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pronunciation/tones-vowel': {
+      id: '/pronunciation/tones-vowel'
+      path: '/pronunciation/tones-vowel'
+      fullPath: '/pronunciation/tones-vowel'
+      preLoaderRoute: typeof PronunciationTonesVowelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pronunciation/vowels': {
+      id: '/pronunciation/vowels'
+      path: '/pronunciation/vowels'
+      fullPath: '/pronunciation/vowels'
+      preLoaderRoute: typeof PronunciationVowelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relations/': {
+      id: '/relations/'
+      path: '/relations'
+      fullPath: '/relations/'
+      preLoaderRoute: typeof RelationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relations/practice': {
+      id: '/relations/practice'
+      path: '/relations/practice'
+      fullPath: '/relations/practice'
+      preLoaderRoute: typeof RelationsPracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relations/pronouns': {
+      id: '/relations/pronouns'
+      path: '/relations/pronouns'
+      fullPath: '/relations/pronouns'
+      preLoaderRoute: typeof RelationsPronounsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dictation/listen/$slug': {
+      id: '/dictation/listen/$slug'
+      path: '/dictation/listen/$slug'
+      fullPath: '/dictation/listen/$slug'
+      preLoaderRoute: typeof DictationListenSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dictation/speak/$slug': {
@@ -787,11 +787,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DictationSpeakSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dictation/listen/$slug': {
-      id: '/dictation/listen/$slug'
-      path: '/dictation/listen/$slug'
-      fullPath: '/dictation/listen/$slug'
-      preLoaderRoute: typeof DictationListenSlugRouteImport
+    '/grammar/practice/': {
+      id: '/grammar/practice/'
+      path: '/grammar/practice'
+      fullPath: '/grammar/practice/'
+      preLoaderRoute: typeof GrammarPracticeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

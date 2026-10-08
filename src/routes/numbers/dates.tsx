@@ -105,44 +105,33 @@ function DatesComponent() {
 				<div>
 					<Disclosure
 						className="mb-4 w-full"
-						title={
-							<span className="font-bold text-2xl">
-								Days of Week (Thứ trong tuần)
-							</span>
-						}
+						title={<span className="text-2xl font-bold">Days of Week (Thứ trong tuần)</span>}
 					>
 						<div className="space-y-3">
 							<p>
-								<strong className="text-gold">Days of week</strong> use ordinal
-								numbers with the "thứ" prefix: thứ hai (Monday, literally
-								"second day"), thứ ba (Tuesday, "third day"), etc.
+								<strong className="text-gold">Days of week</strong> use ordinal numbers with the
+								"thứ" prefix: thứ hai (Monday, literally "second day"), thứ ba (Tuesday, "third
+								day"), etc.
 							</p>
 
 							<p>
-								<strong className="text-gold">Sunday exception:</strong> Sunday
-								is "Chủ nhật" (a special religious term), not "thứ một"
+								<strong className="text-gold">Sunday exception:</strong> Sunday is "Chủ nhật" (a
+								special religious term), not "thứ một"
 							</p>
 
 							<p className="text-sm text-white/80">
-								<strong>Cultural note:</strong> The Vietnamese week
-								traditionally starts with Monday (thứ hai), not Sunday. This is
-								why Monday is "second day" - it's the second day counting from
-								Sunday as the first.
+								<strong>Cultural note:</strong> The Vietnamese week traditionally starts with Monday
+								(thứ hai), not Sunday. This is why Monday is "second day" - it's the second day
+								counting from Sunday as the first.
 							</p>
 						</div>
 					</Disclosure>
 					<PracticeGrid<DateData>
 						data={days}
 						getSubtitle={(item) =>
-							[
-								"Monday",
-								"Tuesday",
-								"Wednesday",
-								"Thursday",
-								"Friday",
-								"Saturday",
-								"Sunday",
-							][item.numericValue as number]
+							["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][
+								item.numericValue as number
+							]
 						}
 						getDetails={getDetails}
 					/>
@@ -152,22 +141,14 @@ function DatesComponent() {
 				<div>
 					<Disclosure
 						className="mb-4 w-full"
-						title={
-							<span className="font-bold text-2xl">
-								Months (Tháng trong năm)
-							</span>
-						}
+						title={<span className="text-2xl font-bold">Months (Tháng trong năm)</span>}
 					>
 						<div className="space-y-3">
 							<p>
-								<strong className="text-gold">Simple pattern:</strong> "tháng" +
-								number (1-12)
+								<strong className="text-gold">Simple pattern:</strong> "tháng" + number (1-12)
 							</p>
 
-							<p>
-								January = "tháng một", February = "tháng hai", December = "tháng
-								mười hai"
-							</p>
+							<p>January = "tháng một", February = "tháng hai", December = "tháng mười hai"</p>
 						</div>
 					</Disclosure>
 					<PracticeGrid<DateData>
@@ -197,38 +178,31 @@ function DatesComponent() {
 				<div>
 					<Disclosure
 						className="mb-4 w-full"
-						title={
-							<span className="font-bold text-2xl">
-								Full Dates (Ngày tháng năm)
-							</span>
-						}
+						title={<span className="text-2xl font-bold">Full Dates (Ngày tháng năm)</span>}
 					>
 						<div className="space-y-3">
 							<p>
-								<strong className="text-gold">Date format:</strong> ngày [day]
-								tháng [month] năm [year]
+								<strong className="text-gold">Date format:</strong> ngày [day] tháng [month] năm
+								[year]
 							</p>
 
 							<ul className="ml-6 list-disc space-y-2">
 								<li>
-									<strong>Day numbers (1-31):</strong> Use cardinal numbers, not
-									ordinals. Unlike English "1st, 2nd, 3rd", Vietnamese uses
-									"ngày một, ngày hai, ngày ba"
+									<strong>Day numbers (1-31):</strong> Use cardinal numbers, not ordinals. Unlike
+									English "1st, 2nd, 3rd", Vietnamese uses "ngày một, ngày hai, ngày ba"
 								</li>
 								<li>
-									<strong>Years:</strong> Read as full numbers (e.g., 2024 =
-									"năm hai nghìn hai mươi bốn")
+									<strong>Years:</strong> Read as full numbers (e.g., 2024 = "năm hai nghìn hai mươi
+									bốn")
 								</li>
 								<li>
-									<strong>Optional year:</strong> Can omit "năm [year]" when
-									context is clear
+									<strong>Optional year:</strong> Can omit "năm [year]" when context is clear
 								</li>
 							</ul>
 
 							<p className="text-sm text-white/80">
-								<strong>Cultural note:</strong> Vietnamese also use the lunar
-								calendar for traditional holidays and celebrations alongside the
-								Gregorian calendar.
+								<strong>Cultural note:</strong> Vietnamese also use the lunar calendar for
+								traditional holidays and celebrations alongside the Gregorian calendar.
 							</p>
 						</div>
 					</Disclosure>
@@ -236,10 +210,7 @@ function DatesComponent() {
 						data={sampleDates}
 						size="large"
 						getSubtitle={(item) => {
-							if (
-								typeof item.numericValue === "object" &&
-								item.numericValue !== null
-							) {
+							if (typeof item.numericValue === "object" && item.numericValue !== null) {
 								const { day, month, year } = item.numericValue;
 								const monthNames = [
 									"Jan",

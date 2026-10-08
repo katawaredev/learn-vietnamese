@@ -82,12 +82,12 @@ Create `src/routes/my-route.tsx`:
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/my-route")({
-  component: MyRoute,
-  ssr: false, // Disable if using Web Workers
+	component: MyRoute,
+	ssr: false, // Disable if using Web Workers
 });
 
 function MyRoute() {
-  return <div>Route content</div>;
+	return <div>Route content</div>;
 }
 ```
 

@@ -49,6 +49,7 @@ function TextInputWithResult({
 				text={normalizedExpected}
 				hint={hint}
 				onChange={handleChange}
+				// oxlint-disable-next-line jsx-a11y/no-autofocus -- Focus the active exercise input.
 				autoFocus
 			/>
 			<div className="mt-8 h-8">
@@ -114,6 +115,7 @@ function ListenPracticeComponent() {
 		if (unrevealed.length === 0) return;
 
 		// Pick random unrevealed letter position
+		// oxlint-disable-next-line react/react-compiler -- Randomness runs only in the Hint click handler.
 		const idx = unrevealed[Math.floor(Math.random() * unrevealed.length)];
 
 		// Build new hint character-by-character
@@ -135,8 +137,7 @@ function ListenPracticeComponent() {
 	};
 
 	const hintButton =
-		hint.replace(/\s/g, "").length <
-		normalizedText.replace(/\s/g, "").length ? (
+		hint.replace(/\s/g, "").length < normalizedText.replace(/\s/g, "").length ? (
 			<Button variant="outline" size="medium" onClick={handleHint}>
 				Hint
 			</Button>

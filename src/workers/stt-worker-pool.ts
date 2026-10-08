@@ -127,9 +127,7 @@ class STTWorkerPool {
 					this.pendingModelInit = null;
 					this.isModelLoading = false;
 				} else if (this.activeRequest) {
-					this.activeRequest.reject(
-						new Error(message.error || "Transcription failed"),
-					);
+					this.activeRequest.reject(new Error(message.error || "Transcription failed"));
 					this.activeRequest = null;
 				}
 				this.processQueue();
@@ -141,11 +139,7 @@ class STTWorkerPool {
 	 * Process the next request in the queue
 	 */
 	private processQueue(): void {
-		if (
-			this.activeRequest ||
-			this.isModelLoading ||
-			this.requestQueue.length === 0
-		) {
+		if (this.activeRequest || this.isModelLoading || this.requestQueue.length === 0) {
 			return;
 		}
 
@@ -186,11 +180,7 @@ class STTWorkerPool {
 		}
 
 		// If we're currently loading this same model, add to waiters
-		if (
-			this.isModelLoading &&
-			this.pendingModelInit &&
-			this.currentModelPath === modelPath
-		) {
+		if (this.isModelLoading && this.pendingModelInit && this.currentModelPath === modelPath) {
 			return new Promise((resolve, reject) => {
 				this.pendingModelInit?.waiters.push({ resolve, reject, onProgress });
 			});

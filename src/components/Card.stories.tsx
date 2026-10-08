@@ -7,11 +7,10 @@ const meta: Meta<typeof Card> = {
 	args: {
 		children: (
 			<>
-				<h3 className="mb-2 font-serif text-gold text-xl">Card title</h3>
+				<h3 className="mb-2 font-serif text-xl text-gold">Card title</h3>
 				<p className="text-warm-cream/80">
-					Cards group related content with a soft border and translucent
-					background. They're used throughout the app for lessons, quizzes, and
-					settings panels.
+					Cards group related content with a soft border and translucent background. They're used
+					throughout the app for lessons, quizzes, and settings panels.
 				</p>
 			</>
 		),
@@ -28,7 +27,7 @@ export const AsSection: Story = {
 		as: "section",
 		children: (
 			<>
-				<h3 className="mb-2 font-serif text-gold text-xl">Section card</h3>
+				<h3 className="mb-2 font-serif text-xl text-gold">Section card</h3>
 				<p className="text-warm-cream/80">Rendered as a semantic section.</p>
 			</>
 		),
@@ -40,10 +39,8 @@ export const WithCustomClassName: Story = {
 		className: "max-w-md",
 		children: (
 			<>
-				<h3 className="mb-2 font-serif text-gold text-xl">Constrained width</h3>
-				<p className="text-warm-cream/80">
-					Custom className extends the base card styling.
-				</p>
+				<h3 className="mb-2 font-serif text-xl text-gold">Constrained width</h3>
+				<p className="text-warm-cream/80">Custom className extends the base card styling.</p>
 			</>
 		),
 	},

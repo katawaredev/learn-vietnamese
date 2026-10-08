@@ -4,7 +4,7 @@ import type { ComponentType } from "react";
 import { twMerge } from "tailwind-merge";
 
 const toggleButtonVariants = cva(
-	"flex cursor-pointer items-center justify-center gap-2 rounded-2xl font-serif transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold",
+	"flex cursor-pointer items-center justify-center gap-2 rounded-2xl font-serif transition-all duration-200 focus:ring-2 focus:ring-gold focus:outline-none",
 	{
 		variants: {
 			size: {
@@ -14,8 +14,7 @@ const toggleButtonVariants = cva(
 			},
 			checked: {
 				true: "border-2 border-transparent bg-gold text-burgundy-dark hover:bg-gold",
-				false:
-					"border-2 border-gold bg-transparent text-gold hover:bg-gold hover:text-burgundy",
+				false: "border-2 border-gold bg-transparent text-gold hover:bg-gold hover:text-burgundy",
 			},
 		},
 		defaultVariants: {
@@ -25,8 +24,7 @@ const toggleButtonVariants = cva(
 	},
 );
 
-export interface ToggleButtonProps
-	extends VariantProps<typeof toggleButtonVariants> {
+export interface ToggleButtonProps extends VariantProps<typeof toggleButtonVariants> {
 	text: string;
 	icon?: ComponentType<{ className?: string }>;
 	activeText?: string;

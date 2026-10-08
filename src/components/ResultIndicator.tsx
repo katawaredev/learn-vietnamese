@@ -1,7 +1,6 @@
 import { cva } from "class-variance-authority";
 import { AudioLines, Check, ChevronDown, X } from "lucide-react";
 import type { FC } from "react";
-import { useEffect, useState } from "react";
 import { useSTT } from "~/providers/stt-provider";
 import { normalizeText } from "~/utils/text";
 import { Popover } from "./Popover";
@@ -51,7 +50,7 @@ const SuggestionsPanel = () => {
 			</ul>
 			<div className="relative">
 				<select
-					className="block w-full appearance-none rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-burgundy-dark"
+					className="block w-full appearance-none rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm text-white focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-burgundy-dark focus:outline-none"
 					value={selectedModel.id}
 					onChange={handleModelChange}
 				>
@@ -83,8 +82,6 @@ export const ResultVoiceIndicator: FC<ResultVoiceIndicatorProps> = ({
 	isNew = false,
 	hideExpected = false,
 }) => {
-	const [animationClass, setAnimationClass] = useState("");
-
 	// Determine transcription result
 	let result: TranscriptionResult;
 	if (transcription === null) {
@@ -100,14 +97,7 @@ export const ResultVoiceIndicator: FC<ResultVoiceIndicatorProps> = ({
 				: TranscriptionResult.Fail;
 	}
 
-	useEffect(() => {
-		if (isNew) {
-			setAnimationClass(ANIMATION_CLASS[result]);
-
-			const timer = setTimeout(() => setAnimationClass(""), 1000);
-			return () => clearTimeout(timer);
-		}
-	}, [result, isNew]);
+	const animationClass = isNew ? ANIMATION_CLASS[result] : "";
 
 	// Don't render if no transcription attempt was made
 	if (transcription === undefined) return null;
@@ -120,9 +110,7 @@ export const ResultVoiceIndicator: FC<ResultVoiceIndicatorProps> = ({
 			<Popover
 				trigger={
 					<div className={`transition-colors ${animationClass}`}>
-						<AudioLines
-							className={`${iconSize} text-blue-400 hover:text-blue-300`}
-						/>
+						<AudioLines className={`${iconSize} text-blue-400 hover:text-blue-300`} />
 					</div>
 				}
 				defaultOpen={true}
@@ -201,9 +189,7 @@ export const ResultTextIndicator: FC<ResultTextIndicatorProps> = ({
 	const isCorrect = normalizeText(inputText) === normalizeText(expectedText);
 
 	const result = isCorrect ? (
-		<Check
-			className={`${iconVariants({ size })} animate-stamp text-green-400`}
-		/>
+		<Check className={`${iconVariants({ size })} animate-stamp text-green-400`} />
 	) : (
 		<X className={`${iconVariants({ size })} animate-shake text-red-400`} />
 	);

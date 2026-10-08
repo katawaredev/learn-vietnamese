@@ -30,13 +30,11 @@ export function GrammarModule({ data }: { data: GrammarModuleData }) {
 		<div className="space-y-8">
 			<Disclosure
 				defaultOpen
-				title={
-					<span className="font-bold text-lg">{data.introduction.title}</span>
-				}
+				title={<span className="text-lg font-bold">{data.introduction.title}</span>}
 			>
 				<div className="space-y-4">
 					{data.introduction.content.map((paragraph) => (
-						<p key={paragraph} className="text-white/80 leading-relaxed">
+						<p key={paragraph} className="leading-relaxed text-white/80">
 							{paragraph}
 						</p>
 					))}
@@ -46,17 +44,12 @@ export function GrammarModule({ data }: { data: GrammarModuleData }) {
 			{data.sections.map((section) => (
 				<div key={section.id} className="space-y-6">
 					<div>
-						<h2 className="font-bold font-serif text-2xl text-gold">
-							{section.title}
-						</h2>
+						<h2 className="font-serif text-2xl font-bold text-gold">{section.title}</h2>
 						<p className="mt-1 text-white/60">{section.description}</p>
 					</div>
 
 					{Object.keys(section.words).length > 0 && (
-						<WordGrid
-							data={section.words}
-							titleClassName={GRAMMAR_TYPE_COLORS[section.colorKey]}
-						/>
+						<WordGrid data={section.words} titleClassName={GRAMMAR_TYPE_COLORS[section.colorKey]} />
 					)}
 
 					{section.examples.length > 0 && (

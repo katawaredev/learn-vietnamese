@@ -24,7 +24,7 @@ export function Popover({
 			<BasePopover.Trigger
 				disabled={disabled}
 				className={twMerge(
-					"rounded-full p-1 text-gold transition-colors hover:text-warm-cream focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-burgundy-dark disabled:cursor-not-allowed disabled:opacity-50",
+					"rounded-full p-1 text-gold transition-colors hover:text-warm-cream focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-burgundy-dark focus:outline-none disabled:cursor-not-allowed disabled:opacity-50",
 					buttonClassName,
 				)}
 			>
@@ -39,8 +39,8 @@ export function Popover({
 							className,
 						)}
 					>
-						<BasePopover.Arrow className="data-[side=bottom]:-top-[6px] data-[side=left]:-right-[13px] data-[side=top]:-bottom-[6px] data-[side=right]:-left-[13px] data-[side=left]:rotate-90 data-[side=right]:-rotate-90 data-[side=top]:rotate-180">
-							<div className="h-3 w-3 rotate-45 rounded-tl-sm border-gold border-t border-l bg-burgundy-dark" />
+						<BasePopover.Arrow className="data-[side=bottom]:-top-[6px] data-[side=left]:-right-[13px] data-[side=left]:rotate-90 data-[side=right]:-left-[13px] data-[side=right]:-rotate-90 data-[side=top]:-bottom-[6px] data-[side=top]:rotate-180">
+							<div className="h-3 w-3 rotate-45 rounded-tl-sm border-t border-l border-gold bg-burgundy-dark" />
 						</BasePopover.Arrow>
 						{children}
 					</BasePopover.Popup>

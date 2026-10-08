@@ -29,7 +29,7 @@ export const SpeakWebButton: FC<SpeakWebButtonProps> = ({
 	className,
 }) => {
 	// Create a mock HTMLAudioElement that controls Web Speech API
-	const getAudio = useCallback(async (): Promise<HTMLAudioElement> => {
+	const getAudio = useCallback((): Promise<HTMLAudioElement> => {
 		const trimmedText = text.trim();
 		if (!trimmedText || !window.speechSynthesis) {
 			throw new Error("Cannot create speech synthesis");
@@ -52,7 +52,7 @@ export const SpeakWebButton: FC<SpeakWebButtonProps> = ({
 				if (this.utterance && window.speechSynthesis.speaking) {
 					// Restart with new rate
 					window.speechSynthesis.cancel();
-					this.play?.();
+					void this.play();
 				}
 			},
 
@@ -72,7 +72,7 @@ export const SpeakWebButton: FC<SpeakWebButtonProps> = ({
 				return true;
 			},
 
-			async play() {
+			play() {
 				if (this.utterance) {
 					// If we already have an utterance, just restart it
 					window.speechSynthesis.cancel();
@@ -95,6 +95,7 @@ export const SpeakWebButton: FC<SpeakWebButtonProps> = ({
 
 				this.utterance = utterance;
 				window.speechSynthesis.speak(utterance);
+				return Promise.resolve();
 			},
 
 			pause() {
@@ -105,13 +106,11 @@ export const SpeakWebButton: FC<SpeakWebButtonProps> = ({
 			},
 		};
 
-		return mockAudio as unknown as HTMLAudioElement;
+		return Promise.resolve(mockAudio as unknown as HTMLAudioElement);
 	}, [text, lang, voice]);
 
 	const canPlay = useCallback(() => {
-		return (
-			!!text.trim() && typeof window !== "undefined" && !!window.speechSynthesis
-		);
+		return !!text.trim() && typeof window !== "undefined" && !!window.speechSynthesis;
 	}, [text]);
 
 	return (

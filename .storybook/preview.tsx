@@ -13,7 +13,7 @@ import { STTProvider } from "../src/providers/stt-provider";
 import { UIProvider } from "../src/providers/ui-provider";
 import "../src/styles.css";
 
-const withRouter: Decorator = (Story) => {
+const withRouter: Decorator = function RouterDecorator(Story) {
 	const router = useMemo(() => {
 		const rootRoute = createRootRoute({ component: () => <Story /> });
 		return createRouter({

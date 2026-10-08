@@ -10,7 +10,7 @@ import { StateIndicator } from "./StateIndicator";
 export type RecordingState = "idle" | "recording" | "processing";
 
 const buttonVariants = cva(
-	"relative flex shrink-0 select-none items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out",
+	"relative flex shrink-0 items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out select-none",
 	{
 		variants: {
 			size: {
@@ -55,8 +55,7 @@ const buttonVariants = cva(
 	},
 );
 
-export interface ListenBaseButtonProps
-	extends Pick<ListenButtonProps, "className" | "size"> {
+export interface ListenBaseButtonProps extends Pick<ListenButtonProps, "className" | "size"> {
 	state: RecordingState;
 	onStartRecording: () => void;
 	onStopRecording: () => void;
@@ -89,10 +88,7 @@ export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 	return (
 		<button
 			type="button"
-			className={twMerge(
-				buttonVariants({ size, state, disabled: isDisabled }),
-				className,
-			)}
+			className={twMerge(buttonVariants({ size, state, disabled: isDisabled }), className)}
 			onClick={handleClick}
 			disabled={isDisabled}
 			aria-label={state === "recording" ? "Stop recording" : "Start recording"}
@@ -100,23 +96,13 @@ export const ListenBaseButton: FC<ListenBaseButtonProps> = ({
 			{/* Microphone Icon */}
 			<Mic
 				className={`${
-					size === "small"
-						? "h-5 w-5"
-						: size === "medium"
-							? "h-7 w-7"
-							: "h-9 w-9"
+					size === "small" ? "h-5 w-5" : size === "medium" ? "h-7 w-7" : "h-9 w-9"
 				} text-red-400`}
 			/>
 
 			{/* State indicators */}
 			<StateIndicator
-				state={
-					state === "recording"
-						? "active"
-						: state === "processing"
-							? "processing"
-							: null
-				}
+				state={state === "recording" ? "active" : state === "processing" ? "processing" : null}
 				loadingProgress={loadingProgress}
 				theme="stone"
 			/>
@@ -131,20 +117,13 @@ export const ListenButtonLoading = ({
 	return (
 		<button
 			type="button"
-			className={twMerge(
-				buttonVariants({ size, state: "idle", disabled: true }),
-				className,
-			)}
+			className={twMerge(buttonVariants({ size, state: "idle", disabled: true }), className)}
 			disabled
 			aria-label="Loading"
 		>
 			<Mic
 				className={`${
-					size === "small"
-						? "h-5 w-5"
-						: size === "medium"
-							? "h-7 w-7"
-							: "h-9 w-9"
+					size === "small" ? "h-5 w-5" : size === "medium" ? "h-7 w-7" : "h-9 w-9"
 				} text-red-400`}
 			/>
 

@@ -30,18 +30,16 @@ function DictationComponent() {
 			<Header />
 			<main className="flex flex-1 flex-col px-4 pb-8">
 				<div className="mx-auto w-full max-w-6xl">
-					<h1 className="mb-8 font-bold font-serif text-4xl text-warm-cream">
-						Level: A1
-					</h1>
+					<h1 className="mb-8 font-serif text-4xl font-bold text-warm-cream">Level: A1</h1>
 
 					<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 						{entries.map((entry) => (
 							<Card key={entry.slug} className="flex flex-col space-y-4">
 								<div className="flex-1">
-									<h3 className="mb-2 font-semibold font-serif text-warm-cream text-xl">
+									<h3 className="mb-2 font-serif text-xl font-semibold text-warm-cream">
 										{entry.title.en}
 									</h3>
-									<p className="text-gold/80 text-sm">{entry.title.vn}</p>
+									<p className="text-sm text-gold/80">{entry.title.vn}</p>
 								</div>
 								<div className="grid grid-cols-2 gap-2">
 									<Link

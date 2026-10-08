@@ -54,13 +54,12 @@ export const Multiline: Story = {
 		children: (
 			<>
 				<p>
-					This page mixes Northern and Southern dialect on purpose — the goal is
-					tonal pronunciation practice, not vocabulary acquisition.
+					This page mixes Northern and Southern dialect on purpose — the goal is tonal pronunciation
+					practice, not vocabulary acquisition.
 				</p>
 				<p className="mt-2">
-					If you're trying to memorize words from this list, switch to the main
-					Tones lesson instead. The icon should stay vertically centered against
-					the full block of text.
+					If you're trying to memorize words from this list, switch to the main Tones lesson
+					instead. The icon should stay vertically centered against the full block of text.
 				</p>
 			</>
 		),
@@ -72,9 +71,9 @@ export const RichContent: Story = {
 		variant: "note",
 		children: (
 			<>
-				<strong className="text-gold">Note:</strong> The example syllables below
-				are for <em>tonal pronunciation practice</em>, not vocabulary. Some
-				entries are rare or archaic — that's intentional.
+				<strong className="text-gold">Note:</strong> The example syllables below are for{" "}
+				<em>tonal pronunciation practice</em>, not vocabulary. Some entries are rare or archaic —
+				that's intentional.
 			</>
 		),
 	},

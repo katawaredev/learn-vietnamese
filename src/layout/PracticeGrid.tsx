@@ -20,10 +20,7 @@ interface PracticeData<T> {
 interface PracticeGridProps<T> {
 	data: PracticeData<T>;
 	getSubtitle?: (item: PracticeItem<T>) => string;
-	getDetails?: (
-		name: string,
-		item: PracticeItem<T>,
-	) => Record<string, ReactNode> | undefined;
+	getDetails?: (name: string, item: PracticeItem<T>) => Record<string, ReactNode> | undefined;
 	size?: "small" | "medium" | "large";
 	titleClassName?: string;
 }
@@ -35,8 +32,7 @@ export function PracticeGrid<T>({
 	size = "small",
 	titleClassName: titleClassNameProp,
 }: PracticeGridProps<T>) {
-	const { transcriptions, newTranscriptions, handleTranscription } =
-		useTranscriptionTracking();
+	const { transcriptions, newTranscriptions, handleTranscription } = useTranscriptionTracking();
 
 	const gridClassName = {
 		small: "grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4",

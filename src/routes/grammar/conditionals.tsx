@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Disclosure } from "~/components/Disclosure";
 import dataFile from "~/data/grammar/conditionals.json";
 import type { GrammarModuleData } from "./-GrammarModule";
-import { type Example, GrammarPracticeGrid } from "./-GrammarPracticeGrid";
+import { GrammarPracticeGrid } from "./-GrammarPracticeGrid";
 import { GRAMMAR_TYPE_COLORS } from "./-grammar-colors";
 import { Layout } from "./-layout";
 import { WordGrid } from "./-WordGrid";
@@ -19,14 +19,11 @@ function ConditionalsComponent() {
 			<div className="space-y-8">
 				<Disclosure
 					defaultOpen
-					title={
-						<span className="font-bold text-lg">{data.introduction.title}</span>
-					}
+					title={<span className="text-lg font-bold">{data.introduction.title}</span>}
 				>
 					<div className="space-y-4">
-						<p className="text-white/80 leading-relaxed">
-							Vietnamese conditionals follow a simple pattern where both markers
-							are optional:
+						<p className="leading-relaxed text-white/80">
+							Vietnamese conditionals follow a simple pattern where both markers are optional:
 						</p>
 
 						{/* Conditional formula */}
@@ -42,7 +39,7 @@ function ConditionalsComponent() {
 						</div>
 
 						{data.introduction.content.map((paragraph) => (
-							<p key={paragraph} className="text-white/80 leading-relaxed">
+							<p key={paragraph} className="leading-relaxed text-white/80">
 								{paragraph}
 							</p>
 						))}
@@ -52,9 +49,7 @@ function ConditionalsComponent() {
 				{data.sections.map((section) => (
 					<div key={section.id} className="space-y-6">
 						<div>
-							<h2 className="font-bold font-serif text-2xl text-gold">
-								{section.title}
-							</h2>
+							<h2 className="font-serif text-2xl font-bold text-gold">{section.title}</h2>
 							<p className="mt-1 text-white/60">{section.description}</p>
 						</div>
 
@@ -67,7 +62,7 @@ function ConditionalsComponent() {
 
 						{section.examples.length > 0 && (
 							<Disclosure plain title="Examples" defaultOpen>
-								<GrammarPracticeGrid examples={section.examples as Example[]} />
+								<GrammarPracticeGrid examples={section.examples} />
 							</Disclosure>
 						)}
 					</div>

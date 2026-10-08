@@ -44,21 +44,17 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 	};
 
 	return (
-		<Dialog.Root
-			open={isOpen}
-			onOpenChange={(open) => !open && onClose()}
-			modal={false}
-		>
+		<Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()} modal={false}>
 			<Dialog.Portal>
 				{/* Backdrop */}
-				<Dialog.Backdrop className="data-closed:fade-out-0 data-open:fade-in-0 fixed inset-0 z-50 bg-black/25 transition-opacity duration-300 data-closed:animate-out data-open:animate-in" />
+				<Dialog.Backdrop className="fixed inset-0 z-50 bg-black/25 transition-opacity duration-300 data-closed:animate-out data-closed:fade-out-0 data-open:animate-in data-open:fade-in-0" />
 
 				{/* Drawer */}
-				<Dialog.Popup className="data-closed:slide-out-to-right data-open:slide-in-from-right fixed top-0 right-0 z-50 h-full w-screen max-w-md bg-burgundy-dark shadow-xl transition-transform duration-300 data-closed:animate-out data-open:animate-in">
+				<Dialog.Popup className="fixed top-0 right-0 z-50 h-full w-screen max-w-md bg-burgundy-dark shadow-xl transition-transform duration-300 data-closed:animate-out data-closed:slide-out-to-right data-open:animate-in data-open:slide-in-from-right">
 					<div className="flex h-full flex-col">
 						{/* Header */}
 						<div className="flex items-center justify-between px-6 py-4">
-							<Dialog.Title className="font-semibold font-serif text-gold text-xl">
+							<Dialog.Title className="font-serif text-xl font-semibold text-gold">
 								Settings
 							</Dialog.Title>
 							<Dialog.Close className="rounded-md p-2 text-gold transition-colors hover:bg-gold/10">
@@ -73,7 +69,7 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 							<div className="space-y-8">
 								{/* Vietnamese TTS Section */}
 								<div>
-									<div className="mb-3 font-medium font-serif text-gold text-sm">
+									<div className="mb-3 font-serif text-sm font-medium text-gold">
 										Speech synthesis model (VN):
 									</div>
 									<Select
@@ -90,7 +86,7 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 
 								{/* Vietnamese STT Section */}
 								<div>
-									<div className="mb-3 font-medium font-serif text-gold text-sm">
+									<div className="mb-3 font-serif text-sm font-medium text-gold">
 										Speech recognition model (VN):
 									</div>
 									<Select
@@ -109,7 +105,11 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 							<Button
 								variant="outline"
 								size="medium"
-								onClick={handleReset}
+								onClick={() => {
+									void handleReset().catch((error: unknown) =>
+										console.error("Failed to reset data:", error),
+									);
+								}}
 								className="mt-auto inline-flex w-full items-center justify-center gap-2"
 							>
 								<Trash2 className="h-5 w-5" />
@@ -121,8 +121,7 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
 						<Separator />
 						<div className="px-6 py-4">
 							<p className="font-serif text-sm text-warm-cream/70">
-								Settings are automatically saved and will persist across
-								sessions.
+								Settings are automatically saved and will persist across sessions.
 							</p>
 						</div>
 					</div>

@@ -1,10 +1,5 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import {
-	createRootRoute,
-	HeadContent,
-	Outlet,
-	Scripts,
-} from "@tanstack/react-router";
+import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { LLMProvider } from "~/providers/llm-provider";
 import { STTProvider } from "~/providers/stt-provider";

@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 
-const TOKEN_RE =
-	/(\*\*[^*\n]+\*\*|__[^_\n]+__|~~[^~\n]+~~|\*[^*\n]+\*|`[^`\n]+`)/g;
+const TOKEN_RE = /(\*\*[^*\n]+\*\*|__[^_\n]+__|~~[^~\n]+~~|\*[^*\n]+\*|`[^`\n]+`)/g;
 
 interface MarkdownProps {
 	text: string;

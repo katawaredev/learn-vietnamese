@@ -64,13 +64,13 @@ function ClassifiersComponent() {
 		<Layout>
 			<Disclosure
 				defaultOpen
-				title={<span className="font-bold text-lg">What Are Classifiers?</span>}
+				title={<span className="text-lg font-bold">What Are Classifiers?</span>}
 			>
 				<div className="space-y-4">
 					<p>
-						Vietnamese uses <strong className="text-gold">classifiers</strong>{" "}
-						(từ loại)—words that categorize nouns based on their properties.
-						They appear between numbers/quantifiers and nouns.
+						Vietnamese uses <strong className="text-gold">classifiers</strong> (từ loại)—words that
+						categorize nouns based on their properties. They appear between numbers/quantifiers and
+						nouns.
 					</p>
 
 					<div className="rounded-lg border border-white/10 bg-white/5 p-4">
@@ -78,42 +78,38 @@ function ClassifiersComponent() {
 						<p className="font-mono">[Number] + [Classifier] + [Noun]</p>
 						<p className="mt-2 text-sm text-white/70">
 							Example: <span className="text-warm-cream">hai</span>{" "}
-							<span className="text-gold">con</span>{" "}
-							<span className="text-warm-cream">mèo</span> = two{" "}
-							<span className="italic">[animal classifier]</span> cats
+							<span className="text-gold">con</span> <span className="text-warm-cream">mèo</span> =
+							two <span className="italic">[animal classifier]</span> cats
 						</p>
 					</div>
 
 					<ul className="mt-2 ml-6 list-disc space-y-2">
 						<li>
-							<strong>When classifiers are REQUIRED:</strong> With numbers,
-							quantifiers (mỗi, mấy), or demonstratives (này, đó). You must say
-							"hai con mèo" (two cats), "con mèo này" (this cat).
+							<strong>When classifiers are REQUIRED:</strong> With numbers, quantifiers (mỗi, mấy),
+							or demonstratives (này, đó). You must say "hai con mèo" (two cats), "con mèo này"
+							(this cat).
 						</li>
 						<li>
-							<strong>When classifiers are OPTIONAL:</strong> In general
-							statements without counting or pointing. "Tôi thích chó" (I like
-							dogs [in general]) vs "Tôi thích con chó này" (I like this dog).
+							<strong>When classifiers are OPTIONAL:</strong> In general statements without counting
+							or pointing. "Tôi thích chó" (I like dogs [in general]) vs "Tôi thích con chó này" (I
+							like this dog).
 						</li>
 						<li>
-							<strong>Each classifier has meaning:</strong> "Con" suggests
-							animacy or motion, "cái" suggests inanimate objects, "người"
-							specifies people.
+							<strong>Each classifier has meaning:</strong> "Con" suggests animacy or motion, "cái"
+							suggests inanimate objects, "người" specifies people.
 						</li>
 						<li>
-							<strong>Some nouns work with multiple classifiers:</strong> The
-							choice changes the nuance. "Con dao" (a knife in use/active) vs
-							"cái dao" (a knife as an object).
+							<strong>Some nouns work with multiple classifiers:</strong> The choice changes the
+							nuance. "Con dao" (a knife in use/active) vs "cái dao" (a knife as an object).
 						</li>
 						<li>
-							<strong>Classifiers reflect properties:</strong> Shape (flat,
-							round, long), function (vehicles, books), or arrangement (pairs,
-							sets).
+							<strong>Classifiers reflect properties:</strong> Shape (flat, round, long), function
+							(vehicles, books), or arrangement (pairs, sets).
 						</li>
 
 						<li>
-							<strong>About 200 classifiers exist:</strong> But only 20-30 are
-							used regularly in daily conversation.
+							<strong>About 200 classifiers exist:</strong> But only 20-30 are used regularly in
+							daily conversation.
 						</li>
 					</ul>
 
@@ -133,12 +129,10 @@ function ClassifiersComponent() {
 					.map(([priority, data]) => (
 						<div key={priority}>
 							<div className="mb-4">
-								<h2 className="font-bold font-serif text-2xl text-gold">
+								<h2 className="font-serif text-2xl font-bold text-gold">
 									{priorityLabels[Number(priority)].title}
 								</h2>
-								<p className="text-sm text-white/60">
-									{priorityLabels[Number(priority)].desc}
-								</p>
+								<p className="text-sm text-white/60">{priorityLabels[Number(priority)].desc}</p>
 							</div>
 							<PracticeGrid<ClassifierData>
 								data={data}
@@ -147,18 +141,12 @@ function ClassifiersComponent() {
 								getDetails={(name, item) => {
 									const details: Record<string, React.ReactNode> = {
 										Classifier: name,
-										Meaning: (
-											<span className="font-bold text-gold">
-												{item.meaning}
-											</span>
-										),
+										Meaning: <span className="font-bold text-gold">{item.meaning}</span>,
 										"Used for": item.usage,
 										Examples: item.examples,
 									};
 									if (item.notes) {
-										details.Notes = (
-											<span className="text-gold/80 italic">{item.notes}</span>
-										);
+										details.Notes = <span className="text-gold/80 italic">{item.notes}</span>;
 									}
 									return details;
 								}}

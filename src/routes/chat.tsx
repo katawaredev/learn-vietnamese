@@ -1,18 +1,10 @@
+import type { LLMResponse } from "~/workers/llm-worker";
 import { createFileRoute } from "@tanstack/react-router";
 import { Bot, RefreshCw } from "lucide-react";
-import {
-	type KeyboardEvent,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import { type KeyboardEvent, useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "~/components/Button";
 import { Popover } from "~/components/Popover";
-import {
-	type SendButtonState,
-	SendMessageButton,
-} from "~/components/SendMessageButton";
+import { type SendButtonState, SendMessageButton } from "~/components/SendMessageButton";
 import { AISettingsDrawer } from "~/layout/AISettingsDrawer";
 import Header from "~/layout/Header";
 import { useLLM } from "~/providers/llm-provider";
@@ -104,10 +96,9 @@ function ChatRoute() {
 			worker.current = sharedWorker;
 		} else {
 			// First mount: create new worker
-			worker.current = new Worker(
-				new URL("../workers/llm-worker.ts", import.meta.url),
-				{ type: "module" },
-			);
+			worker.current = new Worker(new URL("../workers/llm-worker.ts", import.meta.url), {
+				type: "module",
+			});
 			sharedWorker = worker.current;
 		}
 
@@ -119,7 +110,7 @@ function ChatRoute() {
 			setProgressText("Worker initialization failed");
 		};
 
-		worker.current.onmessage = (event) => {
+		worker.current.onmessage = (event: MessageEvent<LLMResponse>) => {
 			const message = event.data;
 
 			switch (message.status) {
@@ -355,12 +346,8 @@ function ChatRoute() {
 							<div className="text-center">
 								{modelStatus === "error" ? (
 									<>
-										<p className="mb-2 font-serif text-red-400">
-											Error loading model
-										</p>
-										<p className="font-serif text-sm text-warm-cream/70">
-											{progressText}
-										</p>
+										<p className="mb-2 font-serif text-red-400">Error loading model</p>
+										<p className="font-serif text-sm text-warm-cream/70">{progressText}</p>
 									</>
 								) : (
 									<p className="font-serif text-warm-cream/50">
@@ -383,8 +370,7 @@ function ChatRoute() {
 
 					{messages.map((msg) => {
 						// Determine what to display
-						const isActivelyThinking =
-							msg.role === "assistant" && msg.isThinking;
+						const isActivelyThinking = msg.role === "assistant" && msg.isThinking;
 						const hasCompletedThinking =
 							msg.role === "assistant" && msg.thinking && !msg.isThinking;
 						const displayContent = isActivelyThinking ? "" : msg.content;
@@ -418,11 +404,11 @@ function ChatRoute() {
 											<div className="space-y-2">
 												<div className="flex items-center gap-2">
 													<Bot className="h-4 w-4 text-gold" />
-													<h3 className="font-semibold font-serif text-gold text-sm">
+													<h3 className="font-serif text-sm font-semibold text-gold">
 														Reasoning Process
 													</h3>
 												</div>
-												<p className="whitespace-pre-wrap font-serif text-sm text-warm-cream leading-relaxed">
+												<p className="font-serif text-sm leading-relaxed whitespace-pre-wrap text-warm-cream">
 													{msg.thinking || "Processing..."}
 												</p>
 											</div>
@@ -432,27 +418,25 @@ function ChatRoute() {
 											{hasCompletedThinking && (
 												<div className="mb-2 flex justify-start">
 													<Popover
-														trigger={
-															<Bot className="h-4 w-4 text-gold/70 hover:text-gold" />
-														}
+														trigger={<Bot className="h-4 w-4 text-gold/70 hover:text-gold" />}
 														className="max-w-md"
 														buttonClassName="rounded-md p-1 hover:bg-gold/10"
 													>
 														<div className="space-y-2">
 															<div className="flex items-center gap-2">
 																<Bot className="h-4 w-4 text-gold" />
-																<h3 className="font-semibold font-serif text-gold text-sm">
+																<h3 className="font-serif text-sm font-semibold text-gold">
 																	Reasoning Process
 																</h3>
 															</div>
-															<p className="whitespace-pre-wrap font-serif text-sm text-warm-cream leading-relaxed">
+															<p className="font-serif text-sm leading-relaxed whitespace-pre-wrap text-warm-cream">
 																{msg.thinking}
 															</p>
 														</div>
 													</Popover>
 												</div>
 											)}
-											<p className="whitespace-pre-wrap font-serif text-base leading-relaxed">
+											<p className="font-serif text-base leading-relaxed whitespace-pre-wrap">
 												{displayContent}
 											</p>
 										</>

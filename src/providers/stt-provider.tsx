@@ -1,10 +1,4 @@
-import {
-	createContext,
-	type ReactNode,
-	useContext,
-	useEffect,
-	useState,
-} from "react";
+import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import { isLowEndDevice } from "~/utils/device";
 import type { ModelDType } from "~/workers/worker-types";
 import type { Language } from "./tts-provider";
@@ -180,16 +174,13 @@ const STORAGE_KEY_EN = "stt-en-model";
 function getInitialSTTModel(language: Language): STTModelOption {
 	const storageKey = language === "vn" ? STORAGE_KEY_VN : STORAGE_KEY_EN;
 	const savedId =
-		typeof localStorage !== "undefined" &&
-		typeof localStorage.getItem === "function"
+		typeof localStorage !== "undefined" && typeof localStorage.getItem === "function"
 			? localStorage.getItem(storageKey)
 			: null;
 
 	if (savedId) {
 		const staticModels =
-			language === "vn"
-				? [...PHOWHISPER_MODELS, ...WHISPER_MODELS_VN]
-				: [...WHISPER_MODELS_EN];
+			language === "vn" ? [...PHOWHISPER_MODELS, ...WHISPER_MODELS_VN] : [...WHISPER_MODELS_EN];
 		const saved = staticModels.find((m) => m.id === savedId);
 		if (saved) return saved;
 		const webSpeech = getWebSpeechSTTOption(language);
@@ -205,63 +196,53 @@ function getInitialSTTModel(language: Language): STTModelOption {
 }
 
 export function STTProvider({ children }: { children: ReactNode }) {
-	const [selectedModelVN, setSelectedModelVNState] = useState<STTModelOption>(
-		() => getInitialSTTModel("vn"),
+	const [selectedModelVN, setSelectedModelVNState] = useState<STTModelOption>(() =>
+		getInitialSTTModel("vn"),
 	);
-	const [selectedModelEN, setSelectedModelENState] = useState<STTModelOption>(
-		() => getInitialSTTModel("en"),
+	const [selectedModelEN, setSelectedModelENState] = useState<STTModelOption>(() =>
+		getInitialSTTModel("en"),
 	);
-	const [webSpeechSTTVN, setWebSpeechSTTVN] = useState<STTModelOption | null>(
-		null,
-	);
-	const [webSpeechSTTEN, setWebSpeechSTTEN] = useState<STTModelOption | null>(
-		null,
-	);
+	const [webSpeechSTTVN, setWebSpeechSTTVN] = useState<STTModelOption | null>(null);
+	const [webSpeechSTTEN, setWebSpeechSTTEN] = useState<STTModelOption | null>(null);
 
 	// Check Web Speech API availability
 	useEffect(() => {
 		const webSpeechOptionVN = getWebSpeechSTTOption("vn");
 		const webSpeechOptionEN = getWebSpeechSTTOption("en");
+		// oxlint-disable-next-line react/react-compiler -- Discover browser-only speech support after SSR hydration.
 		setWebSpeechSTTVN(webSpeechOptionVN);
 		setWebSpeechSTTEN(webSpeechOptionEN);
 	}, []);
 
-	const getSelectedModel = (language: Language): STTModelOption => {
-		return language === "vn" ? selectedModelVN : selectedModelEN;
-	};
+	const value = useMemo(() => {
+		const getSelectedModel = (language: Language): STTModelOption => {
+			return language === "vn" ? selectedModelVN : selectedModelEN;
+		};
 
-	const setSelectedModel = (language: Language, model: STTModelOption) => {
-		if (language === "vn") {
-			setSelectedModelVNState(model);
-			localStorage.setItem(STORAGE_KEY_VN, model.id);
-		} else {
-			setSelectedModelENState(model);
-			localStorage.setItem(STORAGE_KEY_EN, model.id);
-		}
-	};
+		const setSelectedModel = (language: Language, model: STTModelOption) => {
+			if (language === "vn") {
+				setSelectedModelVNState(model);
+				localStorage.setItem(STORAGE_KEY_VN, model.id);
+			} else {
+				setSelectedModelENState(model);
+				localStorage.setItem(STORAGE_KEY_EN, model.id);
+			}
+		};
 
-	const getAvailableModels = (language: Language): STTModelOption[] => {
-		if (language === "vn") {
-			return [
-				...PHOWHISPER_MODELS,
-				...WHISPER_MODELS_VN,
-				...(webSpeechSTTVN ? [webSpeechSTTVN] : []),
-			];
-		}
-		return [...WHISPER_MODELS_EN, ...(webSpeechSTTEN ? [webSpeechSTTEN] : [])];
-	};
+		const getAvailableModels = (language: Language): STTModelOption[] => {
+			if (language === "vn") {
+				return [
+					...PHOWHISPER_MODELS,
+					...WHISPER_MODELS_VN,
+					...(webSpeechSTTVN ? [webSpeechSTTVN] : []),
+				];
+			}
+			return [...WHISPER_MODELS_EN, ...(webSpeechSTTEN ? [webSpeechSTTEN] : [])];
+		};
+		return { getSelectedModel, setSelectedModel, getAvailableModels };
+	}, [selectedModelVN, selectedModelEN, webSpeechSTTVN, webSpeechSTTEN]);
 
-	return (
-		<STTContext.Provider
-			value={{
-				getSelectedModel,
-				setSelectedModel,
-				getAvailableModels,
-			}}
-		>
-			{children}
-		</STTContext.Provider>
-	);
+	return <STTContext.Provider value={value}>{children}</STTContext.Provider>;
 }
 
 export function useSTT() {

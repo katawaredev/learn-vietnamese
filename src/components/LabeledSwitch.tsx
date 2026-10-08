@@ -20,18 +20,11 @@ export function LabeledSwitch({
 	return (
 		<label
 			htmlFor={switchId}
-			className={twMerge(
-				"flex cursor-pointer items-center justify-between gap-4",
-				className,
-			)}
+			className={twMerge("flex cursor-pointer items-center justify-between gap-4", className)}
 		>
 			<div className="flex-1">
-				<div className="font-medium font-serif text-gold text-sm">{label}</div>
-				{description && (
-					<p className="mt-1 font-serif text-warm-cream/60 text-xs">
-						{description}
-					</p>
-				)}
+				<div className="font-serif text-sm font-medium text-gold">{label}</div>
+				{description && <p className="mt-1 font-serif text-xs text-warm-cream/60">{description}</p>}
 			</div>
 			<Switch id={switchId} {...switchProps} />
 		</label>

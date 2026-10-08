@@ -26,9 +26,7 @@ class TTSMMSWorkerPool extends BaseTTSWorkerPool<TTSMMSRequest> {
 		return `${request.modelId}:${request.text}`;
 	}
 
-	protected buildWorkerMessage(
-		request: TTSMMSRequest,
-	): Record<string, unknown> {
+	protected buildWorkerMessage(request: TTSMMSRequest): Record<string, unknown> {
 		return {
 			type: "predict",
 			text: request.text,
@@ -43,11 +41,7 @@ class TTSMMSWorkerPool extends BaseTTSWorkerPool<TTSMMSRequest> {
 		return request.modelId !== VN_MMS_MODEL;
 	}
 
-	protected onAudioGenerated(
-		_cacheKey: string,
-		blob: Blob,
-		request: TTSMMSRequest,
-	): void {
+	protected onAudioGenerated(_cacheKey: string, blob: Blob, request: TTSMMSRequest): void {
 		if (request.modelId !== VN_MMS_MODEL) return;
 		saveVoiceAudio(request.text, request.modelId, blob).catch(() => {});
 	}

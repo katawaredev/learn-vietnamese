@@ -1,9 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChunkButton } from "./-ChunkButton";
-import type {
-	ArrangeExercise as ArrangeExerciseData,
-	Chunk,
-} from "./-exercise-generator";
+import type { ArrangeExercise as ArrangeExerciseData, Chunk } from "./-exercise-generator";
 
 interface ArrangeExerciseProps {
 	exercise: ArrangeExerciseData;
@@ -14,12 +11,8 @@ export function ArrangeExercise({ exercise, onHintRef }: ArrangeExerciseProps) {
 	const [pool, setPool] = useState<Chunk[]>(() => [...exercise.chunks]);
 	const [placed, setPlaced] = useState<Chunk[]>([]);
 	const [result, setResult] = useState<"correct" | "wrong" | null>(null);
-	const [revealedDistractors, setRevealedDistractors] = useState<Set<string>>(
-		() => new Set(),
-	);
-	const [revealedPositions, setRevealedPositions] = useState<
-		Map<number, string>
-	>(() => new Map());
+	const [revealedDistractors, setRevealedDistractors] = useState<Set<string>>(() => new Set());
+	const [revealedPositions, setRevealedPositions] = useState<Map<number, string>>(() => new Map());
 	const checkedRef = useRef(false);
 
 	const correctSlotCount = exercise.correctOrder.length;
@@ -31,10 +24,7 @@ export function ArrangeExercise({ exercise, onHintRef }: ArrangeExerciseProps) {
 			(id) => !revealedDistractors.has(id),
 		);
 		if (unrevealedDistractors.length > 0) {
-			const id =
-				unrevealedDistractors[
-					Math.floor(Math.random() * unrevealedDistractors.length)
-				];
+			const id = unrevealedDistractors[Math.floor(Math.random() * unrevealedDistractors.length)];
 			setRevealedDistractors((prev) => new Set([...prev, id]));
 			// Remove from placed if it was placed
 			setPlaced((prev) => {
@@ -51,9 +41,7 @@ export function ArrangeExercise({ exercise, onHintRef }: ArrangeExerciseProps) {
 		// Priority 2: Reveal a correct position
 		for (let i = 0; i < exercise.correctOrder.length; i++) {
 			if (!revealedPositions.has(i)) {
-				setRevealedPositions(
-					(prev) => new Map([...prev, [i, exercise.correctOrder[i]]]),
-				);
+				setRevealedPositions((prev) => new Map([...prev, [i, exercise.correctOrder[i]]]));
 				return;
 			}
 		}
@@ -94,21 +82,18 @@ export function ArrangeExercise({ exercise, onHintRef }: ArrangeExerciseProps) {
 	};
 
 	const getChunkState = (chunk: Chunk) => {
-		if (revealedDistractors.has(chunk.id))
-			return "distractor-revealed" as const;
+		if (revealedDistractors.has(chunk.id)) return "distractor-revealed" as const;
 		return "available" as const;
 	};
 
 	return (
-		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-8 duration-500">
+		<div className="flex animate-in flex-col items-center space-y-8 duration-500 fade-in slide-in-from-right-96">
 			{/* English prompt */}
-			<h2 className="text-center font-bold text-5xl">{exercise.english}</h2>
+			<h2 className="text-center text-5xl font-bold">{exercise.english}</h2>
 
 			{/* Distractor warning */}
 			{exercise.hasDistractors && (
-				<p className="text-sm text-white/40">
-					&#9888; Not all words belong in this sentence
-				</p>
+				<p className="text-sm text-white/40">&#9888; Not all words belong in this sentence</p>
 			)}
 
 			{/* Answer zone */}
@@ -132,25 +117,23 @@ export function ArrangeExercise({ exercise, onHintRef }: ArrangeExerciseProps) {
 					/>
 				))}
 				{/* Empty slot placeholders */}
-				{Array.from({ length: correctSlotCount - placed.length }).map(
-					(_, i) => {
-						const posIndex = placed.length + i;
-						const hintText = revealedPositions.get(posIndex);
-						return (
-							<div
-								// biome-ignore lint/suspicious/noArrayIndexKey: positional placeholders
-								key={`empty-${i}`}
-								className="flex h-[60px] w-[60px] items-center justify-center rounded-xl border-2 border-white/15 border-dashed"
-							>
-								{hintText && (
-									<span className="fade-in animate-in text-white/40 text-xs duration-200">
-										{hintText}
-									</span>
-								)}
-							</div>
-						);
-					},
-				)}
+				{Array.from({ length: correctSlotCount - placed.length }).map((_, i) => {
+					const posIndex = placed.length + i;
+					const hintText = revealedPositions.get(posIndex);
+					return (
+						<div
+							// oxlint-disable-next-line react/no-array-index-key -- positional placeholders
+							key={`empty-${i}`}
+							className="flex h-[60px] w-[60px] items-center justify-center rounded-xl border-2 border-dashed border-white/15"
+						>
+							{hintText && (
+								<span className="animate-in text-xs text-white/40 duration-200 fade-in">
+									{hintText}
+								</span>
+							)}
+						</div>
+					);
+				})}
 			</div>
 
 			{/* Result indicator */}
@@ -159,9 +142,7 @@ export function ArrangeExercise({ exercise, onHintRef }: ArrangeExerciseProps) {
 					{result === "correct" ? (
 						<span className="text-green-400">Correct!</span>
 					) : (
-						<span className="text-red-400">
-							Try again — tap placed words to return them
-						</span>
+						<span className="text-red-400">Try again — tap placed words to return them</span>
 					)}
 				</div>
 			)}
@@ -177,9 +158,7 @@ export function ArrangeExercise({ exercise, onHintRef }: ArrangeExerciseProps) {
 							meaning={chunk.meaning}
 							state={getChunkState(chunk)}
 							onClick={() =>
-								revealedDistractors.has(chunk.id)
-									? undefined
-									: handleTapToPlace(chunk)
+								revealedDistractors.has(chunk.id) ? undefined : handleTapToPlace(chunk)
 							}
 						/>
 					))}

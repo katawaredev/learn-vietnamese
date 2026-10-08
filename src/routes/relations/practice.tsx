@@ -4,10 +4,7 @@ import { useState } from "react";
 import { Button, LinkButton } from "~/components/Button";
 import { ListenButton } from "~/components/ListenButton";
 import { PracticeModeToggle } from "~/components/PracticeModeToggle";
-import {
-	ResultTextIndicator,
-	ResultVoiceIndicator,
-} from "~/components/ResultIndicator";
+import { ResultTextIndicator, ResultVoiceIndicator } from "~/components/ResultIndicator";
 import { WordInput } from "~/components/WordInput";
 import practiceData from "~/data/relations/practice.json";
 import { getRandomElement, pickOne } from "~/utils/random";
@@ -36,22 +33,20 @@ interface PracticeItem {
 	display: "sound" | "text";
 }
 
-const getRandomPracticeItem = createServerFn({ method: "GET" }).handler(
-	async (): Promise<PracticeItem> => {
-		const item = getRandomElement(practiceData);
-		const display = pickOne("sound", "text");
-		return { ...item, display };
-	},
-);
+const getRandomPracticeItem = createServerFn({ method: "GET" }).handler((): PracticeItem => {
+	const item = getRandomElement(practiceData);
+	const display = pickOne("sound", "text");
+	return { ...item, display };
+});
 
 export const Route = createFileRoute("/relations/practice")({
 	component: PracticeComponent,
-	loader: () => getRandomPracticeItem(),
 	ssr: false,
+	loader: () => getRandomPracticeItem(),
 });
 
 function PracticeComponent() {
-	const initialItem = Route.useLoaderData() as PracticeItem;
+	const initialItem = Route.useLoaderData();
 	const [item, setItem] = useState(initialItem);
 	const [hintParts, setHintParts] = useState<string[]>([]);
 	const [mode, setMode] = useState<string[]>(["random"]);
@@ -68,9 +63,7 @@ function PracticeComponent() {
 
 	const handleHint = () => {
 		const currentHintParts =
-			hintParts.length > 0
-				? hintParts
-				: item.expected.map((exp) => " ".repeat(exp.length));
+			hintParts.length > 0 ? hintParts : item.expected.map((exp) => " ".repeat(exp.length));
 
 		const partsWithUnrevealed = currentHintParts
 			.map((hintPart, idx) => ({
@@ -99,9 +92,7 @@ function PracticeComponent() {
 	const inputMethod = getInputMethod(userPreference, item.display);
 	const hintsExhausted =
 		hintParts.length > 0 &&
-		hintParts.every(
-			(h, i) => h.replace(/\s/g, "").length === item.expected[i].length,
-		);
+		hintParts.every((h, i) => h.replace(/\s/g, "").length === item.expected[i].length);
 	const showHintButton = !hintsExhausted;
 
 	return (
@@ -122,7 +113,15 @@ function PracticeComponent() {
 					) : (
 						<div />
 					)}
-					<Button variant="outline" size="medium" onClick={handleNext}>
+					<Button
+						variant="outline"
+						size="medium"
+						onClick={() => {
+							void handleNext().catch((error: unknown) =>
+								console.error("Exercise action failed:", error),
+							);
+						}}
+					>
 						Next
 					</Button>
 				</div>
@@ -159,25 +158,24 @@ function Practice({
 			: expected.map((exp) => " ".repeat(exp.length));
 
 	return (
-		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500">
+		<div className="flex animate-in flex-col items-center space-y-20 duration-500 fade-in slide-in-from-right-96">
 			<div className="space-y-6 text-center text-xl">{scenario}</div>
 			<div className="flex flex-col items-center space-y-4">
 				<div className="flex items-center gap-4 text-3xl">
 					{expected.map((exp, i) => (
-						// biome-ignore lint/suspicious/noArrayIndexKey: index is stable for this use case
+						// oxlint-disable-next-line react/no-array-index-key -- index is stable for this use case
 						<span key={i} className="flex items-center gap-4">
 							{inputMethod === "type" ? (
 								<TypeInput
 									expectedText={exp}
 									textHint={hintParts[i]}
+									// oxlint-disable-next-line jsx-a11y/no-autofocus -- Focus the active exercise input.
 									autoFocus={!i}
 								/>
 							) : (
 								<SpeakInput expectedText={exp} textHint={hintParts[i]} />
 							)}
-							{i < expected.length - 1 && (
-								<span className="text-2xl opacity-50">→</span>
-							)}
+							{i < expected.length - 1 && <span className="text-2xl opacity-50">→</span>}
 						</span>
 					))}
 				</div>
@@ -205,6 +203,7 @@ function TypeInput({
 				text={expectedText}
 				hint={textHint}
 				onChange={setUserInput}
+				// oxlint-disable-next-line jsx-a11y/no-autofocus -- Focus the active exercise input.
 				autoFocus={autoFocus}
 			/>
 			{isFilled && (
@@ -221,13 +220,7 @@ function TypeInput({
 	);
 }
 
-function SpeakInput({
-	expectedText,
-	textHint,
-}: {
-	expectedText: string;
-	textHint: string;
-}) {
+function SpeakInput({ expectedText, textHint }: { expectedText: string; textHint: string }) {
 	const [userTranscription, setUserTranscription] = useState("");
 
 	const handleTranscription = (text: string | null) => {
@@ -252,9 +245,7 @@ function SpeakInput({
 					/>
 				</span>
 			)}
-			<span className="mt-1 h-1 font-mono text-xs tracking-widest opacity-60">
-				{textHint}
-			</span>
+			<span className="mt-1 h-1 font-mono text-xs tracking-widest opacity-60">{textHint}</span>
 		</span>
 	);
 }

@@ -8,7 +8,7 @@ import { StateIndicator } from "./StateIndicator";
 export type SendButtonState = "idle" | "sending" | "loading" | "generating";
 
 const buttonVariants = cva(
-	"relative flex shrink-0 transform cursor-pointer select-none items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-xl active:scale-95",
+	"relative flex shrink-0 transform cursor-pointer items-center justify-center rounded-full border-0 shadow-lg transition-all duration-200 ease-in-out select-none hover:scale-105 hover:shadow-xl active:scale-95",
 	{
 		variants: {
 			size: {
@@ -58,8 +58,7 @@ export const SendMessageButton: FC<SendMessageButtonProps> = ({
 	};
 
 	const isGenerating = state === "generating";
-	const iconSizeClass =
-		size === "small" ? "h-5 w-5" : size === "medium" ? "h-7 w-7" : "h-9 w-9";
+	const iconSizeClass = size === "small" ? "h-5 w-5" : size === "medium" ? "h-7 w-7" : "h-9 w-9";
 
 	return (
 		<button

@@ -32,7 +32,7 @@ export function validateSlug(slug: string): boolean {
 
 export function getEntry(slug: string): DictationEntry | null {
 	const entry = A1[slug];
-	return entry ? (entry as DictationEntry) : null;
+	return entry ? entry : null;
 }
 
 interface DictationLayoutProps {
@@ -61,7 +61,7 @@ export function DictationLayout({
 
 	const handleNext = () => {
 		if (isLastSentence) {
-			navigate({ to: "/dictation" });
+			void navigate({ to: "/dictation" });
 		} else {
 			onIndexChange(currentIndex + 1);
 		}
@@ -71,10 +71,8 @@ export function DictationLayout({
 		<div className="flex min-h-screen flex-col bg-linear-to-br from-burgundy-dark to-burgundy">
 			<Header>
 				<div className="text-center">
-					<h1 className="font-bold font-serif text-warm-cream text-xl">
-						{entry.title.vn}
-					</h1>
-					<p className="text-gold/80 text-xs">{progress}</p>
+					<h1 className="font-serif text-xl font-bold text-warm-cream">{entry.title.vn}</h1>
+					<p className="text-xs text-gold/80">{progress}</p>
 				</div>
 			</Header>
 			<main className="flex flex-1 flex-col px-4 pb-8">
@@ -83,7 +81,7 @@ export function DictationLayout({
 					<div className="flex flex-1 items-center justify-center">
 						<div
 							key={currentIndex}
-							className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500"
+							className="flex animate-in flex-col items-center space-y-20 duration-500 fade-in slide-in-from-right-96"
 						>
 							<div className="flex min-h-[200px] flex-col items-center justify-center space-y-4">
 								{practiceContent}
@@ -99,9 +97,7 @@ export function DictationLayout({
 									)}
 								</div>
 							</div>
-							<div className="flex flex-col items-center space-y-4">
-								{inputContent}
-							</div>
+							<div className="flex flex-col items-center space-y-4">{inputContent}</div>
 						</div>
 					</div>
 

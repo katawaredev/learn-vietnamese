@@ -4,10 +4,7 @@ import { useState } from "react";
 import { Button, LinkButton } from "~/components/Button";
 import { ListenButton } from "~/components/ListenButton";
 import { PracticeModeToggle } from "~/components/PracticeModeToggle";
-import {
-	ResultTextIndicator,
-	ResultVoiceIndicator,
-} from "~/components/ResultIndicator";
+import { ResultTextIndicator, ResultVoiceIndicator } from "~/components/ResultIndicator";
 import { SpeakButton } from "~/components/SpeakButton";
 import { WordInput } from "~/components/WordInput";
 import consonantsData from "~/data/pronunciation/consonants.json";
@@ -28,30 +25,24 @@ function aggregatePronunciationData() {
 		...Object.entries(vowelsData),
 		...Object.entries(doubleVowelsData),
 		...Object.values(tones).flatMap((tone) =>
-			Object.entries(
-				(tone as { examples?: Record<string, unknown> }).examples || {},
-			),
+			Object.entries((tone as { examples?: Record<string, unknown> }).examples || {}),
 		),
 	];
 
-	return allData
-		.filter(([_, value]) => value && typeof value === "object")
-		.map(([key]) => key);
+	return allData.filter(([_, value]) => value && typeof value === "object").map(([key]) => key);
 }
 
-const getRandomPracticeItem = createServerFn({ method: "GET" }).handler(
-	async (): Promise<PracticeItem> => {
-		const keys = aggregatePronunciationData();
-		const key = getRandomElement(keys);
-		const display = pickOne("sound", "text");
-		return { key, display };
-	},
-);
+const getRandomPracticeItem = createServerFn({ method: "GET" }).handler((): PracticeItem => {
+	const keys = aggregatePronunciationData();
+	const key = getRandomElement(keys);
+	const display = pickOne("sound", "text");
+	return { key, display };
+});
 
 export const Route = createFileRoute("/pronunciation/practice")({
 	component: PracticeComponent,
-	loader: async () => await getRandomPracticeItem(),
 	ssr: false,
+	loader: async () => await getRandomPracticeItem(),
 });
 
 function ListenPractice({
@@ -73,22 +64,19 @@ function ListenPractice({
 	};
 
 	return (
-		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500">
+		<div className="flex animate-in flex-col items-center space-y-20 duration-500 fade-in slide-in-from-right-96">
 			<SpeakButton text={itemKey} size="large" />
 			<div className="flex flex-col items-center space-y-4">
 				<WordInput
 					text={itemKey}
 					hint={hint}
 					onChange={handleChange}
+					// oxlint-disable-next-line jsx-a11y/no-autofocus -- Focus the active exercise input.
 					autoFocus
 				/>
 				<div className="mt-8 h-8">
 					{showResult && (
-						<ResultTextIndicator
-							key={userInput}
-							inputText={userInput}
-							expectedText={itemKey}
-						/>
+						<ResultTextIndicator key={userInput} inputText={userInput} expectedText={itemKey} />
 					)}
 				</div>
 			</div>
@@ -104,8 +92,8 @@ function SpeakPractice({ itemKey }: { itemKey: string }) {
 	};
 
 	return (
-		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-20 duration-500">
-			<h2 className="font-bold text-5xl">{itemKey}</h2>
+		<div className="flex animate-in flex-col items-center space-y-20 duration-500 fade-in slide-in-from-right-96">
+			<h2 className="text-5xl font-bold">{itemKey}</h2>
 			<div className="flex flex-col items-center space-y-4">
 				<ListenButton onTranscription={handleTranscription} size="large" />
 				<div className="mt-8 h-8">
@@ -124,10 +112,7 @@ function SpeakPractice({ itemKey }: { itemKey: string }) {
 }
 
 function PracticeComponent() {
-	const initialItem = Route.useLoaderData() as {
-		key: string;
-		display: "sound" | "text";
-	};
+	const initialItem = Route.useLoaderData();
 	const [item, setItem] = useState(initialItem);
 	const [hint, setHint] = useState("");
 	const [mode, setMode] = useState<string[]>(["random"]);
@@ -158,9 +143,7 @@ function PracticeComponent() {
 		const idx = unrevealed[Math.floor(Math.random() * unrevealed.length)];
 		const newHint = item.key
 			.split("")
-			.map((c: string, i: number) =>
-				i === idx || currentHint[i] !== " " ? c : " ",
-			)
+			.map((c: string, i: number) => (i === idx || currentHint[i] !== " " ? c : " "))
 			.join("");
 		setHint(newHint);
 	};
@@ -168,11 +151,7 @@ function PracticeComponent() {
 	// Determine display mode based on toggle selection
 	const currentMode = mode[0] || "random";
 	const displayMode =
-		currentMode === "type"
-			? "sound"
-			: currentMode === "speak"
-				? "text"
-				: item.display;
+		currentMode === "type" ? "sound" : currentMode === "speak" ? "text" : item.display;
 
 	return (
 		<Layout
@@ -185,31 +164,40 @@ function PracticeComponent() {
 					) : (
 						<div />
 					)}
-					{displayMode === "sound" &&
-					hint.replace(/\s/g, "").length < item.key.length ? (
+					{displayMode === "sound" && hint.replace(/\s/g, "").length < item.key.length ? (
 						<Button variant="outline" size="medium" onClick={handleHint}>
 							Hint
 						</Button>
 					) : (
 						<div />
 					)}
-					<Button variant="outline" size="medium" onClick={handleNext}>
+					<Button
+						variant="outline"
+						size="medium"
+						onClick={() => {
+							void handleNext().catch((error: unknown) =>
+								console.error("Exercise action failed:", error),
+							);
+						}}
+					>
 						Next
 					</Button>
 				</div>
 			)}
 		>
 			<div className="flex w-full flex-row justify-center pt-8 pb-4">
-				<PracticeModeToggle value={mode} onValueChange={handleModeChange} />
+				<PracticeModeToggle
+					value={mode}
+					onValueChange={(value) => {
+						void handleModeChange(value).catch((error: unknown) =>
+							console.error("Failed to change practice mode:", error),
+						);
+					}}
+				/>
 			</div>
 			<div className="flex flex-1 items-center">
 				{displayMode === "sound" ? (
-					<ListenPractice
-						key={item.key}
-						itemKey={item.key}
-						hint={hint}
-						onInputChange={() => {}}
-					/>
+					<ListenPractice key={item.key} itemKey={item.key} hint={hint} onInputChange={() => {}} />
 				) : (
 					<SpeakPractice key={item.key} itemKey={item.key} />
 				)}

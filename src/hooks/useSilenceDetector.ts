@@ -35,9 +35,7 @@ export function useSilenceDetector({
 				const dataArray = new Uint8Array(analyser.frequencyBinCount);
 				let silenceCount = 0;
 				const checkInterval = 100; // ms
-				const silenceThresholdCount = Math.ceil(
-					silenceDuration / checkInterval,
-				);
+				const silenceThresholdCount = Math.ceil(silenceDuration / checkInterval);
 
 				const checkSilence = () => {
 					if (!isMountedRef.current || !analyserRef.current) return;
@@ -55,6 +53,7 @@ export function useSilenceDetector({
 						silenceCount = 0;
 					}
 
+					// oxlint-disable-next-line react/react-compiler -- This recursive timer is local to each detection session, not a hook dependency.
 					silenceTimeoutRef.current = setTimeout(checkSilence, checkInterval);
 				};
 

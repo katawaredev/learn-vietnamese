@@ -20,9 +20,7 @@ export const calculateRMS = (audioData: Float32Array): number => {
  * @param frequencyData Uint8Array from AnalyserNode.getByteFrequencyData()
  * @returns RMS value (typically 0-255 for byte data)
  */
-export const calculateRMSFromFrequency = (
-	frequencyData: Uint8Array,
-): number => {
+export const calculateRMSFromFrequency = (frequencyData: Uint8Array): number => {
 	if (frequencyData.length === 0) return 0;
 
 	const sumSquares = frequencyData.reduce((sum, val) => sum + val * val, 0);
@@ -43,11 +41,7 @@ export const calculateRMSFromFrequency = (
  * which itself only pays off for recordings longer than ~30s.
  * Ref: https://gattanasio.cc/post/whisper-encoder/
  */
-export const isSilent = (
-	audioData: Float32Array,
-	threshold = 0.05,
-	minSamples = 1600,
-): boolean => {
+export const isSilent = (audioData: Float32Array, threshold = 0.05, minSamples = 1600): boolean => {
 	if (audioData.length < minSamples) return true;
 
 	const rms = calculateRMS(audioData);

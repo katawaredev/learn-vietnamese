@@ -9,7 +9,7 @@ const meta: Meta<typeof Switch> = {
 		size: { control: "radio", options: ["small", "medium", "large"] },
 		disabled: { control: "boolean" },
 	},
-	render: (args) => {
+	render: function Render(args) {
 		const [checked, setChecked] = useState(args.checked ?? false);
 		return <Switch {...args} checked={checked} onCheckedChange={setChecked} />;
 	},

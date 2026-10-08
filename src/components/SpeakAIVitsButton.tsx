@@ -28,8 +28,7 @@ export const SpeakAIVitsButton: FC<SpeakButtonProps> = ({
 	// Generate audio using VITS worker pool
 	const getAudio = useCallback(async (): Promise<HTMLAudioElement> => {
 		const trimmedText = text.trim();
-		const voiceId: VoiceId =
-			(selectedVoice.voiceId as VoiceId) || "vi_VN-vais1000-medium";
+		const voiceId: VoiceId = (selectedVoice.voiceId as VoiceId) || "vi_VN-vais1000-medium";
 
 		// Check if cached (won't trigger generation)
 		if (await ttsVitsPool.isCached(trimmedText, voiceId)) {
@@ -42,15 +41,11 @@ export const SpeakAIVitsButton: FC<SpeakButtonProps> = ({
 		setLoadingProgress(0);
 
 		try {
-			const audio = await ttsVitsPool.generateAudio(
-				trimmedText,
-				voiceId,
-				(progress) => {
-					if (isMountedRef.current) {
-						setLoadingProgress(Math.round(progress));
-					}
-				},
-			);
+			const audio = await ttsVitsPool.generateAudio(trimmedText, voiceId, (progress) => {
+				if (isMountedRef.current) {
+					setLoadingProgress(Math.round(progress));
+				}
+			});
 
 			if (isMountedRef.current) {
 				setIsGenerating(false);

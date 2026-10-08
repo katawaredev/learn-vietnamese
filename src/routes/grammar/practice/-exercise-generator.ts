@@ -42,9 +42,7 @@ export interface TextWord {
 	meaning: string;
 }
 
-export type Segment =
-	| { kind: "text"; words: TextWord[] }
-	| { kind: "gap"; gapIndex: number };
+export type Segment = { kind: "text"; words: TextWord[] } | { kind: "gap"; gapIndex: number };
 
 export interface Gap {
 	index: number;
@@ -118,9 +116,7 @@ function extractPatternsExamples(data: {
 	return data.patterns.flatMap((p) => p.examples);
 }
 
-function extractQuestionsExamples(
-	data: typeof questionsData,
-): GrammarExample[] {
+function extractQuestionsExamples(data: typeof questionsData): GrammarExample[] {
 	const examples: GrammarExample[] = [];
 	for (const qt of data.questionTypes) {
 		if ("patterns" in qt && qt.patterns) {
@@ -268,15 +264,12 @@ function buildTopicExamples(): TopicExamples[] {
 	];
 }
 
-const PRACTICE_EXTRAS = practiceData as unknown as Record<
-	string,
-	GrammarExample[]
->;
+const PRACTICE_EXTRAS = practiceData as unknown as Record<string, GrammarExample[]>;
 
-const ALL_TOPICS = buildTopicExamples().map((t) => ({
-	...t,
-	examples: [...t.examples, ...(PRACTICE_EXTRAS[t.topicId] ?? [])],
-}));
+const ALL_TOPICS = buildTopicExamples().map((topic) => {
+	topic.examples = [...topic.examples, ...(PRACTICE_EXTRAS[topic.topicId] ?? [])];
+	return topic;
+});
 
 // --- Exercise type weighting ---
 
@@ -365,8 +358,7 @@ function findDistractors(
 	currentExample: GrammarExample,
 ): { text: string; grammarType: string; meaning: string }[] {
 	const usedTexts = new Set(Object.keys(currentExample.breakdown));
-	const candidates: { text: string; grammarType: string; meaning: string }[] =
-		[];
+	const candidates: { text: string; grammarType: string; meaning: string }[] = [];
 
 	// Look through all examples in same topic for markers not in current sentence
 	for (const ex of topicExamples.examples) {
@@ -442,9 +434,7 @@ function generateGapFillExercise(
 	// This shouldn't happen with proper markerTypes config, but handle gracefully
 	if (gaps.length === 0) {
 		// Make the first non-subject word a gap
-		const firstNonSubject = breakdownKeys.find(
-			(k) => example.breakdown[k].type !== "subject",
-		);
+		const firstNonSubject = breakdownKeys.find((k) => example.breakdown[k].type !== "subject");
 		if (firstNonSubject) {
 			const entry = example.breakdown[firstNonSubject];
 			return generateGapFillFromSpecificWords(
@@ -520,8 +510,8 @@ interface GenerateExerciseParams {
 }
 
 export const getRandomGrammarExercise = createServerFn({ method: "GET" })
-	.inputValidator((input: GenerateExerciseParams) => input)
-	.handler(async ({ data }): Promise<Exercise> => {
+	.validator((input: GenerateExerciseParams) => input)
+	.handler(({ data }): Exercise => {
 		const { mode = "random" } = data;
 
 		const topicExamples = getRandomElement(ALL_TOPICS);

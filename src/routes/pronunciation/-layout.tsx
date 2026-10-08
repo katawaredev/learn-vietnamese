@@ -1,9 +1,5 @@
 import type { ReactNode } from "react";
-import {
-	ModuleLayout,
-	type ModuleRoute,
-	type NavigationHelpers,
-} from "~/layout/ModuleLayout";
+import { ModuleLayout, type ModuleRoute, type NavigationHelpers } from "~/layout/ModuleLayout";
 
 export const pronunciationRoutes: ModuleRoute[] = [
 	{ label: "Vowels", path: "/pronunciation/vowels" },
@@ -21,10 +17,7 @@ interface LayoutProps {
 
 export function Layout({ children, customNavigation }: LayoutProps) {
 	return (
-		<ModuleLayout
-			routes={pronunciationRoutes}
-			customNavigation={customNavigation}
-		>
+		<ModuleLayout routes={pronunciationRoutes} customNavigation={customNavigation}>
 			{children}
 		</ModuleLayout>
 	);

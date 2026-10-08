@@ -3,7 +3,7 @@ import { Card } from "~/components/Card";
 import { Disclosure } from "~/components/Disclosure";
 import dataFile from "~/data/grammar/negatives.json";
 import type { GrammarModuleData } from "./-GrammarModule";
-import { type Example, GrammarPracticeGrid } from "./-GrammarPracticeGrid";
+import { GrammarPracticeGrid } from "./-GrammarPracticeGrid";
 import { GRAMMAR_TYPE_COLORS } from "./-grammar-colors";
 import { Layout } from "./-layout";
 import { WordGrid } from "./-WordGrid";
@@ -20,44 +20,34 @@ function NegativesComponent() {
 			<div className="space-y-8">
 				<Disclosure
 					defaultOpen
-					title={
-						<span className="font-bold text-lg">{data.introduction.title}</span>
-					}
+					title={<span className="text-lg font-bold">{data.introduction.title}</span>}
 				>
 					<div className="space-y-5">
 						{/* Decision guide cards */}
 						<div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
 							<Card>
 								<div className="space-y-2">
-									<div className="font-semibold text-lg text-red-400">
-										không
-									</div>
-									<div className="text-sm text-white/60">
-										not — facts & states
-									</div>
+									<div className="text-lg font-semibold text-red-400">không</div>
+									<div className="text-sm text-white/60">not — facts & states</div>
 									<div className="font-mono text-sm text-white/70">
-										Tôi <span className="text-red-400">không</span> biết → I
-										don't know
+										Tôi <span className="text-red-400">không</span> biết → I don't know
 									</div>
 								</div>
 							</Card>
 
 							<Card>
 								<div className="space-y-2">
-									<div className="font-semibold text-lg text-red-400">chưa</div>
-									<div className="text-sm text-white/60">
-										not yet — pending actions
-									</div>
+									<div className="text-lg font-semibold text-red-400">chưa</div>
+									<div className="text-sm text-white/60">not yet — pending actions</div>
 									<div className="font-mono text-sm text-white/70">
-										Tôi <span className="text-red-400">chưa</span> ăn → I
-										haven't eaten yet
+										Tôi <span className="text-red-400">chưa</span> ăn → I haven't eaten yet
 									</div>
 								</div>
 							</Card>
 
 							<Card>
 								<div className="space-y-2">
-									<div className="font-semibold text-lg text-red-400">đừng</div>
+									<div className="text-lg font-semibold text-red-400">đừng</div>
 									<div className="text-sm text-white/60">don't — commands</div>
 									<div className="font-mono text-sm text-white/70">
 										<span className="text-red-400">Đừng</span> lo → Don't worry
@@ -67,8 +57,7 @@ function NegativesComponent() {
 						</div>
 
 						<p className="text-white/80">
-							Place the negation word directly before the verb or adjective. No
-							helper verbs needed.
+							Place the negation word directly before the verb or adjective. No helper verbs needed.
 						</p>
 					</div>
 				</Disclosure>
@@ -76,9 +65,7 @@ function NegativesComponent() {
 				{data.sections.map((section) => (
 					<div key={section.id} className="space-y-6">
 						<div>
-							<h2 className="font-bold font-serif text-2xl text-gold">
-								{section.title}
-							</h2>
+							<h2 className="font-serif text-2xl font-bold text-gold">{section.title}</h2>
 							<p className="mt-1 text-white/60">{section.description}</p>
 						</div>
 
@@ -91,7 +78,7 @@ function NegativesComponent() {
 
 						{section.examples.length > 0 && (
 							<Disclosure plain title="Examples" defaultOpen>
-								<GrammarPracticeGrid examples={section.examples as Example[]} />
+								<GrammarPracticeGrid examples={section.examples} />
 							</Disclosure>
 						)}
 					</div>

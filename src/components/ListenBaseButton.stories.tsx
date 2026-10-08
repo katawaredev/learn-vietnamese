@@ -50,7 +50,7 @@ export const OverflowsTinyContainer: Story = {
 				{ state: "processing" as const, loadingProgress: 50 },
 			].map(({ state, loadingProgress }, i) => (
 				<div
-					// biome-ignore lint/suspicious/noArrayIndexKey: fixed-order demo grid
+					// oxlint-disable-next-line react/no-array-index-key -- fixed-order demo grid
 					key={i}
 					className="flex h-8 w-8 items-center justify-center"
 				>

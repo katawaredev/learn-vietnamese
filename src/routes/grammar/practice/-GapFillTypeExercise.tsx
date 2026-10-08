@@ -10,13 +10,8 @@ interface GapFillTypeExerciseProps {
 	onHintRef: React.RefObject<(() => void) | null>;
 }
 
-export function GapFillTypeExercise({
-	exercise,
-	onHintRef,
-}: GapFillTypeExerciseProps) {
-	const [inputs, setInputs] = useState<string[]>(() =>
-		exercise.gaps.map(() => ""),
-	);
+export function GapFillTypeExercise({ exercise, onHintRef }: GapFillTypeExerciseProps) {
+	const [inputs, setInputs] = useState<string[]>(() => exercise.gaps.map(() => ""));
 	const [hints, setHints] = useState<string[]>(() =>
 		exercise.gaps.map((g) => " ".repeat(g.expected.length)),
 	);
@@ -59,37 +54,33 @@ export function GapFillTypeExercise({
 
 		// Auto-advance when filled
 		const gap = exercise.gaps[gapIndex];
-		if (
-			value.length === gap.expected.length &&
-			gapIndex < exercise.gaps.length - 1
-		) {
+		if (value.length === gap.expected.length && gapIndex < exercise.gaps.length - 1) {
 			setActiveGap(gapIndex + 1);
 		}
 	};
 
 	return (
-		<div className="fade-in slide-in-from-right-96 flex animate-in flex-col items-center space-y-8 duration-500">
+		<div className="flex animate-in flex-col items-center space-y-8 duration-500 fade-in slide-in-from-right-96">
 			{/* English prompt */}
-			<h2 className="text-center font-bold text-5xl">{exercise.english}</h2>
+			<h2 className="text-center text-5xl font-bold">{exercise.english}</h2>
 
 			{/* Sentence with gaps */}
 			<div className="flex flex-wrap items-start justify-center gap-x-3 gap-y-4 text-xl">
 				{exercise.segments.map((segment, i) => {
 					if (segment.kind === "text") {
 						return (
-							// biome-ignore lint/suspicious/noArrayIndexKey: segments are positional
+							// oxlint-disable-next-line react/no-array-index-key -- segments are positional
 							<div key={i} className="flex flex-wrap gap-x-3">
 								{segment.words.map((w, wi) => {
-									const wordColor =
-										GRAMMAR_TYPE_COLORS[w.grammarType] ?? "text-white/90";
+									const wordColor = GRAMMAR_TYPE_COLORS[w.grammarType] ?? "text-white/90";
 									return (
 										<span
-											// biome-ignore lint/suspicious/noArrayIndexKey: words are positional
+											// oxlint-disable-next-line react/no-array-index-key -- words are positional
 											key={wi}
 											className="inline-flex flex-col items-center"
 										>
 											<span className={wordColor}>{w.text}</span>
-											<span className="text-[0.65rem] text-white/50 leading-tight">
+											<span className="text-[0.65rem] leading-tight text-white/50">
 												{w.meaning}
 											</span>
 										</span>
@@ -104,12 +95,11 @@ export function GapFillTypeExercise({
 					const hint = hints[segment.gapIndex];
 					const isFilled = input.length === gap.expected.length;
 
-					const typeColor =
-						GRAMMAR_TYPE_COLORS[gap.grammarType] ?? "text-white/70";
+					const typeColor = GRAMMAR_TYPE_COLORS[gap.grammarType] ?? "text-white/70";
 
 					return (
 						<span
-							// biome-ignore lint/suspicious/noArrayIndexKey: segments are positional
+							// oxlint-disable-next-line react/no-array-index-key -- segments are positional
 							key={i}
 							className="relative inline-flex flex-col items-center"
 						>
@@ -117,14 +107,10 @@ export function GapFillTypeExercise({
 								text={gap.expected}
 								hint={hint}
 								onChange={(v) => handleInputChange(segment.gapIndex, v)}
+								// oxlint-disable-next-line jsx-a11y/no-autofocus -- Focus the active exercise input.
 								autoFocus={segment.gapIndex === 0}
 							/>
-							<span
-								className={twMerge(
-									"mt-1 text-[0.65rem] uppercase tracking-widest",
-									typeColor,
-								)}
-							>
+							<span className={twMerge("mt-1 text-[0.65rem] tracking-widest uppercase", typeColor)}>
 								{gap.grammarType}
 							</span>
 							{isFilled && (

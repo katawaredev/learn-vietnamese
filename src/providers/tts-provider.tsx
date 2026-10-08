@@ -1,10 +1,4 @@
-import {
-	createContext,
-	type ReactNode,
-	useContext,
-	useEffect,
-	useState,
-} from "react";
+import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from "react";
 
 import { isLowEndDevice } from "~/utils/device";
 import type { ModelDType } from "~/workers/worker-types";
@@ -155,8 +149,7 @@ const STORAGE_KEY_EN = "tts-en-voice";
 function getInitialTTSVoice(language: Language): TTSVoiceOption {
 	const storageKey = language === "vn" ? STORAGE_KEY_VN : STORAGE_KEY_EN;
 	const savedId =
-		typeof localStorage !== "undefined" &&
-		typeof localStorage.getItem === "function"
+		typeof localStorage !== "undefined" && typeof localStorage.getItem === "function"
 			? localStorage.getItem(storageKey)
 			: null;
 
@@ -174,22 +167,18 @@ function getInitialTTSVoice(language: Language): TTSVoiceOption {
 }
 
 export function TTSProvider({ children }: { children: ReactNode }) {
-	const [selectedVoiceVN, setSelectedVoiceVNState] = useState<TTSVoiceOption>(
-		() => getInitialTTSVoice("vn"),
+	const [selectedVoiceVN, setSelectedVoiceVNState] = useState<TTSVoiceOption>(() =>
+		getInitialTTSVoice("vn"),
 	);
-	const [selectedVoiceEN, setSelectedVoiceENState] = useState<TTSVoiceOption>(
-		() => getInitialTTSVoice("en"),
+	const [selectedVoiceEN, setSelectedVoiceENState] = useState<TTSVoiceOption>(() =>
+		getInitialTTSVoice("en"),
 	);
-	const [webSpeechVoicesVN, setWebSpeechVoicesVN] = useState<TTSVoiceOption[]>(
-		[],
-	);
-	const [webSpeechVoicesEN, setWebSpeechVoicesEN] = useState<TTSVoiceOption[]>(
-		[],
-	);
+	const [webSpeechVoicesVN, setWebSpeechVoicesVN] = useState<TTSVoiceOption[]>([]);
+	const [webSpeechVoicesEN, setWebSpeechVoicesEN] = useState<TTSVoiceOption[]>([]);
 
 	// Load voices and handle browser compatibility
 	useEffect(() => {
-		if (typeof window === "undefined" || !window.speechSynthesis) return;
+		if (typeof window === "undefined" || !window.speechSynthesis) return undefined;
 
 		const loadVoices = () => {
 			const voicesVN = getWebSpeechVoices("vn");
@@ -226,38 +215,31 @@ export function TTSProvider({ children }: { children: ReactNode }) {
 		};
 	}, []);
 
-	const getSelectedVoice = (language: Language): TTSVoiceOption => {
-		return language === "vn" ? selectedVoiceVN : selectedVoiceEN;
-	};
+	const value = useMemo(() => {
+		const getSelectedVoice = (language: Language): TTSVoiceOption => {
+			return language === "vn" ? selectedVoiceVN : selectedVoiceEN;
+		};
 
-	const setSelectedVoice = (language: Language, voice: TTSVoiceOption) => {
-		if (language === "vn") {
-			setSelectedVoiceVNState(voice);
-			localStorage.setItem(STORAGE_KEY_VN, voice.id);
-		} else {
-			setSelectedVoiceENState(voice);
-			localStorage.setItem(STORAGE_KEY_EN, voice.id);
-		}
-	};
+		const setSelectedVoice = (language: Language, voice: TTSVoiceOption) => {
+			if (language === "vn") {
+				setSelectedVoiceVNState(voice);
+				localStorage.setItem(STORAGE_KEY_VN, voice.id);
+			} else {
+				setSelectedVoiceENState(voice);
+				localStorage.setItem(STORAGE_KEY_EN, voice.id);
+			}
+		};
 
-	const getAvailableVoices = (language: Language): TTSVoiceOption[] => {
-		if (language === "vn") {
-			return [...MMS_VOICES_VN, ...VITS_VOICES_VN, ...webSpeechVoicesVN];
-		}
-		return [...MMS_VOICES_EN, ...VITS_VOICES_EN, ...webSpeechVoicesEN];
-	};
+		const getAvailableVoices = (language: Language): TTSVoiceOption[] => {
+			if (language === "vn") {
+				return [...MMS_VOICES_VN, ...VITS_VOICES_VN, ...webSpeechVoicesVN];
+			}
+			return [...MMS_VOICES_EN, ...VITS_VOICES_EN, ...webSpeechVoicesEN];
+		};
+		return { getSelectedVoice, setSelectedVoice, getAvailableVoices };
+	}, [selectedVoiceVN, selectedVoiceEN, webSpeechVoicesVN, webSpeechVoicesEN]);
 
-	return (
-		<TTSContext.Provider
-			value={{
-				getSelectedVoice,
-				setSelectedVoice,
-				getAvailableVoices,
-			}}
-		>
-			{children}
-		</TTSContext.Provider>
-	);
+	return <TTSContext.Provider value={value}>{children}</TTSContext.Provider>;
 }
 
 export function useTTS() {

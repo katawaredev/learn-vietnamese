@@ -35,13 +35,11 @@ function TensesComponent() {
 				{/* Introduction */}
 				<Disclosure
 					defaultOpen
-					title={
-						<span className="font-bold text-lg">{data.introduction.title}</span>
-					}
+					title={<span className="text-lg font-bold">{data.introduction.title}</span>}
 				>
 					<div className="space-y-4">
 						{data.introduction.content.map((paragraph) => (
-							<p key={paragraph} className="text-white/80 leading-relaxed">
+							<p key={paragraph} className="leading-relaxed text-white/80">
 								{paragraph}
 							</p>
 						))}
@@ -52,16 +50,11 @@ function TensesComponent() {
 				{data.sections.map((section) => (
 					<div key={section.id} className="space-y-6">
 						<div>
-							<h2 className="font-bold font-serif text-2xl text-gold">
-								{section.title}
-							</h2>
+							<h2 className="font-serif text-2xl font-bold text-gold">{section.title}</h2>
 							<p className="mt-1 text-white/60">{section.description}</p>
 						</div>
 
-						<WordGrid
-							data={section.markers}
-							titleClassName={GRAMMAR_TYPE_COLORS["tense-marker"]}
-						/>
+						<WordGrid data={section.markers} titleClassName={GRAMMAR_TYPE_COLORS["tense-marker"]} />
 
 						{section.examples.length > 0 && (
 							<Disclosure plain title="Examples" defaultOpen>

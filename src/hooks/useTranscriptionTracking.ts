@@ -5,12 +5,8 @@ import { useState } from "react";
  * Used by practice grid components to show correctness indicators
  */
 export function useTranscriptionTracking() {
-	const [transcriptions, setTranscriptions] = useState<
-		Record<string, string | null>
-	>({});
-	const [newTranscriptions, setNewTranscriptions] = useState<Set<string>>(
-		new Set(),
-	);
+	const [transcriptions, setTranscriptions] = useState<Record<string, string | null>>({});
+	const [newTranscriptions, setNewTranscriptions] = useState<Set<string>>(new Set());
 
 	const handleTranscription = (key: string, text: string | null) => {
 		setTranscriptions((prev) => ({ ...prev, [key]: text }));

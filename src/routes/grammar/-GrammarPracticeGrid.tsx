@@ -36,8 +36,7 @@ function stripSubscript(word: string): string {
 }
 
 export function GrammarPracticeGrid({ examples }: GrammarPracticeGridProps) {
-	const { transcriptions, newTranscriptions, handleTranscription } =
-		useTranscriptionTracking();
+	const { transcriptions, newTranscriptions, handleTranscription } = useTranscriptionTracking();
 
 	// CSS Grid with auto-fit: creates only as many columns as needed without stretching
 	// Reference: https://css-tricks.com/snippets/css/complete-guide-grid/#aa-fluid-columns-snippet
@@ -58,7 +57,7 @@ export function GrammarPracticeGrid({ examples }: GrammarPracticeGridProps) {
 									{words.map((word) => (
 										<td
 											key={`${word}-vn`}
-											className="border-white/10 border-r px-3 py-2 text-center font-medium text-warm-cream last:border-r-0"
+											className="border-r border-white/10 px-3 py-2 text-center font-medium text-warm-cream last:border-r-0"
 										>
 											{stripSubscript(word)}
 										</td>
@@ -72,7 +71,7 @@ export function GrammarPracticeGrid({ examples }: GrammarPracticeGridProps) {
 										return (
 											<td
 												key={`${word}-type`}
-												className={`border-white/10 border-r px-3 py-2 text-center text-xs last:border-r-0 ${colorClass}`}
+												className={`border-r border-white/10 px-3 py-2 text-center text-xs last:border-r-0 ${colorClass}`}
 											>
 												{item.type}
 											</td>
@@ -84,7 +83,7 @@ export function GrammarPracticeGrid({ examples }: GrammarPracticeGridProps) {
 									{words.map((word) => (
 										<td
 											key={`${word}-meaning`}
-											className="border-white/10 border-r px-3 py-2 text-center text-white/70 text-xs last:border-r-0"
+											className="border-r border-white/10 px-3 py-2 text-center text-xs text-white/70 last:border-r-0"
 										>
 											{example.breakdown[word].meaning}
 										</td>
@@ -158,10 +157,7 @@ export function GrammarPracticeGrid({ examples }: GrammarPracticeGridProps) {
 													: "text-6xl";
 
 									return (
-										<span
-											key={word}
-											className={`font-bold ${textSize} ${colorClass}`}
-										>
+										<span key={word} className={`font-bold ${textSize} ${colorClass}`}>
 											{displayWord}
 										</span>
 									);
@@ -169,9 +165,7 @@ export function GrammarPracticeGrid({ examples }: GrammarPracticeGridProps) {
 							</div>
 
 							{/* Subtitle (English translation) */}
-							<div className="mb-4 px-2 font-mono text-sm text-white/70">
-								{example.english}
-							</div>
+							<div className="mb-4 px-2 font-mono text-sm text-white/70">{example.english}</div>
 						</div>
 
 						{/* Action buttons */}
