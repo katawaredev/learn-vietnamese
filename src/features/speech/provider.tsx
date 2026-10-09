@@ -59,7 +59,7 @@ export function SpeechProvider({ children }: { children: ReactNode }) {
 		const controller = new AbortController();
 		const saved = savedSettings();
 		if (saved) {
-			// oxlint-disable-next-line react/react-compiler -- Read browser storage after SSR hydration.
+			// oxlint-disable-next-line react/set-state-in-effect -- Read browser storage after SSR hydration.
 			setPreferences(saved.preferences);
 			setLocalModels(saved.models);
 		}

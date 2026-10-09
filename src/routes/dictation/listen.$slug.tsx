@@ -115,7 +115,7 @@ function ListenPracticeComponent() {
 		if (unrevealed.length === 0) return;
 
 		// Pick random unrevealed letter position
-		// oxlint-disable-next-line react/react-compiler -- Randomness runs only in the Hint click handler.
+		// oxlint-disable-next-line react/purity -- Randomness runs only in the Hint click handler.
 		const idx = unrevealed[Math.floor(Math.random() * unrevealed.length)];
 
 		// Build new hint character-by-character

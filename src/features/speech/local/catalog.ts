@@ -55,16 +55,14 @@ export const LOCAL_VOICES: readonly LocalVoice[] = [
 		["storyvert", "storyvert"],
 		["duc_an", "Đức An"],
 		["duc_duy", "đức duy"],
-	].map(
-		([voiceId, name]): LocalVoice => ({
-			id: `kokoro-${voiceId}`,
-			name: `${name} (Kokoro)`,
-			engine: "kokoro",
-			downloadMB: 400,
-			voiceId,
-			languages: ["vn"],
-		}),
-	),
+	].map(([voiceId, name]): LocalVoice => ({
+		id: `kokoro-${voiceId}`,
+		name: `${name} (Kokoro)`,
+		engine: "kokoro",
+		downloadMB: 400,
+		voiceId,
+		languages: ["vn"],
+	})),
 	...[
 		["adam_bua", "Adam bựa"],
 		["truc_ly", "Trúc Ly"],
@@ -91,16 +89,14 @@ export const LOCAL_VOICES: readonly LocalVoice[] = [
 		["kim_thanh", "Kim Thanh"],
 		["adam", "Adam"],
 		["manh_dung", "Mạnh Dũng"],
-	].map(
-		([voiceId, name]): LocalVoice => ({
-			id: `vieneu-${voiceId}`,
-			name: `${name} (VieNeu v3 Turbo)`,
-			engine: "vieneu",
-			downloadMB: 300,
-			voiceId,
-			languages: ["vn", "en"],
-		}),
-	),
+	].map(([voiceId, name]): LocalVoice => ({
+		id: `vieneu-${voiceId}`,
+		name: `${name} (VieNeu v3 Turbo)`,
+		engine: "vieneu",
+		downloadMB: 300,
+		voiceId,
+		languages: ["vn", "en"],
+	})),
 
 	{
 		id: "Xenova/mms-tts-eng",

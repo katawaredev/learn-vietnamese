@@ -16,11 +16,9 @@ export function allowedChatModels(config: Endpoint) {
 
 export const chatModels = readEndpoint("CHAT").pipe(
 	Effect.catchTag("AppError", () => Effect.succeed(null)),
-	Effect.map(
-		(config): ChatModels => ({
-			models: config ? allowedChatModels(config) : [],
-			defaultModel: config?.model ?? null,
-			thinking: !!config && ["ollama", "qwen"].includes(process.env.AI_CHAT_THINKING ?? ""),
-		}),
-	),
+	Effect.map((config): ChatModels => ({
+		models: config ? allowedChatModels(config) : [],
+		defaultModel: config?.model ?? null,
+		thinking: !!config && ["ollama", "qwen"].includes(process.env.AI_CHAT_THINKING ?? ""),
+	})),
 );

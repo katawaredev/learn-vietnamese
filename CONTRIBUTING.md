@@ -9,6 +9,7 @@
 - Linting & formatting: [OXC](https://oxc.rs/)
 - Editor defaults: [EditorConfig](https://editorconfig.org)
 - Type checking: [TypeScript](https://www.typescriptlang.org)
+- `vp run typecheck` uses TypeScript 7 through the `@typescript/native` alias. The `typescript` alias supplies Microsoft's TypeScript 6 compatibility API for Storybook's prop extraction.
 
 ## Workflow
 

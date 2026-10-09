@@ -52,15 +52,12 @@ export function numberToText(num: number): string {
 		// Tens place: "mươi" for 20-90, "mười" for exactly 10
 		if (ch > 1) {
 			parts.push(digits[ch], "mươi");
-			if (dv === 1)
-				parts.push("mốt"); // Special: 21 → "hai mươi mốt" (not "một")
-			else if (dv === 5)
-				parts.push("lăm"); // Special: 25 → "hai mươi lăm" (not "năm")
+			if (dv === 1) parts.push("mốt"); // Special: 21 → "hai mươi mốt" (not "một")
+			else if (dv === 5) parts.push("lăm"); // Special: 25 → "hai mươi lăm" (not "năm")
 			else if (dv > 0) parts.push(digits[dv]);
 		} else if (ch === 1) {
 			parts.push("mười"); // 10-19 use "mười" (not "một mươi")
-			if (dv === 5)
-				parts.push("lăm"); // 15 → "mười lăm"
+			if (dv === 5) parts.push("lăm"); // 15 → "mười lăm"
 			else if (dv > 0) parts.push(digits[dv]);
 		} else if (ch === 0 && dv > 0 && (!full || tr > 0)) {
 			// Units only (when no tens and either has hundreds or is the last group)

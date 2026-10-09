@@ -109,7 +109,6 @@ const config = defineConfig({
 			// Oxlint categories differ from ESLint's recommended presets.
 			"react/rules-of-hooks": "error",
 			"react/exhaustive-deps": "error",
-			"react/react-compiler": "warn",
 			"react/no-unstable-nested-components": ["warn", { allowAsProps: true }],
 			// Assertions from unknown still need review, but are not unsafe any usage.
 			"typescript/no-unsafe-type-assertion": "off",
@@ -131,8 +130,8 @@ const config = defineConfig({
 		overrides: [
 			{
 				files: ["**/*.{ts,tsx,mts,cts}"],
-				// TypeScript checks names and understands type-only globals.
-				rules: { "eslint/no-undef": "off" },
+				// TypeScript checks names and allows separate type and value declarations.
+				rules: { "eslint/no-undef": "off", "eslint/no-redeclare": "off" },
 			},
 		],
 

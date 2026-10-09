@@ -18,6 +18,7 @@ function ChatRoute() {
 	const end = useRef<HTMLDivElement>(null);
 	useEffect(() => {
 		end.current?.scrollIntoView({ behavior: "smooth" });
+		// oxlint-disable-next-line react/exhaustive-effect-dependencies -- Scroll when messages are added or removed.
 	}, [messages.length]);
 	const send = (text: string | null) => {
 		if (!text?.trim() || isLoading || !available) return;

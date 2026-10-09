@@ -29,7 +29,7 @@ function aggregatePronunciationData() {
 		),
 	];
 
-	return allData.filter(([_, value]) => value && typeof value === "object").map(([key]) => key);
+	return allData.filter(([, value]) => value && typeof value === "object").map(([key]) => key);
 }
 
 const getRandomPracticeItem = createServerFn({ method: "GET" }).handler((): PracticeItem => {
